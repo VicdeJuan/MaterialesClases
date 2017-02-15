@@ -1,0 +1,92 @@
+\documentclass[palatino,nosec]{apuntes}
+
+\title{Derivadas}
+\author{}
+\date{16/17 C2}
+
+\newcommand{\sen}{\operatorname{\sen}}
+\newcommand{\arcsen}{\operatorname{\arcsen}}
+
+
+% Paquetes adicionales
+
+% --------------------
+
+\begin{document}
+%\pagestyle{plain}
+%\maketitle
+
+%\tableofcontents
+%% Contenido.
+
+\section*{Ejercicio 183.19}
+
+\begin{itemize}
+
+\item[\textbf{a)}] $\displaystyle f(x) = \sqrt{x^2+x}$
+
+Utilizamos: $f(x) = u^n \to n·u^{n-1}·u'$, $f(x) = u+v \to f'(x) = u'+v'$ y la regla de la cadena.
+
+\[
+f(x) = \sqrt{x^2+x} = (x^2+x)^{\rfrac{1}{2}} \to f'(x) = \frac{1}{2}·(x^2+x)^{\rfrac{1}{2}-1}·(x^2+x)' = \frac{2x+1}{2\sqrt{x^2+x}}
+\]
+
+
+\item[\textbf{b)}] $\displaystyle f(x) = (\arcsen{x})^3$
+
+Utilizamos $f(x) = \arcsen(x) \to f'(x) = \frac{1}{\sqrt{1-x^2}}$ y $f(u) = u^n\to f'(u) = nx^{n-1}u'$. Además, tenemos una función compuesta por lo que necesitamos la regla de la cadena.
+
+\[
+f(x) = (\arcsen{x})^3 \to 3(\arcsen{x})^2·\frac{1}{\sqrt{1-x^2}}
+\]
+
+\item[\textbf{c)}] $\displaystyle f(x) = \ln(4x)$
+
+Utilizamos $f(u) = k·u, k\in\real \to f'(u) = ku'$, $f(u) = \ln(u) \to f'(u)= \frac{1}{u}·u' = \frac{u'}{u}$ y la regla de la cadena.
+
+\[
+f(x) = \ln(4x) \to f'(x) = \frac{1}{4x}·(4x)' = \frac{4}{4x} = \frac{1}{x}
+\]
+\end{itemize}
+
+
+\section*{Ejercicio 183.20}
+
+\begin{itemize}
+	\item[\textbf{a)] $\displaystyle f(x) = (\cos{x})^2 = \cos^2{x}$
+
+	Utilizamos $f(x) = \cos{x} \to f'(x) = -\sen{x}$ y $f(u) = u^n \to f'(u) = n·u^{n-1}·u'$.
+
+	\[
+		f(x) = \left(\cos(x)\right)^2 \to f'(x) = 2(\cos(x))·\underbrace{(-\sen(x))}_{(\cos(x))'} = -2\sen(x)\cos(x)
+	\]
+
+	\item[]
+
+
+\end{itemize}
+
+
+
+%% Apendices (ejercicios, examenes)
+%\appendix\chapter{---}\input{tex/Derivadas_Ejs.tex}
+
+
+
+%\section*{Ejercicio 281.16}
+
+%\begin{itemize}
+%	\item $3x^2·\log_2(x)$
+%	\item $f(x) = e^x\sen(x)$
+%	\item $f(x) = \sqrt[3]{x}·\cos(x)$
+%	\item $f(x) = \cos(x)·\tg(x)$
+%	\item $f(x) = 4x·\sen(x) + x^3·\cos(x)$
+%	\item $f(x) = \ln(x)\frac{1}{x^4} + x^2·e^x$
+%	\item $f(x)  = (\sen(x) - \cos(x)) ·\tg(x)$
+%	\item $f(x) = 4x\sqrt{x} + \frac{\sen(x)}{x}$
+
+%\end{itemize}
+
+\printindex
+\end{document}
+\grid

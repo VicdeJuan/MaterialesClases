@@ -1,0 +1,171 @@
+\documentclass[palatino,nosec]{apuntes}
+
+\title{Derivadas}
+\author{}
+\date{16/17 C2}
+
+
+\newcommand{\sen}{\operatorname{\sen}}
+\newcommand{\arcsen}{\operatorname{\arcsen}}
+\newcommand{\tg}{\operatorname{\tg}}
+\newcommand{\arctg}{\operatorname{\arctg}}
+
+
+% Paquetes adicionales
+
+% --------------------
+
+\begin{document}
+%\pagestyle{plain}
+%\maketitle
+
+%\tableofcontents
+%% Contenido.
+%\Large
+\section*{Ejercicio 193.95}
+
+\begin{itemize}
+
+\\
+\vspace{5cm}
+\item[\textbf{a)}] $\displaystyle f(x) = \sen{(3x^2)}$
+
+Utilizamos: $f(u) = \sen{u} \to f'(u) = \cos{(u)}·u'$, $f(u) = k·u, k\in\real \to f'(u) = k·u'$ y $f(x) = x^n \to n·x^{n-1}$
+
+\[
+	f(x) = \sen{(3x^2)} \to f'(x) = \cos{(3x^2)}·(3x^2)' = \cos{(3x^2)}·3·(x^2)' = \cos{(3x^2)}·6x
+\]
+
+\textbf{Error grave a evitar}
+
+\[
+	\cos{3x^2}·6x \textcolor{red}{\neq} \cos{18x^3}
+\]
+¿Cómo evitarlo? Utilizando paréntesis, para indicar a qué afecta el coseno. (Lo mismo para $\sen(x)$,$\tg(x)$ y $\ln(x)$)
+
+\[
+	\cos{\left(3x^2\right)}·6x
+\]
+
+
+\\
+\vspace{5cm}
+\item[\textbf{b)}] $\displaystyle f(x) = \cos{(x^2+1)} $
+
+Utilizamos: $f(x) = x^n \to n·x^{n-1}$, $f(u) = \cos(u) \to f'(u) = -\sen{(u)}·u'$
+. También utilizamos, $f(x) = u \pm v \to f'(x) = u' \pm v'$
+
+\[
+	f(x) = \cos{(x^2+1)} \to f'(x) = \sen{(x^2+1)}·2x = 2x\sen{(x^2+1)}
+\]
+
+\\
+\vspace{5cm}
+\item[\textbf{c)}] $\displaystyle f(x) = \tg{(x^2-3x)}$
+
+Utilizamos $f(u) = \tg{u} \to f'(u) = (\tg^2(u)+1)·u'$ y $f(x) = x^n \to f'(x) = nx^{n-1}$
+. También utilizamos, $f(x) = u \pm v \to f'(x) = u' \pm v'$
+
+\[
+	f(x) = \tg{(x^2-3x)} \to f'(x) = \left(\tg^2(x^2-3x)+1\right)·(2x-3)
+\]
+
+
+\\
+\vspace{5cm}
+\item[\textbf{d)}] $\displaystyle f(x) = \sen{\sqrt{x^2+3x}} $
+
+Utilizamos: $f(u) = \sen(u) \to f'(u) = \cos(u)·u'$, $f(u) = \sqrt{u} \to f'(u) = \frac{1}{2\sqrt{u}}·u'$ y $f(x) = x^n \to f'(x) = nx^{n-1}$
+. También utilizamos, $f(x) = u \pm v \to f'(x) = u' \pm v'$
+
+\[
+	f(x) = \sen{\sqrt{x^2+3x}} \to f'(x) = \cos{\left(\sqrt{x^2+3x}\right)}·\left(\sqrt{x^2+3x}\right)' \]
+
+\[= \cos{\left(\sqrt{x^2+3x}\right)}·\frac{1}{2\sqrt{x^2+3x}}·(x^2+3x)'  = \frac{\cos{\left(\sqrt{x^2+3x}\right)}·(2x+3)}{2\sqrt{x^2+3x}}
+\]
+
+\\
+\vspace{5cm}
+\item[\textbf{e)}] $\displaystyle f(x) =  \cos{\frac{x-1}{x}}$
+
+Utilizamos: $f(u) = \sen{u} \to f'(u) = \cos{(u)}·u'$, $f(x) = \frac{u}{v} \to f'(x) = \frac{u'v-uv'}{v^2}$
+. También utilizamos, $f(x) = u \pm v \to f'(x) = u' \pm v'$
+
+\[
+	f(x) =  \cos{\frac{x-1}{x}} \to f'(x) = \sen{\left(\frac{x-1}{x}\right)}·\underbrace{
+	\frac{x-(x-1)}{x^2}} = \frac{\sen{\frac{x-1}{x}}}{x^2}
+\]
+
+
+
+\\
+\vspace{5cm}
+\item[\textbf{f)}] $\displaystyle f(x) = \tg{\sqrt{x-1}} $
+
+Utilizamos $f(u) = \tg{u} \to f'(u) = (\tg^2(u)+1)·u'$ y $f(u) = \sqrt{u} \to f'(u) = \frac{1}{2\sqrt{u}}·u'$.
+ También utilizamos, $f(x) = u \pm v \to f'(x) = u' \pm v'$
+
+\[
+	f(x) = \tg{\sqrt{x-1}} \to f'(x) = \left(\tg^2(\sqrt{x-1})+1\right)·\frac{1}{2\sqrt{x-1}}·1 = \frac{\tg^2(\sqrt{x-1})+1}{2\sqrt{x-1}}
+\]
+
+\\
+\vspace{5cm}
+\item[\textbf{g)}] $\displaystyle f(x) = -\sen{\frac{x}{-x^4+x-1}} $
+
+Utilizamos: $f(u) = \sen(u) \to f'(u) = \cos(u)·u'$ y $f(x) = \frac{u}{v} \to f(x) = \frac{u'v-uv'}{v^2}$
+. También utilizamos, $f(x) = u \pm v \to f'(x) = u' \pm v'$
+
+\[
+	f(x) = -\sen{\frac{x}{-x^4+x-1}} \to f'(x) = -\cos{\left( \frac{x}{-x^4+x-1}\right)}·\frac{(-x^4+x-1)-x·(-4x^3+1)}{(-x^4+x-1)^2} =
+	\]
+
+\[ 	
+ 	-\cos{\left( \frac{x}{-x^4+x-1}\right)}·\frac{-x^4+x-1+4x^4-x}{(-x^4+x-1)^2} =
+    -\cos{\left( \frac{x}{-x^4+x-1}\right)}·\frac{4x^4-1}{(-x^4+x-1)^2}
+\]
+
+\newpage
+\item[\textbf{h)}] $\displaystyle f(x) = \tg{\frac{2}{\sqrt{1-x}}} $
+
+Utilizamos $f(u) = \tg{u} \to f'(u) = (\tg^2(u)+1)·u'$, $f(u) = u^n \to f'(u) = n·u^{n-1}·u'}$, $f(x) = u \pm v \to f'(x) = u' \pm v'$  y $f(u) = k·u, k\in\real \to f'(u) = k·u'$.
+
+Podemos darnos cuenta que de la tangente no tenemos un cociente sino: $2·(1-x)^{\rfrac{-1}{2}}$.
+
+
+\[
+	f(x) = \tg{\frac{2}{\sqrt{1-x}}} \to f'(x) = \left[\tg^2\left(\frac{2}{\sqrt{1-x}}\right)+1\right] · \left(2·(1-x)^{\rfrac{-1}{2}}\right)' =\]
+
+\[  \left[\tg^2\left(\frac{2}{\sqrt{1-x}}\right)+1\right] · 2\frac{\textcolor{red}{(-1)}}{2}·(1-x)^{\rfrac{-1}{2}-1}·\textcolor{red}{(-1)} = +\left[\tg^2\left(\frac{2}{\sqrt{1-x}}\right)+1\right] ·(1-x)^{\rfrac{-3}{2}}
+\]
+
+\[
+	f'(x) = \left[\tg^2\left(\frac{2}{\sqrt{1-x}}\right)+1\right] \frac{1}{\sqrt{(1-x)^3}}
+\]
+
+
+\end{itemize}
+
+
+%% Apendices (ejercicios, examenes)
+%\appendix\chapter{---}\input{tex/Derivadas_Ejs.tex}
+
+
+
+%\section*{Ejercicio 281.16}
+
+%\begin{itemize}
+%	\item $3x^2·\log_2(x)$
+%	\item $f(x) = e^x\sen(x)$
+%	\item $f(x) = \sqrt[3]{x}·\cos(x)$
+%	\item $f(x) = \cos(x)·\tg(x)$
+%	\item $f(x) = 4x·\sen(x) + x^3·\cos(x)$
+%	\item $f(x) = \ln(x)\frac{1}{x^4} + x^2·e^x$
+%	\item $f(x)  = (\sen(x) - \cos(x)) ·\tg(x)$
+%	\item $f(x) = 4x\sqrt{x} + \frac{\sen(x)}{x}$
+
+%\end{itemize}
+
+\printindex
+\end{document}
+\grid
