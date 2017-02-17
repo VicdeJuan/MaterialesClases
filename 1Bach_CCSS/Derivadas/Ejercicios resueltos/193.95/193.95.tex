@@ -26,8 +26,6 @@
 
 \begin{itemize}
 
-\\
-\vspace{5cm}
 \item[\textbf{a)}] $\displaystyle f(x) = \sen{(3x^2)}$
 
 Utilizamos: $f(u) = \sen{u} \to f'(u) = \cos{(u)}·u'$, $f(u) = k·u, k\in\real \to f'(u) = k·u'$ y $f(x) = x^n \to n·x^{n-1}$
@@ -36,31 +34,27 @@ Utilizamos: $f(u) = \sen{u} \to f'(u) = \cos{(u)}·u'$, $f(u) = k·u, k\in\real 
 	f(x) = \sen{(3x^2)} \to f'(x) = \cos{(3x^2)}·(3x^2)' = \cos{(3x^2)}·3·(x^2)' = \cos{(3x^2)}·6x
 \]
 
-\textbf{Error grave a evitar}
+\textbf{Error muy grave:}
 
 \[
 	\cos{3x^2}·6x \textcolor{red}{\neq} \cos{18x^3}
 \]
-¿Cómo evitarlo? Utilizando paréntesis, para indicar a qué afecta el coseno. (Lo mismo para $\sen(x)$,$\tg(x)$ y $\ln(x)$)
+¿Cómo evitarlo? Utilizando paréntesis, para indicar claramente a qué afecta el coseno. (Lo mismo para $\sen(x)$,$\tg(x)$ y $\ln(x)$)
 
 \[
 	\cos{\left(3x^2\right)}·6x
 \]
 
 
-\\
-\vspace{5cm}
 \item[\textbf{b)}] $\displaystyle f(x) = \cos{(x^2+1)} $
 
 Utilizamos: $f(x) = x^n \to n·x^{n-1}$, $f(u) = \cos(u) \to f'(u) = -\sen{(u)}·u'$
 . También utilizamos, $f(x) = u \pm v \to f'(x) = u' \pm v'$
 
 \[
-	f(x) = \cos{(x^2+1)} \to f'(x) = \sen{(x^2+1)}·2x = 2x\sen{(x^2+1)}
+	f(x) = \cos{(x^2+1)} \to f'(x) = -\sen{(x^2+1)}·2x = -2x\sen{(x^2+1)}
 \]
 
-\\
-\vspace{5cm}
 \item[\textbf{c)}] $\displaystyle f(x) = \tg{(x^2-3x)}$
 
 Utilizamos $f(u) = \tg{u} \to f'(u) = (\tg^2(u)+1)·u'$ y $f(x) = x^n \to f'(x) = nx^{n-1}$
@@ -71,8 +65,22 @@ Utilizamos $f(u) = \tg{u} \to f'(u) = (\tg^2(u)+1)·u'$ y $f(x) = x^n \to f'(x) 
 \]
 
 
-\\
-\vspace{5cm}
+Otra posibilidad: utilizando $f(u) = \tg{u} \to f'(u) = \frac{1}{\cos^2{u}}·u'$
+
+\[
+	f(x) = \tg{(x^2-3x)} \to f'(x) = \left(\frac{1}{\cos^2(x^2-3x)}\right)·(2x-3) = \frac{2x-3}{\cos^2(x^2-3x)}
+\]
+
+\textbf{Curiosidad:} Estas 2 soluciones son exactamente la misma. Escribiendo $\tg(x) = \frac{\sen(x)}{\cos(x)}$ obtenemos:
+
+\[
+\left(\tg^2(x^2-3x)+1\right)·(2x-3) = \left(\frac{\sen^2(x^2-3x)}{\cos^2(x^2-3x)}+1\right)·(2x-3) =
+\]
+\[
+= \left(\frac{\sen^2(x^2-3x)+\cos^2(x^2-3x)}{\cos^2(x^2-3x)}\right)·(2x-3) \overset{(1)}{=}  \left(\frac{1}{\cos^2(x^2-3x)}\right)·(2x-3) = \frac{2x-3}{\cos^2(x^2-3x)}
+\]
+
+(1): Utilizando la igualdad $\sen^2(x) + \cos^2(x) = 1$.
 \item[\textbf{d)}] $\displaystyle f(x) = \sen{\sqrt{x^2+3x}} $
 
 Utilizamos: $f(u) = \sen(u) \to f'(u) = \cos(u)·u'$, $f(u) = \sqrt{u} \to f'(u) = \frac{1}{2\sqrt{u}}·u'$ y $f(x) = x^n \to f'(x) = nx^{n-1}$
@@ -84,22 +92,20 @@ Utilizamos: $f(u) = \sen(u) \to f'(u) = \cos(u)·u'$, $f(u) = \sqrt{u} \to f'(u)
 \[= \cos{\left(\sqrt{x^2+3x}\right)}·\frac{1}{2\sqrt{x^2+3x}}·(x^2+3x)'  = \frac{\cos{\left(\sqrt{x^2+3x}\right)}·(2x+3)}{2\sqrt{x^2+3x}}
 \]
 
-\\
-\vspace{5cm}
+
 \item[\textbf{e)}] $\displaystyle f(x) =  \cos{\frac{x-1}{x}}$
 
-Utilizamos: $f(u) = \sen{u} \to f'(u) = \cos{(u)}·u'$, $f(x) = \frac{u}{v} \to f'(x) = \frac{u'v-uv'}{v^2}$
+Utilizamos: $f(u) = \cos{u} \to f'(u) = -\sen{(u)}·u'$, $f(x) = \frac{u}{v} \to f'(x) = \frac{u'v-uv'}{v^2}$
 . También utilizamos, $f(x) = u \pm v \to f'(x) = u' \pm v'$
 
 \[
-	f(x) =  \cos{\frac{x-1}{x}} \to f'(x) = \sen{\left(\frac{x-1}{x}\right)}·\underbrace{
-	\frac{x-(x-1)}{x^2}} = \frac{\sen{\frac{x-1}{x}}}{x^2}
+	f(x) =  \cos{\frac{x-1}{x}} \to f'(x) = -\sen{\left(\frac{x-1}{x}\right)}·\underbrace{
+	\frac{x-(x-1)}{x^2}}_{u'} = \frac{-\sen{\frac{x-1}{x}}}{x^2}
 \]
 
 
 
-\\
-\vspace{5cm}
+
 \item[\textbf{f)}] $\displaystyle f(x) = \tg{\sqrt{x-1}} $
 
 Utilizamos $f(u) = \tg{u} \to f'(u) = (\tg^2(u)+1)·u'$ y $f(u) = \sqrt{u} \to f'(u) = \frac{1}{2\sqrt{u}}·u'$.
@@ -109,8 +115,12 @@ Utilizamos $f(u) = \tg{u} \to f'(u) = (\tg^2(u)+1)·u'$ y $f(u) = \sqrt{u} \to f
 	f(x) = \tg{\sqrt{x-1}} \to f'(x) = \left(\tg^2(\sqrt{x-1})+1\right)·\frac{1}{2\sqrt{x-1}}·1 = \frac{\tg^2(\sqrt{x-1})+1}{2\sqrt{x-1}}
 \]
 
-\\
-\vspace{5cm}
+Otra posibilidad: utilizando $f(u) = \tg{u} \to f'(u) = \frac{1}{\cos^2{u}}·u'$
+
+\[
+	f(x) = \tg{\sqrt{x-1}} \to f'(x) = \left(\frac{1}{\cos^2(\sqrt{x-1})}\right)·\frac{1}{2\sqrt{x-1}}·1 = \frac{1}{2·\sqrt{x-1}·\cos^2(\sqrt{x-1})}
+\]
+
 \item[\textbf{g)}] $\displaystyle f(x) = -\sen{\frac{x}{-x^4+x-1}} $
 
 Utilizamos: $f(u) = \sen(u) \to f'(u) = \cos(u)·u'$ y $f(x) = \frac{u}{v} \to f(x) = \frac{u'v-uv'}{v^2}$
@@ -122,7 +132,7 @@ Utilizamos: $f(u) = \sen(u) \to f'(u) = \cos(u)·u'$ y $f(x) = \frac{u}{v} \to f
 
 \[ 	
  	-\cos{\left( \frac{x}{-x^4+x-1}\right)}·\frac{-x^4+x-1+4x^4-x}{(-x^4+x-1)^2} =
-    -\cos{\left( \frac{x}{-x^4+x-1}\right)}·\frac{4x^4-1}{(-x^4+x-1)^2}
+    -\cos{\left( \frac{x}{-x^4+x-1}\right)}·\frac{3x^4-1}{(-x^4+x-1)^2}
 \]
 
 \newpage
@@ -141,6 +151,20 @@ Podemos darnos cuenta que de la tangente no tenemos un cociente sino: $2·(1-x)^
 
 \[
 	f'(x) = \left[\tg^2\left(\frac{2}{\sqrt{1-x}}\right)+1\right] \frac{1}{\sqrt{(1-x)^3}}
+\]
+
+Otra posibilidad: utilizando $f(u) = \tg{u} \to f'(u) = \frac{1}{\cos^2{u}}·u'$
+
+
+
+\[
+	f(x) = \tg{\frac{2}{\sqrt{1-x}}} \to f'(x) = \left[\frac{1}{\cos^2\left(\frac{2}{\sqrt{1-x}}\right)}\right] · \left(2·(1-x)^{\rfrac{-1}{2}}\right)' =\]
+
+\[  \left[\frac{1}{\cos^2\left(\frac{2}{\sqrt{1-x}}\right)}\right] · 2\frac{\textcolor{red}{(-1)}}{2}·(1-x)^{\rfrac{-1}{2}-1}·\textcolor{red}{(-1)} = +\left[\frac{1}{\cos^2\left(\frac{2}{\sqrt{1-x}}\right)}\right] ·(1-x)^{\rfrac{-3}{2}}
+\]
+
+\[
+	f'(x) = \frac{1}{\cos^2\left(\displaystyle\frac{2}{\sqrt{1-x}}\right)·\sqrt{(1-x)^3}}
 \]
 
 
