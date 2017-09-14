@@ -1,0 +1,546 @@
+\documentclass[palatino,nosec]{Docencia}
+
+
+\title{Cuaderno de clase}
+\author{Víctor de Juan}
+\date{17/18}
+
+\begin{abstract}
+Cuaderno de clase de Matemáticas I, con el desarrollo continuado (sin estar separado por sesiones).
+\end{abstract}
+
+% Paquetes adicionales
+
+\usepackage[author={Víctor de Juan, 2017}]{pdfcomment}
+
+\makeatletter
+\newcommand{\annotate}[2][]{%
+\pdfstringdef\x@title{#1}%
+\edef\r{\string\r}%
+\pdfstringdef\x@contents{#2}%
+\pdfannot
+width 2\baselineskip
+height 2\baselineskip
+depth 0pt
+{
+/Subtype /Text
+/T (\x@title)
+/Contents (\x@contents)
+}%
+}
+\makeatother
+
+% --------------------
+
+\begin{document}
+\pagestyle{plain}
+\maketitle
+\tableofcontents
+
+
+%% Contenido.
+
+\chapter{Primera evaluación}
+
+\section{Introducción a la asignatura}
+
+
+Hola, soy Víctor y voy a ser vuestro profesor de matemáticas este año. Algunos me conoceréis, tal vez de campamento o de verme en misa. Para otros tal vez soy totalmente nuevo. ¡Genial! \hl{Soy matemático, entre otras cosas}, y espero poder transmitiros la belleza que encierran las matemáticas.
+
+Reitero que me llamo Víctor y así quiero que me llaméis, ¿bien?
+
+\subsection{Las matemáticas son para siempre}
+
+\href{https://www.ted.com/talks/eduardo_saenz_de_cabezon_math_is_forever}{Vídeo de Eduardo Saenz}
+
+\paragraph{Comentarios al vídeo:}
+
+\begin{itemize}
+\item Un teorema es para siempre. ¿Os lo había dicho alguien alguna vez? ¿Qué teoremas conocéis? (Resto, factor, Pitágoras, Tales,  Altura, Euler (V+C=A+2),  ) Pero hay que demostrarlo.
+\item Este año está lleno de para siempres. Os voy a enseñar unos buenos teoremas con sus demostraciones a lo largo del curso y vamos a darle importancia a las demostraciones de los contenidos. Cuando la demostración utilice matemáticas que sabéis, las desarrollaremos. 
+\subitem \hl{Espero, al final de la clase}, poder enseñaros concretamente a qué me refiero.
+\item ¿Alguna pregunta del vídeo? 
+\item Weaire-Phelan:
+\subitem En la naturaleza, aparece en estructuras químicas (un tipo de cristal).
+\subitem \href{https://www.e-architect.co.uk/images/jpgs/beijing/watercube_ptw051208_7.jpg}{El estadio de Pekín de Phelps}
+\end{itemize}
+
+\hl{Sed “críticos” en general}. Lo que os cuenten razonadlo. No os lo creáis sin más. Y de esto, nos vamos a hartar en Matemáticas. ¿Alguna pregunta?
+
+\subsubsection{Temario de la asignatura}
+
+El \hl{orden} que vamos a seguir difiere un poco del del libro, porque así nos parece a MariNieves y a mi. 
+
+Vamos a dar un paso más en la resolución de \hl{ecuaciones y sistemas}. 
+%
+El año pasado resolvíais ecuaciones del tipo: $81^{2x} = \frac{1}{3};\quad x-\sqrt{x-3} = \sqrt{x-2}$, sistemas de ecuaciones 2x2... Este año vamos a ir más allá, vamos a resolver sistemas de 3x3. 
+
+El año pasado tuvisteis una introducción a la geometría. Este año vamos a trabajar con \hl{problemas serios el plano}: distancia punto a recta, distancia entre rectas, cónicas... Por cierto, \ul{¿sabéis porqué se llaman cónicas?}
+
+Y ahora que ya sabéis algo de trigonometría, vamos a ir más allá. Vamos a \hl{exprimir la trigonometría} hasta dominarla. Es algo fundamental en matemáticas. 
+
+Y vamos a dar uno de los temas más bonitos de todo el bachillerato. ¡\hl{Los números complejos}! ¿A alguien le dice algo? ¿A alguien le suena? 
+%
+Ya veréis que, en realidad, no difíciles. Simplemente arrastramos $\sqrt{-1}$ en las operaciones, como una expresión algebraica, llamando $i=\sqrt{-1}$. 
+%
+Precioso. 
+
+Y uno de los contenidos centrales del curso, del que hablaréis cuando terminéis el colegio y habréis oído hablar... Las míticas \hl{derivadas}. Os suena, ¿no? 
+%
+Pues este año nos meteremos en ese berenjenal, a aprender qué es una derivada y para que sirve.
+%
+También veremos las \hl{Integrales}.
+%
+Terminaremos el curso con probabilidad y estadística.
+
+Todo esto es una visión general del temario del curso. 
+%
+Pero hay otro aspecto fundamental de la asignatura. 
+%
+En otros años lo fundamental puede ser coger habilidad y soltura en los cálculos, saber resolver los problemas... 
+%
+Este curso va de \hl{razonar y justificar}. Me importa relativamente poco si el resultado está bien o no, en comparación con lo que me importa si el procedimiento está razonado y justificado. 
+%
+Las matemáticas no son magia, todo tiene una razón de ser. Todo tiene una explicación. 
+%
+Por ejemplo, ya no nos vamos a centrar tanto en "resuelve esto o lo otro", sino en "demuestra, comprueba, discute esto o lo otro".
+%
+¿Se entiende?
+
+Por ejemplo, ¿porqué el \hl{teorema de Pitágoras} funciona? 
+%
+Claro, porque probando con unos números funciona. 
+%
+¿Quién te asegura que para absolutamente cualquier triángulo rectángulo va a funcionar? Eso hace 4 años te lo creíste. 
+%
+Este año vamos a demostrar el teorema.
+
+En general, va a haber pocos actos de fe. 
+%
+En el curso habrá demostraciones y los contenidos no vendrán dados por arte de magia. 
+%
+Ojo, el teorema fundamental del álgebra no lo podremos demostrar porque hacen falta matemáticas más complejas. 
+%
+Todo lo demás, lo podremos demostrar.
+
+\subsection{Criterios de evaluación}
+
+Esta asignatura tiene evaluación continua. Eso significa que no hay una recuperación exclusiva para quienes suspendan una evaluación, sino que la primera evaluación es contenido evaluable de la segunda, y la segunda de la tercera.
+%
+(La primera de la tercera no).
+
+Hay 2 exámenes por evaluación, el primero vale \hl{$\rfrac{1}{3}$} y el segundo \hl{$\rfrac{2}{3}$}. 
+%
+En ese primer examen, la mitad corresponderá a la evaluación pasada (en caso de que haya evaluación pasada).
+%
+Si tienes la evaluación suspensa, tienes 5 puntos en el primer examen para recuperar.
+%
+Si tienes la evaluación aprobada, tienes 5 puntos en el primer examen para repasar.
+%
+En el segundo examen, en principio, no pondremos contenido de la evaluación anterior.
+
+
+\section{Números reales}
+
+\subsection{Introducción}
+
+\subsubsection{Conjuntos numéricos}
+
+¿Qué conjuntos de números conocéis? $ℕ,ℤ,ℚ,I,ℝ,ℂ$ \hl{Diagrama de contenidos}.
+
+Cómo distinguir que un número dado pertenece a un conjunto o no.
+%
+Por ejemplo, $\sqrt{2}$. ¿A qué conjunto pertenece y porqué?
+%
+\hl{¿Por qué $\sqrt{2}$ es irracional?} $\rfrac{4}{3} = 1.\hat{3}$ también tiene infinitos decimales.
+%
+En este curso ya no vale creerse lo que los profesores os contamos sin más. Es fundamental entender las demostraciones y ser capaz de razonar el porqué de los asuntos.
+
+
+\begin{proof}[\textbf{Reducción al absurdo}]
+Suponemos $\sqrt{2}\in ℚ$.
+
+Entonces 
+\[
+	\exists a,b\inℤ \tq \left(\sqrt{2} = \rfrac{a}{b}\right) \wedge \left( \mcd{a,b} = 1 \right)
+\]
+
+
+\[
+	\sqrt{2} = \frac{a}{b} \implies 2·b^2 = a^2 \implies a^2 \text{ es par} \overset{1}{\implies} a \text{ es par}
+\]
+
+Si $a^2$ es par, necesariamente $a$ es par también. Por reducción al absurdo, si $a$ no fuera par, $a·a$, producto de impares no sería par. 
+%
+Como $a$ es par, podemos escribirlo como $a=2·k$, para algún $k\in ℤ$. 
+
+\[
+	2b^2 = (2k)^2 \implies b^2 = 2k^2 \overset{1}{\implies} b \text{ par}.
+\]
+
+Conclusión: $\mcd{a,b} = 2 ≠ 1$. Hemos llegado a una contradicción partiendo de un supuesto ($\sqrt{2}\in ℚ$) "inventado", por lo que ese supuesto debe ser falso. 
+\end{proof}
+
+\paragraph{\hl{No os creáis cualquier demostración:}}
+Partiendo de $x=y$
+
+\[
+x^2 = xy \dimplies x^2-y^2 = xy-y^2 \dimplies (x+y)(x-y) = y(x-y) \dimplies x+y = y \dimplies 2y = y \implies \text{\hl{2=1}}
+\]
+
+\nota{Si sobrara tiempo: belleza intrínseca de las matemáticas: ¿Qué hay más, enteros o pares?}
+
+
+\todo{Sesión 1}
+
+\subsubsection{Grupo y Cuerpo}
+
+\begin{defn}[Grupo]
+Sea un conjunto $G\neq \emptyset$ y $\ast$ una operación (ley de composición interna), diremos que $(G,\ast)$ es un grupo si cumple las siguientes propiedades:
+\begin{enumerate}
+	\item \textbf{Cerrado por la operación}. $\forall x, y \in G, \; x \ast y \in G$
+	\item \textbf{Asociatividad}. $\forall x, y, z \in G, \; (x \ast y) \ast z = x \ast (y \ast z)$
+	\item \textbf{Existencia del elemento neutro}. $\exists  e \in G \tq ,\; \forall\, x\in G\; x\ast e=x$.
+	\item \textbf{Existencia del inverso}. $\forall x \in G ,\; \exists x' \in G \tq x\ast x'=x'\ast x=e$.
+\end{enumerate}
+\end{defn}
+
+\begin{prop}[Unicidad\IS del neutro e inverso]
+  En todo grupo se cumplen las propiedades de unicidad del elemento neutro y del inverso.
+\end{prop}
+
+\begin{proof}[\textbf{Reducción al absurdo}]
+Primero demostramos que el neutro es único. \\
+Sean $e$, y $e'$ dos elementos neutros de $G$, se cumple que $e\ast e'\overset{1}{=}e'$, pero también se cumple que $e'\ast e\overset{2}{=}e$. Esto implica que $e'=e$.\\
+1: $e$ elemento neutro.\\
+2: $e'$ elemento neutro.
+
+Por otro lado, si suponemos la existencia de dos elementos inversos $a',a''\in G$, entonces $e=a\ast a'=a\ast a''$. \\
+
+\[
+	aa' = aa'' \dimplies a'(aa') = a'(aa'') \overset{asoc.}{\dimplies} (a'a)a'=(a'a)a'' \overset{e.n.}{\dimplies} a'=a'' 
+\]
+\end{proof}
+
+\begin{example}
+	\begin{itemize}
+		\item Sí: $(ℤ,+),(ℚ,+),(ℝ,+),(\{0,1\},+)$
+		\item No: $(ℕ,+),(ℤ,·),(?,·)$
+		\item No: $(I,+)$ porque $(1+\sqrt{2}) - (\sqrt{2}\in ℤ)$
+	\end{itemize}
+\end{example}
+
+\nota{Si el grupo es \hl{conmutativo}, se llama grupo conmutativo o abeliano por el matemático noruego Abel del siglo XIX.}
+
+El \hl{producto tiene problemas} para ser ley de composición interna de grupos. 
+%
+Sin embargo, podemos considerar $(ℚ,+,·)$. 
+%
+Ahora hay 2 operaciones y por lo tanto no podemos considerarlo grupo.
+
+
+\begin{defn}[Cuerpo] 
+Sea $K$ un conjunto y sean $(+)$ y $(·)$ dos operaciones binarias cerradas, llamadas suma y producto. 
+%
+$(K,+,·)$ es un cuerpo si se cumple:
+\begin{enumerate}
+\item $(A, +)$ es un grupo abeliano.
+\item El producto es asociativo.
+\item Se cumplen las leyes distributivas: 
+	\subitem $\forall a,b,c \in A \; a\cdot(b+c)=a\cdot b + a\cdot c$ 
+	\subitem $(a+b)\cdot c= a \cdot c + b \cdot c$
+\item El producto es conmutativo.
+\item Existe elemento neutro para el producto.
+\item $\left(A\backslash \{0\},·\right)$ es un grupo. (Siendo 0 el elemento neutro de la suma.)
+\end{enumerate}
+\end{defn}
+
+\nota{Si sólo se cumplen a,b,c se llama anillo.}
+
+\begin{example}
+	\begin{itemize}
+		\item Sí: $(ℝ,+,·),(ℚ,+,·),\left[(ℂ,+,·)\right]$
+		\item No: $(ℤ,+,·),\left[(\mathcal{M},+,·)\right]$
+		\item $\left(I,+,·\right)$ no, porque $(I,+)$ no es un grupo.
+	\end{itemize}
+\end{example}
+
+
+\subsubsection{Entornos (libro):} Dado un intervalo $(3,7)$, ¿cuál es su centro? ¿cuál es su amplitud? (Calcular). A veces nos interesará escribir el mismo intervalo de puntos haciendo énfasis en el centro y el radio. 
+%
+Entonces, estaremos escribiendo \textit{entornos} en lugar de intervalos. 
+%
+Y como los intervalos, hay varios tipos de entornos.
+
+\begin{defn}[Entorno\IS abierto]
+Llamamos entorno abierto de centro $a$ y radio $r$, y se denota por $E_r(a)$, al conjunto de puntos que distan de $a$ a una distancia menor que $r$:
+
+\[
+	E_r(a) = \{x\in\real, |x-a| < r\} = (a-r, a+r) 
+\]
+\end{defn}
+
+\begin{defn}[Entorno\IS cerrado]
+Llamamos entorno cerrado de centro $a$ y radio $r$, y se denota por $E_r(a)$, al conjunto de puntos que distan de $a$ a una distancia menor o igual que $r$::
+\[
+	E_r[a]  = \{x\in\real, |x-a| \leq r\} = [a-r, a+r]
+\]
+\end{defn}
+
+\begin{defn}[Entorno\IS reducido]
+Llamamos entorno reducido de centro $a$ y radio $r$, y se denota por $E_r(a)$ a:
+\[
+	E^{\ast}_r(a) = \{x\in\real, |x-a| < r\} - \{a\} = (a-r,a) \cup (a, a+r)
+\]
+\end{defn}
+
+\nota{El libro utiliza otra notación que no nos gusta. Apuntad la buena.}
+
+\hl{Seguimos pasando páginas del libro y comentando}
+
+\subsection{Logaritmos}
+
+\paragraph{\annotate{En la sesión vimos el vídeo.}{Introducción}}
+
+Vamos a aprender una nueva manera de multiplicar. En realidad ya sabéis, aunque no seáis conscientes.\footnote{Fuente: \href{https://www.youtube.com/watch?v=FB3\_BeukBBk\&t=99s}{Mark Foskey, youtube.com}}
+
+
+
+
+
+\begin{itemize}
+\item Caso 1: $1000000·10000000 = 10^6·10^7 = 10^{13}$. ¿Y podremos hacer esto con otros números que no sean el 10?
+
+\item Caso 2: $64·128 = 2^6·2^7 = 2^{13} = 8192$
+\item ¿Caso 3?: Me construyo la tabla del 3.
+\begin{center}
+\begin{tabular}{cccccccccccc}
+1& 3& 9& 27& 81& 243& 729& 2187& 6561& 19683& 59049& 177147\\
+\textcolor{red}{0} & \textcolor{red}{1} & \textcolor{red}{2} & \textcolor{red}{3} & \textcolor{red}{4} & \textcolor{red}{5} & \textcolor{red}{6} & \textcolor{red}{7} & \textcolor{red}{8} & \textcolor{red}{9} & \textcolor{red}{10} & \textcolor{red}{11}
+\end{tabular}
+\end{center}
+\item Caso 4: ¿Y para números que no son potencias enteras? Por ejemplo, $64*40$. Pues si $32=2^5$ y $64=2^6$, $40=2^{5,...}$ ¿Tiene sentido?
+\item Caso 5: Lo que hicieron, Yost y Napier, fue coger la tabla del 1,0001 en lugar de la tabla del 3 y dividir por mil los números rojos, dando lugar a la tabla de logaritmos:
+
+\begin{center}
+	\begin{tabular}{cl}
+		0.0 & 1.0\\
+		0.001 & 1.001\\
+		0.002 & 1.002\\
+		0.003 & 1.003\\
+		0.004 & 1.00401\\
+		0.005 & 1.00501\\
+		0.006 & 1.00602\\
+		0.007 & 1.00702\\
+		0.008 & 1.00803\\
+		0.009 & 1.00904\\
+		$\vdots$ & \quad\quad$\vdots$\\
+		0.991 & 2.69259\\
+		0.992 & 2.69529\\
+		0.993 & 2.69798\\
+		0.994 & 2.70068\\
+		0.995 & 2.70338\\
+		0.996 & 2.70608\\
+		0.997 & 2.70879\\
+		0.998 & 2.7115\\
+		0.999 & 2.71421\\
+		1.0 & \hl{2.71692} (Una aproximación de $e$)\\
+	\end{tabular}
+\end{center}
+
+\end{itemize}
+
+\begin{defn}[Logaritmo]
+Sean $a\in ℝ>0,a≠1$ y $N\in\real$.
+
+Se llama logaritmo en base $a$ de $N$ al exponente $x$ que cumple: $a^x = N$ y se escribe:
+\[
+	\log_aN=x\dimplies a^x=N
+\]
+\end{defn}
+
+\nota{De la propia definición se entiende:}
+\begin{enumerate}
+	\item $y\in\real, y<0 \implies ∀a,\nexists\log_a y$
+	\item $\log_a 1 = 0 \dimplies a^0 = 1$
+	\item $\log_a a = 1 \dimplies a^1 = a$
+	\item $\log_a a^q = q \dimplies a^q = a^q$ por definición.
+	\item $a^{\log_a N} = N$
+\todo{Sesión 2}
+	\begin{proof}
+		Sea $b = \log_a N \dimplies a^b = N$.
+
+		Entonces, $a^{\log_a N} = N \dimplies a^n = N$
+	\end{proof}
+\end{enumerate}
+
+
+
+\paragraph{Propiedades:}
+\begin{itemize}
+	\item $\log_a(AB) = \log_a(A) + \log_a(B)$
+		\begin{proof}
+			\[\left.\begin{array}{c}
+				\log_a(A) = p \dimplies a^p = A\\
+				\log_a(B) = p \dimplies a^q = B
+			\end{array}\right\}\implies A·B = a^{p+q} \implies \log_a(AB) = \log_aa^{p+q}\]
+			\[
+				\log_a(AB) = \log_aa^{p+q} \overset{?}{\implies} \log_a(AB) = p+q \overset{?}{=} \log_aA + \log_aB
+			\]
+		\end{proof}
+	\item $\log_a\left(\rfrac{A}{B}\right) = \log_a(A) - \log_a(B)$
+	\begin{proof}
+		Análoga. Para completar por vosotros. Si no lo conseguís, intentadlo.
+	\end{proof}
+	\item $\log_a(A)^n = n·\log_a(A)$ \hl{\textbf{Ojo:} $\left[\log_a(A+B)\right]^n \neq n·\log_a(A)$}
+	\begin{proof}
+		Tomamos $\log_aA = p \dimplies a^p = A$
+
+		\[
+			a^p = A \dimplies a^{np}=A^n \dimplies \log_aa^{np} = \log_aA^n \dimplies np = \log_aA^n
+		\]
+		\[ 
+			\dimplies n\log_aA = \log_aA^n
+		\]
+	\end{proof}
+	\item $\displaystyle\log_aA = \frac{\log_bA}{\log_ba}$ \textbf{(Cambio de base})
+		\begin{proof}
+			Tomamos $\log_aA = p \dimplies a^p = A$
+			\[
+				\log_ba^p = \log_bA \dimplies p\log_ba = \log_bA \dimplies p=\log_aA=\frac{\log_bA}{\log_ba}
+			\]
+
+		\end{proof}
+\end{itemize}
+
+\paragraph{Tomar logaritmos:}
+
+\[
+A = B \overset{1}{\dimplies} a^{\log_a A} = a^{\log_a B} \dimplies \log_aA=\log_aB
+\]
+
+\subsubsection{Ejemplos con logaritmos}
+
+\begin{itemize}
+	\item $\log \sqrt{0,0001}$
+	\item Demuestra $\log_a b · \log_b a = 1$
+\end{itemize}
+
+\subsubsection{Ejercicios con logaritmos}
+Pág 21, ejers 50,52.
+
+Pág 21, ejers 53.
+
+\subsubsection{Aplicación de los logaritmos}
+
+\paragraph{pH}
+
+Para medir el nivel de acidez, pH, que mide la concentración de iones hidronio ($H_3O^+$)
+
+\[pH=-\log[H_30^+]\]
+
+\paragraph*{Despejar el tiempo} En el crecimiento exponencial de bacterias:
+$P = p_0·k^t$ donde $p_0$ es la cantidad inicial, $t$ el tiempo y $k$ la tasa de reproducción.
+
+Pag 23, ejer 57.
+
+\paragraph{Interés compuesto}
+
+Sea $C$ el capital inicial. Tras 1 periodo de tiempo, obtengo el r\% de intereses. Entonces tendré: $C_1 = C_0 + \rfrac{r}{100}C_0 = C_0·\left(1+\frac{r}{100}\right)$
+
+Pasado otro periodo de tiempo tendré $C_2 = C_1·\left(1+\frac{r}{100}\right) = C_0·\left(1+\frac{r}{100}\right)·\left(1+\frac{r}{100}\right) = C_0 ·\left(1+\frac{r}{100}\right)^2$
+
+En general, para $t$ periodos de tiempo tendremos: $C_n = C_0·\left(1+\frac{r}{100}\right)^t$.
+
+La fórmula del interés compuesto capitalizado en $p$ periodos, \hl{para un interés nominal $r$ es}: 
+
+\[C = C_0·\left(1+\frac{r}{100p}\right)^{pt}\]
+
+
+\paragraph{3 preguntas}
+\begin{itemize}
+	\ite[a)] Pero... ¿es lo mismo un interés anual del 5\% capitalizado cada mes, que un interés anual del 5\% capitalizado cada año?
+
+	\item[b)] ¿Y si capitalizo cada semana? ¿Y cada día? ¿Y si capitalizo \textit{instantáneamente}? 
+
+	\item[c)] ¿Cuánto tiempo tengo que dejar el dinero si quiero ganar una cantidad concreta?
+\end{itemize}
+
+\paragraph{a)}
+Pero, ¿es lo mismo un interés mensual del 5\% durante 12 meses que un interés anual del 5\% durante 12 meses? Sí. ¿A quién le importa que sean meses o años?
+
+Pero... ¿es lo mismo un interés anual del 5\% capitalizado cada mes, que un interés anual del 5\% capitalizado cada año? ¿Hay alguno que sea mayor? 
+
+\begin{example}
+
+Tengo $C= 1000\texteuro$ a un $r=5\%$. Tengo 2 opciones para elegir y no se cual es mejor. 
+
+\begin{itemize}
+	\item[a)] Un interés anual del 5\% capitalizado cada mes durante 5 años.
+
+	\[
+		C = C_0·(1+\rfrac{r}{100p})^{t·p} = 1000·(1+\rfrac{5}{1200})^{12*5} = 1283.36
+	\]
+	\item[b)] Un interés anual del 5\% capitalizado cada año durante 5 años.
+
+	\[
+		C = C_0·(1+\rfrac{r}{100p})^{t·p} = 1000·(1+\rfrac{5}{100})^{5} = 1276.28
+	\]
+
+	Es más rentable la opción a. 
+
+	\nota{\hl{De hecho}, ¿cuál es el interés equivalente que hay que aplicar al año en el caso a)?}
+
+	\[
+		C = C_0·(1+\rfrac{r}{100})^{t} \dimplies \frac{C}{C_0} = (1+\rfrac{r}{100})^t \implies \sqrt[t]{\frac{C}{C_0}} = \sqrt[t]{(1+\rfrac{r}{100})^t} \dimplies
+	\]
+	\[
+ 		\sqrt[t]{\frac{C}{C_0}} -1 = \rfrac{r}{100} \dimplies r = 100·\left(\sqrt[t]{\frac{C}{C_0}} -1 \right)\implies r = 100·\left(\sqrt[5]{\frac{1283.36}{1000}} - 1\right) = 5.1162...
+	\]
+
+	Conclusión, un 5\% mensual es lo mismo que un 5.1162...\% anual. Por esto, y para que no nos puedan timar los bancos existe la \concept{TAE} (Tasa Anual Equivalente.)
+
+
+\end{itemize}
+\end{example}
+
+\paragraph{b)}
+¿Y si capitalizo cada semana? ¿Y cada día? ¿Y si capitalizo \textit{instantáneamente}? 
+
+\paragraph{c)}
+Tengo entendido que durante el mes de julio, Miguel ha trabajado de hamaquero en la playa y cobrado 150\texteuro al mes. ¿Puede ser? Su banco le ofrece un depósito con un interés del 10\% y Miguel querría pagarse su carrera, que será algo así como 10000\texteuro, sino sigue subiendo.
+%
+¿Cuánto tiempo tiene que dejar su dinero en el banco para pagarse la carrera?
+
+\[
+	C = C_0·(1+\rfrac{r}{100})^{t} \dimplies \log\frac{C}{C_0} = t\log(1+\rfrac{r}{100}) \dimplies t = \frac{\log\frac{C}{C_0}}{\log(1+\rfrac{r}{100})} = \frac{\log\frac{10000}{150}}{\log\left(1+\rfrac{10}{100}\right)} 
+\]
+
+\[
+	t = 44.06\text{ años}
+\]
+
+De momento lo dejamos aquí. El próximo tema que tiene ecuaciones volveremos a trabajar con el interés, las bacterias, etc.
+
+\section{Álgebra}
+
+1 - Binomio de Newton
+
+2 - Teorema de raíces enteras y fraccionarias.
+
+3 - Ecuaciones racionales, una con fracciones algebraicas complicadas.
+
+4 - Ecuaciones con radicales -> cuidado con las doble o simple implicaciones. (Demostración de 4=5). 
+%
+Despejar el interés en problemas de interés compuesto.
+%
+Ecuaciones logarítmicas y exponenciales. Sistemas
+%
+Despejar el tiempo en problemas de interés compuesto.
+
+
+5 - Gauss. Transformaciones elementales, sistemas equivalentes, etc.
+
+\printindex
+\end{document}
+\grid
