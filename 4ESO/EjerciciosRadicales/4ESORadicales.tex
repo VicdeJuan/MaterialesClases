@@ -1,0 +1,92 @@
+\documentclass[palatino,nosec,nochap]{Docencia}
+
+
+\title{Matemáticas 4º ESO E}
+\author{Víctor de Juan}
+\date{17/18}
+
+\begin{abstract}
+Cuaderno de clase de Matemáticas I, con el desarrollo continuado (sin estar separado por sesiones).
+\end{abstract}
+
+% Paquetes adicionales
+
+\usepackage[author={Víctor de Juan, 2017}]{pdfcomment}
+
+\makeatletter
+\newcommand{\annotate}[2][]{%
+\pdfstringdef\x@title{#1}%
+\edef\r{\string\r}%
+\pdfstringdef\x@contents{#2}%
+\pdfannot
+width 2\baselineskip
+height 2\baselineskip
+depth 0pt
+{
+/Subtype /Text
+/T (\x@title)
+/Contents (\x@contents)
+}%
+}
+\makeatother
+
+%%% He tardado 40 minutos en preparar este solucionario.
+
+% --------------------
+\newcommand{\cimplies}{\text{\hl{$\implies$}}}
+
+\begin{document}
+\LARGE
+\pagestyle{plain}
+
+\section{Tema 1: Números reales. Radicales}
+
+\paragraph{29)}
+\begin{itemize}
+	\item[a)] $\displaystyle\sqrt[55]{1} = 1$
+	\item[d)] $\displaystyle\sqrt[40]{-1} ∉ℝ$
+	\item[h)] $\displaystyle\sqrt[4]{0.0001} = \sqrt[4]{10^-4} = 10^{\displaystyle\rfrac{-4}{4}} = 10^{-1} = \frac{1}{10}$
+\end{itemize}
+\paragraph{31)}
+\begin{itemize}
+	\item[e)] $\displaystyle16^{0.25} = 16^{\displaystyle\rfrac{1}{4}} = \sqrt[4]{16} = \sqrt[4]{2^4} = 2$
+	\item[g)] $\displaystyle27^{0.\hat{3}} = 27^{\displaystyle\rfrac{1}{3}} = \sqrt[3]{27} = 3$
+\end{itemize}
+
+\paragraph{32)}
+\begin{itemize}
+	\item[a)] $\displaystyle\sqrt[3]{2} ·\sqrt[3]{3} · \sqrt[3]{4} = \sqrt[3]{2·3·2^2} = \sqrt[3]{2^3·3} = 2\sqrt[3]{3}$
+	\item[b)] $\displaystyle\sqrt[4]{4}·\sqrt[4]{2}·\sqrt[4]{8} = \sqrt[4]{2^2·2·2^3} = \sqrt[4]{2^6} = \sqrt[2]{2^3}$
+	\item[d)] $\displaystyle\sqrt[3]{\sqrt{512}}·\sqrt[6]{64} = \sqrt[6]{2^9}·\sqrt[6]{2^6} = \sqrt[6]{2^{15}} = \sqrt[2·3]{2^{5·3}} = \sqrt{2^5}$
+\end{itemize}
+
+\paragraph{33)}
+\begin{itemize}
+	\item[a)] $\displaystyle\sqrt[4]{\sqrt[3]{\sqrt{4}}} = \sqrt[4·3·2]{2^2} = \sqrt[12]{2}$
+	\item[c)] $\displaystyle\sqrt[3]{\sqrt{\sqrt[4]{2^6}}} = \sqrt[2·3·4]{2^6} = \sqrt[4]{2}$
+	\item[d)] $\displaystyle\left(\sqrt[3]{\sqrt{64}}\right)^2 = \sqrt[6]{(2^6)^2} = \sqrt[6]{2^{6·2}} = 2$
+\end{itemize}
+
+\paragraph{41)}
+\begin{itemize}
+	\item[a)] $\displaystyle3\sqrt{5} = \sqrt{3^2·5}$
+	\item[b)] $\displaystyle4a\sqrt[3]{2a^2} = \sqrt[3]{(4a)^32a^2} = \sqrt[3]{2^7·a^5}$
+	\item[c)] $\displaystyle\displaystyle\frac{3}{5}\sqrt[4]{\frac{5}{3}} = \sqrt[4]{\frac{3^4}{5^4}\frac{5}{3}} = \sqrt[4]{\left(\frac{3}{5}\right)^3}$
+\end{itemize}
+
+\paragraph{42)}
+\begin{itemize}
+	\item[b)] $\displaystyle\sqrt[3]{4}·\sqrt[5]{392} = \sqrt[3]{2^2}·\sqrt[5]{2^37^2} = \sqrt[15]{(2^2)^5}·\sqrt[15]{(2^37^2)^3} =$\\\\$
+	 =\sqrt[15]{2^{10}2^9·7^6} = \sqrt[15]{2^{19}7^6}$
+	\item[d)] $\displaystyle\sqrt{12}:(\sqrt[3]{32}:\sqrt[6]{2}) = \displaystyle\frac{12}{\frac{\sqrt[3]{2^5}}{\sqrt[6]{2}}} =  \displaystyle\frac{12}{\frac{\sqrt[6]{2^{10}}}{\sqrt[6]{2}}} = \displaystyle\frac{12}{\sqrt[6]{2^{9}}} = \frac{2^2·3}{\sqrt{2^3}} = \sqrt{\frac{2^43^2}{2^3}} = \sqrt{23^2} = 3\sqrt{2}$
+\end{itemize}
+
+\paragraph{43)}
+\begin{itemize}
+	\item[b)] $\displaystyle3\sqrt{20}-2\sqrt{80}-\sqrt{45} = 3\sqrt{2^25}-2\sqrt{2^45}-\sqrt{3^25} = 3·2\sqrt{5}-2·2^2\sqrt{5}-3\sqrt{5} = -5\sqrt{5}$
+	\item[d)] $\displaystyle-\sqrt{3^5}+\sqrt{3^22^5}-\sqrt{2} = -3^2\sqrt{5} + 3·2^2\sqrt{2} - \sqrt{2} = -3\sqrt{5}+12\sqrt{2}-\sqrt{2} = -3\sqrt{5}+\sqrt{2}(12-1) = -3\sqrt{5}+11\sqrt{2}$
+\end{itemize}
+
+\printindex
+\end{document}
+\grid
