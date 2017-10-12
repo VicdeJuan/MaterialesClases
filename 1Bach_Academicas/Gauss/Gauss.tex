@@ -1,0 +1,591 @@
+\documentclass[palatino,nosec]{Docencia}
+
+
+\title{Ejemplos resueltos del método de Gauss}
+\author{}
+\date{17/18}
+
+
+% Paquetes adicionales
+
+\usepackage[author={Víctor de Juan, 2017}]{pdfcomment}
+
+\makeatletter
+\newcommand{\annotate}[2][]{%
+\pdfstringdef\x@title{#1}%
+\edef\r{\string\r}%
+\pdfstringdef\x@contents{#2}%
+\pdfannot
+width 2\baselineskip
+height 2\baselineskip
+depth 0pt
+{
+/Subtype /Text
+/T (\x@title)
+/Contents (\x@contents)
+}%
+}
+\makeatother
+
+
+
+\usepackage{eso-pic}
+\newcommand\BackgroundPic{%
+\put(0,0){%
+\parbox[b][\paperheight]{\paperwidth}{%
+\vfill
+\centering
+\includegraphics[width=\paperwidth,height=\paperheight,%
+keepaspectratio]{../../BWLogo.jpeg}%
+\vfill
+}}}
+
+
+
+
+
+\begin{abstract}
+Este documento contiene algunas resoluciones de sistemas lineales de 3 incógnitas con 3 ecuaciones utilizando el método de Gauss (sin utilizar matrices).
+
+\nota{Estos ejemplos no están exentos de erratas. En caso de descubrir alguna, por favor, comunicarlas al autor.}
+\end{abstract}
+
+% --------------------
+\newcommand{\cimplies}{\text{\hl{$\implies$}}}
+
+\begin{document}
+\pagestyle{plain}
+\maketitle
+
+\AddToShipoutPicture{\BackgroundPic}
+
+\newpage
+\begin{problem}
+\textbf{Libro ejercicio 112, a}
+
+Resuelve el siguiente sistema de ecuaciones:
+
+\[
+\left\{\begin{array}{lccccc}
+e_1: &x&+3y&-2z&=&6\\
+e_2: &2x&+3y&-2z&=&8\\
+e_3: &4x&+2y&-6z&=&6
+\end{array}\right\}
+\]
+
+\solution
+
+Lo primero, reordenar o simplificar ecuaciones. Vemos que las incógnitas $y$ y $z$ van a ser más fáciles de eliminar, al menos en las 2 primeras ecuaciones. Además, la tercera se puede simplificar.
+
+
+\[
+\left\{\begin{array}{lccccc}
+e_1: &x&+3y&-2z&=&6\\
+e_2: &2x&+3y&-2z&=&8\\
+e_3: &4x&+2y&-6z&=&6
+\end{array}\right\}
+\dimplies
+\left\{\begin{array}{lccccc}
+e_1: 3y&-2z&+&x&=&6\\
+e_2: 3y&-2z&+&2x&=&8\\
+e_3: y&-3z&+&2x&=&3
+\end{array}\right\}
+%%
+%%
+\overset{(1)}{\dimplies}
+\]
+\[
+%%
+%%
+\left\{\begin{array}{lccccc}
+e_1: 3y&-2z&+&x&=&6\\
+e_2: &&&x&=&2\\
+e_3: y&-3z&+&2x&=&3
+\end{array}\right\}
+%%
+%%
+\dimplies
+%%
+%%
+\left\{\begin{array}{lccccc}
+e_1: 3y&-2z&+&x&=&6\\
+e_2: y&-3z&+&2x&=&3\\
+e_3: &&&x&=&2
+\end{array}\right\}
+%%
+%%
+\overset{(2)}{\dimplies}\]
+\[
+%%
+%%
+\left\{\begin{array}{lccccc}
+e_1: 3y&-2z&+&x&=&6\\
+e_2: &+7z&-&5x&=&-3\\
+e_3: &&&x&=&2\\
+\end{array}\right\}
+\]
+
+
+\paragraph{1)}
+$e_2 = e_2-e_1$
+
+\[
+\begin{array}{rccccc}
+e_2: 3y&-2z&+&2x&=&8\\
+e_1: 3y&-2z&+&x&=&6\\
+\hline
+e_2: &&&x&=&2\\
+\end{array}
+\]	
+
+
+\paragraph{2)} $e_2 = e_1-3e_2$
+
+\[
+\begin{array}{rccccc}
+e_1: 3y&-2z&+&x&=&6\\
+e_2: -3y&+9z&-&6x&=&-9\\
+\hline
+e_2: &+7z&-&5x&=&-3\\
+\end{array}
+\]	
+
+
+
+\subparagraph{Discusión:} El sistema es compatible determinado, porque es un sistema escalonado con ecuaciones compatibles.
+
+\[
+\left\{\begin{array}{lccccc}
+e_1: 3y&-2z&+&x&=&6\\
+e_2: &+7z&-&5x&=&-3\\
+e_3: &&&x&=&2\\
+\end{array}\right\}
+\]
+
+
+\subparagraph{Resolución} 
+
+\[e_3: x=2\]
+
+Utilizando $x=2$ en $e_2$:
+
+\[e_2: 7z-5x = -3 \dimplies 7z = -3+5x = -3+5·2 \dimplies 7z=7 \dimplies z=1\]
+
+Utilizando $z=1$, $x=2$ en la ecuación que nos falta ($e_1$):
+
+\[
+e_1: 3y-2z+x=6 \dimplies y=\frac{6+2z-x}{3} = \frac{6+2-2}{3} = 2
+\]
+
+
+Solución: $(x,y,z) = (2,2,1)$.
+
+\paragraph{Comprobación}
+
+Sustituimos los valores obtenidos en el sistema inicial:
+
+
+\[
+\left\{\begin{array}{lccccl}
+e_1: &x&+3y&-2z&=&6 \to 2+2·3-2 = 6\\
+e_2: &2x&+3y&-2z&=&8 \to 2·2 + 2·3-2·1 = 4+6-2 = 8\\
+e_3: &4x&+2y&-6z&=&6 \to 4·2+2·2-6·1 = 8+4-6 = 6  
+\end{array}\right\} \begin{array}{c}\\\\\\\\\text{cqc}\end{array}
+\]
+\end{problem}
+
+
+\newpage
+\begin{problem}
+\textbf{Libro ejercicio 112, c}
+
+Resuelve el siguiente sistema de ecuaciones:
+
+\[
+\left\{\begin{array}{lccccc}
+e_1: &	2x &	+	y &		- 2z &	= & 8 \\
+e_2: &	2x &	-	4y &	+ 3z &	= & -2 \\
+e_3: &	4x &	-	y &		+ 6z &	= & -4 
+\end{array}\right\}
+\]
+
+\solution
+
+
+\[
+\left\{\begin{array}{lccccc}
+e_1: &	2x &	+	y &		- 2z &	= & 8 \\
+e_2: &	2x &	-	4y &	+ 3z &	= & -2 \\
+e_3: &	4x &	-	y &		+ 6z &	= & -4 
+\end{array}\right\}
+%%
+%%
+\overset{(1)}{\dimplies}
+%%
+%%
+\left\{\begin{array}{lccccc}
+e_1: &	2x &	+	y &		- 2z &	= & 8 \\
+e_2: &	   &	-	5y &	+ 5z &	= & -10\\
+e_3: &	   &	-	3y &	+ 10z &	= & -20\\
+\end{array}\right\}
+%%
+%%
+\dimplies\]
+\[
+%%
+%%
+\left\{\begin{array}{lccccc}
+e_1: &	2x &	+	y &		- 2z &	= & 8 \\
+e_2: &	   &	-	y &		+  z &	= & -2\\
+e_3: &	   &	-	3y &	+ 10z &	= & -20\\
+\end{array}\right\}
+\overset{(2)}{\dimplies}
+\left\{\begin{array}{lccccc}
+e_1: &	2x &	+	y &		- 2z &	= & 8 \\
+e_2: &	   &	-	y &		+  z &	= & -2\\
+e_3: &	   &	-	3y &	+ 10z &	= & -20\\
+\end{array}\right\}
+\]
+
+
+\paragraph{1)} $e_2 = e_2-e_1$ y $e_3 = e_3-2·e_1$
+
+\[
+\begin{array}{rccccc}
+e_2: &	2x &	-	4y &	+ 3z &	= & -2 \\
+e_1: &	2x &	+	y  &	- 2z &	= & 8 \\
+\hline
+e_2: &	   &	-	5y &	+ 5z &	= & -10\\
+\end{array}
+\]	
+
+
+\[
+\begin{array}{rccccc}
+e_3:   &	4x &	-	y   &	+ 6z &	= & -4 \\
+2·e_1: &	4x &	+	2y  &	- 4z &	= & 16 \\
+\hline
+e_3:   &	   &	-	3y &	+ 10z &	= & -20\\
+\end{array}
+\]	
+
+
+\paragraph{2)} $e_3 = e_3-2·e_2$
+
+\[
+\begin{array}{rccccc}
+e_3: &	   &	-	3y &	+ 10z &	= & -20\\
+3·e_2: &   &	-	3y &	+  3z &	= & -6\\
+\hline
+e_3: &	   &		   &	+  7z & = &-14
+\end{array}
+\]	
+
+
+\paragraph{Discusión y resolución}
+
+\[e_3: 7z=-14 \dimplies z=-2\]
+
+
+Utilizando $z=-2$ en $e_2$:
+\[e_2: -y+z=-2 \dimplies -y + (-2) = -2 \dimplies -y-2=-2 \dimplies y=0\]
+
+Utilizando $z=-2$, $y=0$ en la ecuación que nos falta ($e_1$):
+
+\[
+e_1: 2x	+ y - 2z = 8 \dimplies 2x + 0 - 2·(-2) = 8 \dimplies 2x=4 \dimplies x=2
+\]
+
+
+Solución: $(x,y,z) = (2,0,-2)$.
+
+\paragraph{Comprobación}
+
+Sustituimos los valores obtenidos en el sistema inicial:
+
+\[
+\left\{\begin{array}{lccccl}
+e_1: &	2x &	+	y &		- 2z &	= & 8 \to 2·2 + 0 - 2·(-2) = 4+4 = 8\\
+e_2: &	2x &	-	4y &	+ 3z &	= & -2 \to 2·2 - 4·0 + 3·(-2) = 4-6 = -2\\
+e_3: &	4x &	-	y &		+ 6z &	= & -4 \to 4·2 - 0 + 6·(-2) = 8-12 = -4
+\end{array}\right\}\begin{array}{c}\\\\\\\\\text{cqc}\end{array}
+\]
+
+\end{problem}
+
+
+
+
+
+\newpage
+\begin{problem}
+Resuelve el siguiente sistema de ecuaciones:
+
+\[
+\left\{\begin{array}{lccccc}
+e_1: &x&+y&+z&=&0\\
+e_2: &x&+y&-z&=&2\\
+e_3: &2x&+3y&+4z&=&-2
+\end{array}\right\}
+\]
+
+\solution
+
+
+\[
+\left\{\begin{array}{lccccc}
+e_1: &x&+y&+z&=&0\\
+e_2: &x&+y&-z&=&2\\
+e_3: &2x&+3y&+4z&=&-2
+\end{array}\right\}
+%%
+%%
+\overset{(1)}{\dimplies}
+%%
+%%
+\left\{\begin{array}{lccccc}
+e_1: &x&+y&+z&=&0\\
+e_2: &&&-2z&=&2\\
+e_3: &2x&+3y&+4z&=&-2
+\end{array}\right\}
+%%
+%%
+\overset{(2)}{\dimplies}\]
+\[
+%%
+%%
+\left\{\begin{array}{lccccc}
+e_1: &x&+y&+z&=&0\\
+e_2: &&&-2z&=&2\\
+e_3: &&y&+2z&=&-2\\
+\end{array}\right\}
+\dimplies
+\left\{\begin{array}{lccccc}
+e_1: &x&+y&+z&=&0\\
+e_3: &&y&+2z&=&-2\\
+e_2: &&&-2z&=&2\\
+\end{array}\right\}
+\]
+
+
+
+\paragraph{1)} $e_2 = e_2-e_1$
+
+\[
+\begin{array}{rccccc}
+e_2: &x&+y&-z&=&2\\
+e_1: &x&+y&+z&=&0\\
+\hline
+e_2: &&&-2z&=&2\\
+\end{array}
+\]	
+
+\paragraph{2)} $e_3 = e_3-2·e_1$
+
+\[
+\begin{array}{rccccc}
+e_3: &2x&+3y&+4z&=&-2\\
+2·e_1: &2·x&+2·y&+2·z&=&\textcolor{red}{2}·0\\
+\hline
+e_3: &&y&+2z&=&-2\\
+\end{array}
+\]	
+
+
+\paragraph{Discusión y resolución}
+
+En este caso ya lo tenemos escalonado, sólo hay que reordenar:
+
+\[
+\left\{\begin{array}{lccccc}
+e_1: &x&+y&+z&=&0\\
+e_3: &&y&+2z&=&-2\\
+e_2: &&&-2z&=&2\\
+\end{array}\right\}
+\]
+
+\subparagraph{Resolución}
+
+\[e_3: -2z=2 \dimplies z=-1\]
+
+
+Utilizando $z=-1$ en $e_2$:
+\[e_2: y+2z=-2 \dimplies y+2·(-1) = -2 \dimplies y-2=-2 \dimplies y=0\]
+
+Utilizando $z=-1$, $y=0$ en la ecuación que nos falta ($e_1$):
+
+\[
+e_1: x+y+z=0 \dimplies x+0-1=0 \dimplies x=1
+\]
+
+
+Solución: $(x,y,z) = (1,0,-1)$.
+
+\paragraph{Comprobación}
+
+Sustituimos los valores obtenidos en el sistema inicial:
+
+\[
+\left\{\begin{array}{lccccl}
+e_1: &x&+y&+z&=&0 \to 1+0-1=0\\
+e_2: &x&+y&-z&=&2 \to 1+0-(-1) = 2 \\
+e_3: &2x&+3y&+4z&=&-2 \to 2·(1) + 3·(0) + 4·(-1) = 2-4=-2 
+\end{array}\right\}\begin{array}{c}\\\\\\\\\text{cqc}\end{array}
+\]
+
+\end{problem}
+
+
+
+
+
+
+
+\newpage
+\begin{problem}
+Resuelve el siguiente sistema de ecuaciones:
+
+\[
+\left\{\begin{array}{lllll}
+e_1: & 3x &+ 2y &+z &=10\\
+e_2: & -x&-y&+z&=0\\
+e_3: & 2x&+y&+3z&=13
+\end{array}\right\}
+\]
+
+\solution
+
+Lo primero, reordenar o simplificar ecuaciones. Vemos que la incógnita $z$ va a ser más fácil de eliminar, al menos en las 2 primeras ecuaciones. 
+
+\[
+\left\{\begin{array}{lcccc}
+e_1: & z &+ 2y &+3x &=10\\
+e_2: & z&-y&-x&=0\\
+e_3: & 3z&+y&+2x&=13
+\end{array}\right\} 
+%%
+%%
+\overset{(1)}{\dimplies}
+%%
+%%
+\left\{\begin{array}{lccccc}
+e_1: & z &+ 2y &+3x &=10\\
+e_2: & &3y&+4x&=10\\
+e_3: &3z&+y&+2x&=13
+\end{array}\right\}
+%%
+%%
+\overset{(2)}{\dimplies}\]
+\[
+%%
+%%
+\left\{\begin{array}{lcccl}
+e_1: & z&+ 2y&+3x &=10\\
+e_2: & &3y&+4x&=10\\
+e_3: & &-5y&-7x&=-17\\
+\end{array}\right\}
+%%
+%%
+\overset{(3)}{\dimplies}
+%%
+%%
+\left\{\begin{array}{lccccc}
+e_1: & z&+ 2y&+3x &=10\\
+e_2: & &3y&+4x&=10\\
+e_3: &&&-x&=-1\\
+\end{array}\right\}
+\]
+
+
+\paragraph{1)}
+$e_2 = e_2-e_1$
+
+\[
+\begin{array}{rcccl}
+e_2: & z &+ 2y &+3x &=10\\
+e_1: & z&-y&-x&=0\\
+\hline
+e_2: & &3y+&4x&=10\\
+\end{array}
+\]	
+
+\paragraph{2)} $e_3 = e_3-3e_1$
+
+\[
+\begin{array}{rcccl}
+e_3: & 3z&+y  &+2x&=13\\
+e_1: & 3z&+6y &+9x&=30\\
+\hline
+e_3: &   &-5y &-7x&=-17\\
+\end{array}
+\]	
+
+
+
+\paragraph{3)} $e_3=5·e_2+3·e_3$
+
+\[
+\begin{array}{rcccl}
+5e_2: & &15y&+20x&=50\\
+3e_3: & &-15y&-21x&=-51\\
+\hline
+e_3: &&&-x&=-1\\
+\end{array}
+\]	
+\nota{También podríamos hacer $e_3 = e_2+\frac{3}{5}e_1$.}
+
+
+\paragraph{Discusión y resolución:}
+
+\[
+\left\{\begin{array}{lccccc}
+e_1: & z&+ 2y&+3x &=10\\
+e_2: & &3y&+4x&=10\\
+e_3: &&&-x&=-1\\
+\end{array}\right\}
+\]
+
+\subparagraph{Discusión:} El sistema es compatible determinado, porque es un sistema escalonado con ecuaciones compatibles.
+
+
+\subparagraph{Resolución:}
+
+$e_3: -x=-1 \dimplies x=1$
+
+Utilizando $x=1$ en $e_2$:
+
+
+\[
+	e_2: 3y+4x=10 \dimplies y=\frac{10-4x}{3} = \frac{10-4}{3} = 2
+\]
+
+Utilizando $y=2$, $x=1$ en la ecuación que nos falta ($e_1$):
+
+\[
+e_1: z+2y+3x = 10 \dimplies z = 10-3x-2y = 10-3·1-2·2 = 10-7 = 3
+\]
+
+
+Solución: $(x,y,z) = (1,2,3)$.
+
+\paragraph{Comprobación}
+
+Sustituimos los valores obtenidos en el sistema inicial:
+
+
+\[
+\left\{\begin{array}{lcccl}
+e_1: & 3x &+ 2y &+z &=10 \to 3·1+2·2+3 = 3+4+3 = 10  \\
+e_2: & -x&-y&+z&=0 \to -1-2+3 = 0  \\
+e_3: & 2x&+y&+3z&=13 \to 2·1+2+3·3 = 2+2+9 = 13  \\
+\end{array}\right\} \begin{array}{c}\\\\\\\\\text{cqc}\end{array}
+\]
+\end{problem}
+
+
+
+
+
+
+
+\end{document}

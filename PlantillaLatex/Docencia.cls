@@ -148,7 +148,7 @@
 				Colegio Sagrada Familia\par
 				de Moratalaz\par
 				\vspace{5pt}
-				\href{http://github.com/VicdeJuan/Apuntes}{Código en Github}
+				
 			\end{flushright}
 		\end{minipage}
 	\fi
