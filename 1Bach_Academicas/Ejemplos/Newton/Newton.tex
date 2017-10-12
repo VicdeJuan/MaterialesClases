@@ -1,0 +1,137 @@
+\documentclass[palatino,nosec]{Docencia}
+
+
+\title{Ejemplos Binomio de Newton}
+\author{}
+\date{17/18}
+
+
+% Paquetes adicionales
+
+\usepackage[author={Víctor de Juan, 2017}]{pdfcomment}
+
+\makeatletter
+\newcommand{\annotate}[2][]{%
+\pdfstringdef\x@title{#1}%
+\edef\r{\string\r}%
+\pdfstringdef\x@contents{#2}%
+\pdfannot
+width 2\baselineskip
+height 2\baselineskip
+depth 0pt
+{
+/Subtype /Text
+/T (\x@title)
+/Contents (\x@contents)
+}%
+}
+\makeatother
+
+
+
+\usepackage{eso-pic}
+\newcommand\BackgroundPic{%
+\put(0,0){%
+\parbox[b][\paperheight]{\paperwidth}{%
+\vfill
+\centering
+\includegraphics[width=\paperwidth,height=\paperheight,%
+keepaspectratio]{../../../BWLogo.jpeg}%
+\vfill
+}}}
+
+
+
+
+
+\begin{abstract}
+Este documento contiene algún ejemplo de utilización del binomio de Newton.
+
+\nota{Estos ejemplos no están exentos de erratas. En caso de descubrir alguna, por favor, comunicarlas al autor.}
+\end{abstract}
+
+% --------------------
+\newcommand{\cimplies}{\text{\hl{$\implies$}}}
+
+\begin{document}
+\pagestyle{plain}
+\maketitle
+
+\AddToShipoutPicture{\BackgroundPic}
+
+\begin{problem}
+
+Sea \[P(x) = \left( 3x^2 - \frac{2}{x} \right)^9\]
+
+\ppart Calcula el término independiente de $P(x)$.
+\ppart ¿Tiene el polinomio algún término de grado $2$?
+\ppart (Para profundizar) ¿Cuál es el coeficiente principal?
+
+\solution
+
+\spart
+
+Buscamos el término del desarrollo del binomio que tenga $x^0$.
+
+Por el binomio de Newton, sabemos que $P(x)$, en este caso, estará formado por sumandos de la forma:
+
+\[
+	\binom{9}{k} (3x^2)^k·\left(\text{\hl{\;--\;}}\frac{2}{x}\right)^{9-k} \overset{(1)}{=} \text{\hl{\;--\;}}\binom{9}{k}·3^k·2^{9-k} · \frac{x^{2k}}{x^{9-k}}
+\]
+
+\textit{(1): Operando.}
+
+Buscamos $k$ para que el exponente de la $x$ sea 0, es decir:
+
+\[-\binom{9}{k}·3^k·2^{9-k} · \frac{x^{2k}}{x^{9-k}} = T·x^0\]
+
+donde $T$ es el término independiente que buscamos.
+
+\[
+	\frac{x^{2k}}{x^{9-k}} = x^0 \implies 2k-(9-k) = 0 \dimplies 2k+k=9 \dimplies k=3
+\]
+
+Si $k=3$, calculamos el término independiente
+
+\[
+	-\binom{9}{3}·3^3·2^{9-3} · \frac{x^{2·3}}{x^{9-3}} = -\frac{9!}{6!3!}·3^3·2^6·\frac{x^6}{x^6} = 145152
+\]
+
+\spart Buscamos el desarrollo del binomio que tenga $x^2$, si puede ser.
+
+Por el binomio de Newton, sabemos que $P(x)$, en este caso, estará formado por sumandos de la forma:
+
+\[
+	\binom{9}{k} (3x^2)^k·\left(-\frac{2}{x}\right)^{9-k} \overset{(1)}{=} -\binom{9}{k}·3^k·2^{9-k} · \frac{x^{2k}}{x^{9-k}}
+\]
+
+
+\textit{(1): Operando.}
+
+
+Buscamos $k$ para que el exponente de la $x$ sea 2, es decir:
+
+\[-\binom{9}{k}·3^k·2^{9-k} · \frac{x^{2k}}{x^{9-k}} = T·x^0\]
+
+donde $T$ es el término independiente que buscamos. 
+
+\[
+	\frac{x^{2k}}{x^{9-k}} = x^2 \implies 2k-(9-k) = 2 \dimplies 2k+k=11 \dimplies k=\frac{11}{3}
+\]
+
+El desarrollo de este binomio no tiene un término de grado 2, ya que $k$ sólo puede ser un número entero.
+
+\spart El coeficiente principal es el coeficiente que acompaña a la potencia de mayor grado. En este caso, la potencia de mayor grado se obtendrá cuando:
+
+\[
+\binom{9}{9}(3x^2)^9·\left(-\frac{2}{x}\right)^0 = 1·3^9·x^{18}
+\]
+
+Entonces, el coeficiente principal será $3^9 = 19683$.
+
+\end{problem}
+
+
+
+
+\end{document}
