@@ -28,6 +28,22 @@ depth 0pt
 \makeatother
 
 
+
+\usepackage{eso-pic}
+\newcommand\BackgroundPic{%
+\put(0,0){%
+\parbox[b][\paperheight]{\paperwidth}{%
+\vfill
+\centering
+{\transparent{0.5}\includegraphics[width=\paperwidth,height=\paperheight,%
+keepaspectratio]{../../BWLogo.jpeg}%
+\vfill
+}}}}
+
+
+
+
+
 \begin{abstract}
 Este documento contiene algunas resoluciones de sistemas lineales de 3 incógnitas con 3 ecuaciones utilizando el método de Gauss (sin utilizar matrices).
 
@@ -40,6 +56,8 @@ Este documento contiene algunas resoluciones de sistemas lineales de 3 incógnit
 \begin{document}
 \pagestyle{plain}
 \maketitle
+
+\AddToShipoutPicture{\BackgroundPic}
 
 \newpage
 \begin{problem}
