@@ -1,0 +1,259 @@
+\documentclass[palatino,nosec]{Docencia}
+
+
+\title{Examen 4º A, preevaluación}
+\author{Víctor de Juan}
+\date{17/18}
+
+
+% Paquetes adicionales
+
+\usepackage[author={Víctor de Juan, 2017}]{pdfcomment}
+
+\usepackage{pgf,tikz}
+\usetikzlibrary{arrows}
+
+\definecolor{qqttcc}{rgb}{0,0.2,0.8}
+\definecolor{qqqqff}{rgb}{0,0,1}
+
+
+\makeatletter
+\newcommand{\annotate}[2][]{%
+\pdfstringdef\x@title{#1}%
+\edef\r{\string\r}%
+\pdfstringdef\x@contents{#2}%
+\pdfannot
+width 2\baselineskip
+height 2\baselineskip
+depth 0pt
+{
+/Subtype /Text
+/T (\x@title)
+/Contents (\x@contents)
+}%
+}
+\makeatother
+
+
+
+\usepackage{eso-pic}
+\newcommand\BackgroundPic{%
+\put(0,0){%
+\parbox[b][\paperheight]{\paperwidth}{%
+\vfill
+\centering
+\includegraphics[width=\paperwidth,height=\paperheight,%
+keepaspectratio]{../../../BWLogo.jpeg}%
+\vfill
+}}}
+
+
+
+
+
+\begin{abstract}
+Solución del examen de preevaluación.
+
+\nota{Estos ejemplos no están exentos de erratas. En caso de descubrir alguna, por favor, comunicarlas al autor.}
+\end{abstract}
+
+% --------------------
+\newcommand{\cimplies}{\text{\hl{$\implies$}}}
+
+\begin{document}
+\pagestyle{plain}
+\maketitle
+
+\AddToShipoutPicture{\BackgroundPic}
+
+\begin{problem}
+(1p.) Simplifica utilizando propiedades de potencias o radicales:
+
+\[
+\frac{b\sqrt[3]{8ab}\sqrt{9b^5a}}{6\sqrt[3]{a}}
+\]
+
+\solution
+
+\[
+\frac{b\sqrt[3]{8ab}\sqrt{9b^5a}}{6\sqrt[3]{a}} = \frac{b\sqrt[3]{2^3ab}\sqrt{3^2b^5a}}{6\sqrt[3]{a}} = \frac{b2\sqrt[3]{ab}3b^2\sqrt{ba}}{6\sqrt[3]{a}} = \frac{b^3\sqrt[3]{ab}\sqrt{ba}}{\sqrt[3]{a}}
+\]
+
+Ahora se puede hacer radical común en el numerador, racionalizar o simplificar:
+
+\[
+\frac{b^3\sqrt[3]{a}\sqrt[3]{b}\sqrt{ba}}{\sqrt[3]{a}} = b^3\sqrt[3]{b}\sqrt{ba} = b^3\sqrt[6]{b^2·(ab)^3} = b^3\sqrt[6]{b^5a^3}
+\]
+
+\end{problem}
+
+\begin{problem}(1,5 p.) Halla el valor de $A$ en la expresión:
+
+\[
+	\log A = 2\log 2 + 3\log3 - 2 - \log 18
+\]
+
+\solution
+
+\[
+	\log A = 2\log 2 + \log3 - 2 - \log 18 \overset{(1)}{\dimplies} \log A = \log 2^2 + \log3 - 2 - \log 18 \overset{(2)}{\dimplies}
+\]
+\[ 
+	\log A = \log\left(\frac{2^2·3}{18}\right) - \log 100 \overset{(2)}{\dimplies} \log A = \log\frac{2}{3·100} \implies A=\frac{1}{150}
+\]
+
+donde $(1) \log_aA^n = n\log_aA$ y $(2): \log_a(AB) = \log_aA + \log_aB\;;\;\log_a\frac{A}{B} = \log_aA - \log_aB$
+\end{problem}
+
+\begin{problem}(1 p.)
+Demuestra $\log_{a^2}x^2 = \log_ax$
+\solution
+
+Utilizando la propiedad cambio de base: $(1): \log_aA = \frac{\log_bA}{\log_ba}$
+
+\[
+\log_{a^2}x^2 \overset{(1)}{=}  \frac{\log_ax^2}{\log_aa^2} \overset{(2)}{=} \frac{2\log_ax}{2\log_aa} = \log_ax
+\]
+
+donde $(2): \log_aA^n = n\log_aA$
+\end{problem}
+
+\begin{problem}
+Sabiendo $\log 4 = 0,602$, calcula:
+\ppart $\log64 - \log16$
+\ppart $\log_4 \sqrt{1000}$
+\ppart $\log_16 100$
+\solution
+
+$(1): \log_a\frac{A}{B} = \log_aA - \log_aB$ y $(2): \log_aA = \frac{\log_bA}{\log_ba} $
+
+\spart $\log64 - \log16 \overset{(1)}{=} \log{\frac{64}{16}} = \log 4 = 0,602$
+
+\spart $\log_4\sqrt{1000} = \log_410^{\rfrac{3}{2}} \overset{(2)}{=} \displaystyle\frac{\log 10^{\rfrac{3}{2}}}{\log 4} = \frac{\rfrac{3}{2}}{0,602} = \frac{3}{2·0,602}$
+
+\spart Utilizando el ejercicio 3, $\log_{a^2}x^2 = \log_ax$; 
+
+\[
+\log_{16} 100 = \log_{4^2}10^2 = \log_410=0,602
+\]
+\end{problem}
+
+
+
+\begin{problem} (1 p.)
+Halla el valor o valores de $m$ para que $P(x) = 5x^4 - (mx)^2 + 20$ sea divisible por $(x+1)$. \textbf{Enuncia} el teorema o teoremas que utilices.
+
+\solution
+
+Teorema del factor: Sea $a\in\real$ y $P(x)$ un polinomio.Entonces, $(x-a)$ es un factor de $P(x)$, es decir, $P(x)$ es divisible por $(x-a)$ si, y sólo si, $a$ es una raíz, es decir, $P(a) = 0$.
+
+Utilizando el teorema del factor, buscamos $P(-1) = 0$
+
+\[
+	P(-1) = 0 \dimplies 5(-1)^4 - (m·(-1))^2 + 20 = 0 \dimplies 5-m^2(-1)^2+20 = 0 
+\]
+\[
+	\dimplies 5-m^2+20=0 \dimplies m^2 = \sqrt{25} \implies m=\pm 5
+\]
+
+$m$ puede tomar 2 posibles valores, $+5$ y $-5$
+
+\end{problem}
+
+
+\begin{problem} (1,5 p.) 
+Factoriza el polinomio $P(x) = x^3+3x^2+3x+1$
+\solution
+
+Buscamos la posibles raíces:
+
+$P(1) = 1+3+3+1 ≠ 0$, por lo que $1$ no es raíz del polinomio.
+
+$P(-1) = (-1)^3 + 3(-1)^2+3(-1)+1 = -1+3-3+1 = 0$, por lo que $-1$ es raíz del polinomio. Por el teorema del factor, $(x+1)$ será un factor del polinomio.
+
+Dividiendo (por Ruffini), obtenemos una identidad notable: 
+
+\[
+	\frac{x^3+3x^2+3x+1}{x+1} = x^2+2x+1 = (x+1)^2
+\]
+
+Por lo tanto, $P(x) = x^3+3x^2+3x+1 = (x+1)^3$
+\end{problem}
+
+
+
+\begin{problem} (1,5 p.)
+
+Pau Gasol quiere construir un estadio de baloncesto con sus ahorros. Dispone de $1.000.000$ euros y su banco de confianza, que le conoce desde hace muchos años, le ofrece un interés del 100\%. 
+
+Si quiere llegar a $128.000.000$ euros para el estadio, ¿cuántos años debe esperar?
+\solution
+
+Utilizamos la fórmula del interés compuesto: $C_F = C_I·\left(1+\frac{r}{100}\right)^t$, con los datos del enunciado:
+\begin{itemize}
+	\item $C_F = 128·10^6$
+	\item $C_I = 10^6$
+	\item $r=100\%$
+	\item $t=?$
+\end{itemize}
+
+Despejamos el tiempo:
+
+\[
+C_F = C_I·\left(1+\frac{r}{100}\right)^t \dimplies \frac{C_F}{C_I} = \left(1+\frac{r}{100}\right)^t \implies \log \frac{C_F}{C_I} = \log \left(1+\frac{r}{100}\right)^t 
+\]
+
+\[\overset{(1)}{\dimplies} \log \frac{C_F}{C_I} = t·\log \left(1+\frac{r}{100}\right) \dimplies  t= \frac{\log\frac{C_F}{C_I}}{\log \left(1+\frac{r}{100}\right)}
+\]
+
+donde $(1): \log_aA^n = n\log_aA$
+
+Sustituyendo los datos del problema, obtenemos:
+
+\[
+  t= \frac{\log\frac{C_F}{C_I}}{\log \left(1+\frac{r}{100}\right)} = \frac{\log{\frac{128·10^6}{10^6}}}{\log\left(1+\frac{100}{100}\right)} = \frac{\log 128}{\log 2} \overset{\ast}{=} \frac{\log 2^7}{\log 2} \overset{(1)}{=} \frac{7·\log2}{\log2} = 7
+\]
+
+En $\ast$ también podríamos haber aplicado un cambio de base, obteniendo $\log_2128 = 7$.
+
+\begin{center}
+\textcolor{red}{Error común: } $\displaystyle\frac{\log 128}{\log 2} = \log 64 = 8$
+\end{center}
+\end{problem}
+
+
+
+\begin{problem}
+Expresa en forma de entorno e intervalo el siguiente valor absoluto: $\{|x-1| < 2\}$
+\solution
+
+Definición de entorno: $E_c(r) = \{ x\in\real: |x-c|<r\}$, por lo que 
+\[
+	\{x\in\real: |x-1| < 2\} = E_1(2)
+\]
+
+Transformación de entorno en intervalo $E_c(r) = (c-r,c+r)$. En este caso, $E_1(2) = (1-2,1+2) = (-1,3)$.
+
+Representación en la recta real.
+
+\begin{center}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\draw[->,color=black] (-4.06,0) -- (8.5,0);
+\foreach \x in {-4,-3,-2,-1,1,2,3,4,5,6,7,8}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[color=black] (8.27,0.06) node [anchor=south west] { x};
+\draw[color=black] (0pt,-10pt) node[right] {\footnotesize $0$};
+\clip(-4.06,-3.8) rectangle (8.5,5.02);
+\draw [line width=3.2pt,color=qqttcc] (-1,0)-- (3,0);
+\begin{scriptsize}
+\draw [color=qqqqff] (-1,0) arc (0:45:-0.7);
+\draw [color=qqqqff] (-1,0) arc (0:-45:-0.7);
+\draw [color=qqqqff] (3,0) arc (0:45:0.7);
+\draw [color=qqqqff] (3,0) arc (0:-45:0.7);
+\end{scriptsize}
+\end{tikzpicture}
+\end{center}
+
+\end{problem}
+
+\end{document}
