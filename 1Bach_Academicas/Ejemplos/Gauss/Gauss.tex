@@ -36,7 +36,7 @@ depth 0pt
 \vfill
 \centering
 \includegraphics[width=\paperwidth,height=\paperheight,%
-keepaspectratio]{../../BWLogo.jpeg}%
+keepaspectratio]{../../../BWLogo.jpeg}%
 \vfill
 }}}
 
@@ -583,7 +583,177 @@ e_3: & 2x&+y&+3z&=13 \to 2·1+2+3·3 = 2+2+9 = 13  \\
 \end{problem}
 
 
+\newpage
+\begin{problem}
+\textbf{Libro ejercicio 113,a}
 
+Discute y resuelve el siguiente sistema:
+
+\[
+\left\{\begin{array}{lcccl}
+x&+2y&-2z&=&4\\
+2x&+5y&-2z&=&10\\
+4x&+9y&-6z&=&18
+\end{array}\right\}
+\]
+
+\solution
+
+\[
+\left\{\begin{array}{lcccl}
+x&+2y&-2z&=&4\\
+2x&+5y&-2z&=&10\\
+4x&+9y&-6z&=&18
+\end{array}\right\}
+\overset{(1)}{\dimplies}
+\left\{\begin{array}{lcccl}
+x&+2y&-2z&=&4\\
+ &y&+2z&=&2 \\
+4x&+9y&-6z&=&18
+\end{array}\right\}
+\overset{(2)}{\dimplies}\]
+\[
+\left\{\begin{array}{lcccl}
+x&+2y&-2z&=&4\\
+ &y&+2z&=&2 \\
+ &y&+2z&=&2 \\
+\end{array}\right\}
+\dimplies
+\underbrace{\left\{\begin{array}{lcccl}
+x&+2y&-2z&=&4\\
+ &y&+2z&=&2 
+\end{array}\right\}}_{\text{Discusión: C.I (*)}}
+\]
+
+(*): Es un sistema compatible indeterminado porque es un sistema escalonado con más incógnitas que ecuaciones.
+
+\paragraph{Resolución:} Parametrizamos. Tomamos $y=λ$ y sustituimos en $E_2$.
+
+\[y+2z=2 \dimplies λ+2z=2 \dimplies z=\frac{2-λ}{2}\]
+
+Sustituimos $y=λ,z=\frac{2-λ}{2}$ en $E_1$:
+
+\[x+2y-2z = 4 \dimplies x= 4+2z-2y = 4+2\left(\frac{2-λ}{2}\right)-2λ = 4+2-λ-2λ = 6-3λ = 3(2-λ)\]
+
+\textbf{Solución:} $(x,y,z) = \left(3(2-λ),λ,\frac{2-λ}{2}\right)$
+
+\paragraph{1)} $E_2=E_2-2E_1$
+
+\[
+\left\{\begin{array}{lcccl}
+2x&+4y&-4z&=&8\\
+2x&+5y&-2z&=&10\\
+\hline
+&-y&-2z&=&-2 
+\end{array}\right\}
+\]
+
+\paragraph{2)} $E_3=E_2-4E_1$
+
+\[
+\left\{\begin{array}{lcccl}
+4x&+9y&-6z&=&18\\
+4x&+10y&-4z&=&20\\
+\hline
+&-y&-2z&=&-2 
+\end{array}\right\}
+\]
+
+
+\paragraph*{Comprobación:} Sustituimos $(x,y,z) = \left(3(2-λ),λ,\frac{2-λ}{2}\right)$ en el sistema inicial:
+
+
+\[
+\left\{\begin{array}{lcccll}
+x&+2y&-2z&=&4 &\to 6-3λ + 2λ - 2\displaystyle\left(\frac{2-λ}{2}\right) = 6-λ-2+λ = 4\\
+2x&+5y&-2z&=&10 &\to 12-6λ +5λ - 2\displaystyle\left(\frac{2-λ}{2}\right) = 12-λ-2+λ = 10\\
+4x&+9y&-6z&=&18 &\to 24-12λ + 9λ - 6\displaystyle\left(\frac{2-λ}{2}\right) = 24-3λ-6+3λ = 18
+\end{array}\right\}\begin{array}{c}\\\\\\\\\text{cqc}\end{array}
+\]
+
+\end{problem}
+
+
+\newpage
+\begin{problem}
+\textbf{Libro ejercicio 113,b}
+
+Discute y resuelve el siguiente sistema:
+
+\[
+\left\{\begin{array}{lcccl}
+x&+2y&-z&=&-5\\
+5x&-y&+2z&=&11\\
+6x&+y&+z&=&5
+\end{array}\right\}
+\]
+
+\solution
+
+\[
+\left\{\begin{array}{lcccl}
+x&+2y&-z&=&-5\\
+5x&-y&+2z&=&11\\
+6x&+y&+z&=&5
+\end{array}\right\}
+\overset{(1)}{\dimplies}
+\left\{\begin{array}{lcccl}
+x&+2y&-z&=&-5\\
+&-11y&+7z&=&36\\
+6x&+y&+z&=&5
+\end{array}\right\}
+\overset{(2)}{\dimplies}\]
+\[
+\left\{\begin{array}{lcccl}
+x&+2y&-z&=&-5\\
+&-11y&+7z&=&36\\
+& -11y&+7z&=&35
+\end{array}\right\}
+\overset{(3)}{\dimplies}
+\underbrace{\left\{\begin{array}{lcccl}
+x&+2y&-z&=&-5\\
+&-11y&+7z&=&36\\
+& &0&=&1
+\end{array}\right\}}_{\text{\textbf{Discusión:} Sistema Incompatible (*)}}
+\]
+
+(*): El sistema es incompatible porque tiene una ecuación incompatible.
+
+
+\paragraph{1)} $e_2 = e_2-5e_1$
+
+\[
+\begin{array}{lcccl}
+e_2: 5x&-y&+2z&=&11\\
+e_1: 5x&+10y&-5z&=&-25\\
+\hline
+e_2:   & -11y&+7z&=&36\\
+\end{array}
+\]	
+
+\paragraph*{2)} $e_3 = e_3-6e_1$
+\[
+\begin{array}{lcccl}
+e_3: 6x&+y&+z&=&5\\
+e_1: 6x&+12y&-6z&=&-30\\
+\hline
+e_2:   & -11y&+7z&=&35\\
+\end{array}
+\]	
+
+\paragraph{3)} $e_3=e_3-e_2$
+\[
+\begin{array}{lcccl}
+&-11y&+7z&=&36\\
+&-11y&+7z&=&35\\
+\hline
+e_2:   & 0y&+0z&=&1\\
+\end{array}
+\]	
+
+
+
+\end{problem}
 
 
 
