@@ -144,7 +144,9 @@ En el segundo examen, en principio, no pondremos contenido de la evaluación ant
 \input{tex/Algebra.tex}
 
 \chapter{Geometría}
+
 \section{Vectores en $\real^2$}
+
 
 \begin{defn}[Producto cartesiano]
 Sean $A$ y $B$ 2 conjuntos. Se define el producto cartesiano como
@@ -179,8 +181,8 @@ Vamos a \hl{definir $\real^2$}, con el que vamos a trabajar a partir de ahora.
 
 $\real^2$ por si sólo no es nada, asique vamos a definir operaciones en esta estructura algebraica.
 
-\paragraph{Operaciones en $\real^2$}
-\subparagraph{Suma:}
+\subsection{Operaciones en $\real^2$}
+\subsubsection{Suma:}
 $\appl{+}{\real^2\times\real^2}{\real^2}$  y se define como $(a,b)+(c,d) = (a+c,b+d)$.
 
 \begin{example}
@@ -203,7 +205,7 @@ Donde en $(1)$ aplicamos la suma en $\real^2$ y en $(2)$ aplicamos la suma en $\
 
 \obs El par $(\real^2,+)$ es un grupo conmutativo.
 
-\subparagraph{Producto con dominio de operadores en $\real$} Comunmente, multiplicación de un número real por un elemento de $\real^2$.
+\subsubsection{Producto con dominio de operadores en $\real$} Comunmente, multiplicación de un número real por un elemento de $\real^2$.
 
 $\appl{·}{\real\times\real^2}{\real^2}$ y se define como $λ·(a,b) = (λa,λb), \;\forallλ\in\real,(a,b)\in\real^2$
 
@@ -231,15 +233,7 @@ Como curiosidad matemática, hasta podríamos definir $\real\times...\times\real
 
 ¿Y todo esto en qué se concreta? Vamos a aterrizar toda esta abstracción matemática. Los elementos de $\real^2$ no son otra cosa que los vectores con los que trabajábamos el año pasado.
 
-\paragraph{Concreción de lo abstracto} Podemos interpretar $(a,b)\in\real^2$ como vectores con un módulo, una dirección y un sentido. Cuando tenemos un origen los llamamos \textbf{vectores fijos}.
-
-¿Recordáis qué es un vector libre? Técnicamente es un representante de la clase de equivalencia. \textit{Dibujamos en un plano distintos vectores fijos para explicar qué es un vector libre}.
-%
-Un vector libre respecto a un vector fijo sería como un número decimal respecto a las fracciones. No son exactamente el mismo número, pero representan la misma realidad. Algo similar ocurre con los vectores fijos y libres. 
-
-Nosotros de momento vamos a trabajar simplemente con vectores libres, ya que son los elementos de $\real^2$.
-
-\paragraph{Combinaciones lineales}
+\subsubsection{Combinaciones lineales}
 
 \begin{defn}[Combinación lineal]
 Combinación lineal de $\vec{x},\vec{y},\vec{z}\in\real^2$ es cualquier expresión algebraica de la forma $α\vec{x}+β\vec{y}+λ\vec{z}$ con $α,β,λ\in\real$
@@ -318,7 +312,7 @@ Por definición de dependencia lineal, buscamos $α,β$ tales que $αa+βb = (0,
 
 Si $m=6$, tenemos $0β=0$, cuya solución es $β\in\real$. 
 
-\textbf{Conclusión:} para $m=6$ los vectores son totalmente independientes. Valdría tomar $β=-1$ y $α=2$.
+\textbf{Conclusión:} para $m=6$ los vectores son linealmente dependientes. Valdría tomar $β=-1$ y $α=2$.
 
 Comprobación: $αa+βb = 2(1,3)+(-1)(2,6) = (2-2,6-6) = (0,0)$
 \end{problem}
@@ -336,6 +330,26 @@ Utilizamos: "2 vectores son linealmente dependientes si y sólo si son proporcio
 
 Buscamos $m$ tal que $\rfrac{1}{2} = \rfrac{3}{m}$, lo cual es cierto si $m=6$.
 \end{problem}
+
+\section{Plano afín}
+
+\paragraph{Concreción de lo abstracto} Podemos interpretar $(a,b)\in\real^2$ como vectores con un módulo, una dirección y un sentido. Cuando tenemos en cuenta el origen los llamamos \textbf{vectores fijos}.
+
+Pero claro, para hablar de vectores fijos necesitamos orientarnos en el plano.
+%
+¿Qué necesitamos para orientarnos en el plano? ¿Cuál puede ser un sistema de referencia? No copiar, primero entender.\textit{Con la pizarra borrada, sitúo un punto. ¿Cómo ponernos de acuerdo para definirle unas coordenadas? Necesitamos un origen y una base}
+
+
+¿Recordáis qué es un vector libre? Técnicamente es un representante de la clase de equivalencia. \textit{Dibujamos en un plano distintos vectores fijos para explicar qué es un vector libre}.
+%
+Un vector libre respecto a un vector fijo sería como un número decimal respecto a las fracciones. No son exactamente el mismo número, pero representan la misma realidad. Algo similar ocurre con los vectores fijos y libres. 
+
+Nosotros de momento vamos a trabajar simplemente con vectores libres, ya que son los elementos de $\real^2$.
+
+
+Sistema de referencia: un origen y una escala (base). Normalmente tomamos como origen el $(0,0)$ y como base la canónica $\{(1,0),(0,1)\}$.
+
+\subsubsection{Base de un espacio vectorial}
 
 \begin{defn}[Base]
 Un conjunto $B=\{\vx,\vy\}$ con $\vx,\vy\in\real^2$ es una base de $\real^2$ si y sólo si cumple:
@@ -407,13 +421,8 @@ Dado un vector cualquiera hemos encontrado una expresión única de sus coordena
 Entonces, el conjunto genera $\real^2$.
 \end{problem}
 
-\section{Geometría plana, plano afín}
 
-¿Qué necesitamos para orientarnos en el plano? ¿Cuál puede ser un sistema de referencia? No copiar, primero entender.\textit{Con la pizarra borrada, sitúo un punto. ¿Cómo ponernos de acuerdo para definirle unas coordenadas? Necesitamos un origen y una base}
-
-Sistema de referencia: un origen y una base. Normalmente tomamos como origen el $(0,0)$ y como base la canónica $\{(1,0),(0,1)\}$.
-
-\paragraph{Repaso:}
+\subsection{Repaso:}
 
 \subparagraph{Vector de posición} Llamamos $[\vec{OA}]$ al vector de posición del punto $A=(a_1,a_2)$, cuyas coordenadas son $[\vec{OA}] = (a_1-0,a_2-0)=(a_1-a_2)$
 
@@ -484,6 +493,30 @@ Por definición, el punto medio $M=(m_1,m_2)$ cumplirá: $[\vec{AM}] = [\vec{MB}
 \begin{defn}[Módulo de un vector]
 Sea $\vec{x} = (x_1,x_2)$. Se define $|x| = \sqrt{x_1^2+x_2^2}$
 \end{defn}
+
+
+\subsection{Producto escalar}
+
+\begin{defn}[Producto escalar]
+Sean $\vx=(x_1,x_2),\vy=(y_1,y_2)\in\real^2$. 
+
+El producto escalar es una operación: $\appl{·}{\real^2\times\real^2}{\real}$ que opera de la siguiente manera: 
+
+\[\vx·\vy = |\vx|·|\vy|·\cos{\hat{(\vx,\vy)}}\]
+\end{defn}
+
+\paragraph{Propiedades:} $\forall\vx,\vx,\vz\in\real^2$
+
+\begin{itemize}
+	\item \textbf{Conmutativo: } $\vx·\vy = \vy·\vx$
+	\item \textbf{Bilineal:}
+	\subitem  $(λ\vx)·\vy=λ(\vx·\vy)$
+	\subitem  $\vx·(\vy+\vz) = \vx·\vy + \vx·\vz$
+	\item \textbf{No negatividad:} $\vx·\vx ≥0$
+\end{itemize}
+
+
+
 
 
 \subsection{Ejercicios}
