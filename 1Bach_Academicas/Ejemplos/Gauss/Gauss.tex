@@ -1,4 +1,4 @@
-\documentclass[palatino,nosec]{Docencia}
+\documentclass[palatino,nosec,nochap]{Docencia}
 
 
 \title{Ejemplos resueltos del método de Gauss}
@@ -756,6 +756,212 @@ e_2:   & 0y&+0z&=&1\\
 \end{problem}
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\newpage
+\section{Gauss con parámetro}
+
+\begin{problem} \textit{Ejercicio 6 de la hoja de Google Drive}
+Discute en función del parámetro $m$ el siguiente sistema:
+\[
+\left\{
+\begin{array}{ccccc}
+mx&&+2z&=&6\\
+3x&+y&&=&0\\
+2x&&+mz&=&6sm
+\end{array}
+\right\}
+\]
+
+\solution
+
+\[
+\left\{
+\begin{array}{ccccc}
+mx&&+2z&=&6\\
+3x&+y&&=&0\\
+2x&&+mz&=&6\\
+\end{array}
+\right\}
+\overset{(1)}{\dimplies}
+\left\{
+\begin{array}{ccccc}
+y+&3x&&=&0\\
+&2x&+mz&=&6\\
+&mx&+2z&=&6\\
+\end{array}
+\right\}
+\overset{(2)}{\cimplies}
+\]
+\[
+\left\{
+\begin{array}{ccccl}
+y+&3x&&=&0\\
+&2x&+mz&=&6\\
+&&(m^2-4)z&=&6m-12
+\end{array}
+\right\}
+\]
+
+Donde
+\paragraph{(1):} Recoloamos la $y$ en primera posición ya que así ya tenemos el primer paso del escalonamiento dado.
+
+\paragraph{(2):} $E_3 = m·E_3-2·E_2$
+\[
+\left\{
+\begin{array}{ccccc}
+	&2mx&+m^2z&=&6m\\
+	&2mx&+4z&=&12\\\hline
+	&&(m^2-4)z&=&6m-12
+\end{array}
+\right\}
+\]
+
+\paragraph{Discusión:} $(m^2-4)=0 \dimplies m=\pm2$
+
+\begin{itemize}
+	\item $m=2 \to 0z=0 \to $ el sistema es compatible indeterminado, porque es un sistema escalonado con más incógnitas que ecuaciones.
+	\item $m=-2 \to 0z=-24 \to$ el sistema es incompatible.
+	\item $m≠2\wedge m≠-2$ el sistema es compatible determinado, porque es un sistema escalonado con el mismo número de incógnitas que de ecuaciones.
+\end{itemize}
+
+\obs Si se pidiera \textit{Resolver para $m=...$}, la resolución no se debería hacer desde el sistema escalonado, pues se ha perdido una equivalencia.  
+
+
+\end{problem}
+
+
+
+
+
+\newpage
+
+\begin{problem} \textit{Ejercicio 8 de la hoja de Google Drive}
+Discute en función del parámetro $m$ el siguiente sistema:
+\[
+\left\{
+\begin{array}{ccccc}
+x&+y&+mz&=&m\\
+mx&+my&+z&=&1\\
+x&+my&+z&=&m
+\end{array}
+\right\}
+\]
+
+\solution
+
+\[
+\left\{
+\begin{array}{ccccc}
+x&+y&+mz&=&m\\
+mx&+my&+z&=&1\\
+x&+my&+z&=&m
+\end{array}
+\right\}
+\overset{(1)}{\dimplies}
+\left\{
+\begin{array}{ccccc}
+x&+y&+mz&=&m\\
+mx&+my&+z&=&1\\
+&+(m-1)y&+(1-m)z&=&0
+\end{array}
+\right\}
+\overset{(2)}{\cimplies}
+\]
+\[
+\left\{
+\begin{array}{ccccc}
+x&+y&+mz&=&m\\
+&&(m^2-1)z&=&(m^2-1)\\
+&(m-1)y&+(1-m)z&=&0\\
+\end{array}
+\right\}
+\dimplies
+\left\{
+\begin{array}{ccccc}
+x&+y&+mz&=&m\\
+&(m-1)y&+(1-m)z&=&0\\
+&&(m^2-1)z&=&(m^2-1)\\
+\end{array}
+\right\}
+\]
+
+Donde 
+\paragraph{(1):} $E_3 = E_1-E_3$
+\[
+	\begin{array}{ccccc}
+		x&+my&+z&=&m\\
+		x&+y&+mz&=&m\\
+		\hline
+		&(m-1)y&+(1-m)z&=&0
+	\end{array}
+\]
+
+\paragraph{(2):} $E_2 = m·E_1 - E_2$ (al multiplicar una ecuación por $m$ perdemos la equivalencia)
+
+\[
+	\begin{array}{ccccc}
+		mx&+my&+m^2z&=&m^2\\
+		mx&+my&+z&=&1\\
+		\hline
+		&&(m^2-1)z&=&(m^2-1)
+	\end{array}
+\]
+
+\paragraph{Discusión:} $(m^2-1) = 0 \dimplies m=\pm 1$
+
+\begin{itemize}
+	\item $m=1:$ Sustituimos antes de la equivalencia:
+
+	\[
+		\left\{
+		\begin{array}{ccccc}
+		x&+y&+z&=&1\\
+		x&+y&+z&=&1\\
+		&+0y&+0z&=&0
+		\end{array}
+		\right\} \dimplies 
+		\left\{
+			\begin{array}{ccccc}
+			x&+y&+z&=&1\\
+			\end{array}
+		\right\} 
+	\]
+	El sistema es compatible indeterminado en función de 2 parámetros. (Se sale del temario actual).
+
+	\item $m=-1:$ Sustituimos antes de la equivalencia:
+	\[
+		\left\{
+		\begin{array}{ccccc}
+		x&+y&-z&=&-1\\
+		-x&-y&+z&=&1\\
+		&-2y&+2z&=&0
+		\end{array}
+		\right\} \dimplies 
+		\left\{
+		\begin{array}{ccccc}
+		x&+y&-z&=&-1\\
+		&-2y&+2z&=&0
+		\end{array}
+		\right\}
+	\]
+	El sistema es compatible indeterminado porque es un sistema escalonado en función de un parámetro con más incógnitas que ecuaciones.
+
+	\item $m≠1 \wedge m≠-1:$ El sistema es compatible determinado porque es un sistema escalonado con el mismo número de ecuaciones que de incógnitas. 
+\end{itemize}
+
+
+\end{problem}
 
 \end{document}
