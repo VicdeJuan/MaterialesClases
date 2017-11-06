@@ -32,6 +32,10 @@ depth 0pt
 
 % --------------------
 \newcommand{\cimplies}{\text{\hl{$\implies$}}}
+\renewcommand{\vx}{\overset{\rightarrow}{x}}
+\renewcommand{\vy}{\overset{\rightarrow}{y}}
+\renewcommand{\vz}{\overset{\rightarrow}{z}}
+\renewcommand{\vec}[1]{\overset{\rightarrow}{#1}}
 
 \begin{document}
 \pagestyle{plain}
@@ -147,6 +151,15 @@ En el segundo examen, en principio, no pondremos contenido de la evaluación ant
 
 \section{Vectores en $\real^2$}
 
+\begin{defn}[Vector fijo]
+Segmento orientado.
+\end{defn}
+
+\obs Un segmento orientado tiene un principio, un final, una dirección, un sentido y una longitud (o módulo).
+
+Por ejemplo, el vector que une $(1,3)$ con $(2,2)$. Pero estos vectores necesitan un hábitat. ¿Dónde viven? En el conjunto de los puntos. 
+
+¿Existe el punto $(e,π)$? Claro que sí. De una manera general, el conjunto de los puntos son pares de números reales. La manera formal y matemática de definir el conjunto de puntos es el producto cartesiano.
 
 \begin{defn}[Producto cartesiano]
 Sean $A$ y $B$ 2 conjuntos. Se define el producto cartesiano como
@@ -165,7 +178,7 @@ Sean $A$ y $B$ 2 conjuntos. Se define el producto cartesiano como
 
 Vamos a \hl{definir $\real^2$}, con el que vamos a trabajar a partir de ahora. 
 
-\[\real^2 = \real\times\real = \{ \bar{x} = (x,y)\in\real^2 \tq x,y\in\real\}\]
+\[\real^2 = \real\times\real = \{ (x,y)\in\real^2 \tq x,y\in\real\}\]
 
 \begin{example}
 	\begin{itemize}
@@ -175,11 +188,27 @@ Vamos a \hl{definir $\real^2$}, con el que vamos a trabajar a partir de ahora.
 	\end{itemize}
 \end{example}
 
+
 \subparagraph{Representación de estos elementos en el plano}
 
-\textit{Dibujo del plano y representación de estos puntos. ¿Puntos?¿Vectores? Sembramos la duda, ya la contestaremos.}
+\textit{Dibujo del plano y representación de los ejemplos. ¿Puntos?¿Vectores?}
+De momento puntos, porque para poder tener vectores necesitamos tener un origen, un destino, una longitud, una dirección y un sentido. ¿No?
+
+No, ¿verdad? Los vectores del año pasado no nos importaba el origen ni el destino. Sólo nos importaban módulo, dirección y sentido. ¿Por qué? Porque trabajábamos con vectores libres. ¿Qué es un vector libre?
+
+\paragraph*{Vectores libres}
+
+\begin{defn}[Vector libre]
+Representante canónico del conjunto de vectores con mismo módulo, dirección y sentido.
+\end{defn}
+
+Como las fracciones equivalentes. $[\rfrac{1}{2}] = \{\rfrac{1}{2},\rfrac{2}{4},\rfrac{4}{8},...\}$. Distintas maneras de expresar la misma realidad.
+
+
 
 $\real^2$ por si sólo no es nada, asique vamos a definir operaciones en esta estructura algebraica.
+
+
 
 \subsection{Operaciones en $\real^2$}
 \subsubsection{Suma:}
@@ -190,11 +219,11 @@ $(2,3) + (-1,4) \overset{(1)}{=} (2+(-1),3+4)  \overset{(2)}{=} (1,7)$
 
 Donde en $(1)$ aplicamos la suma en $\real^2$ y en $(2)$ aplicamos la suma en $\real$.
 
-\textbf{Representación gráfica de la suma...}
+\hl{\textbf{Representación gráfica de la suma}} (en dibujos sin base. Sobre fondo liso.)
 
 \end{example}
 
-\subparagraph{Propiedades de la suma en $\real^2$:}
+\subparagraph{Propiedades de la suma en $\real^2$:} Formalmente, \textit{ley de composición interna.}
 
 \begin{itemize}
 	\item \textbf{Conmutativa: } $(a,b)+(c,d) = (c,d)+(a,b), \;\forall (a,b),(c,d)\in\real^2$
@@ -205,14 +234,15 @@ Donde en $(1)$ aplicamos la suma en $\real^2$ y en $(2)$ aplicamos la suma en $\
 
 \obs El par $(\real^2,+)$ es un grupo conmutativo.
 
-\subsubsection{Producto con dominio de operadores en $\real$} Comunmente, multiplicación de un número real por un elemento de $\real^2$.
+\subsubsection{Producto por un escalar} Formalmente, \textit{ley de composición externa con con dominio de operadores en $\real$.}
 
 $\appl{·}{\real\times\real^2}{\real^2}$ y se define como $λ·(a,b) = (λa,λb), \;\forallλ\in\real,(a,b)\in\real^2$
 
 \begin{example}
 $2·(\sqrt{2},\pi) = (2\sqrt{2},2\pi)$
 
-\textbf{Representación gráfica}
+\hl{\textbf{Representación gráfica}} (en dibujos sin base. Sobre fondo liso.)
+
 \end{example}
 
 \subparagraph{Propiedades del producto con dominio de operadores en $\real$}
@@ -331,25 +361,37 @@ Utilizamos: "2 vectores son linealmente dependientes si y sólo si son proporcio
 Buscamos $m$ tal que $\rfrac{1}{2} = \rfrac{3}{m}$, lo cual es cierto si $m=6$.
 \end{problem}
 
+\begin{defn}[Rango de un conjunto de vectores]
+El rango de un conjunto de vectores es el número de vectores linealmente independientes que contiene.
+\end{defn}
+
+\begin{example}
+	\begin{itemize}
+		\item $\text{Rg}\{(0,1),(1,0),(0,3)\} = 2$
+	\end{itemize}
+\end{example}
+
+\begin{problem}
+Halla los valores de $m$ para los que el conjunto de vectores $C=\{(1,3),(3,m)\}$ tenga rango 2. ¿Hay algún valor para que el rango sea 0?
+
+\solution
+
+\end{problem}
+
 \section{Plano afín}
 
-\paragraph{Concreción de lo abstracto} Podemos interpretar $(a,b)\in\real^2$ como vectores con un módulo, una dirección y un sentido. Cuando tenemos en cuenta el origen los llamamos \textbf{vectores fijos}.
+\paragraph{Concreción de lo abstracto} 
 
-Pero claro, para hablar de vectores fijos necesitamos orientarnos en el plano.
-%
 ¿Qué necesitamos para orientarnos en el plano? ¿Cuál puede ser un sistema de referencia? No copiar, primero entender.\textit{Con la pizarra borrada, sitúo un punto. ¿Cómo ponernos de acuerdo para definirle unas coordenadas? Necesitamos un origen y una base}
-
-
-¿Recordáis qué es un vector libre? Técnicamente es un representante de la clase de equivalencia. \textit{Dibujamos en un plano distintos vectores fijos para explicar qué es un vector libre}.
-%
-Un vector libre respecto a un vector fijo sería como un número decimal respecto a las fracciones. No son exactamente el mismo número, pero representan la misma realidad. Algo similar ocurre con los vectores fijos y libres. 
-
-Nosotros de momento vamos a trabajar simplemente con vectores libres, ya que son los elementos de $\real^2$.
 
 
 Sistema de referencia: un origen y una escala (base). Normalmente tomamos como origen el $(0,0)$ y como base la canónica $\{(1,0),(0,1)\}$.
 
 \subsubsection{Base de un espacio vectorial}
+
+\begin{defn}[Sistema de generadores]
+$B = \{\vx,\vy\}$ con $\vx,\vy\in\real^2$ es un sistema de generadores si y sólo si $\forall \vz\in\real^2,\;\; \exists!α,λ\in\real \tq \vz=α\vx+β\vy$
+\end{defn}
 
 \begin{defn}[Base]
 Un conjunto $B=\{\vx,\vy\}$ con $\vx,\vy\in\real^2$ es una base de $\real^2$ si y sólo si cumple:
