@@ -1,0 +1,64 @@
+\documentclass[palatino,nosec,nochap]{Docencia}
+
+
+\title{Matemáticas 4º ESO}
+\author{Víctor de Juan}
+\date{17/18}
+
+
+% Paquetes adicionales
+
+\usepackage[author={Víctor de Juan, 2017}]{pdfcomment}
+
+\makeatletter
+\newcommand{\annotate}[2][]{%
+\pdfstringdef\x@title{#1}%
+\edef\r{\string\r}%
+\pdfstringdef\x@contents{#2}%
+\pdfannot
+width 2\baselineskip
+height 2\baselineskip
+depth 0pt
+{
+/Subtype /Text
+/T (\x@title)
+/Contents (\x@contents)
+}%
+}
+\makeatother
+
+%%% He tardado 40 minutos en preparar este solucionario.
+
+% --------------------
+\newcommand{\cimplies}{\text{\hl{$\implies$}}}
+
+\begin{document}
+\pagestyle{plain}
+
+\paragraph{Resuelve las siguientes ecuaciones} (incluir comprobación)
+
+\begin{enumerate}
+	\item $\displaystyle 2\log_9(x+1) - 2\log_9\sqrt{x^2-1} = \frac{1}{2}$
+	\vspace{1cm}
+	\item $\displaystyle\frac{\log(35-x^3)}{\log(5-x)} = 3$
+	\vspace{1cm}
+	\item $\displaystyle \ln(x^2+3x+2) - \ln (x^2-1) = \ln 2$
+	\vspace{1cm}
+	\item $\displaystyle \log x=\frac{2-\log x}{\log x}$ (¿cambio de variable?)
+	\vspace{1cm}
+	\item $\displaystyle \log_4 x - \frac{\log_464}{\log_4x} = 2$
+	\vspace{1cm}
+	\item $\displaystyle \log_9\sqrt[5]{27} = 2x-1$
+	\vspace{1cm}
+	\item $\displaystyle \log_2\sqrt{x} = \log_4{(x^2-1)}$
+	\vspace{1cm}
+	\item $\displaystyle \log_2\sqrt{x+1} = \log_8\sqrt{x}$
+	\vspace{1cm}
+	\item $\displaystyle 2^x = 10$
+	\vspace{1cm}
+	\item $\displaystyle \frac{5}{2^x} = 10·2^x$
+\end{enumerate}
+
+\printindex
+\end{document}
+\grid
