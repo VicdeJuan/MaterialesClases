@@ -35,7 +35,12 @@ depth 0pt
 \renewcommand{\vx}{\overset{\rightarrow}{x}}
 \renewcommand{\vy}{\overset{\rightarrow}{y}}
 \renewcommand{\vz}{\overset{\rightarrow}{z}}
+\newcommand{\vi}{\overset{\rightarrow}{i}}
+\newcommand{\vj}{\overset{\rightarrow}{j}}
 \renewcommand{\vec}[1]{\overset{\rightarrow}{#1}}
+
+\usepackage{pgf,tikz}
+\usetikzlibrary{arrows}
 
 \begin{document}
 \pagestyle{plain}
@@ -273,6 +278,7 @@ Combinación lineal de $\vec{x},\vec{y},\vec{z}\in\real^2$ es cualquier expresi�
 	\begin{itemize}
 		\item $2·(1,1) + \sqrt{2}·(0,1) = (2,2+\sqrt{2})$
 		\item $1·(1,0) + (-\rfrac{1}{2})(2,0) = (0,0)$ (\textit{Combinación lineal nula})
+		\item Venga, ponedme 2 ejemplos vosotros.
 	\end{itemize}
 \end{example}
 
@@ -349,8 +355,9 @@ Comprobación: $αa+βb = 2(1,3)+(-1)(2,6) = (2-2,6-6) = (0,0)$
 
 \obs $(1,3),(2,6)$ son linealmente dependientes porque son proporcionales. Esto es cierto en general:
 
+\begin{prop}
 Los vectores $\vx=(x_1,x_2),\vy=(y_1,y_2)\in\real^2$ son linealmente dependientes $\dimplies \frac{x_1}{y_1}=\frac{x_2}{y_2} \text{ (es decir, son proporcionales)}$ 
-
+\end{prop}
 
 
 \begin{problem} Halla el valor o valores de $m$ para que  $a=(1,3)$ y $b=(2,m)$ sean linealmente dependientes.
@@ -390,7 +397,7 @@ Sistema de referencia: un origen y una escala (base). Normalmente tomamos como o
 \subsubsection{Base de un espacio vectorial}
 
 \begin{defn}[Sistema de generadores]
-$B = \{\vx,\vy\}$ con $\vx,\vy\in\real^2$ es un sistema de generadores si y sólo si $\forall \vz\in\real^2,\;\; \exists!α,λ\in\real \tq \vz=α\vx+β\vy$
+$B = \{\vx_1,\vx_2,...,\vx_n\}$ con $\forall i=1,...,n\;\;\vx_i,\in\real^2$ es un sistema de generadores si y sólo si $\forall \vz\in\real^2,\;\; \existsα_1,α_2,...,α_n\in\real \tq \vz=α_1\vx_1+α_2\vx_2 + ... + α_n\vx_n \left( = \sum_{i=1}^n α_i\vx_i\right)$
 \end{defn}
 
 \begin{defn}[Base]
@@ -398,79 +405,165 @@ Un conjunto $B=\{\vx,\vy\}$ con $\vx,\vy\in\real^2$ es una base de $\real^2$ si 
 
 	\begin{itemize}
 		\item $\vx,\vy$ linealmente independientes.
-		\item $\forall \vz\in\real^2,\;\; \exists!α,λ\in\real \tq \vz=α\vx+β\vy$
+		\item $\{\vx,\vy\}$ es un sistema de generadores.
 	\end{itemize}
 
-\obs Los escalares $α,β$ se denominan coordenadas.
-
-\obs La segunda propiedad significa que $\vx,\vy$ generan el espacio vectorial, son un \concept{sistema de generadores}.
 \end{defn}
 
 \begin{example}
 	\begin{itemize}
-		\item Sea $B_1=\{(0,1),(1,0)\}$ una base de $\real^2$. El vector $(3,6)$ tiene de coordenadas $3$ y $6$ porque $(3,6) = 3·(1,0) + 6·(0,1)$.
-		\obs $B$ se denomina base canónica.
+		\item Sea $B_1=\{(0,1),(1,0)\}$ una base de $\real^2$. El vector $(3,6)$ tiene de \concept[Coordenadas de un vector]{coordenadas} $3$ y $6$ porque $(3,6) = 3·(1,0) + 6·(0,1)$.
+		\obs $B_1$ se denomina base canónica y se suele representar por $B=\{\vi,\vj\}$.
+
+		\item ¿Es una base?
+			\begin{problem}
+			\ppart ¿Es $B_2 = \{(1,1),(1,-1)\}$ una base de $\real^2$?
+			\ppart ¿Cuáles son las coordenadas del vector $(7,5)$ en esta base?
+
+			\solution
+			\spart Buscamos demostrar que los vectores son linealmente independientes y que las coordenadas de un vector cualquiera $\vz=(z_1,z_2)$ son únicas. 
+
+			\paragraph{Independencia lineal:} 
+
+			\[
+				(0,0) = α(1,1) + β(1,-1) \dimplies (0,0) = (α+β,α-β) \dimplies 
+			\]
+			\[
+				\left\{
+					\begin{array}{c}
+						α+β=0\\
+						α-β=0
+					\end{array}
+				\right\}\dimplies
+				\left\{
+					\begin{array}{c}
+						α+β=0\\
+						2α=0
+					\end{array}
+				\right\}\implies (α,β) = (0,0)
+			\]
+
+			\paragraph{Generación:} Las coordenadas de un vector cualquiera $\vz=(z_1,z_2)$ deberían ser únicas.
+
+			\[
+				(z_1,z_2) = α(1,1) + β(1,-1) \dimplies (z_1,z_2) = (α+β,α-β) \dimplies 
+			\]
+			\[
+				\left\{
+					\begin{array}{c}
+						α+β=z_1\\
+						α-β=z_2
+					\end{array}
+				\right\}\dimplies
+				\left\{
+					\begin{array}{c}
+						α+β=z_1\\
+						2α=z_2
+					\end{array}
+				\right\}\dimplies (α,β) = (z_1-\rfrac{z_2}{2},\rfrac{z_2}{2})
+			\]
+
+			Dado un vector cualquiera hemos encontrado una expresión única de sus coordenadas. 
+			%
+			Entonces, el conjunto genera $\real^2$.
+
+			\spart 
+			\[
+				(7,5) = α(1,1) + β(1,-1) \dimplies (7,5) = (α+β,α-β) \dimplies 
+			\]
+			\[
+				\left\{
+					\begin{array}{c}
+						α+β=7\\
+						α-β=5
+					\end{array}
+				\right\}\dimplies
+				\left\{
+					\begin{array}{c}
+						α+β=7\\
+						2α=12
+					\end{array}
+				\right\}\implies (α,β) = (6,1)
+			\]
+			\end{problem}
+
 	\end{itemize}
 \end{example}
 
+
+
+\begin{figure}[h]
+\centering
+\definecolor{xdxdff}{rgb}{0.49,0.49,1}
+\definecolor{ttqqff}{rgb}{0.2,0,1}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\draw[->,color=black] (-1.8,0) -- (4.14,0);
+\foreach \x in {-1,1,2,3,4}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[color=black] (4.04,0.02) node [anchor=south west] { x};
+\draw[->,color=black] (0,-0.33) -- (0,3.31);
+\foreach \y in {,1,2,3}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0.03,3.19) node [anchor=west] { y};
+\draw[color=black] (0pt,-10pt) node[right] {\footnotesize $0$};
+\clip(-1.8,-0.33) rectangle (4.14,3.31);
+\draw [->,line width=1pt] (0,0) -- (1,0);
+\draw [->,line width=1pt] (0,0) -- (0,1);
+\draw [->,line width=1pt,color=ttqqff] (0,0) -- (1,0.5);
+\draw [->] (0,0) -- (1,2);
+\draw [->,line width=1pt,color=ttqqff] (0,0) -- (-0.2,1);
+\draw [->] (0,0) -- (-0.27,1.36);
+\draw [->] (0,0) -- (1.27,0.64);
+\draw [dotted,domain=-1.8:4.14] plot(\x,{(-1.91--1.36*\x)/-0.27});
+\draw [dotted,domain=-1.8:4.14] plot(\x,{(--1.91--0.64*\x)/1.27});
+\begin{scriptsize}
+\draw[color=black] (0.47,-0.1) node {$i$};
+\draw[color=black] (-0.06,0.48) node {$j$};
+\draw[color=ttqqff] (0.56,0.21) node {$v$};
+\fill [color=xdxdff] (0,0) circle (1.5pt);
+\draw[color=xdxdff] (0.05,0.08) node {$A$};
+\draw[color=ttqqff] (-0.13,0.41) node {$u$};
+\draw[color=black] (-0.21,1.15) node {αu};
+\draw[color=black] (1.12,0.61) node {βv};
+\draw[color=black] (-1.75,0.73) node {$c$};
+\end{scriptsize}
+\end{tikzpicture}
+\caption{Cambio de base de otros vectores que no tienen nada que ver, hecho gráficamente .}
+\end{figure}
+
+\paragraph{Ejercicio}
 \begin{problem}
-¿Es $B_2 = \{(1,1),(1,-1)\}$ una base de $\real^2$?
+Sea $B=\{(3,0),(1,-1)\}$. 
+\ppart ¿Es una base de $\real^2$?
+\ppart En caso de que sea una base, calcula las coordenadas del vector $(6,6)$ en la base $B$.
+\ppart ¿Es una base ortogonal?
 \solution
-Buscamos demostrar que los vectores son linealmente independientes y que las coordenadas de un vector cualquiera $\vz=(x,y)$ son únicas. 
-
-\paragraph{Independencia lineal:} 
-
+\spart
+\textbf{Linealmente independientes:}
 \[
-	(0,0) = α(1,1) + β(1,-1) \dimplies (0,0) = (α+β,α-β) \dimplies 
+α(3,0) + β(1,-1) = (0,0) \dimplies \left\{\begin{array}{c}3α+β=0\\-β=0 \end{array}\right\} \dimplies  (α,β) = (0,0)
 \]
+\textbf{Generadores:} 
 \[
-	\left\{
-		\begin{array}{c}
-			α+β=0\\
-			α-β=0
-		\end{array}
-	\right\}\dimplies
-	\left\{
-		\begin{array}{c}
-			α+β=0\\
-			2α=0
-		\end{array}
-	\right\}\implies (α,β) = (0,0)
+α(3,0) + β(1,-1) = (x,y) \dimplies\underbrace{\left\{\begin{array}{c}3α+β=x\\-β=y \end{array}\right\}}_{SCD} \dimplies  (α,β) = (\rfrac{x+y}{3},-y) \implies \exists! (a,b)\in\real^2
 \]
 
-\paragraph{Generación:} Las coordenadas de un vector cualquiera $\vz=(x,y)$ deberían ser únicas.
-
+\spart 
 \[
-	(x,y) = α(1,1) + β(1,-1) \dimplies (x,y) = (α+β,α-β) \dimplies 
+	(6,6) = α(3,0) + β(1,-1) \dimplies (6,6) = (3α+β,-β) \dimplies (α,β) = (4,-6)
 \]
-\[
-	\left\{
-		\begin{array}{c}
-			α+β=x\\
-			α-β=y
-		\end{array}
-	\right\}\dimplies
-	\left\{
-		\begin{array}{c}
-			α+β=x\\
-			2α=y
-		\end{array}
-	\right\}\dimplies (x,y) = (x-\rfrac{y}{2},\rfrac{y}{2})
-\]
-
-Dado un vector cualquiera hemos encontrado una expresión única de sus coordenadas. 
-%
-Entonces, el conjunto genera $\real^2$.
 \end{problem}
 
 
 \subsection{Repaso:}
 
-\subparagraph{Vector de posición} Llamamos $[\vec{OA}]$ al vector de posición del punto $A=(a_1,a_2)$, cuyas coordenadas son $[\vec{OA}] = (a_1-0,a_2-0)=(a_1-a_2)$
-
 \subparagraph{Coordenadas de un vector entre los puntos $A=(a_1,a_2)$ y $B=(b_1,b_2)$:} 
 
 $[\vec{OA}] + [\vec{AB}] =  [\vec{OB}] \dimplies [\vec{AB}] =  [\vec{OB}] - [\vec{OA}] = (b_1,b_2) - (a_1,a_2) = (b_1-a_1,b_2-a_2)$
+
+
+\subparagraph{Vector de posición} Llamamos $[\vec{OA}]$ al vector de posición del punto $A=(a_1,a_2)$, cuyas coordenadas son $[\vec{OA}] = (a_1-0,a_2-0)=(a_1-a_2)$
+
 
 \begin{example}
 Hallar las coordenadas de $[\vec{AB}]$ con $A=(1,2)$ y $B=(3,5)$.
@@ -500,7 +593,7 @@ Sean 3 puntos $A=(1,-1), B=(0,2), C=(-1,m)$.
 \left.\begin{array}{l}
 	[\vec{AB}] = (-1,3)\\
 	\left[\vec{AC}\right] = (-2,m+1)
-\end{array}\right\} \implies \text{ Imposible.}
+\end{array}\right\} \implies \text{ Imposible } [\vec{AB}] = [\vec{AC}]
 \]
 
 
@@ -511,8 +604,8 @@ Sean 3 puntos $A=(1,-1), B=(0,2), C=(-1,m)$.
 Por definición, el punto medio $M=(m_1,m_2)$ cumplirá: $[\vec{AM}] = [\vec{MB}]$
 
 \[
-[\vec{AB}] = [\vec{AM}] + [\vec{MB}]\\
-\dimplies [\vec{AB}] = 2[\vec{AM}] \dimplies 
+[\vec{AB}] = [\vec{AM}] + [\vec{MB}]
+[\vec{AB}] = 2[\vec{AM}] \dimplies 
 2(m_1-a_1,m_2-a_2) = (b_1-a_1,b_2-a_1) \dimplies
 \]
 \[
@@ -532,10 +625,11 @@ Por definición, el punto medio $M=(m_1,m_2)$ cumplirá: $[\vec{AM}] = [\vec{MB}
 \]
 
 
-\begin{defn}[Módulo de un vector]
-Sea $\vec{x} = (x_1,x_2)$. Se define $|x| = \sqrt{x_1^2+x_2^2}$
-\end{defn}
+\paragraph{Módulo de un vector:} Sea $\vec{x} = (x_1,x_2)$. ¿Cuál es la longitud del vector en la base canónica? (\textit{Dibujar.} Pitágoras.)
 
+$\norm{\vec{x}} = \sqrt{x_1^2+x_2^2}$
+
+¿Y si fuera otra base? ¿Se mantendría? No
 
 \subsection{Producto escalar}
 
@@ -547,7 +641,7 @@ El producto escalar es una operación: $\appl{·}{\real^2\times\real^2}{\real}$ 
 \[\vx·\vy = |\vx|·|\vy|·\cos{\hat{(\vx,\vy)}}\]
 \end{defn}
 
-\paragraph{Propiedades:} $\forall\vx,\vx,\vz\in\real^2$
+\paragraph{Propiedades:} $\forall\vx,\vx,\vz\in\real^f2$
 
 \begin{itemize}
 	\item \textbf{Conmutativo: } $\vx·\vy = \vy·\vx$
@@ -558,31 +652,23 @@ El producto escalar es una operación: $\appl{·}{\real^2\times\real^2}{\real}$ 
 \end{itemize}
 
 
+\begin{defn}[Ortogonalidad]
+$\vx,\vy\in\real^2$ son ortogonales $\dimplies \vx·\vy=0$.
+\end{defn}
 
+\begin{defn}[Perpendicular]
+$\vx,\vy\in\real^2$ son perpendiculares $\dimplies$ forman un ángulo recto.
+\end{defn}
+
+¿Es lo mismo perpendicular que ortogonal? Perpendicular $\implies$ ortogonal, pero no al revés.
+
+\begin{defn}[Norma de un vector]
+	$\norm{\vx} = \vx·\vx$
+\end{defn}
 
 
 \subsection{Ejercicios}
 
-\begin{problem}
-Sea $B=\{(3,0),(1,-1)\}$. 
-\ppart ¿Es una base de $\real^2$?
-\ppart En caso de que sea una base, calcula las coordenadas del vector $(6,6)$ en la base $B$.
-\solution
-\spart
-\textbf{Linealmente independientes:}
-\[
-α(3,0) + β(1,-1) = (0,0) \dimplies \left\{\begin{array}{c}3α+β=0\\-β=0 \end{array}\right\} \dimplies  (α,β) = (0,0)
-\]
-\textbf{Generadores:} 
-\[
-α(3,0) + β(1,-1) = (x,y) \dimplies\underbrace{\left\{\begin{array}{c}3α+β=x\\-β=y \end{array}\right\}}_{SCD} \dimplies  (α,β) = (\rfrac{x+y}{3},-y) \implies \exists! (a,b)\in\real^2
-\]
-
-\spart 
-\[
-	(6,6) = α(3,0) + β(1,-1) \dimplies (6,6) = (3α+β,-β) \dimplies (α,β) = (4,-6)
-\]
-\end{problem}
 
 \begin{problem}
 Sea $B=\{(-2,2),(1,-1)\}$. 
@@ -609,9 +695,9 @@ Menos todavía.
 Sean $A=(0,0),B=(-1,3),C=(2,5)$. ¿Están alineados?
 \solution
 
-Que estén alineados es lo mismo que decir que 2 de ellos sean linealmente dependientes, o proporcionales.
+Que estén alineados es lo mismo que decir que 2 de ellos sean linealmente dependientes, o proporcionales y que tengan algún punto en común.
 
-$[\vec{AB}] = (-1,3)$, $[\vec{AC}] = (2,5)$. ¿Son L.D.? 
+$[\vec{AB}] = (-1,3)$, $[\vec{AC}] = (2,5)$. Como vectores fijos tienen en común el punto $A$. ¿Son L.D.? 
 
 \[
 	\frac{-1}{2} ≠ \frac{3}{5} \implies \text{ No L.D.} \dimplies \text{ No alineados.}
@@ -627,15 +713,23 @@ $[\vec{AB}] = (-1,3)$, $[\vec{AC}] = (m,m+8)$
 \[
 	\frac{-1}{m} = \frac{3}{m+8} \implies -m-8 = 3m \dimplies -8=4m \dimplies m=-2
 \]
+
+\obs También podríamos haber construido el vector $[\vec{BC}]$, pero hemos elegido $[\vec{AC}]$ por simplificar los cálculos.
 \end{problem}
 
 \begin{problem}
-Sean $A=(0,0),B=(-1,3),C=(2,m)$. Halla $m$ para que exista $λ\in\real$ tal que $|[\vec{AB}]| = λ|[\vec{AC}]|$
+Sean $A=(0,0),B=(-1,3),C=(2,m)$. Halla $m$ para que $|[\vec{AB}]| = λ|[\vec{AC}]|$
 \solution
 
+$[\vec{AB}] = (-1,2\sqrt{6}) \to |[\vec{AB}]| = \sqrt{1+24}=5$
 
+$[\vec{AC}] = (3,m) \to |[\vec{AB}]| = \sqrt{9+m^2}$
+
+Necesitamos $\sqrt{9+m^2} = 5 \implies 9+m^2 = 25 \dimplies m^2=16 \dimplies m=\pm4$.
 
 \end{problem}
+
+\section{Geometría Analítica}
 
 
 \chapter{Trigonometría}

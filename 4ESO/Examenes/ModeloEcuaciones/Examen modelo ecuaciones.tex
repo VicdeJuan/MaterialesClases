@@ -1,0 +1,142 @@
+\documentclass[palatino,nosec]{Docencia}
+
+
+\title{Examen modelo (4ºA)}
+\author{Departamento de Matemáticas}
+\date{17/18}
+
+
+% Paquetes adicionales
+
+\usepackage[author={Víctor de Juan, 2017}]{pdfcomment}
+
+\usepackage{pgf,tikz}
+\usetikzlibrary{arrows}
+
+\definecolor{qqttcc}{rgb}{0,0.2,0.8}
+\definecolor{qqqqff}{rgb}{0,0,1}
+
+
+\makeatletter
+\newcommand{\annotate}[2][]{%
+\pdfstringdef\x@title{#1}%
+\edef\r{\string\r}%
+\pdfstringdef\x@contents{#2}%
+\pdfannot
+width 2\baselineskip
+height 2\baselineskip
+depth 0pt
+{
+/Subtype /Text
+/T (\x@title)
+/Contents (\x@contents)
+}%
+}
+\makeatother
+
+
+
+\usepackage{eso-pic}
+\newcommand\BackgroundPic{%
+\put(0,0){%
+\parbox[b][\paperheight]{\paperwidth}{%
+\vfill
+\centering
+\includegraphics[width=\paperwidth,height=\paperheight,%
+keepaspectratio]{../../../BWLogo.jpeg}%
+\vfill
+}}}
+
+
+
+
+
+\begin{abstract}
+Examen modelo de ecuaciones con el temario visto en 4ºA. 
+
+\end{abstract}
+
+% --------------------
+\newcommand{\cimplies}{\text{\hl{$\implies$}}}
+
+\begin{document}
+\pagestyle{plain}
+
+
+\AddToShipoutPicture{\BackgroundPic}
+
+\begin{problem} (1.5 puntos)
+
+Resuelve la siguiente ecuación:
+
+\[
+	\frac{2x}{x^2-4} - \frac{2}{x+2} = \frac{-1}{x+1}
+\]
+
+\solution
+
+\end{problem}
+
+\begin{problem}(1.5 puntos)
+Resuelve la siguiente ecuación:
+
+\[ 2\log_2(x-1) - 2\log_2\sqrt{x^2-1} = 1\]
+\solution
+
+\end{problem}
+
+\begin{problem} (2 puntos)
+Resuelve la siguiente ecuación:
+
+\[
+	2^{4x}-4·2^{2x-1} + 2^0 = 0
+\]
+
+\solution
+\end{problem}
+
+\begin{problem}(1,5 puntos)
+
+Elige una de las 2 ecuaciones para resolver:
+\ppart
+\[
+	\sqrt{x} - \sqrt{x+1} = \frac{\sqrt{x}}{\sqrt{x}+\sqrt{x+1}}
+\]
+\ppart 
+\[
+	1+\sqrt{x-1} = \frac{2}{\sqrt{x-1}}
+\]
+\solution
+
+\end{problem}
+
+\begin{problem}(1,5 puntos) 
+Resuelve el siguiente sistema 
+
+\[
+\left\{
+	\begin{array}{ccc}
+		6x&-y&=6\\
+		5x&+2y&=-12
+	\end{array}
+\right\}
+\]
+
+\solution
+
+
+\end{problem}
+
+\begin{problem} (2 puntos)
+
+Resuelve la siguiente ecuación logarítmica:
+
+\[\log_2\sqrt{x+1} = \log_8\sqrt{x^2+4x+3}\]
+
+\solution
+
+
+\end{problem}
+
+
+\end{document}

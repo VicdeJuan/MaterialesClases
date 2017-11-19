@@ -1,0 +1,298 @@
+\documentclass[palatino,nosec]{Docencia}
+
+
+\title{Examen modelo con solución (4ºA)}
+
+\author{Departamento de Matemáticas}
+\date{17/18}
+
+
+% Paquetes adicionales
+
+\usepackage[author={Víctor de Juan, 2017}]{pdfcomment}
+
+\usepackage{pgf,tikz}
+\usetikzlibrary{arrows}
+
+\definecolor{qqttcc}{rgb}{0,0.2,0.8}
+\definecolor{qqqqff}{rgb}{0,0,1}
+
+
+\makeatletter
+\newcommand{\annotate}[2][]{%
+\pdfstringdef\x@title{#1}%
+\edef\r{\string\r}%
+\pdfstringdef\x@contents{#2}%
+\pdfannot
+width 2\baselineskip
+height 2\baselineskip
+depth 0pt
+{
+/Subtype /Text
+/T (\x@title)
+/Contents (\x@contents)
+}%
+}
+\makeatother
+
+
+
+\usepackage{eso-pic}
+\newcommand\BackgroundPic{%
+\put(0,0){%
+\parbox[b][\paperheight]{\paperwidth}{%
+\vfill
+\centering
+\includegraphics[width=\paperwidth,height=\paperheight,%
+keepaspectratio]{../../../BWLogo.jpeg}%
+\vfill
+}}}
+
+
+
+
+
+\begin{abstract}
+Examen modelo de ecuaciones con el temario visto en 4ºA. 
+
+\nota{Estos ejemplos no están exentos de erratas. En caso de descubrir alguna, por favor, comunicarlas al autor.}
+\end{abstract}
+
+% --------------------
+\newcommand{\cimplies}{\text{\hl{$\implies$}}}
+
+\begin{document}
+\pagestyle{plain}
+\maketitle
+
+\AddToShipoutPicture{\BackgroundPic}
+
+\begin{problem} (1.5 puntos)
+
+Resuelve la siguiente ecuación:
+
+\[
+	\frac{2x}{x^2-4} - \frac{2}{x+2} = \frac{-1}{x+1}
+\]
+
+\solution
+
+\[
+	\frac{2x}{(x+2)(x-2)} - \frac{2}{x+2} = \frac{-1}{x+1} \dimplies \frac{2x}{(x+2)(x-2)}-\frac{2(x-2)}{(x+2)(x-2)} = \frac{-1}{x+1} \dimplies 
+\]
+\[
+	\frac{2x-2x+4}{x^2-4} = \frac{-1}{x+1} \cimplies (x+1)4 = -x^2+4 \dimplies 4x+x^2=0 \dimplies x(4+x) = 0 \implies \left\{\begin{array}{c}x_1=0\\x_2=-4\end{array}\right.
+\]
+
+
+
+\textbf{Comprobación}
+
+\subparagraph{x=0} 
+
+\[
+	\frac{2·0}{0^2-4} - \frac{2}{2} = \frac{-1}{0+1} \dimplies -1=-1
+\]
+
+
+\subparagraph{x=-4} 
+
+\[
+	\frac{2·(-4)}{(-4)^2-4} - \frac{2}{-4+2} = \frac{-1}{-4+1} \dimplies \frac{-8}{12} + 1 = \frac{-1}{-3} \dimplies -\frac{2}{3}+1 = \frac{1}{3}
+\]
+\end{problem}
+
+\begin{problem}(1.5 puntos)
+Resuelve la siguiente ecuación:
+
+\[ 2\log_2(x-1) - 2\log_2\sqrt{x^2-1} = 1\]
+\solution
+
+\[ 2\log_2(x-1) - 2\log_2\sqrt{x^2-1} = 1 \dimplies \log_2(x-1)^2 - \log_2(x^2-1) = 1 \dimplies 
+\log_2\frac{(x-1)^2}{(x+1)(x-1)} = 1\]
+\[ 
+	\cimplies 2^1 = \frac{x-1}{x+1} \cimplies 2x+2=x-1 \dimplies x=1
+\]
+
+\textbf{Comprobación:}
+\[ 2\log_2(1-1) \not\in\real \implies \text{No es solución}\]
+
+\end{problem}
+
+\begin{problem} (2 puntos)
+Resuelve la siguiente ecuación:
+
+\[
+	2^{4x}-4·2^{2x-1} + 2^0 = 0
+\]
+
+\solution
+
+\[
+	2^{4x}-4·2^{2x-1} + 2^0 = 0 \dimplies \left(2^x\right)^4 - \frac{2^2·2^2x}{2} + 1 = 0\dimplies \left(2^x\right)^4 - 2·\left(2^x\right)^2 + 1 = 0
+\]
+
+Haciendo el cambio de variable: $2^x = t$ obtenemos:
+
+\[
+	t^4 - 2·t^2 + 1 = 0 
+\]
+
+Esta ecuación es una ecuación bicuadrada. Hacemos otro cambio, $t^2 = y$
+
+\[
+	\left.\begin{array}{r}
+		y^2-2y+1=0\dimplies (y-1)^2 = 0 \dimplies y=1 \\
+		y=t^2
+	\end{array}\right\}\implies \left|
+	\begin{array}{l} 
+		t_1=1 \to 2^x=1 \implies x=0\\
+		t_2=-1 \to 2^x=-1 \implies x\not\in\real
+	\end{array}
+\]
+
+La única solución que hemos encontrado es $x=0$.
+
+\textbf{Comprobación:}
+
+\[
+	2^{4·0} - 4·2^{2·0-1}+2^0 = \dimplies 1-2^2·2^{-1} + 1 = 0 \dimplies 1-2+1 = 0
+\]
+
+\end{problem}
+
+\begin{problem}(1,5 puntos)
+
+Elige una de las 2 ecuaciones para resolver:
+\ppart
+\[
+	\sqrt{x} - \sqrt{x+1} = \frac{\sqrt{x}}{\sqrt{x}+\sqrt{x+1}}
+\]
+\ppart 
+\[
+	1+\sqrt{x-1} = \frac{2}{\sqrt{x-1}}
+\]
+\solution
+
+\spart 
+
+\[
+	\sqrt{x} - \sqrt{x+1} = \frac{\sqrt{x}}{\sqrt{x}+\sqrt{x+1}} \implies (\sqrt{x} - \sqrt{x+1})({\sqrt{x}+\sqrt{x+1}}) = \sqrt{x} \dimplies
+\]
+\[ 
+	x-(x+1) = \sqrt{x} \dimplies \sqrt{x} = -1 \implies x=(-1)^2 = 1
+\]
+
+\textbf{Comprobación:} $x=1$ 
+\[
+\sqrt{1} - \sqrt{1+1} = \frac{\sqrt{1}}{\sqrt{1}+\sqrt{1+1}} \dimplies 1-\sqrt{2} = \frac{1}{1+\sqrt{2}} \dimplies 1-\sqrt{2} = \frac{1-\sqrt{2}}{(1+\sqrt{2})(1-\sqrt{2})}\]
+\[
+	\dimplies 1-\sqrt{2} = \frac{1-\sqrt{2}}{1-2}  \dimplies 1-\sqrt{2} = -(1-\sqrt{2})\implies \text{ No es solución.}
+\]
+
+\spart
+\[
+	1+\sqrt{x-1} = \frac{2}{\sqrt{x-1}} \implies \sqrt{x-1}+\left(\sqrt{x-1}\right)^2 = 2 \dimplies \sqrt{x-1} + (x-1) = 2 \dimplies \sqrt{x-1} = 3-x \cimplies\]
+\[
+	x-1 = (3-x)^2 \dimplies x-1=9-6x+x^2 \dimplies x^2-7x+10 = 0 \dimplies \left\{\begin{array}{c} x_1=2\\x_2=5\end{array}\right.
+\]
+
+\textbf{Comprobación}
+\subparagraph{$x=2$}
+\[
+	1+\sqrt{2-1} = \frac{2}{\sqrt{2-1}} \dimplies 1+1=\frac{2}{1} \implies \text{Sí es solución.}
+\]
+
+\subparagraph{$x=5$}
+\[
+	1+\sqrt{5-1} = \frac{2}{\sqrt{5-1}} \dimplies 1+2=\frac{2}{2} \implies \text{No es solución}
+\]
+\end{problem}
+
+\begin{problem}(1,5 puntos) 
+Resuelve el siguiente sistema 
+
+\[
+\left\{
+	\begin{array}{ccc}
+		6x&-y&=6\\
+		5x&+2y&=-12
+	\end{array}
+\right\}
+\]
+
+\solution
+
+\[
+\left\{
+	\begin{array}{ccc}
+		-y&+6x&=6\\
+		+2y&+5x&=-12
+	\end{array}
+\right\}
+\]
+
+Aplico reducción. $E_2 = E_2+2·E_1$
+
+\[
+\left\{
+	\begin{array}{lll}
+		+2y&+5x&=12\\
+		-2y&+12x&=-12\\\hline
+		0y&+17x &= 0 \to x=0
+	\end{array}
+\right\}
+\]
+
+Como $x=0$, sustituyo en una de las ecuaciones iniciales.
+
+\[
+	6·0&-y&=6 \dimplies y=6
+\]
+
+\textbf{Comprobación:}
+
+\[
+\left\{
+	\begin{array}{ccc}
+		6·0&-(-6)&=6\\
+		5·0&+2·(-6)&=-12
+	\end{array}
+\right\}
+\]
+
+\end{problem}
+
+\begin{problem} (2 puntos)
+
+Resuelve la siguiente ecuación logarítmica:
+
+\[\log_2\sqrt{x+1} = \log_8\sqrt{x^2+4x+3}\]
+
+\solution
+
+\[
+	\log_2\sqrt{x+1} = \log_8\sqrt{x^2+4x+3} \dimplies \log_2(x+1)^{\rfrac{1}{2}} = \frac{\log_2(x^2+4x+3)^{\rfrac{1}{2}}}{\log_28} \dimplies \]
+\[
+	3·\frac{1}{2}\log_2(x+1) = \frac{1}{2}\log_2(x^2+4x+3)\dimplies 3\log_2(x+1) = \log_2(x^2+4x+3) \dimplies\]
+
+\[ 
+	\log_2(x+1)^2 = \log_2(x^2+4x+3) \implies (x+1)^3 = x^2+4x+3 \dimplies
+\]
+\[
+	x^3+3x^2+3x+1 = x^2+4x+3 \dimplies x^3+2x^2-x-2= 0 \dimplies (x+1)(x-1)(x+2) = 0
+\]
+
+\textbf{Comprobación:}
+
+\begin{itemize}
+	\item $x=-1\to \log_2\sqrt{0} = \log_20\not\in\real\implies\text{No es solución}.$
+	\item $x=1 \to \log_2\sqrt{2} = \log_8\sqrt{8} \dimplies \frac{1}{2} = \frac{1}{2}\implies \text{ Sí es solución.}$
+	\item $x=-2 \to \log_2\sqrt{-1}\not\in\real\implies\text{No es solución}.$
+\end{itemize}
+
+
+\end{problem}
+
+
+\end{document}

@@ -1,0 +1,264 @@
+\documentclass[palatino,nosec]{Docencia}
+
+
+\title{Segundo parcial 4ºA}
+\author{Departamento de Matemáticas}
+\date{17/18}
+
+
+% Paquetes adicionales
+
+\usepackage[author={Víctor de Juan, 2017}]{pdfcomment}
+
+\usepackage{pgf,tikz}
+\usetikzlibrary{arrows}
+
+\definecolor{qqttcc}{rgb}{0,0.2,0.8}
+\definecolor{qqqqff}{rgb}{0,0,1}
+
+
+\makeatletter
+\newcommand{\annotate}[2][]{%
+\pdfstringdef\x@title{#1}%
+\edef\r{\string\r}%
+\pdfstringdef\x@contents{#2}%
+\pdfannot
+width 2\baselineskip
+height 2\baselineskip
+depth 0pt
+{
+/Subtype /Text
+/T (\x@title)
+/Contents (\x@contents)
+}%
+}
+\makeatother
+
+
+
+\usepackage{eso-pic}
+\newcommand\BackgroundPic{%
+\put(0,0){%
+\parbox[b][\paperheight]{\paperwidth}{%
+\vfill
+\centering
+\includegraphics[width=\paperwidth,height=\paperheight,%
+keepaspectratio]{../../../BWLogo.jpeg}%
+\vfill
+}}}
+
+
+
+
+% --------------------
+\newcommand{\cimplies}{\text{\hl{$\implies$}}}
+
+\begin{document}
+\pagestyle{plain}
+%\maketitle
+
+
+\AddToShipoutPicture{\BackgroundPic}
+
+\begin{problem} (2.5 puntos)
+
+Resuelve la siguiente ecuación:
+
+\[
+	\sqrt{x+9}-1+\sqrt{x+2} = 0
+\]
+
+\solution
+
+\[
+	\sqrt{x+9}-1+\sqrt{x+2} = 0 \dimplies \sqrt{x+9} = 1-\sqrt{x+2} \implies \left(\sqrt{x+9}\right)^2 = \left(1-\sqrt{x+2}\right)^2\dimplies\]
+\[
+	\left(\sqrt{x+9}\right)^2 = 1+\left(\sqrt{x+2}\right)^2 - 2\sqrt{x+2}\dimplies  
+	x+9-1-x-2 = -2\sqrt{x+2} \dimplies\]
+\[ 6=-2\sqrt{x+2} \implies (-3)^2=\left(\sqrt{x+2}\right)^2 \dimplies 9 = x+2 \dimplies x=7
+\]
+
+\textbf{Comprobación:}
+
+\[
+	\sqrt{7+9} - 1 + \sqrt{7+2} = 4-1+3 = 6 ≠ 0 \implies \text{No es solución.}
+\]
+\end{problem}
+
+
+\begin{problem}(1 puntos)
+Despeja $t$ en la siguiente ecuación
+\[A=B·C^t\]
+\solution
+
+\[A=B·C^t \dimplies \frac{A}{B} = C^t \implies \log\frac{A}{B} = \log C^t \overset{(1)}{\dimplies} \log\frac{A}{B} = t\log C \implies t=\frac{\log\frac{A}{B}}{\log C}\]
+
+Donde $(1): \log_aA^n=n\log_aA$
+
+\end{problem}
+
+\begin{problem} (2 puntos)
+Resuelve la siguiente ecuación:
+
+\[
+	\frac{2}{x+1}-\frac{3-3x}{x^2-1} =\frac{2}{x-1} + \frac{7}{x+1}
+\]
+
+\solution
+
+\[
+\frac{2(x-1)}{(x+1)(x-1)}-\frac{3-3x}{(x+1)(x-1)} =\frac{2(x+1)}{(x+1)(x-1)} + \frac{7(x-1)}{(x+1)(x-1)} \implies 2x-2-3+3x = 2x+2+7x-7\]
+\[
+	5x-5=9x-5 \dimplies 4x=0 \dimplies x=0
+\]
+
+\textbf{Comprobación:}
+
+\[
+	\frac{2}{0+1}-\frac{3-3·0}{0^2-1} =\frac{2}{0-1} + \frac{7}{0+1} \dimplies 2+3=-2+7 \dimplies 5=5\implies\text{ Sí es solución.}
+\]
+
+\end{problem}
+
+
+
+\begin{problem}(1.5 puntos) 
+Indica el número de soluciones que tiene el siguiente sistema. En caso de que tenga una única solución, resuélvelo con comprobación.
+
+\[
+\left\{
+	\begin{array}{ccc}
+		x&-\rfrac{3}{7}y&=2\\
+		-14x&+6y&=2
+	\end{array}
+\right\}
+\]
+
+\solution
+
+
+\[
+\left\{
+	\begin{array}{ccc}
+		x&-\rfrac{3}{7}y&=2\\
+		-14x&+6y&=2
+	\end{array}
+\right\} \dimplies 
+\left\{
+	\begin{array}{ccc}
+		14x&-6y&=28\\
+		-14x&+6y&=2
+	\end{array}
+\right\} \implies 
+\left.
+	\begin{array}{lccc}
+		 &14x&-6y&=28\\
+		+&-14x&+6y&=2\\\hline
+		 &0x&+0y&=30
+	\end{array}
+\right.
+\]
+
+El sistema es incompatible. No tiene solución.
+
+\end{problem}
+
+
+\begin{problem}(3 puntos)
+
+Elige una de las 2 ecuaciones para resolver:
+\ppart
+\[
+	(\log x)^4 + (2\log x)^2 = -3
+\]
+\ppart 
+\[
+	152·\log\left(\sqrt[152]{x+1}\right) - 2\log(\sqrt{6}x)-1=-1
+\]
+\ppart 
+\[
+	\log_4x = \log_{16}(4x)
+\]
+
+\solution
+
+\spart
+\[
+	(\log x)^4 + (2\log x)^2 = -3 \dimplies (\log x)^4 + 4(\log x)^2 + 3 =0
+\]
+
+Hacemos el cambio $(\log x)^2 = t$ y obtenemos: $t^2+4t+3 = 0 \dimplies t_1=-1\;;\; t_2=-3$.
+
+Deshaciendo el cambio:
+
+\[
+\left\{
+\begin{array}{cc}
+	t=-1\\
+	t=(\log	x)^2
+\end{array}
+\right\} \implies (\log x)^2 = -1 \implies \log x=\sqrt{-1}\not\in\real
+\]
+
+\[
+\left\{
+\begin{array}{cc}
+	t=-3\\
+	t=(\log	x)^2
+\end{array}
+\right\} \implies (\log x)^2 = -3 \implies \log x=\sqrt{-3}\not\in\real
+\]
+
+\spart 
+\[
+	152·\log\left(\sqrt[152]{x+1}\right) - 2\log(\sqrt{6}x)-1=-1 \overset{(1)}{\dimplies} \log\left(\sqrt[152]{x+1}\right)^{152} -  \log\left(\sqrt{6}x\right)^2 = -1+1
+\]
+Utilizando $\log_a\rfrac{A}{B} = \log_a A - \log_a B$
+\[
+	\log\frac{x+1}{6x^2}=0 \implies 10^0 = \frac{x+1}{6x^2} \implies 6x^2-x-1 = 0 \dimplies x_1=\rfrac{1}{2} \;\;;\;\;x_2=\rfrac{-1}{3}
+\]
+
+$(1): \log_aA^n = n\log_aA$
+
+\textbf{Comprobación:}
+
+$x=\rfrac{1}{2}:$
+
+\[
+	152·\log\left(\sqrt[152]{\rfrac{1}{2}+1}\right) - 2\log(\sqrt{6}\rfrac{1}{2})-1=-1 \overset{(1)}{\dimplies} \log\left(\sqrt[152]{\rfrac{1}{2}+1}\right)^{152} -  \log\left(\sqrt{6}\rfrac{1}{2}\right)^2 = -1+1
+\]
+\[
+	\log\frac{3}{2} - \log\frac{\sqrt{6^2}}{4} = 0 \dimplies \log\frac{3}{2} - \log\frac{3}{2} = 0
+\]
+
+$x=\rfrac{-1}{3}:$
+
+\[
+	152·\log\left(\sqrt[152]{\rfrac{-1}{3}+1}\right) - 2\log(\sqrt{6}\rfrac{-1}{3})\not\in\real\implies \text{ No es solución}
+\]
+
+\spart 
+
+Cambio de base: $\log_aA = \frac{\log_bA}{\log_ba}$
+
+\[
+	\log_4x = \log_{16}(4x) \dimplies \log_4x = \frac{\log_44x}{\log_416} \dimplies 2\log_4x = \log_44x \dimplies \log_4x^2=\log_4x\implies\]
+\[
+	x^2=4x \dimplies x_1=4\;\;;\;\;x_2=0
+\]
+
+\textbf{Comprobación:}
+
+$x=0:$ No es solución porque $\log_40\not\in\real$
+
+$x=4:$ 
+
+\[
+	\log_44 = \log_16(4·4) \dimplies \log_44 = \log_{16}{16} \dimplies 1=1
+\]
+
+\end{problem}
+
+
+
+\end{document}
