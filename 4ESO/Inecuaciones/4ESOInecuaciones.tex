@@ -1,0 +1,102 @@
+\documentclass[palatino,nosec,nochap]{Docencia}
+
+
+\title{Inecuaciones}
+\author{Víctor de Juan}
+\date{17/18}
+
+
+\begin{abstract}
+
+\end{abstract}
+
+% Paquetes adicionales
+
+\usepackage[author={Víctor de Juan, 2017}]{pdfcomment}
+
+\makeatletter
+\newcommand{\annotate}[2][]{%
+\pdfstringdef\x@title{#1}%
+\edef\r{\string\r}%
+\pdfstringdef\x@contents{#2}%
+\pdfannot
+width 2\baselineskip
+height 2\baselineskip
+depth 0pt
+{
+/Subtype /Text
+/T (\x@title)
+/Contents (\x@contents)
+}%
+}
+\makeatother
+
+\usepackage{eso-pic}
+\newcommand\BackgroundPic{%
+\put(0,0){%
+\parbox[b][\paperheight]{\paperwidth}{%
+\vfill
+\centering
+\includegraphics[width=\paperwidth,height=\paperheight,%
+keepaspectratio]{../../BWLogo.jpeg}%
+\vfill
+}}}
+
+
+
+% --------------------
+\newcommand{\cimplies}{\text{\hl{$\implies$}}}
+
+\begin{document}
+\pagestyle{plain}
+\maketitle
+\AddToShipoutPicture{\BackgroundPic}
+\Large
+
+Vamos a retomar la clase anterior. Para Naiara, Nacho y el resto, repasamos inecuaciones.
+
+Sería bueno que no os estuvérais mandando callar continuamente, ¿vale?
+
+Scad la tabla que tenéis. La de similitudes de inecuaciones y ecuaciones. Nacho, cámbiate de sitio con Claudia. Así Herrero puede ir poniéndote al día y Claudia a Naiara.
+
+Tened la tabla a mano. Preguntas de uno en uno, por favor. 
+
+\textbf{Resolver la siguiente inecuación:}
+
+\[
+	3x -1 < x+2
+\]
+
+Para resolver la inecuación, despejamos como si fueran ecuaciones. Tratamos el '<' como si fuera el "=" de la ecuación.
+
+¿Qué te da Nerea? ¿Qué has hecho?
+
+La solución de una inecuación es un intervalo. ¿Os acordáis?
+
+Pasamos las $x$ a un lado, y todo lo que no tiene $x$ al otro.
+
+\[
+	3x -1 < x+2 \dimplies 3x-x<2+1 \dimplies 2x<3 \dimplies x<\frac{3}{2}
+\]
+
+
+
+Nacho y Herrero, el otro día decíais que podáis trabajar juntos. Demostrarlo
+
+
+\textbf{Detalle más importante de la clase} y lo único que quería contaros antes de que empezarais a trabajar. 5 minutos de absoluto silencio por favor.
+
+\textbf{Lo más importante del tema:} transforma en intervalo. Escribe cada inecuación como un intervalo.
+
+\[
+\begin{array}{cc}
+	-x<0 &\dimplies <
+	\\
+	x<0 &\dimplies (-∞,0)
+\end{array}
+\]
+
+
+
+\end{document}
+\grid

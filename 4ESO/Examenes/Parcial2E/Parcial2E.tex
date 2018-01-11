@@ -1,0 +1,276 @@
+\documentclass[palatino,nosec]{Docencia}
+
+
+\title{Segundo parcial 4ºE}
+\author{Departamento de Matemáticas}
+\date{17/18}
+
+
+% Paquetes adicionales
+
+\usepackage[author={Víctor de Juan, 2017}]{pdfcomment}
+
+\usepackage{pgf,tikz}
+\usetikzlibrary{arrows}
+
+\definecolor{qqttcc}{rgb}{0,0.2,0.8}
+\definecolor{qqqqff}{rgb}{0,0,1}
+
+
+\makeatletter
+\newcommand{\annotate}[2][]{%
+\pdfstringdef\x@title{#1}%
+\edef\r{\string\r}%
+\pdfstringdef\x@contents{#2}%
+\pdfannot
+width 2\baselineskip
+height 2\baselineskip
+depth 0pt
+{
+/Subtype /Text
+/T (\x@title)
+/Contents (\x@contents)
+}%
+}
+\makeatother
+
+
+
+\usepackage{eso-pic}
+\newcommand\BackgroundPic{%
+\put(0,0){%
+\parbox[b][\paperheight]{\paperwidth}{%
+\vfill
+\centering
+\includegraphics[width=\paperwidth,height=\paperheight,%
+keepaspectratio]{../../../BWLogo.jpeg}%
+\vfill
+}}}
+
+
+
+
+% --------------------
+\newcommand{\cimplies}{\text{\hl{$\implies$}}}
+
+\begin{document}
+\pagestyle{plain}
+%\maketitle
+
+
+\AddToShipoutPicture{\BackgroundPic}
+
+\begin{problem} (2.5 puntos)
+Resuelve:
+
+\ppart (2 puntos)
+\[
+	\sqrt{5-2x}+\sqrt{8x}-5 = 0
+\]
+
+\ppart (1 punto)
+\[
+3^{x+2}-9^x = 0
+\]
+
+\ppart (1,5 puntos)
+
+\[
+\left\{
+	\begin{array}{c}
+		2x-y=8\\
+		4x^2-2xy=32
+	\end{array}	
+\right\}
+\]
+
+\ppart (2 puntos)
+\[
+	4\log_3x-\log_3\left(x^2-\frac{20}{9}\right) = 2
+\]
+
+\solution
+
+\spart
+\[
+	\sqrt{5-2x}+\sqrt{8x}-5 = 0 \dimplies \sqrt{5-2x} = -\sqrt{8x}+5 \cimplies 
+	\left(\sqrt{5-2x}\right)^2 = \left(-\sqrt{8x}+5\right)^2\]
+\[ 
+	5-2x=8x+25-10\sqrt{8x} \dimplies -10x\sqrt{8x} = -20-10x \cimplies 8x = (x+2)^2 \dimplies 8x = x^2+4x+4
+\]
+\[
+	x^2+4x+4-8x=0 \dimplies x^2-4x+4=0 \dimplies x_1=x_2=2
+\]
+
+\textbf{Comprobación:}
+
+\[
+	\sqrt{5-2·2}+\sqrt{8·2}-5 = 1+4-5=0 \implies\text{ sí es solución.}
+\]
+
+\spart 
+\[
+	3^{x+2}-9^x = 0 \dimplies 3^{x+2} = 3^{2x} \implies x+2=2x \dimplies x=2
+\]
+
+\textbf{Comprobación:}
+
+\[
+	3^{2+2} - 9^2 = 3^4-9^2 = 81-81 = 0
+\]
+
+\spart
+
+\[
+\left\{
+	\begin{array}{c}
+		2x-y=8\\
+		4x^2-2xy=32
+	\end{array}	
+\right\} \dimplies 
+\left\{
+	\begin{array}{c}
+		2x-y=8\\
+		2x(2x-y)=32
+	\end{array}	
+\right\}\dimplies 
+\left\{
+	\begin{array}{c}
+		2x-y=8\\
+		16x=32
+	\end{array}	
+\right\}
+\]
+\[
+\left\{
+	\begin{array}{l}
+		x=2\\
+		2·2-y = 8 \dimplies -y=8-4 \dimplies y=-4		
+	\end{array}	
+\right.
+\]
+
+\spart 
+$(1): \log_aA^n = n\log_aA$
+
+$(2): \log_a\rfrac{A}{B} = \log_aA-\log_aB$
+
+\[
+4\log_3x-\log_3\left(x^2-\frac{20}{9}\right) = 2 \overset{(1)}{\dimplies} \log_3x^4-\log_3\left(x^2-\frac{20}{9}\right) = 2 \overset{(2)}{\dimplies}
+\]
+\[
+\log_3\frac{x^4}{x^2-\frac{20}{9}} = 2 \implies 3^2 = \frac{x^4}{x^2-\frac{20}{9}} \dimplies  3^2 = \frac{x^4}{\frac{9x^2-20}{9}} \]
+\[
+	9 = \frac{9x^4}{9x^2-20} \dimplies  1 = \frac{x^4}{9x^2-20} \dimplies 9x^2-20 = x^4 \dimplies x^4-9x^2+20=0
+\]
+
+Hacemos el cambio $t=x^2$
+
+\[
+x^4-9x^2+20=0 \implies t^2-9t+20 \implies \left\{
+	\begin{array}{l}
+		\left\{\begin{array}{l}
+			t_1 = \pm5\\
+			t_1 = x^2
+			\end{array}
+		\right.\to x=\pm\sqrt{5}\\
+		\left\{\begin{array}{l}
+			t_2 = \pm4\\
+			t_2 = x^2
+			\end{array}
+		\right.\to x=\pm2\\
+	\end{array}
+\right.
+\]
+
+\textbf{Comprobación}
+
+$x=-2;x=-\sqrt{5}$ no pueden ser solución porque no existen $\log$ de números negativos.
+
+$x=2$
+
+\[
+	4\log_32-\log_3\left(2^2-\frac{20}{9}\right) = 4\log_32 - \log_3\left(\frac{36-20}{9}\right) \overset{(1)}{=} \log_32^4 - \log_3\frac{16}{9} \overset{(2)}{=}
+\]
+\[
+	\log_3(16) - \log_3(16) + \log_39 = 2
+\]
+
+$x=5$
+
+\end{problem}
+
+
+\begin{problem}(1,5 puntos)
+Cuando el polinomio $P(x) = x^3-2x^2+5kx-2$ se divide por $x+2$ da resto $k$. Halla el valor de $k$. ¿Qué teorema se puede utilizar? Enúncialo.
+
+\solution
+Teorema del resto: El resto de dividir $P(x)$ entre $x-a$ coincide con el valor $P(a)$
+
+En este caso, calculamos $P(-2)=k$
+
+\[
+	P(-2) = k \dimplies -2^3-2·(-2)^2+5k(-2)-2= k \dimplies -16-10k-2=k\dimplies
+\]
+\[
+	-18=11k \dimplies k=\frac{-18}{11}
+\]
+
+
+\end{problem}
+
+\begin{problem} (2 puntos)
+Simplificar las fracciones:
+
+\ppart
+\[
+	\frac{x^4-2x^2-8}{x^3-4x} 
+\]
+
+\ppart
+
+\[
+	\frac{x^3-3x+2}{2x^4-2x^2}
+\]
+
+\solution
+
+\spart 
+\[\frac{x^4-2x^2-8}{x^3-4x}\]
+
+\textbf{Factorizamos el numerador:}
+
+$x^4-2x^2-8 = 0 \implies t^2-2t-8 = 0 \dimplies t_1=4\;;\;t_2=-2 $ 
+
+Factorizamos: $t^2-2t-8 = (t-4)(t+2)$ y deshacemos el cambio
+
+\[
+	x^4-2x^2-8 = (x^2-4)(x^2+2) = (x+2)(x-2)(x^2+2)	
+\]
+
+\textbf{Factorizamos el denominador:}
+
+$x^3-4x = x(x^2-4) = x(x-2)(x+2)$
+
+Simplificamos:
+\[
+\frac{x^4-2x^2-8}{x^3-4x} = \frac{(x+2)(x-2)(x^2+2)	}{x(x-2)(x+2)} = \frac{x^2+2}{x}
+\]
+
+\spart 
+
+\[
+\frac{x^3-3x+2}{2x^4-2x^2}\]
+
+Factorizamos \textbf{numerador}: $x^3-3x+2 = (x-1)^2(x+2)$
+
+Factorizamos \textbf{denominador}: $2x^4-2x^2 = 2x^2(x^2-1) = 2x^2(x+1)(x-1)$
+
+Simplificamos:
+\[\frac{(x-1)(x+2)(x-1)}{2x^2(x^2-1)} = \frac{(x-1)(x+2)(x-1)}{2x^2(x-1)(x+1)} = \frac{(x+2)(x-1)}{2x^2(x+1)}
+\]
+
+\end{problem}
+
+
+\end{document}
