@@ -1,0 +1,422 @@
+\documentclass[palatino,nosec]{Docencia}
+
+
+\title{Examen Recuperación 4ºE}
+\author{Departamento de Matemáticas}
+\date{17/18}
+
+
+% Paquetes adicionales
+
+\usepackage[author={Víctor de Juan, 2017}]{pdfcomment}
+
+\usepackage{pgf,tikz}
+\usetikzlibrary{arrows}
+
+\definecolor{qqttcc}{rgb}{0,0.2,0.8}
+\definecolor{qqqqff}{rgb}{0,0,1}
+
+
+\makeatletter
+\newcommand{\annotate}[2][]{%
+\pdfstringdef\x@title{#1}%
+\edef\r{\string\r}%
+\pdfstringdef\x@contents{#2}%
+\pdfannot
+width 2\baselineskip
+height 2\baselineskip
+depth 0pt
+{
+/Subtype /Text
+/T (\x@title)
+/Contents (\x@contents)
+}%
+}
+\makeatother
+
+
+
+\usepackage{eso-pic}
+\newcommand\BackgroundPic{%
+\put(0,0){%
+\parbox[b][\paperheight]{\paperwidth}{%
+\vfill
+\centering
+\includegraphics[width=\paperwidth,height=\paperheight,%
+keepaspectratio]{../../../BWLogo.jpeg}%
+\vfill
+}}}
+
+
+
+
+% --------------------
+\newcommand{\cimplies}{\text{\hl{$\implies$}}}
+
+\begin{document}
+\pagestyle{plain}
+%\maketitle
+
+
+\AddToShipoutPicture{\BackgroundPic}
+
+\begin{problem}(2 puntos)
+
+Un gurpo de estudiantes decide hacer una fiesta y para ello planean una compra de 90 euros que pagan entre todos a partes iguales. El día de la compra, una pareja decide no ir a la fiesta y cada uno de los demás tiene que pagar 0,5  euros más. ¿Cuántos estudiantes había en el grupo originariamente?
+
+\solution
+
+Las incógnitas del problema son:
+\begin{itemize}
+	\item \textbf{x:} El número de estudiantes.
+	\item \textbf{y:} El dinero que paga cada uno. 
+\end{itemize}
+
+Antes de que la pareja decida no ir, tenemos la ecuación: $x·y=90$.
+
+Cuando la pareja decide no ir, tenemos $(x-2)$ estudiantes que tienen que pagar $(y+0.5)$ y el precio a pagar siguen siendo 90 euros.
+
+Por lo tanto:
+
+\[
+	\left\{
+		\begin{array}{c}
+			xy=90\\
+			(x-2)(y+\rfrac{1}{2})=90
+		\end{array}
+	\right\} \dimplies 
+	\left\{
+		\begin{array}{c}
+			x=\displaystyle\frac{90}{y}\\
+			(x-2)(y+\rfrac{1}{2})=90
+		\end{array}
+	\right\} 
+\]
+
+Sustituyendo:
+
+\[
+	\left(\frac{90}{y}-2\right)·\left(y+\frac{1}{2}\right)=90 \dimplies 90+\frac{90}{2y}-2y-1=90 \dimplies \frac{90}{2y}-2y-1=0 \dimplies
+\]
+\[
+	 \frac{90-4y^2-2y}{2y}=0 \implies 4y^2+2y-90=0 \dimplies 2y^2+y-45=0
+\]
+
+Resolviendo esta ecuación obtenemos 2 soluciones: $y_1=-5$ (que no tiene sentido porque el dinero no puede ser negativo en este problema) y $y_2=\frac{9}{2}$.
+
+Con este valor, calculamos $x$:
+\[
+\left\{
+	\begin{array}{c}
+		x·y=90\\
+		y=\rfrac{9}{2}
+	\end{array}
+\right\}\implies x=\frac{90·2}{9} = 20
+\]
+
+\textbf{Originariamente había 20 estudiantes en el grupo.}
+
+\end{problem}
+
+
+\begin{problem} (4.5 puntos)
+Resuelve con comprobación
+
+\ppart (1,5 puntos)
+\[
+	\frac{5}{x^2-x-6} = \frac{3}{x^2-4}+\frac{3}{2x^2-10x+12}
+\]
+
+\ppart (1,5 puntos)
+\[
+	\sqrt{x^2-3} + 1 = \sqrt{x^2+4}
+\]
+
+\ppart (1,5 puntos)
+\[
+\left\{
+	\begin{array}{c}
+		2·3^{2x+1}+2^{y-1} = 8\\
+		3^{x+1}+3·2^y = 15
+	\end{array}	
+\right\}
+\]
+
+
+\solution
+
+\spart
+
+\begin{itemize}
+	\item $x^2-x-6 = (x-3)(x+2)$
+	\item $x^2-4 = (x+2)(x-2)$
+	\item $2x^2-10x+12 = \text{\hl{2}}(x^2-5x+6) = 2(x-2)(x-3)$
+\end{itemize}
+
+$\text{mcm}[(x-3)(x+2);(x+2)(x-2);2(x-2)(x-3)] = 2(x-3)(x+2)(x-2)$
+
+\[
+	\frac{5}{x^2-x-6} = \frac{3}{x^2-4}+\frac{3}{2x^2-10x+12} \dimplies
+	\frac{5}{(x-3)(x+2)} = \frac{3}{(x+2)(x-2)} + \frac{3}{2(x-2)(x-3)}
+\]
+\[
+\dimplies \frac{10(x-2)}{2(x-3)(x+2)(x-2)} = \frac{6(x-3)}{2(x+2)(x-2)(x-3)} + \frac{3(x+2)}{2(x+2)(x-2)(x-3)} \implies
+\]
+
+\[
+{10(x-2)} = {6(x-3)} + {3(x+2)} \dimplies 10x-20=6x-18+3x+6 \dimplies x=8
+\]
+
+\textbf{Comprobación:}
+
+\[
+	\frac{5}{8^2-8-6} = \frac{3}{8^2-4}+\frac{3}{2·8^2-10·8+12} \dimplies
+	\frac{5}{50} = \frac{3}{60}+\frac{3}{60} \dimplies \frac{1}{10}=\frac{1}{10}
+\]
+
+\spart 
+
+\[
+	\sqrt{x^2-3} + 1 = \sqrt{x^2+4} \implies (x^2-3) + 1 + 2·\sqrt{x^2-3} = x^2+4 \dimplies\]
+\[
+	2\sqrt{x^2-3} = 6 \implies x^2-3 = 9 \dimplies x^2=12 \dimplies x=\pm\sqrt{12}
+\]
+
+
+\textbf{Comprobación}
+
+$x=+\sqrt{12}$
+
+\[
+	\sqrt{\sqrt{12}^2-3} + 1 = \sqrt{\sqrt{12}^2+4} \dimplies \sqrt{9}+1=\sqrt{16} \dimplies 4=4
+\]
+
+
+$x=-\sqrt{12}$
+
+\[
+	\sqrt{\left(-\sqrt{12}\right)^2-3} + 1 = \sqrt{\left(-\sqrt{12}\right)^2+4} \dimplies \sqrt{9}+1=\sqrt{16} \dimplies 4=4
+\]
+
+
+\spart 
+El cambio que buscamos será $t=2^x$ y $q=3^y$. Para ello hay que reescribir el sistema:
+
+\[
+	\left\{
+		\begin{array}{c}
+			2·3^{2x+1}+2^{y-1} = 8\\
+			3^{x+1}+3·2^y = 15
+		\end{array}	
+	\right\}\dimplies
+	\left\{
+		\begin{array}{c}
+			2·\left(3^{x}\right)^2·3+\frac{2^{y}}{2} = 8\\
+			3^{x}·3+3·2^y = 15
+		\end{array}	
+	\right\}
+\]
+Hacemos el cambio $t=2^x$ y $q=3^y$
+\[
+	\left\{
+		\begin{array}{c}
+			6·q^2+\frac{t}{2} = 8\\
+			3q+3t = 15 \to q+t=5
+		\end{array}	
+	\right\}\dimplies
+	\left\{
+		\begin{array}{c}
+			6·q^2+\frac{t}{2} = 8\\
+			t=5-q
+		\end{array}	
+	\right\}
+\]
+
+Sustituyendo: 
+
+\[
+	6·q^2+\frac{5-q}{2} = 8 \dimplies \frac{12q^2 +5-q}{2} = 8 \dimplies 12q^2 - q +5=16 \dimplies 12q^2-q-11=0
+\]
+
+2 soluciones: $q_1 = \frac{-11}{12}$ y $q_2 = 1$
+
+Obtenemos los valores de $t$
+\[
+	\left\{
+		\begin{array}{c}
+			t=5-q\\
+			t_1=\frac{-11}{12}
+		\end{array}	
+	\right\}\to q_1=5-\frac{-11}{12} = \frac{71}{12}
+\]\[
+	\left\{
+		\begin{array}{c}
+			t=5-q\\
+			t_2=1
+		\end{array}	
+	\right\}\to q_2= 5-1=4
+\]
+
+Una vez obtenidos los valores de $t$ y $q$ hallamos los valores de $x$ e $y$.
+
+\begin{align*}
+	&\left\{
+		\begin{array}{c}
+			t_1=\frac{-11}{12}\\
+			t=2^x
+		\end{array}	
+	\right\}\to 2^x=\frac{-11}{12} \implies \nexists x
+\\
+	&\left\{
+		\begin{array}{c}
+			q_1=\frac{71}{12}\\
+			q=3^y
+		\end{array}	
+	\right\}\to \text{Como el valor de $x$ no existe, no importa el valor de $y$ asociado.}
+\\
+	&\left\{
+		\begin{array}{c}
+			t_1=4\\
+			t=2^x
+		\end{array}	
+	\right\}\to 2^x=4 \dimplies x=2
+\\
+	&\left\{
+		\begin{array}{c}
+			q_1=1\\
+			q=3^y
+		\end{array}	
+	\right\}\to 3^y=1 \dimplies y=0
+\end{align*}
+
+\textbf{Solución: $(x,y) = (2,0)$}
+
+\textbf{Comprobación:}
+
+
+\[
+	\left\{
+		\begin{array}{c}
+			2·3^{0+1}+2^{2-1} = 8\\
+			3^{0+1}+3·2^2 = 15
+		\end{array}	
+	\right\}\dimplies
+	\left\{
+		\begin{array}{c}
+			6+2=8 \\
+			3+12=15
+		\end{array}	
+	\right\}
+\]
+
+
+\end{problem}
+
+
+\begin{problem}(1,5 puntos)
+Despeja el valor de la incógnita en las siguientes expresiones. Indica las propiedades que utilizas.
+
+\ppart $\log_3x=4$
+
+\ppart $7^{\log_7x}=5$
+
+\ppart $3\log_3x+\log_3x^2-\log_39=3$
+
+\ppart $\log_{\sqrt{8}}\sqrt{128} = x$
+
+\ppart $\log_2x+\log_4x^2=\log_88$
+
+\solution
+
+\spart $\log_3x=4 \dimplies 3^4=x$, aplicando la definición de logaritmo.
+
+\spart $7^{\log_7x}=5 \dimplies x=5$, utilizando $a^{\log_ax} = x$.
+
+\spart $3\log_3x+\log_3x^2-\log_39=3 \overset{(1)}{\dimplies} 3\log_3x+2\log_3x-2=3 \dimplies 5\log_3x =5 \dimplies \log_3x=1 \dimplies x=3$ 
+
+Donde $(1)$ utiliza $\log_aA^n = n\log_aA$
+
+\spart $\log_{\sqrt{8}}\sqrt{128} = x \dimplies \sqrt{8}^x = \sqrt{128} \dimplies \left(2^{\frac{3}{2}}\right)^x = 2^{\rfrac{7}{2}} \implies \frac{3}{2}x=\frac{7}{2} \dimplies x=\frac{7}{2}$
+
+\spart $\log_2x+\log_4x^2=\log_88 \overset{(1)}{\dimplies} \log_2x+2\log_4x=1 \overset{(2)}{\dimplies} \log_2x+2\frac{\log_2x}{\log_24} = 1  \dimplies \log_2x+\log_2x=1 \dimplies 2\log_2x=1\dimplies \log_2x=\frac{1}{2} \dimplies 2^{\rfrac{1}{2}} = \sqrt{2} = x$
+
+Donde $(1)$ utiliza $\log_aA^n = n\log_aA$, $(2)$ utiliza $\log_aA=\displaystyle\frac{\log_bA}{\log_ba}$
+
+
+\end{problem}
+
+\begin{problem} (2 puntos)
+Elige una de las siguientes preguntas.
+
+\ppart
+Sabemos que $a$ es entero ($a\inℤ$), pero desconocemos su valor. ¿Puede ser $(x-\rfrac{1}{2})$ factor del polinomio $P(x) = 7x^3+2x^4-ax+6$? Enuncia el teorema que utilices.
+
+\ppart
+
+Halla todas las soluciones reales de la ecuación 
+\[
+	\left(x^4-\frac{97}{2}\right)^2 = \frac{4225}{2}
+\]
+
+\solution
+
+\spart 
+
+Por el \textbf{teorema del factor}, $(x-\rfrac{1}{2})$ será factor si $x=\rfrac{1}{2}$ es raíz del polinomio.
+
+Por el \textbf{teorema de las raíces fraccionarias} $x=\rfrac{1}{2}$ podría ser raíz del polinomio si $1$ divide a $6$ y $2$ divide a $2$. 
+
+\textbf{Respuesta: } si podría ser raíz.
+
+\textbf{Teorema del factor:} $a$ es raíz del polinomio $P(x)$ si y sólo $(x-a)$ es factor del mismo.
+
+\textbf{Teorema de las raíces fraccionarias} Sea $P(x)$ un polinomio con coeficientes enteros. $a=\rfrac{m}{n}$ puede ser raíz del polinomio si $m$ divide al término independiente de $P(x)$ y $n$ divide al coeficiente principal de $P(x)$.
+
+\spart 
+
+2 caminos:
+
+\[
+	\left(x^4-\frac{97}{2}\right)^2 = \frac{4225}{2} \implies
+	\left(x^4-\frac{97}{2}\right) = \sqrt{\frac{4225}{2}}
+\]
+
+Como la raíz tiene 2 soluciones, tenemos que resolver 2 ecuaciones:
+
+\[
+\left(x^4-\frac{97}{2}\right) = +\sqrt{\frac{4225}{2}} \;\;\;\;\;\;\;\; \left(x^4-\frac{97}{2}\right) = -\sqrt{\frac{4225}{2}}
+\]
+
+La otra alternativa es desarrollar el cuadrado.
+
+\[
+	\left(x^4-\frac{97}{2}\right)^2 = \frac{4225}{2} \dimplies
+	x^8-97x^4+\frac{9409}{4}-\frac{4225}{2} = 0\dimplies 
+	x^8-97x^4+1296 = 0
+\]
+
+Hacemos el cambio $t=x^4$
+
+\[
+x^8-97x^4+1296 = 0 \dimplies t^2-97t+1296=0 \implies 
+\]
+\[\left\{
+\begin{array}{c}
+	\left\{\begin{array}{l}
+		t_1=81\\
+		t=x^4
+	\end{array}\right\} \implies x^4=81\implies x=\sqrt[4]{81} \implies \left\{\begin{array}{l} x_1=+3\\x_2=-3\end{array}\right. \\
+	\left\{\begin{array}{l}
+		t_2=16\\
+		t=x^4
+	\end{array}\right\} \implies x^4=16\implies x=\sqrt[4]{16} \implies \left\{\begin{array}{l} x_3=+2\\x_4=-2\end{array}\right. \\
+\end{array}
+\right.
+\]
+
+Las 4 soluciones reales son $x_1=3\;;\;x_2=-3\;;\;x_3=2\;;\;x_4=-2$
+
+\end{problem}
+
+
+\end{document}
