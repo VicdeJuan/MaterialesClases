@@ -986,6 +986,10 @@ Sean $z_1 = r_α$ y $z_2 = s_β$
 
 $z_1\pm z_2$ necesitamos pasar a forma binómica/trigonométrica. ¿Para qué sirve esta forma entonces? Para multiplicar y dividir, que se hace realmente sencillo 
 
+\hl{Corregir 8ef, 15 abc (solo polar)}. Introducir trigonométrica desde el ejercicio 15.
+
+Operaciones en polar.
+
 \textbf{Multiplicación:} $z_1·z_2 = (r·s)_{α+β} $
 
 \textbf{División:} $\frac{z_1}{z_2} = (\rfrac{r}{s})_{α-β} $
@@ -997,10 +1001,44 @@ $z_1\pm z_2$ necesitamos pasar a forma binómica/trigonométrica. ¿Para qué si
 \[\frac{2_{120}·1_{240}}{\sqrt{2}_{60}·2_{30}}\]
 
 
-\paragraph{Practicar 18}
 \section{Radicación}
 
-Hasta aquí el examen.
+Sabemos que $\sqrt{16} = \pm 4$, ¿verdad? Y $\sqrt[4]{16} = \pm 2$, ¿no?
+
+¿Nos habrán mentido desde pequeños sobre esto también? Siento decirte que sí. Vamos a verlo. 
+
+Calcula:
+\begin{itemize}
+	\item $2^4 = 16$
+	\item $(-2)^4 = 16$
+	\item $(2i)^4 = 16·i^4 = 16$
+	\item $(-2i)^4 = 16·i^4 = 16$ 
+\end{itemize}
+
+¡Cuatro raíces! De una manera general $\sqrt[n]{z}$ tiene $n$ soluciones. ¡Vamos a calcularlas! Y para esto es imprescindible la forma polar.
+
+\begin{defn}[Radicación compleja]
+$\sqrt[n]{z} = \{s_β\}$ con $s=+\sqrt[n]{|z|}$ y $β=\left\{\displaystyle\frac{\arg(z)+360k}{n}\;\;k\inℕ\right\}$
+\end{defn}
+
+\begin{example}
+Calcula las 5 raíces de $z=1+i$
+
+\textbf{Solución}
+\begin{itemize}
+	\item Forma polar: $z=1+i = \sqrt{2}_{45}$
+	\item Las raíces serán de la forma $s_β$ con $s=\sqrt[5]{\sqrt{2}}$ y $β=\frac{45+360k}{5}$
+	\begin{itemize}
+		\item $k=0\to \sqrt[10]{2}_{9}$
+		\item $k=1\to \sqrt[10]{2}_{81}$
+		\item $k=2\to \sqrt[10]{2}_{153}$
+		\item $k=3\to \sqrt[10]{2}_{225}$
+		\item $k=4\to \sqrt[10]{2}_{297}$
+	\end{itemize}
+\end{itemize}
+\end{example}
+
+
 
 \chapter{Continuidad}
 
