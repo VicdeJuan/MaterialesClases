@@ -1040,8 +1040,168 @@ Calcula las 5 raíces de $z=1+i$
 
 
 
-\chapter{Continuidad}
+\chapter{Análisis}
 
+\section{Funciones}
+
+\subsection{Concepto}
+
+Una función asigna a cada elemento de un conjunto $X$, un único elemento de otro, $Y$. Escribimos $f: X \to Y; x\in X\to f(x)\in Y$
+
+Ejemplos hablados. Añade 2 de tu propia cosecha.
+\begin{itemize}
+	\item A cada uno le asigno su edad.
+	\item A cada uno su estatura.
+	\item A cada uno su brazo.
+	\item A un número su doble.
+	\item A un número su raíz cuadrada.
+\end{itemize}
+
+\begin{itemize}
+	\item A un número complejo su conjugado.
+	\subitem Sí, pero sólo vamos a hablar de \concept{funciones reales de variable real}. 
+\end{itemize}
+
+Escribimos:  $f: D(f)\subset\real \to I\subset\real; x\to f(x)$
+
+\textit{Como curiosidad hay funciones de variable ``funcional'', es decir, que asocia funciones con otras cosas. Este tipo de cosas se estudian en matemáticas.}
+
+
+\subsubsection{Dominio y recorrido} Condiciones generales de cada función:
+
+$f:\real\to\real\quad\quad D(f) = {x / \exists f(x)}$
+
+Ejemplos:
+\begin{itemize}
+	\item $f_1(x) = 3x^2+2$
+	\item Racionales $f_2(x) = \frac{x+2}{x-1}$
+	\item Radicales $f_3(x) = \sqrt{x^2-9}$
+	\item Radicales $f_4(x) = \sqrt[3]{x^2-16}$
+	\item Exponenciales $f_5(x) = e^x$
+	\item Logaritmos $f_6(x) = \log(x+2)$
+	\item Trigonométricas $f_7(x) = \cos(x)$
+	\item Trigonométricas $f_8(x) = \sin(x)$
+	\item Combo: $f_9(x) = \frac{\log(x-5)}{x+7}$
+	\item Combo: $f_{10}(x) = \frac{\sqrt{5-x}}{x+7}$
+\end{itemize}
+
+
+\paragraph{Clasificacion de funciones} \textit{Damos la definición formal y la intuitiva.}
+
+\begin{itemize}
+	\item Inyectiva: $x\neq y \implies f(x) \neq f(y)  $
+	\item Sobreyectiva: $\forall y\in Y \exists x\in X / f(x) = y$
+	\item Biyectiva: sobreyectiva e inyectiva a la vez.
+\end{itemize}
+
+\concept{Gráfica de una función:} $G(f) = {\left(a,f(a)\right)}$
+
+\subsection{Operaciones con funciones}
+\begin{itemize}
+	\item Suma, resta $(f\pm g)(x) = f(x) \pm g(x)$
+	\subitem $D(f\pm g) = D(f)\cap D(g)$.
+	\item Producto
+	\subitem $D(f·g) = D(f)\cap D(g)$.
+	\item Cociente 
+	\subitem $D\left(\rfrac{f(x)}{g(x)}\right) = D(f)\cap D(g) \setminus \{x/g(x) = 0\}$
+	\item Composición $(g\circ f)(x) = g\left(f(x)\right)$ y se lee ``f compuesta con g''.
+	\subitem El dominio se recalcula.
+\end{itemize}
+
+\concept{Función inversa} $f^{-1}(x):Y\to X$ y cumple $(f\circ f^{-1})(x) = x$
+
+\paragraph{Ejemplo:} Comprueba si son inversas
+\begin{itemize}
+	\item $f(x) = x^3-1$; $f^{-1}(x) = \sqrt[3]{x+1}$ (sí)
+	\item $f(x) = x^2+1$; $f^{-1}(x) = \sqrt{x}$ (no)
+\end{itemize}
+
+\paragraph{Ejemplo:} Calcula la función inversa de $f(x) = \frac{2x+1}{3}$ y de $g(x) = \frac{-1}{3x}$ 
+
+\hl{13/03} Corregir pregunta: ¿son funciones inversas?
+
+Construir funciones inversas.
+
+\subsubsection{Clasificacion de funciones}
+
+\begin{defn}[Inyectividad]
+$f(x) : D(f) \to \real$ inyectiva $\dimplies\forall a,b\in D(f) a\neq b \implies f(a) \neq f(b)$
+\end{defn} 
+
+\begin{defn}[Sobreyectividad]
+	$f(x) : D(f) \to \real$ sobreyectiva $\dimplies \forall b\in\real \exists a\in D(f) \tlq f(a) = b$
+
+	Es decir, una función es sobreyectiva si su imagen son todos los números reales.
+\end{defn}
+
+
+\begin{defn}[Biyectividad] 
+	Inyectividad y sobreyectividad
+\end{defn}
+
+\paragraph{Ejemplos:} Razonando gráficamente.
+
+\begin{itemize}
+	\item $f(x) = x^3$ (biyectiva)
+	\item $f(x) = x^2$ (nada)
+	\item Dibujo función cúbica sí sobreyectica, no inyectiva.
+	\item $f(x) = e^x$ (inyectiva)
+	\item $f(x) = \log(x)$ (inyectiva)
+\end{itemize}
+
+\obs Una función no inyectiva no puede tener inversa.
+
+\section{Continuidad}
+\subsection{Límites}
+
+\subsubsection{Repaso de límites de 4º}
+
+\paragraph{Introducción}
+
+Con el excel y geogebra. Definición intuitiva de límite. \textit{Reto: escribe tu propia definición de límite y vete hablándola conmigo.}
+
+\begin{itemize}
+	\item Excel: valor del límite: me voy acercando sin llegar a tocar.
+	\item Geogebra: mismo gráficamente. Hacer zoom hasta la saciedad.
+\end{itemize}
+
+\begin{defn}[Límite en un punto finito]
+Sea $f(x):\real\to\real$.
+
+\[\lim_{x\to a} f(x) = b\]
+
+El límite de la función $f(x)$ en un punto $x=a$ es el valor $b$ al que se aproxima la función cuando la variable se aproxima al punto, sin \hl{nunca} alcanzarlo.
+\end{defn}
+
+Ejemplos:
+\begin{itemize}
+	\item $\lim_{x\to 3} x^2 + 1 = 10$
+	\item $\lim_{x\to 0} \frac{\sin x}{x} = 1$ (cálculo con calculadora) ¿Existe la función en el punto? Nooooo ¿Existe el límite? Siiiii.
+	\item $\lim_{x\to 0} \frac{1}{x^2}$ (cálculo con calculadora). ¿Existe la función en el punto? Nooooo ¿Existe el límite? Puede existir. Decimos que es $\pm\infty$.
+
+\obs Puede ser que la función no se acerque a ningún valor, sino que cada vez se haga más grande. En ese caso el resultado del límite será $+\infty$.
+
+\obs Puede ser que la función no se acerque a ningún valor, sino que cada vez se haga más pequeño. En ese caso el resultado del límite será $-\infty$.
+\end{itemize}
+
+
+\begin{defn}[Límite en el infinito]
+Sea $f(x):\real\to\real$.
+
+\[\lim_{x\to \pm\infty} f(x) = b\]
+
+El límite de una función $f(x):\real\to\real$ en el infinito ($\pm\infty$) es el valor $b$ al que se aproxima la función cuando la variable toma valores \hl{arbitrariamente} grandes (o pequeños).
+\end{defn}
+
+\obs Se cumplen las mismas observaciones de antes.
+
+
+\begin{defn}[Exsitencia del límite en un punto finito] 
+	El límite existe si existen y son iguales los límites laterales. 
+\end{defn}
+
+
+\paragraph{Propiedades de los límites y calcular límites de ejemplos tontos}
 
 
 \printindex
