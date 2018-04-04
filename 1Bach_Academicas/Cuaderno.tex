@@ -1185,6 +1185,11 @@ Ejemplos:
 \end{itemize}
 
 
+\paragraph{Infinito, ¿concepto o valor?}
+\subparagraph{Aritmética del infinito}
+
+\hl{Empezar aquí}
+
 \begin{defn}[Límite en el infinito]
 Sea $f(x):\real\to\real$.
 
@@ -1195,13 +1200,101 @@ El límite de una función $f(x):\real\to\real$ en el infinito ($\pm\infty$) es 
 
 \obs Se cumplen las mismas observaciones de antes.
 
+\begin{example}
+	\[\lim_{x\to\infty}x=\infty\]
+	\[\lim_{x\to\infty}\frac{1}{x}=0\]
+\end{example}
 
 \begin{defn}[Exsitencia del límite en un punto finito] 
 	El límite existe si existen y son iguales los límites laterales. 
 \end{defn}
 
 
-\paragraph{Propiedades de los límites y calcular límites de ejemplos tontos}
+\paragraph{Propiedades de los límites} (me lo he saltado).
+
+Sea $a\in\real\cup\{\infty,-\infty\}$, $f,g:\real\to\real$ y que dado $a$, $\exists\lim_{x\to a}f(x) \;;\; \exists\lim_{x\to a}g(x)$
+\begin{itemize}
+	\item $\lim_{x\to a} \left(f(x) \pm g(x)\right) = \lim_{x\to a} f(x) \pm \lim_{x\to a} g(x)$
+	\item $\lim_{x\to a} \left(f(x) · g(x)\right) = \lim_{x\to a} f(x) · \lim_{x\to a} g(x)$
+	\item $\lim_{x\to a} \left(f(x) \pm g(x)\right) = \lim_{x\to a} f(x) \pm g(x)$
+	\item $\lim_{x\to a} \left(\frac{f(x)}{g(x)}\right) = \lim_{x\to a} f(x) \pm g(x)$
+	\item $\lim_{x\to a} \left(f(x)\right)^{g(x)} = \left(\lim_{x\to a} f(x)\right)^{\lim_{x\to a} g(x)}$	
+	\item $\lim_{x\to a} (f\circ g)(x) = ?$	
+\end{itemize}
+
+\begin{example}
+\[\lim_{x\to 0}\frac{1}{x}\]
+ \[\lim_{x\to 4}\left(\frac{x+1}{x}\right)^{\frac{1}{x-4}}\]
+\end{example}
+
+\paragraph{Indeterminaciones}
+
+\begin{itemize}
+	\item $k/0$
+	\subitem Vistas (la $h$). Son indeterminaciones a medias, ya que sólo tienen 2 posibilidades: $\pm∞$
+	\item $\infty/\infty$ (potencia más alta del denominador)
+	\subitem $\displaystyle\lim_{x\to∞}\frac{x^2+5x+6}{x+\sqrt{x}} = \lim_{x\to∞}\frac{\frac{x^2}{x}+5\frac{x}{x}+\frac{6}{x}}{\frac{x}{x}+\sqrt{\frac{x}{x^2}}} = \lim_{x\to∞}\frac{x+5+\rfrac{6}{x}}{1+\frac{1}{\sqrt{x}}} = ∞$
+	\item $0/0$ (simplificar)
+	\subitem $\displaystyle\lim_{x\to1}\frac{x^2-5x+4}{x-1}$
+	\subitem $\displaystyle\lim_{x\to1}\frac{x-1}{\sqrt{x-1}}$
+	\item $\infty-\infty$
+	\subitem $\displaystyle\lim_{x\to-∞}x^2+x = \lim_{x\to-∞} x(x+1) = (-∞)·(-∞) = ∞$
+	\subitem El problema viene con 
+
+	$\displaystyle\lim_{x\to∞}\sqrt{x^2+1}-x = \lim_{x\to∞}\frac{(\sqrt{x^2+1}-x)(\sqrt{x^2+1}+x)}{\sqrt{x^2+1}+x} = \lim_{x\to∞} \frac{x^2+1-x^2}{\sqrt{x^2+1}+x} = 0$
+	\item $1^{+\infty}$
+		\subitem Estas indeterminaciones aparecen cuando $\displaystyle\lim_{x\to a}f(x)^{g(x)}\;\lim_{x\to a}f(x) = 1\;\lim_{x\to a}g(x) = ∞$ y se resuelven utilizando:
+		\[
+			\displaystyle\lim_{x\to a}f(x)^{g(x)} = e^λ, \text{ donde } λ = \lim_{x\to a} (f(x)-1)g(x)
+		\]
+		\subitem $\displaystyle\lim_{x\to \infty}\left(\frac{x-1}{x}\right)^x = e^λ$ donde $λ=\displaystyle\lim_{x\to∞}\left(\frac{x-1}{x}-1\right)·x = -1$
+\end{itemize}
+
+\subsection{Continuidad}
+
+\begin{defn}[Continuidad\IS en un punto]
+
+Una función $f(x):ℝ\toℝ$ es continua en un punto $a$ si y sólo si se cumplen:
+\begin{itemize}
+	\item $\displaystyle∃\lim_{x\to a}f(x)$
+	\item $\displaystyle∃f(a)$
+	\item $\displaystyle\lim_{x\to a}f(x) = f(a)$
+\end{itemize}
+
+\obs Normalmente diremos: si existen y son iguales el límite y el valor en el punto.
+\end{defn}
+
+\paragraph{Tipos de discontinuidades}
+
+\begin{example}
+\begin{itemize}
+	\item ¿Es continua la función $f(x)$ en $x=2$?
+	\item ¿Es continua la función $f(x) = \frac{x^2-1}{x-1}$ en $x=1$? 
+	\item ¿Es continua la función $f(x) = \sqrt{x}$ en $x=0$?
+	\item Funciones definidas a trozos (hasta aquí).
+\end{itemize}
+\end{example}
+
+\begin{defn}[Continuidad\IS en un intervalo abierto]
+Una función $f(x):ℝ\toℝ$ es continua en $(a,b)\inℝ$ si es continua $∀c\in(a,b)$.
+\end{defn}
+
+\begin{itemize}
+	\item ¿Es continua la función $f(x) = \frac{x^2-1}{x-1}$ en $(2,∞)$?
+	\item ¿Es continua la función $f(x) = \sqrt{x}$ en $(0,∞)$?
+\end{itemize}
+
+
+
+\begin{example}
+Estudia la continuidad de la función $f(x) = \frac{\sqrt{x}}{x-4}$
+
+\obs Una función sólo puede ser continua en su dominio. En este caso: $D(f) = \{x\inℝ\tq x≥0\}-\{x\in\real\tq x-4=0\} = [0,∞)-\{4\}$
+
+La función es continua en $(0,4) ∪ (4,∞)$
+
+\end{example}
+
 
 
 \printindex
