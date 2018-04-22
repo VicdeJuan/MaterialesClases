@@ -1,0 +1,285 @@
+\documentclass[palatino,nosec,nochap,nobuilddate]{Docencia}
+\usetikzlibrary[patterns]
+
+
+\title{Corrección primer parcial Tercera evaluación}
+\author{Departamento de Matemáticas}
+\date{17/18}
+
+
+% Paquetes adicionales
+
+\usepackage[author={Víctor de Juan, 2017}]{pdfcomment}
+
+\makeatletter
+\newcommand{\annotate}[2][]{%
+\pdfstringdef\x@title{#1}%
+\edef\r{\string\r}%
+\pdfstringdef\x@contents{#2}%
+\pdfannot
+width 2\baselineskip
+height 2\baselineskip
+depth 0pt
+{
+/Subtype /Text
+/T (\x@title)
+/Contents (\x@contents)
+}%
+}
+\makeatother
+
+
+
+\usepackage{eso-pic}
+\newcommand\BackgroundPic{%
+\put(0,0){%
+\parbox[b][\paperheight]{\paperwidth}{%
+\vfill
+\centering
+\includegraphics[width=\paperwidth,height=\paperheight,%
+keepaspectratio]{../../../../BWLogo.jpeg}%
+\vfill
+}}}
+
+
+
+
+
+\begin{abstract}
+Corrección del examen parcial de la tercera evaluación del curso 2017-2018.
+
+\nota{No está exento de erratas. En caso de descubrir alguna, por favor, comunicarlas al autor.}
+\end{abstract}
+
+% --------------------
+\newcommand{\cimplies}{\text{\hl{$\implies$}}}
+\renewcommand{\vec}[1]{\overrightarrow{#1}}
+
+\begin{document}
+\pagestyle{plain}
+\maketitle
+
+\AddToShipoutPicture{\BackgroundPic}
+
+\newpage
+\begin{problem}
+Dados los puntos $A(4,-4)$ y $B(6,-2)$, hallar el punto o los puntos de la mediatriz del segmento $AB$ cuya distancia al punto $A$ es igual a 2.
+\solution
+
+\textbf{Calculamos la mediatriz del segmento}
+
+$\vec{AB} = \left(4-6,-4-(-2)\right) = (-2,-2)$
+
+El vector director de la mediatriz será cualquier vector perpendicular a $\vec{AB}$. Por ejemplo, $\vec{v_m} = (1,-1)$ ya que $\vec{v_m}·\vec{AB} = -2+2 = 0$.
+
+La mediatriz pasa por el punto medio del segmento: 
+\[
+	M_{AB} = \left(\frac{a_1+b_1}{2},\frac{a_1+b_1}{2}\right) = \left(\frac{4+6}{2},\frac{-4,-2}{2}\right) =\left(5,-3\right) 
+\]
+
+La mediatriz tendrá $M_{AB} = (5,-3)$ y $\vec{v_m} = (1,-1)$. Utilizando la ecuación continua de la recta:
+
+\[
+	\frac{y-y_0}{v_2} = \frac{x-x_0}{v_1} \implies \frac{y+3}{-1} = \frac{x-5}{1} \dimplies y+3=-x+5 \dimplies x+y-2=0
+\]
+
+\textbf{Distancia punto-punto}
+
+Sea $P(x,y)$ el punto buscado. Su distancia al punto $A$ será:
+
+\[
+	d(P,A) = \sqrt{(x-a_1)^2+(y-a_2)^2} = \sqrt{(x-4)^2+(y+4)^2} = 2 \dimplies (x-4)^2+(y+4)^2=4
+\]
+
+\textbf{Resolución del sistema}
+
+El punto debe pertenecer a la mediatriz (es decir, cumplir su ecuación) y cumplir la restricción de la distancia. 
+
+\[
+	\left\{
+		\begin{array}{c}
+			x+y-2=0\\
+			(x-4)^2+(y+4)^2=4
+		\end{array}
+	\right\} \dimplies
+	\left\{
+		\begin{array}{c}
+			x=2-y\\
+			(x-4)^2+(y+4)^2=4
+		\end{array}
+	\right\} \implies (2-y-4)^2+(y+4)^2=4 \dimplies\]
+\[ (-2-y)^2+(y+4)^2=4 \dimplies y^2+4+4y+y^2+16+8y = 4 \dimplies 2y^2+12y+16=0\dimplies y^2+6y+8=0 
+\]
+Obtenemos 2 soluciones: 
+\[
+	\left\{
+		\begin{array}{c}
+			y_1=-2 \to x_1 = 2-(-2) = 4\\
+			y_2=-4 \to x_2 = 2-(-4) = 6
+		\end{array}
+	\right\}
+\]
+
+Los 2 puntos pedidos son: $(4,-2)\;,\;(6,-4)$
+\end{problem}
+
+\begin{problem}
+
+Sabiendo que $\sen(α) = \rfrac{-1}{2}$ con $π<α<\rfrac{3π}{2}$, hallar razonadamente $\sin(2α+π)$
+
+\solution
+
+Utilizamos: $\sin(α+β) = \sin(α)\cos(β) + \sin(β)\cos(α)$
+
+\[
+	\sin(2α+π) = \sin(2α)·\cos(π) + \sin(π)·\cos(2α) = -2\sin(2α) = -4\sin(α)\cos(α)
+\]
+
+Necesitamos calcular $\cos(α)$. Para ello: $\sin^2(α) + \cos^2(α) = 1$
+
+\[
+	\sin^2(α) + \cos^2(α) = 1 \dimplies \cos(α) = \pm \sqrt{1-\sin^2(α)} = \pm\sqrt{1-\frac{1}{4}} = \pm\frac{\sqrt{3}}{2}
+\]
+
+Como $π<α<\rfrac{3π}{2}$, estamos en el tercer cuadrante por lo que $\sin(α)<0$ y $\cos(α)<0$. Es por ello que elegimos la raíz negativa, obteniendo $\cos(α)=\frac{-\sqrt{3}}{2}$
+
+Ya podemos sustituir:
+\[
+	\sin(2α+π) = -4\sin(α)\cos(α) = -4·\frac{-1}{2}·\frac{-\sqrt{3}}{2}=-\sqrt{3}
+\]
+\end{problem}
+
+\begin{problem}
+
+Calcular $\sqrt[3]{-8}$, expresando los resultados en forma binómica.
+
+\solution
+
+Pasamos a polares $z=-8$:
+
+$\arg(-8) = 180$
+
+$|-8| = 8$
+
+$z = -8 = 8_{180}$
+
+Aplicamos la fórmula: $\sqrt[n]{z} = r_α$ con $r=+\sqrt[n]{|z|}$ y $α=\frac{\arg(z)+360k}{n}, ∀k∈ℤ$
+
+En este caso:
+
+\begin{itemize}
+	\item $r=\sqrt[3]{8} = 2$
+	\item $k=0 \to α_0=\frac{180+360·0}{3} = 60$
+	\item $k=1 \to α_1=\frac{180+360·1}{3} = 180$
+	\item $k=2 \to α_2=\frac{180+360·2}{3} = 300$
+\end{itemize}
+
+\[
+	\sqrt[3]{-8} = \left\{ \begin{array}{c} 2_{60}\\2_{180}\\2_{300}\end{array}\right.
+\]
+
+
+\end{problem}
+
+\begin{problem}
+Hallar el dominio de la función $f(x) = \ln\left(\frac{x+1}{x}\right)$
+
+\solution
+
+\[
+D(f) = \{x\inℝ\tq \frac{x+1}{x}>0\} 
+\]
+Resolvemos la inecuación:
+\[
+\begin{array}{cccc}
+&(-\infty,-1.0)&(-1.0,-0.0)&(-0.0,\infty)\\
+(x+1)&-&+&+\\
+(x+0)&-&-&+\\
+\frac{x+1}{x} &+&-&+
+\end{array}
+\]
+Por lo tanto:
+\[D(f) = \{x\inℝ\tq \frac{x+1}{x}>0\} = (-∞,-1)∪(0,∞)\]
+
+\end{problem}
+
+\begin{problem}
+
+Estudiar la continuidad de $f(x)$ en $x=2$, enunciando previamente las tres condiciones necesarias y suficientes para que $f(x)$ sea continua en un punto.
+
+\[
+f(x) = 
+\begin{cases}
+\frac{x^2-4}{x-2}, x>2\\
+2^x+1, x≤2
+\end{cases}
+\]
+
+\solution
+
+Las 3 condiciones para que $f:ℝ\toℝ$ sea continua en $x=a$ son:
+\begin{itemize}
+	\item $\exists f(a)$
+	\item $\exists \displaystyle\lim_{x\to a}f(x)$
+	\item $f(a) = \lim_{x\to a}f(x)$
+\end{itemize}
+
+En este caso:
+\begin{itemize}
+	\item $f(2) = 2^2+1 = 5 \implies \exists f(2)$
+	\item $\exists \displaystyle\lim_{x\to a}f(x)$
+	\[
+	\lim_{x\to 2}f(x) = \left\{\begin{array}{l}
+		\displaystyle\lim_{x\to2^+}\frac{x^2-4}{x-2} \overset{(1)}{=} \lim_{x\to2+}\frac{(x+2)(x-2)}{x-2} = \lim_{x\to2+}x+2=4\\
+		\\
+		\displaystyle\lim_{x\to2^-} 2^x+1 = 2^2+1=5
+	\end{array}\right\}\implies \nexists\lim_{x\to2}f(x)
+	\]
+	$(1)$ Indeterminación de tipo $\frac{0}{0}$
+	\item $f(2) = \lim_{x\to 2}f(x)$. Si no existe el límite, no tiene sentido esta condición.
+\end{itemize}
+
+\textbf{Clasificación de la discontinuidad:} Al no coincidir los límites laterales es un salto. Como ninguno de los 2 límites laterales son $∞$, decimos que es una \textit{discontinuidad de salto finito.}
+
+\end{problem}
+
+\begin{problem}
+
+Derivar las siguientes funciones
+
+\ppart $\displaystyle f(x) = \frac{x^2+1}{\ln(x)}$
+
+\ppart $\displaystyle f(x) = 2^x·\sqrt{x}$
+
+\solution
+
+\spart 
+Utilizamos: 
+
+\begin{itemize}
+	\item $f(x) = x^n \to f'(x) = nx^{n-1}$
+	\item $f(x) = \ln(x) \to f'(x) = \rfrac{1}{x}$
+	\item $(f(x)+g(x))' = f'(x) + g'(x)$
+	\item $\displaystyle \left(\frac{f}{g}\right)' = \frac{f'(x)·g(x) - f(x)·g'(x)}{g(x)^2}$
+\end{itemize}
+
+En este caso:
+
+\[
+	f(x) = \frac{x^2+1}{\ln(x)} \implies \frac{2x\ln(x) - \frac{x^2+1}{x}}{\ln(x)^2} = \frac{2x^2\ln(x)-x^2-1}{x·\ln^2(x)}
+\]
+
+\spart Utilizamos: 
+\begin{itemize}
+	\item $f(x) = a^x \to f'(x) = a^·\ln(a)$
+	\item $f(x) = x^n \to f'(x) = nx^{n-1}$
+	\item $\displaystyle \left(f(x)·g(x)\right)' = f'(x)·g(x) + f(x)·g'(x)$
+\end{itemize}
+
+\[
+f(x) = 2^x·\sqrt{x} \to f'(x) = (2^x)'·\sqrt{x} + 2^x·\left(x^{\rfrac{1}{2}}\right)' = 2^x\ln(a)\sqrt{x} + 2^x·\frac{1}{2\sqrt{x}}
+\]
+
+\end{problem}
+
+\end{document}
