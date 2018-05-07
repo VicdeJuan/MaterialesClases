@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{apuntesURJC}[2013/04/20 Note taking class]
+\ProvidesClass{estudioFuncion}[2013/04/20 Note taking class]
 
 \def\printbuilddate{\footnotetext{\tiny Documento compilado el \today\ a las \currenttime}}
 \def\enableindexbuilddate{\renewcommand{\compdate}{\tiny{\today\, \currenttime}}}

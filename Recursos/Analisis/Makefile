@@ -1,21 +1,24 @@
 TARGET=main
 NAME=EstudioFunciones
+LATEX=/mnt/c/texlive/2018/bin/win32/pdflatex.exe
+LTXMK=/mnt/c/texlive/2018/bin/win32/latexmk.exe
+
 
 
 
 all: sage
-	pdflatex $(TARGET) 
+	$(LATEX) $(TARGET)
 
 latex: tex/ $(TARGET).tex
-	pdflatex $(TARGET) 	
+	$(LATEX) $(TARGET)
 
 sage: latex
 	sage $(TARGET).sagetex.sage
 
 resage:
-	pdflatex $(TARGET)
+	$(LATEX) $(TARGET)
 	sage $(TARGET).sagetex.sage
 
 clean:
 	rm -r *sage*
-	latexmk -C
+	$(LTXMK) -C
