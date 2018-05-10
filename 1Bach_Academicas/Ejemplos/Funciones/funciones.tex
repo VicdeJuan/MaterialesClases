@@ -105,7 +105,7 @@ Para distinguir cuál es necesitamos comparar $f(2)$ y $f(3)$.
 Si $f(2)<f(3)$, entonces $(x,f(2))$ será el mínimo absoluto (ya que es más mínimo que le otro) y viceversa.}
 
 \begin{sagesilent}
-	f(x) = 3*x**4-4*x**3-36*x**2
+	f = 3*x**4-4*x**3-36*x**2
 def ismin(f,x0):
  val = f(x0)
  retval = "f("+str(x0)+") = "+str(f(x0))
@@ -118,9 +118,9 @@ def ismin(f,x0):
  return retval
 \end{sagesilent}
 
-$f(2) = \text{\sage{str(f(2))}}$
+$f(2) = \sagestr{latex(f(2))}$
 
-$f(3) = \text{\sage{str(f(3))}}$ 
+$f(3) = \sagestr{latex(f(3))}$
 
 El mínimo absoluto está en $x=3$ ya que $f(3)<f(2)$. Gráficamente, un mínimo se encuentra \textit{más abajo} que el otro.                                                                                      
 
@@ -187,10 +187,16 @@ El mínimo absoluto está en $x=3$ ya que $f(3)<f(2)$. Gráficamente, un mínimo
 
 \input{tex/fun}
 
-\begin{problem} Estudia sistemáticamente la función: \[f(x) =\sagestr{f}\]
+
+\begin{problem} 
+
+	Estudia sistemáticamente la función: \[f(x) =\sagestr{latex(f(x))}\]
 	
 	\solution
-	
+%\[\sage{latex(f(x))}\]
+
+%\sage{latex(f(x))}	
+
 	\newexample{tex/fun}
 \end{problem}
 
