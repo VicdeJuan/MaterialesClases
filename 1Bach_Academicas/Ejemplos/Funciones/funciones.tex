@@ -1,0 +1,205 @@
+\documentclass[palatino,nosec]{Docencia}
+
+
+\title{Ejercicios funciones}
+\author{Departamento de Matemáticas}
+\date{17/18}
+
+\usepackage{sagetex}
+
+\begin{abstract}
+\end{abstract}
+
+% Paquetes adicionales
+
+\usepackage[author={Víctor de Juan, 2017}]{pdfcomment}
+
+\makeatletter
+\newcommand{\annotate}[2][]{%
+	\pdfstringdef\x@title{#1}%
+	\edef\r{\string\r}%
+	\pdfstringdef\x@contents{#2}%
+	\pdfannot
+	width 2\baselineskip
+	height 2\baselineskip
+	depth 0pt
+	{
+		/Subtype /Text
+		/T (\x@title)
+		/Contents (\x@contents)
+	}%
+}
+\makeatother
+
+% --------------------
+\newcommand{\cimplies}{\text{\hl{$\implies$}}}
+\renewcommand{\vx}{\overset{\rightarrow}{x}}
+\renewcommand{\vy}{\overset{\rightarrow}{y}}
+\renewcommand{\vz}{\overset{\rightarrow}{z}}
+\newcommand{\vi}{\overset{\rightarrow}{i}}
+\newcommand{\vj}{\overset{\rightarrow}{j}}
+\renewcommand{\vec}[1]{\overset{\rightarrow}{#1}}
+
+\usepackage{pgf,tikz}
+\usetikzlibrary{arrows}
+
+\begin{document}
+\pagestyle{plain}
+
+	
+\begin{problem} Demuestra que el vértice de la parábola $f(x) = ax^2+bx+c$ tiene de coordenada horizontal $x=\rfrac{-b}{2a}$
+\solution
+
+El vértice será extremo relativo de la parábola (máximo o mínimo según el signo de $a$) y se encontrará en $f'(x) = 0$.
+
+\[f'(x) = 0 \dimplies 2ax+b=0 \dimplies x=\frac{-b}{2a}\]
+
+Las coordenadas del vértice serán \[\left(\frac{-b}{2a},f\left(\frac{-b}{2a}\right) \right)\]
+
+
+\end{problem}
+
+
+\begin{problem} Halla las rectas tangentes a la función $f(x)$ en los máximos (no es necesario intervalos de crecimiento y decrecimiento).
+\[
+f(x) = 3x^4-4x^3-36x^2
+\]
+
+¿Hay algún máximo absoluto?
+
+\solution
+
+Primero necesitamos encontrar los máximos. 
+%
+Para ello resolvemos $f'(x) = 0$
+
+\[
+f'(x) = 12x^3-12x^2-72x = 12x(x^2-x-6) = 0 \]
+\[\dimplies \left\{\begin{array}{l}
+x_1=0\\
+x^2-x-7 = 0 \dimplies x_2 = 2 \;\;\; x_3= -3
+\end{array}\right\}
+\]
+
+¿Cuáles de estos extremos son máximos? Aquellos que cumplan $f''(x_i) < 0$
+
+\[f''(x) = 36x^2-24x-72\]
+\begin{itemize}
+	\item $f''(0) = -72 <0 \to $ el extremo de $x_1=0$ es un máximo. 
+	\item $f''(2) = 24 > 0 \to $ el extremo de $x_2=2$ es un mínimo. 
+	\item $f''(3) = 180 > 0 \to$ el extremo ce $x_3=3$ es un mínimo.
+\end{itemize}
+
+\textbf{Recta tangente}
+
+\[
+	y-f(x_0) = f'(x_0)·(x-x_0) \dimplies y-0 = 0·(x-0) \implies y=0
+\]
+
+\textbf{Máximo absoluto} El máximo no puede ser absoluto porque $\lim_{x\to\infty} f(x) = \infty$, por lo que la función no tiene puede tener máximo absoluto.
+
+\textit{Como curiosidad, ¿y el mínimo? $\lim_{x\to-\infty}f(x) = \infty$. En ambos extremos la función va a $+\infty$, por lo que alguno de los 2 mínimos encontrados debe ser absoluto. 
+%
+Para distinguir cuál es necesitamos comparar $f(2)$ y $f(3)$. 
+%
+Si $f(2)<f(3)$, entonces $(x,f(2))$ será el mínimo absoluto (ya que es más mínimo que le otro) y viceversa.}
+
+\begin{sagesilent}
+	f(x) = 3*x**4-4*x**3-36*x**2
+def ismin(f,x0):
+ val = f(x0)
+ retval = "f("+str(x0)+") = "+str(f(x0))
+ if val<0:
+  retval += "<0 por lo que hay un máximo relativo en "+str(x0)
+ elif val>0:
+  retval += ">0 por lo que hay un mínimo relativo en "+str(x0)
+ else:
+  retval += "No podemos determinar si se trata de un máximo o un mínimo de esta manera" 
+ return retval
+\end{sagesilent}
+
+$f(2) = \text{\sage{str(f(2))}}$
+
+$f(3) = \text{\sage{str(f(3))}}$ 
+
+El mínimo absoluto está en $x=3$ ya que $f(3)<f(2)$. Gráficamente, un mínimo se encuentra \textit{más abajo} que el otro.                                                                                      
+
+
+\end{problem}
+
+
+\begin{problem} Estudia la monotonía (intervalos de crecimiento, decrecimiento y extremos relativos y absolutos) de $f(x) = x^4-2x^2$
+	\solution
+	
+	1) Resolvemos $f'(x) = 0$
+	
+	\[
+	f'(x) = 4x^3-4x =x(4x^2-4)   \left\{\begin{array}{l}
+	x_1=0\\
+	4x^2-4 = 0 \dimplies x_2 = 1 \;\;\; x_3= -1
+	\end{array}\right\}
+	\]
+	
+	2) Estudiamos el signo de la derivada en los intervalos que nos marcan los puntos críticos.
+	
+	\begin{itemize}
+		\item $(-\infty,-1) \to f'(x) < 0$
+		\item $(-1,0) \to f'(x) > 0$
+		\item $(0,1) \to f'(x) < 0$
+		\item $(1,\infty) \to f'(x) > 0$
+	\end{itemize}
+	
+\end{problem}
+
+\begin{problem} Estudia la monotonía (intervalos de crecimiento, decrecimiento y extremos relativos y absolutos) de $f(x) = x^3$
+	\solution
+	
+	1) Resolvemos $f'(x) = 0$
+	
+	\[
+	f'(x) = 3x^2 \dimplies x=0
+	\]
+	
+	2) Estudiamos el signo de la derivada en los intervalos que nos marcan los puntos críticos.
+	
+	$f'(x) > 0 \forall x \implies$ la función \textbf{siempre} es creciente.
+	
+\end{problem}
+
+\newif\ifverbose
+\verbosetrue
+
+\newcommand{\newexample}[1]{
+	\input{#1}
+	\input{tex/Solution_Template_full}
+	\newpage
+}
+
+\ifverbose
+\begin{sagesilent}
+	Verbose=1
+\end{sagesilent}
+\else
+\begin{sagesilent}
+	Verbose=0
+\end{sagesilent}
+\fi
+
+\input{tex/fun}
+
+\begin{problem} Estudia sistemáticamente la función: \[f(x) =\sagestr{f}\]
+	
+	\solution
+	
+	\newexample{tex/fun}
+\end{problem}
+
+
+\begin{problem} Estudia las asíntotas de \[f(x) =\frac{x^3-4x^2+x+6}{2x^3-14x^2+32x-24}\]
+\solution
+\end{problem}
+\begin{problem} Deriva $f(x) = \tan(x^2-3x)$
+\solution
+\end{problem}
+
+\end{document}
