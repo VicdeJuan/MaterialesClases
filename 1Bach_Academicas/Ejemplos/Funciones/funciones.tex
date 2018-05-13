@@ -46,7 +46,109 @@
 \begin{document}
 \pagestyle{plain}
 
-	
+\newif\ifverbose
+\verbosetrue
+
+\ifverbose
+\begin{sagesilent}
+	Verbose=1
+\end{sagesilent}
+\else
+\begin{sagesilent}
+	Verbose=0
+\end{sagesilent}
+\fi
+\begin{sagesilent}
+def random_between(j,k):
+ if ((j==-Infinity) and (k == Infinity)):
+  return 0
+
+ if (j==-Infinity):
+  return int(k-2)
+
+ if (k==Infinity):
+  return int(j+2)
+
+ if (j < 0 and k>0):
+  return 0
+
+ if (j < 1 and k>1):
+  return 1
+ 
+ if (k-j>=2):
+  return int(random()*(k-j-1))+j+1
+ else:
+  return round((k+j)/2.0,2)
+
+
+def _getRealroots(f):
+ __roots = solve(f(x)==0,x,solution_dict=True)
+ _roots = [a[x].full_simplify() for a in __roots if imag(a[x])==0]
+ return _roots
+
+def intervalos(recta):
+ r = ""
+ for i in xrange(len(recta)-1):
+  r += "$\\left("+latex(recta[i])+","+latex(recta[i+1])+"\\right)$;\\quad"  
+ return r
+
+def _f_sign_monot(recta,g):
+ min=[]
+ max=[]
+ prev=0
+ actual=0
+ retval = "\\begin{itemize}"
+ for i in xrange(len(recta)-1):
+  rval=random_between(recta[i],recta[i+1])
+  retval += "\\item $\\left("+latex(recta[i])+","+latex(recta[i+1])+"\\right)$:"
+  if (Verbose == 1):
+   retval += " Tomamos, por ejemplo, f'($"+latex(rval)+") = "+latex(round(g(rval),3))+"...$  y miramos su signo:" 
+  else:
+   retval += "f'($"+latex(rval)+") = "+latex(round(g(rval),3)) +"$"
+  prev=actual
+  actual=sign(g(rval))
+  if actual==1: 
+   if (Verbose == 1):
+    retval += "Positivo, por lo que la función \\textbf{crece} en este intervalo"  
+   else:
+    retval += "Positivo $\\Rightarrow$ crece"
+  else:
+   if (Verbose == 1):
+    retval += "Negativo, por lo que la función \\textbf{decrece} en este intervalo"
+   else:
+    retval += "Negativo $\\Rightarrow$ decrece"
+
+
+ return [retval+"\\end{itemize}",min,max]
+
+def estudiarSigno(f):
+ recta=[-Infinity,Infinity]
+ for a in _getRealroots(f):
+  recta.append(a)
+ recta=sorted(recta) 
+ retval = "Los intervalos a estudiar son: "+latex(intervalos(recta))
+ 
+ [_retval,min,max] = _f_sign_monot(recta,f)
+ return retval + _retval
+
+
+## Function str ismin(f,x0).
+## f: second derivate of the function to study.
+## x0: value to check if it is maximum.
+## return 	string with the answer.
+def ismin(f,x0):
+ val = f(x0)
+ retval = "f("+str(x0)+") = "+str(f(x0))
+ if val<0:
+  retval += "<0 por lo que hay un máximo relativo en "+str(x0)
+ elif val>0:
+  retval += ">0 por lo que hay un mínimo relativo en "+str(x0)
+ else:
+  retval += "No podemos determinar si se trata de un máximo o un mínimo de esta manera" 
+ return retval
+ 
+\end{sagesilent}
+
 \begin{problem} Demuestra que el vértice de la parábola $f(x) = ax^2+bx+c$ tiene de coordenada horizontal $x=\rfrac{-b}{2a}$
 \solution
 
@@ -64,7 +166,6 @@ Las coordenadas del vértice serán \[\left(\frac{-b}{2a},f\left(\frac{-b}{2a}\r
 \[
 f(x) = 3x^4-4x^3-36x^2
 \]
-
 ¿Hay algún máximo absoluto?
 
 \solution
@@ -72,6 +173,7 @@ f(x) = 3x^4-4x^3-36x^2
 Primero necesitamos encontrar los máximos. 
 %
 Para ello resolvemos $f'(x) = 0$
+
 
 \[
 f'(x) = 12x^3-12x^2-72x = 12x(x^2-x-6) = 0 \]
@@ -105,33 +207,29 @@ Para distinguir cuál es necesitamos comparar $f(2)$ y $f(3)$.
 Si $f(2)<f(3)$, entonces $(x,f(2))$ será el mínimo absoluto (ya que es más mínimo que le otro) y viceversa.}
 
 \begin{sagesilent}
-	f = 3*x**4-4*x**3-36*x**2
-def ismin(f,x0):
- val = f(x0)
- retval = "f("+str(x0)+") = "+str(f(x0))
- if val<0:
-  retval += "<0 por lo que hay un máximo relativo en "+str(x0)
- elif val>0:
-  retval += ">0 por lo que hay un mínimo relativo en "+str(x0)
- else:
-  retval += "No podemos determinar si se trata de un máximo o un mínimo de esta manera" 
- return retval
+  f(x) = 3*x**4-4*x**3-36*x**2
 \end{sagesilent}
 
 $f(2) = \sagestr{latex(f(2))}$
 
 $f(3) = \sagestr{latex(f(3))}$
 
-El mínimo absoluto está en $x=3$ ya que $f(3)<f(2)$. Gráficamente, un mínimo se encuentra \textit{más abajo} que el otro.                                                                                      
+\textit{El mínimo absoluto está en $x=3$ ya que $f(3)<f(2)$. Gráficamente, un mínimo se encuentra \textit{más abajo} que el otro.   }                                                                                   
 
 
 \end{problem}
 
 
 \begin{problem} Estudia la monotonía (intervalos de crecimiento, decrecimiento y extremos relativos y absolutos) de $f(x) = x^4-2x^2$
+	\begin{sagesilent}
+		f(x)=x^4-2*x^2
+	\end{sagesilent}
+
 	\solution
 	
-	1) Resolvemos $f'(x) = 0$
+	1) Resolvemos $f'(x) = 0$. Los extremos relativos son:
+
+	\sagestr{estudiarSigno(f(x))}
 	
 	\[
 	f'(x) = 4x^3-4x =x(4x^2-4)   \left\{\begin{array}{l}
@@ -140,10 +238,11 @@ El mínimo absoluto está en $x=3$ ya que $f(3)<f(2)$. Gráficamente, un mínimo
 	\end{array}\right\}
 	\]
 	
-	2) Estudiamos el signo de la derivada en los intervalos que nos marcan los puntos críticos.
+	2) Estudiamos el signo de la derivada en los intervalos que nos marcan los puntos críticos. 
+	
 	
 	\begin{itemize}
-		\item $(-\infty,-1) \to f'(x) < 0$
+		\item $(-\infty,-1) \to f'(a) < 0$
 		\item $(-1,0) \to f'(x) > 0$
 		\item $(0,1) \to f'(x) < 0$
 		\item $(1,\infty) \to f'(x) > 0$
@@ -166,8 +265,6 @@ El mínimo absoluto está en $x=3$ ya que $f(3)<f(2)$. Gráficamente, un mínimo
 	
 \end{problem}
 
-\newif\ifverbose
-\verbosetrue
 
 \newcommand{\newexample}[1]{
 	\input{#1}
@@ -175,22 +272,15 @@ El mínimo absoluto está en $x=3$ ya que $f(3)<f(2)$. Gráficamente, un mínimo
 	\newpage
 }
 
-\ifverbose
-\begin{sagesilent}
-	Verbose=1
-\end{sagesilent}
-\else
-\begin{sagesilent}
-	Verbose=0
-\end{sagesilent}
-\fi
 
 \input{tex/fun}
 
 
 \begin{problem} 
 
-	Estudia sistemáticamente la función: \[f(x) =\sagestr{latex(f(x))}\]
+	Estudia sistemáticamente la función:
+	
+	\[f(x) =\sagestr{latex(f(x))}\]
 	
 	\solution
 %\[\sage{latex(f(x))}\]

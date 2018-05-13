@@ -2,8 +2,29 @@
 \begin{sagesilent}
 TieneLog=0
 \end{sagesilent}
+\begin{sagesilent}
+def random_between(j,k):
+ if ((j==-Infinity) and (k == Infinity)):
+  return 0
+
+ if (j==-Infinity):
+  return int(k-2)
+
+ if (k==Infinity):
+  return int(j+2)
+
+ if (j < 0 and k>0):
+  return 0
+
+ if (j < 1 and k>1):
+  return 1
 
 
+ if (k-j>=2):
+  return int(random()*(k-j-1))+j+1
+ else:
+  return round((k+j)/2.0,2)
+\end{sagesilent}
 
 
 \paragraph{Asíntotas}
@@ -52,8 +73,8 @@ def asintotesV():
     for x0 in den0:
         r+= "\\paragraph{Asintota en $x ="
         r+= latex(x0)+"$}"
-        ld=limit(f,x=x0,dir="plus")
-        li=limit(f,x=x0,dir="minus")
+        ld=limit(f(x),x=x0,dir="plus")
+        li=limit(f(x),x=x0,dir="minus")
         if (Verbose==1): 
             r+="Calculamos"
         r+= "\[\\lim_{x\\mapsto " + latex(x0) + "} " + latex(f(x)) + " = \\left\\{\\begin{array}{cc}\\text{Por la derecha: } & x\\mapsto" + latex(ld) + " \\\\ \\text{Por la izquierda: } & x\\mapsto" + latex(li) + "\\end{array}\\right.\] "
@@ -275,7 +296,7 @@ Calculamos la derivada de la función:
 \sagestr{derivadaNula()}
 
 \ifverbose
-\hl{E incluimos los puntos de discontinuidad} (en caso de haberlos) ya que se puede producir un cambio en la tendencia de la función. 
+\hl{E incluimos los puntos de discontinuidad de la función primitiva} (en caso de haberlos) ya que se puede producir un cambio en la tendencia de la función. 
 %
 Por lo tanto, los puntos críticos son : 
 \sagestr{ptsCriticos()}
@@ -301,35 +322,10 @@ Y ahora, estudiamos la monotonía el signo de la derivada en esos intervalos:
 \fi
 \begin{sagesilent}
 
-
-def random_between(j,k):
-    if ((j==-Infinity) and (k == Infinity)):
-        return 0
-
-    if (j==-Infinity):
-        return int(k-2)
-        
-    if (k==Infinity):
-        return int(j+2)
-    
-    if (j < 0 and k>0):
-        return 0
-    
-    if (j < 1 and k>1):
-        return 1
-    
-
-    if (k-j>=2):
-        return int(random()*(k-j-1))+j+1
-    else:
-        return round((k+j)/2.0,2)
-        
-
-g=diff(f,x,1)
-max=[]
-min=[]
-def diffsign():
-
+def diffsign(f):
+    max=[]
+    min=[]
+    g=diff(f,x,1)
     prev=0
     actual=0
     retval = "\\begin{itemize}"
@@ -357,7 +353,7 @@ def diffsign():
             min.append(recta[i])
         if (prev == 1 and actual == -1):
             max.append(recta[i])
-    return retval+"\\end{itemize}"
+    return [max,min,retval+"\\end{itemize}"]
 
 def printlist(m):
     retval = "\\{"
@@ -365,9 +361,11 @@ def printlist(m):
     	retval += "x = " + latex(_m) + ";\\quad"
     return retval+"\\}"
 
+[max,min,diffsign_str] = diffsign(f)
+
 \end{sagesilent}
 
-\sagestr{diffsign()}
+\sagestr{diffsign_str}
 
 \textbf{\textit{Máximos relativos}}
 \ifverbose
@@ -376,7 +374,7 @@ Los puntos en los que a la izquiera la función crece (derivada positiva) y a la
 
 \[\text{Máximos relativos: } \sagestr{printlist(max)}\]
 
-\textbf{Mínimos relativos}
+\textbf{\textit{Mínimos relativos}}
 \ifverbose
 Los puntos en los que a la izquierda la función crece (derivada positiva) y a la derecha decrece (derivada negativa) son los máximos relativos. En este caso son: 
 \fi
