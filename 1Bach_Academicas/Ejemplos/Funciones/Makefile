@@ -20,5 +20,5 @@ resage:
 	sage $(TARGET).sagetex.sage
 
 clean:
-	rm -r *sage*
+	rm -r *sagetex*
 	$(LTXMK) -C
