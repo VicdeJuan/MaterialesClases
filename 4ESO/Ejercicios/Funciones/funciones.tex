@@ -1,0 +1,85 @@
+\documentclass[palatino,nosec]{Docencia}
+
+
+\title{Ejercicios funciones}
+\author{Departamento de Matemáticas}
+\date{17/18}
+
+\usepackage{sagetex}
+\newcommand{\fullAnalisis}[1]{
+	\input{#1}
+	\input{tex/Solution_Template_full}
+	\newpage
+}
+
+
+\begin{abstract}
+\end{abstract}
+
+% Paquetes adicionales
+
+\usepackage[author={Víctor de Juan, 2017}]{pdfcomment}
+
+\makeatletter
+\newcommand{\annotate}[2][]{%
+	\pdfstringdef\x@title{#1}%
+	\edef\r{\string\r}%
+	\pdfstringdef\x@contents{#2}%
+	\pdfannot
+	width 2\baselineskip
+	height 2\baselineskip
+	depth 0pt
+	{
+		/Subtype /Text
+		/T (\x@title)
+		/Contents (\x@contents)
+	}%
+}
+\makeatother
+
+% --------------------
+\newcommand{\cimplies}{\text{\hl{$\implies$}}}
+\renewcommand{\vx}{\overset{\rightarrow}{x}}
+\renewcommand{\vy}{\overset{\rightarrow}{y}}
+\renewcommand{\vz}{\overset{\rightarrow}{z}}
+\newcommand{\vi}{\overset{\rightarrow}{i}}
+\newcommand{\vj}{\overset{\rightarrow}{j}}
+\renewcommand{\vec}[1]{\overset{\rightarrow}{#1}}
+
+\usepackage{pgf,tikz}
+\usetikzlibrary{arrows}
+
+\begin{document}
+\pagestyle{plain}
+
+\newif\ifverbose
+\verbosetrue
+
+\ifverbose
+\begin{sagesilent}
+	Verbose=1
+\end{sagesilent}
+\else
+\begin{sagesilent}
+	Verbose=0
+\end{sagesilent}
+\fi
+
+\input{tex/sageUtilities}
+
+\begin{problem} Estudia sistemáticamente la función
+	\[
+		f(x) = \frac{2x^2+2x-24}{x^2-4x+4}
+	\]
+\solution
+
+\textit{Esta solución ha sido generada automáticamente. Puede contener errores}
+
+\fullAnalisis{tex/fun}
+
+\end{problem}
+
+
+
+
+\end{document}

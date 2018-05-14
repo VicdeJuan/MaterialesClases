@@ -1,0 +1,37 @@
+\paragraph{Asíntotas}
+\subparagraph{Asíntotas verticales}
+
+\begin{sagesilent}
+den=f.denominator(normalize=False)
+denIs0=ptsDiscontinuidad(f = f,isLog = TieneLog)
+\end{sagesilent}
+
+
+\ifverbose
+Los posibles puntos en los que la función puede tener una asíntota vertical son aquellos en los que se anula el denominador. 
+%
+Por ello calculamos:
+%
+\[\sagestr{latex(den)} = 0 \]
+\fi
+\begin{sagesilent}
+[strAV,AV] = asintotesV(f = f,den = den, isLog = TieneLog)
+\end{sagesilent}
+
+\sagestr{strAV}
+
+\subparagraph{Asíntotas horizontales u oblícuas}
+
+\ifverbose
+Las asíntotas horizontales y oblicuas nos dan la información acerca de la tendencia de la función en $-\infty$ y en $+\infty$.
+
+Para calcular las asíntotas, necesitamos calcular el límite de la función tanto en $+\infty$ como en $-\infty$:
+\fi
+
+\[\lim_{x\mapsto \pm\infty} \sagestr{latex(f(x))} \]
+
+\begin{sagesilent}
+[strAHO,AH,AO] = asintotesHO(f = f)
+\end{sagesilent}
+
+\sagestr{strAHO}
