@@ -395,7 +395,7 @@ def diffsign(f,recta):
 def printlist(m):
     retval = "\\{"
     for _m in m:
-    	retval += "x = " + latex(_m) + ";\\quad"
+        retval += "x = " + latex(_m) + ";\\quad"
     return retval+"\\}"
 
 
@@ -450,7 +450,7 @@ def estudiarSigno(f):
 ## Function str ismin(f,x0).
 ## f: second derivate of the function to study.
 ## x0: value to check if it is maximum.
-## return 	string with the answer.
+## return   string with the answer.
 def ismin(f,x0):
  val = f(x0)
  retval = "f("+str(x0)+") = "+str(f(x0))
@@ -480,6 +480,8 @@ def dominion(f,hasDen,hasLog,hasRt):
 # int list AH: lista de puntos en los que hay una asintota horizontal.
 # EXPR AO: ecuación de la asíntota oblícua y=mx+n
 def _myplot(f,AV,AH,AO):
+ 
+ discont=list(set(ptsDiscontinuidad(f=f,isLog=false)).difference(AV))
  xmin=-8
  xmax=8
  ymin=-10
@@ -496,6 +498,11 @@ def _myplot(f,AV,AH,AO):
   lab="y="+str(AH[i])
   h=AH[i]
   P+=line([(xmin,h),(xmax,h)],legend_label=lab,color='red',linestyle='-')
+ for i in xrange(len(discont)):
+  x0=discont[i]
+  ld=limit(f(x),x=x0,dir="plus")
+  
+  P+=circle((x0,ld),0.2,facecolor='white',fill=True)
  if AO != []:
   P+=plot(AO,color='purple',xmin=xmin,xmax=xmax,ymin=ymin,ymax=ymax)
  return P

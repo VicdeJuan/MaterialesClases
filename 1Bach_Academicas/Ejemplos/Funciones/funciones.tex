@@ -1,16 +1,13 @@
 \documentclass[palatino,nosec]{Docencia}
 
+\usepackage{sagetex}
+
 
 \title{Ejercicios funciones}
 \author{Departamento de Matemáticas}
 \date{17/18}
 
-\usepackage{sagetex}
-\newcommand{\fullAnalisis}[1]{
-	\input{#1}
-	\input{tex/Solution_Template_full}
-	\newpage
-}
+
 
 
 \begin{abstract}
@@ -36,6 +33,9 @@
 	}%
 }
 \makeatother
+\usepackage{pgf,tikz}
+\usetikzlibrary{arrows}
+
 
 % --------------------
 \newcommand{\cimplies}{\text{\hl{$\implies$}}}
@@ -46,15 +46,13 @@
 \newcommand{\vj}{\overset{\rightarrow}{j}}
 \renewcommand{\vec}[1]{\overset{\rightarrow}{#1}}
 
-\usepackage{pgf,tikz}
-\usetikzlibrary{arrows}
-
 \begin{document}
 \pagestyle{plain}
 
+
+%%%% Cabecera necesaria para funcionar con sageUtilities
 \newif\ifverbose
 \verbosetrue
-
 \ifverbose
 \begin{sagesilent}
 	Verbose=1
@@ -64,8 +62,9 @@
 	Verbose=0
 \end{sagesilent}
 \fi
-
 \input{sageUtilities}
+
+%%%% Empieza el documento
 
 \begin{problem} Demuestra que el vértice de la parábola $f(x) = ax^2+bx+c$ tiene de coordenada horizontal $x=\rfrac{-b}{2a}$
 \solution
@@ -174,7 +173,7 @@ $f(3) = \sagestr{latex(f(3))}$
 
 
 \input{tex/fun}
-
+    
 \begin{problem} 
 
 	Estudia sistemáticamente la función:
@@ -189,11 +188,15 @@ $f(3) = \sagestr{latex(f(3))}$
 
 \begin{problem} Estudia las asíntotas de \[f(x) =\frac{x^3-4x^2+x+6}{2x^3-14x^2+32x-24}\]
 \solution
+
+\textit{Esta solución ha sido generada automáticamente. Puede contener errores}
+
 \begin{sagesilent}
 f=(x^3-4*x^2+x+6)/(2*x^3-14*x^2+32*x-24)
 \end{sagesilent}
 
-\input{tex/asintotas}
+\myasintotas
+\mygrafo
 
 \end{problem}
 \begin{problem} Deriva $f(x) = \tan(x^2-3x)$
