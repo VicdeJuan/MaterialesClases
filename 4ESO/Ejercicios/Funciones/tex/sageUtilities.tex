@@ -1,13 +1,11 @@
 
-\newcommand{\myauxdir}{auxFunciones}
 \newcommand{\fullAnalisis}[1]{
 \input{#1}
-%\input{\myauxdir/dominio}
 \mydominio
 \mysimetria
 \myptscorte
 \myasintotas
-%\mygrafo
+\mygrafo
 \newpage
 }
 
@@ -100,7 +98,7 @@ Para calcular las asíntotas, necesitamos calcular el límite de la función tan
 En azul se marcan las asíntotas verticales, en rojo las horizontales y en morado las oblícuas.
 \fi
 \begin{center}
-\sageplot{_myplot(f,AH,AV,AO)}
+\sageplot{_myplot(f,AH=uniq(AH),AV=uniq(AV),AO=AO)}
 \end{center}
 }
 
@@ -146,6 +144,9 @@ def ptsDiscontinuidad(f,isLog):
     den0 = [a[x] for a in _den0 if imag(a[x])==0]
     return den0
 
+def _emptylist(aux):
+    [aux.pop() for a in xrange(len(aux))]
+    
 ## Función para calcular las asíntotas verticales de la función.
 #Input:
 # f: función
@@ -153,6 +154,7 @@ def ptsDiscontinuidad(f,isLog):
 # boolean log: tieneLog 
 # AV: array vacío para rellenar
 def asintotesV(f,den,isLog,AV):
+    _emptylist(AV)
     _den0=solve(f.denominator(normalize=False) == 0,x,solution_dict=True)
     den0 = [a[x] for a in _den0 if imag(a[x])==0]
 
@@ -219,6 +221,8 @@ def asintotesV(f,den,isLog,AV):
 # f: función
 
 def asintotesHO(f,AH,AO):
+    _emptylist(AH)
+    _emptylist(AO)
     r=""
     for infty in [Infinity, -Infinity]:
         if (Verbose == 1):
@@ -253,7 +257,7 @@ def asintotesHO(f,AH,AO):
                 n=_n
                 y=m*x+n
                 r+= "En $"+latex(infty)+"$, f(x) tiene una \\textbf{asíntota oblícua} en $y="+latex(y)+"$."
-                AO=y
+                AO.append(m*x+n)
             else:
                 if (Verbose == 1):
                     r+= "En este caso, ese límite tenemos $m="+latex(m)+"$ por lo que \\textbf{no hay asíntota} oblícua (ni horizontal)."
@@ -493,7 +497,7 @@ def _myplot(f,AV,AH,AO):
   h=AH[i]
   P+=line([(xmin,h),(xmax,h)],legend_label=lab,color='red',linestyle='-')
  if AO != []:
-  P+=plot(AO,color='purple')
+  P+=plot(AO,color='purple',xmin=xmin,xmax=xmax,ymin=ymin,ymax=ymax)
  return P
 \end{sagesilent}
 
