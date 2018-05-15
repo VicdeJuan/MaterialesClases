@@ -1,16 +1,11 @@
 \documentclass[palatino,nosec]{Docencia}
 
+\usepackage{sagetex}
 
 \title{Ejercicios funciones}
 \author{Departamento de Matemáticas}
 \date{17/18}
 
-\usepackage{sagetex}
-\newcommand{\fullAnalisis}[1]{
-	\input{#1}
-	\input{tex/Solution_Template_full}
-	\newpage
-}
 
 
 \begin{abstract}
@@ -37,6 +32,8 @@
 }
 \makeatother
 
+
+
 % --------------------
 \newcommand{\cimplies}{\text{\hl{$\implies$}}}
 \renewcommand{\vx}{\overset{\rightarrow}{x}}
@@ -46,15 +43,15 @@
 \newcommand{\vj}{\overset{\rightarrow}{j}}
 \renewcommand{\vec}[1]{\overset{\rightarrow}{#1}}
 
-\usepackage{pgf,tikz}
-\usetikzlibrary{arrows}
+
 
 \begin{document}
 \pagestyle{plain}
 
+
+%%%% Cabecera necesaria para funcionar con sageUtilities
 \newif\ifverbose
 \verbosetrue
-
 \ifverbose
 \begin{sagesilent}
 	Verbose=1
@@ -64,8 +61,10 @@
 	Verbose=0
 \end{sagesilent}
 \fi
+\input{auxFunciones/sageUtilities}
 
-\input{tex/sageUtilities}
+%%%% Empieza el documento
+
 
 \begin{problem} Estudia sistemáticamente la función
 	\[
@@ -73,12 +72,24 @@
 	\]
 \solution
 
-\textit{Esta solución ha sido generada automáticamente. Puede contener errores}
+\textit{Esta solución ha sido generada automáticamente. Puede contener errores.}
 
 \fullAnalisis{tex/fun}
 
 \end{problem}
 
+
+\begin{problem} Estudia sistemáticamente la función
+	\[
+		f(x) = \frac{2x^3-10x^2+12x}{x^2-3x+2}
+	\]
+\solution
+
+\textit{Esta solución ha sido generada automáticamente. Puede contener errores.}
+
+\fullAnalisis{tex/fun2}
+
+\end{problem}
 
 
 

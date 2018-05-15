@@ -1,8 +1,120 @@
 
+\newcommand{\myauxdir}{auxFunciones}
+\newcommand{\fullAnalisis}[1]{
+\input{#1}
+%\input{\myauxdir/dominio}
+\mydominio
+\mysimetria
+\myptscorte
+\myasintotas
+%\mygrafo
+\newpage
+}
+
+
+
+\newcommand{\mydominio}{
+\paragraph{Dominio}
+%
+%\[ D(f) = \{x\in\real \tq \sage{f.denominator()(x)} \neq 0\} = \sagestr{dominion(f=f,hasDen=True,hasLog=false,hasRt=false)}\]
+%
+\[
+\sagestr{dominion(f=f,hasDen=True,hasLog=false,hasRt=false)}
+\]
+}
+
+\newcommand{\mysimetria}{
+\subparagraph{Simetría}
+
+\ifverbose
+    Para estudiar la simetría de una función calculamos $f(-x)$ y comparamos con $f(x)$. 
+    %
+    En este caso:
+\fi
+
+\[f(-x) = \sage{latex(f(-x))}\]
+
+¿Es igual a f(x) o a -f(x)? \sagestr{simetria(f)}
+
+}
+
+\newcommand{\myptscorte}{
+    
+\subparagraph{Puntos de corte con los ejes}
+
+\textit{\textbf{Eje X}
+}\ifverbose
+Para calcular los puntos de corte de la función con el eje x resolvemos la ecuación $f(x) = 0$ cuya solución es: 
+\\
+
+\else 
+$f(x) = 0\rightarrow $
+\fi
+\sagestr{puntosEjeX(func = f)} 
+
+\textit{\textbf{Eje Y}}
+\ifverbose
+Para calcular los puntos de corte de la función con el eje y calculamos $f(0)$. 
+%
+En este caso:
+\fi
+\sagestr{puntosEjeY(func = f)}
+
+}
+
+\newcommand{\myasintotas}{
+\paragraph{Asíntotas}
+\subparagraph{Asíntotas verticales}
+
+
+\ifverbose
+Los posibles puntos en los que la función puede tener una asíntota vertical son aquellos en los que se anula el denominador. 
+%
+Por ello calculamos:
+%
+\[\sagestr{latex(f.denominator(normalize=False))} = 0 \]
+\fi
+
+\sagestr{asintotesV(f = f,den = f.denominator(normalize=False), isLog = TieneLog,AV = AV)}
+
+
+
+\subparagraph{Asíntotas horizontales u oblícuas}
+
+\ifverbose
+Las asíntotas horizontales y oblicuas nos dan la información acerca de la tendencia de la función en $-\infty$ y en $+\infty$.
+
+Para calcular las asíntotas, necesitamos calcular el límite de la función tanto en $+\infty$ como en $-\infty$:
+\fi
+
+\[\lim_{x\mapsto \pm\infty} \sagestr{latex(f(x))} \]
+
+\sagestr{asintotesHO(f = f,AH=AH,AO = AO)}
+
+
+}
+
+\newcommand{\mygrafo}{
+\paragraph{Gráfica de la función}
+\ifverbose
+En azul se marcan las asíntotas verticales, en rojo las horizontales y en morado las oblícuas.
+\fi
+\begin{center}
+\sageplot{_myplot(f,AH,AV,AO)}
+\end{center}
+}
+
+
+
+
 \begin{sagesilent}
 
+#Variables auxiliares necesarias
+AV=[]
+AH=[]
+AO=[]
+
 # Definición de las funciones
-Verbose=1
 
 ## Función para devolver un número sencillo entre 2 valores, que pueden ser infinitos.
 # Input: j,k los 2 valores.
@@ -39,8 +151,8 @@ def ptsDiscontinuidad(f,isLog):
 # f: función
 # den: denominador de la función en caso de haberlo.
 # boolean log: tieneLog 
-def asintotesV(f,den,isLog):
-    AV=[]
+# AV: array vacío para rellenar
+def asintotesV(f,den,isLog,AV):
     _den0=solve(f.denominator(normalize=False) == 0,x,solution_dict=True)
     den0 = [a[x] for a in _den0 if imag(a[x])==0]
 
@@ -98,16 +210,15 @@ def asintotesV(f,den,isLog):
                 r+= "\n $x = " + latex(x0) + "$ es \\textbf{A.V.} de f(x)"
         else:
             r+= "\n \\textbf{No hay asíntota vertical} en $x="+latex(x0)+"$."
-    return [r,uniq(AV)]
+    AV=uniq(AV)
+    return r
 
 
 ## Función para calcular las asíntotas horizontales u oblicuas.
 #Input:
 # f: función
 
-def asintotesHO(f):
-    AH=[]
-    AO=[]
+def asintotesHO(f,AH,AO):
     r=""
     for infty in [Infinity, -Infinity]:
         if (Verbose == 1):
@@ -124,7 +235,7 @@ def asintotesHO(f):
                 r+= "En $"+latex(infty)
                 r+= "$ f(x) tiene una \\textbf{asíntota horizontal} en $y = "+latex(ld)+"$."
             else:
-                r+= "$y = "+latex(ld) +" $ es una \textbf{A.H.} de f(x)"
+                r+= "$y = "+latex(ld) +" $ es una \\textbf{A.H.} de f(x)"
 
         else: # OBLICUA
             if (Verbose == 1):
@@ -148,7 +259,8 @@ def asintotesHO(f):
                     r+= "En este caso, ese límite tenemos $m="+latex(m)+"$ por lo que \\textbf{no hay asíntota} oblícua (ni horizontal)."
                 else:
                     r+= "\\textbf{No hay A.O. ni A.H.}"
-    return [r,uniq(AH),AO]
+    AH=uniq(AH)
+    return r
 
 # Estudio de la simetría de la función.
 def simetria(f):
@@ -177,6 +289,8 @@ def puntosEjeX(func):
         r+="$x_"+str(i)+" = "+latex(_roots[i])+"\\to \\left("+latex(_roots[i])+",0\\right)$;\\quad"
     if (_roots == []):
         r += "No tiene solución."
+    if Verbose:
+        r+= "\\\\\\textit{Obs: Sólo puede haber puntos de corte en puntos del dominio.}"
     return r
 
 def puntosEjeY(func):
@@ -352,8 +466,8 @@ def ismin(f,x0):
 # boolean hasRt: una función irracional
 
 def dominion(f,hasDen,hasLog,hasRt):
- s0=latex(f.denominator()(x))
- s1=",".join(str(a[x]) for a in solve(f.denominator(normalize=True) == 0,x,solution_dict=True))
+ s0=latex(f.denominator(normalize=False)(x))
+ s1=",".join(str(a[x]) for a in solve(f.denominator(normalize=False) == 0,x,solution_dict=True))
  return "D(f) = \\{x\\in\\real \\tq "+s0+" \\neq 0 \\} = \\real \\setminus \{"+ s1 + "\}"
  
 ### Función para pintar las gráficas.
