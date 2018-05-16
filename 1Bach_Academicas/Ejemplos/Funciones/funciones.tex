@@ -144,11 +144,7 @@ $f(3) = \sagestr{latex(f(3))}$
 
 	\solution
 	
-	\[f'(x) = \sagestr{latex(diff(f,x,1)(x))}\]
-	Resolvemos $f'(x) = 0$.
-
-	\sagestr{estudiarSigno(diff(f,x,1))}
-
+	\mymonotonia
 	
 	
 \end{problem}
@@ -182,9 +178,8 @@ $f(3) = \sagestr{latex(f(3))}$
 	
 	\solution
 
-	\fullAnalisis{tex/fun}
+	\fullAnalisisBach{tex/fun}
 \end{problem}
-
 
 \begin{problem} Estudia las asíntotas de \[f(x) =\frac{x^3-4x^2+x+6}{2x^3-14x^2+32x-24}\]
 \solution
@@ -201,6 +196,15 @@ f=(x^3-4*x^2+x+6)/(2*x^3-14*x^2+32*x-24)
 \end{problem}
 \begin{problem} Deriva $f(x) = \tan(x^2-3x)$
 \solution
+\end{problem}
+
+\begin{problem}
+Estudia sistemáticamente la función $f(X) = \displaystyle\frac{-4x^2+1}{x^2-1}$
+\solution
+\textit{Esta solución ha sido generada automáticamente. Puede contener errores}
+
+	\fullAnalisisBach{tex/fun2}
+
 \end{problem}
 
 \end{document}

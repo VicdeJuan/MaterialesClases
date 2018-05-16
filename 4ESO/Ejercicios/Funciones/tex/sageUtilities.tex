@@ -9,6 +9,18 @@
 \newpage
 }
 
+\newcommand{\fullAnalisisBach}[1]{
+\input{#1}
+\mydominio
+\mysimetria
+\myptscorte
+\myasintotas
+\mymonotonia
+\mygrafo
+\newpage
+}
+
+
 
 
 \newcommand{\mydominio}{
@@ -92,6 +104,25 @@ Para calcular las asíntotas, necesitamos calcular el límite de la función tan
 
 }
 
+
+\newcommand{\mymonotonia}{
+\paragraph{Monotonía}
+	
+$f'(x) = \sagestr{latex(diff(f(x),x,1).full_simplify())}$
+
+Calculamos los puntos críticos, aquellos en los que $f'(x) = 0$
+
+\sagestr{solveDerivadaNula(f=f,sols=ptsCrit,onlyReal=True)}
+
+
+Incluimos a estos puntos aquellos en los que la función primitiva no exista, si hay alguno.
+%
+\sagestr{ptsFrontera(f=f,ptscrit=ptsCrit,recta=recta)}
+
+\sagestr{estudiarSignoDiff(f)}
+}
+
+
 \newcommand{\mygrafo}{
 \paragraph{Gráfica de la función}
 \ifverbose
@@ -111,6 +142,10 @@ En azul se marcan las asíntotas verticales, en rojo las horizontales y en morad
 AV=[]
 AH=[]
 AO=[]
+ptsCrit=[]
+recta=[]
+min=[]
+max=[]
 
 # Definición de las funciones
 
@@ -200,7 +235,7 @@ def asintotesV(f,den,isLog,AV):
         li=limit(f(x),x=x0,dir="minus")
         if (Verbose==1): 
             r+="Calculamos"
-        r+= "\[\\lim_{x\\mapsto " + latex(x0) + "} " + latex(f(x)) + " = \\left\\{\\begin{array}{l} \\displaystyle\\lim_{x\\mapsto " + latex(x0) + "^{+}} " + latex(f(x)) + " = " + latex(ld) + " \\\\\\\\\\displaystyle\\lim_{x\\mapsto " + latex(x0) + "^{-}} " + latex(f(x)) + " = " + latex(ld) + " \\\\\\end{array}\\right.\] "
+        r+= "\[\\lim_{x\\mapsto " + latex(x0) + "} " + latex(f(x)) + " = \\left\\{\\begin{array}{l} \\displaystyle\\lim_{x\\mapsto " + latex(x0) + "^{+}} " + latex(f(x)) + " = " + latex(ld) + " \\\\\\\\\\displaystyle\\lim_{x\\mapsto " + latex(x0) + "^{-}} " + latex(f(x)) + " = " + latex(li) + " \\\\\\end{array}\\right.\] "
         if (abs(li) == Infinity and abs(ld) == Infinity and sign(li) == sign(ld)):
             r+= "\n La recta x =" + latex(x0) + " es una \\textbf{asíntota vertical} de f(x)"
             AV.append(x0)
@@ -316,7 +351,7 @@ def puntosEjeY(func):
 # Recibe:
 # f: función
 # boolean onlyReal: para calcular sólo soluciones reales.
-def solveDerivadaNula(f,onlyReal):
+def solveDerivadaNula(f,sols,onlyReal):
     _sols = solve(diff(f(x))==0,x,solution_dict=True)
     if onlyReal:
         sols = [a[x] for a in _sols if imag(a[x])==0]
@@ -330,11 +365,11 @@ def solveDerivadaNula(f,onlyReal):
         i+=1
     if (sols == []):
         retval += "No tiene soluciones reales."
-    return [sols,retval]
+    return retval
 
 
-def ptsFrontera(f,ptscrit,den0):
-    puntosFrontera = flatten([den0,ptscrit])
+def ptsFrontera(f,ptscrit,recta):
+    puntosFrontera = flatten([ptsDiscontinuidad(f=f,isLog=false),ptscrit])
     recta=[-Infinity]
 
     i=0
@@ -347,7 +382,7 @@ def ptsFrontera(f,ptscrit,den0):
         recta.append(p)
     recta.append(+Infinity)
     recta=sorted(recta)
-    return [recta,r]
+    return r
 
 # Construye una cadena de texto los intervalos formados por una lista de puntos frontera.
 def intervalos(recta):
@@ -357,9 +392,9 @@ def intervalos(recta):
     return r
 
 # Estudia el signo de la función dada la función y los puntos frontera.
-def diffsign(f,recta):
-    max=[]
-    min=[]
+def diffsign(f,recta,min,max):
+    _emptylist(min)
+    _emptylist(max)
     g=diff(f,x,1)
     prev=0
     actual=0
@@ -368,9 +403,9 @@ def diffsign(f,recta):
         rval=random_between(recta[i],recta[i+1])
         retval += "\\item $\\left("+latex(recta[i])+","+latex(recta[i+1])+"\\right)$:"
         if (Verbose == 1):
-            retval += " Tomamos, por ejemplo, f'($"+latex(rval)+") = "+latex(round(g(rval),3))+"...$  y miramos su signo:" 
+            retval += " Tomamos, por ejemplo, $f'("+latex(rval)+") = "+latex(round(g(rval),3))+"...$  y miramos su signo:" 
         else:
-            retval += "f'($"+latex(rval)+") = "+latex(round(g(rval),3)) +"$"
+            retval += "$f'("+latex(rval)+") = "+latex(round(g(rval),3)) +"$"
         prev=actual
         actual=sign(g(rval))
         if actual==1: 
@@ -389,13 +424,13 @@ def diffsign(f,recta):
         if (prev == 1 and actual == -1):
             max.append(recta[i])
     retval += "\\end{itemize}"
-    return [max,min,retval]
+    return retval
 
 # Enumera una lista de valores entre llaves.
 def printlist(m):
     retval = "\\{"
     for _m in m:
-        retval += "x = " + latex(_m) + ";\\quad"
+    	retval += "x = " + latex(_m) + ";\\quad"
     return retval+"\\}"
 
 
@@ -407,12 +442,21 @@ def _getRealroots(f):
 
 
 
-def _f_sign_monot(recta,g):
- min=[]
- max=[]
+def _f_sign_monot(recta,f,min,max):
+ _emptylist(min)
+ _emptylist(max)
+ g=diff(f,x,1)
+ recta=[-Infinity,Infinity]
+ for a in _getRealroots(g):
+  recta.append(a)
+ for a in ptsDiscontinuidad(f=f,isLog=false):
+  recta.append(a)
+ recta=sorted(recta) 
+ retval = "Los intervalos a estudiar son: "+latex(intervalos(recta))
+ 
  prev=0
  actual=0
- retval = "\\begin{itemize}"
+ retval += "\\begin{itemize}"
  for i in xrange(len(recta)-1):
   rval=random_between(recta[i],recta[i+1])
   retval += "\\item $\\left("+latex(recta[i])+","+latex(recta[i+1])+"\\right)$:"
@@ -424,33 +468,32 @@ def _f_sign_monot(recta,g):
   actual=sign(g(rval))
   if actual==1: 
    if (Verbose == 1):
-    retval += "Positivo, por lo que la función \\textbf{crece} en este intervalo"  
+    retval += "Positivo, por lo que la función \\textbf{crece} en este intervalo."  
    else:
-    retval += "Positivo $\\Rightarrow$ crece"
+    retval += "Positivo $\\Rightarrow$ crece."
   else:
    if (Verbose == 1):
-    retval += "Negativo, por lo que la función \\textbf{decrece} en este intervalo"
+    retval += "Negativo, por lo que la función \\textbf{decrece} en este intervalo."
    else:
-    retval += "Negativo $\\Rightarrow$ decrece"
+    retval += "Negativo $\\Rightarrow$ decrece."
 
 
- return [retval+"\\end{itemize}",min,max]
+ return retval+"\\end{itemize}"
 
-def estudiarSigno(f):
- recta=[-Infinity,Infinity]
- for a in _getRealroots(f):
-  recta.append(a)
- recta=sorted(recta) 
- retval = "Los intervalos a estudiar son: "+latex(intervalos(recta))
- 
- [_retval,min,max] = _f_sign_monot(recta,f)
- return retval + _retval
+
+def estudiarSignoDiff(f):
+ _retval = _f_sign_monot(recta,f,min,max)
+ return _retval
+
+def estudiarSigno(f): 
+ _retval = _f_sign_monot(recta,f,min,max)
+ return _retval
 
 
 ## Function str ismin(f,x0).
 ## f: second derivate of the function to study.
 ## x0: value to check if it is maximum.
-## return   string with the answer.
+## return 	string with the answer.
 def ismin(f,x0):
  val = f(x0)
  retval = "f("+str(x0)+") = "+str(f(x0))
