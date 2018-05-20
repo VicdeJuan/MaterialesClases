@@ -1,9 +1,10 @@
 
-\newcommand{\fullAnalisis}[1]{
+\newcommand{\fullAnalisisESO}[1]{
 \input{#1}
 \mydominio
-\mysimetria
 \myptscorte
+\mysimetria
+\mysigno
 \myasintotas
 \mygrafo
 \newpage
@@ -122,6 +123,17 @@ Incluimos a estos puntos aquellos en los que la función primitiva no exista, si
 \sagestr{estudiarSignoDiff(f)}
 }
 
+\newcommand{\mysigno}{
+\paragraph{Signo de la función}
+
+\ifverbose
+Dividimos la recta real con los puntos de corte con el eje $X$ y aquellos puntos de discontinuidad, en este caso, los que anulen el denominador.
+\fi
+
+\sagestr{estudiarSigno(f)}
+
+
+}
 
 \newcommand{\mygrafo}{
 \paragraph{Gráfica de la función}
@@ -426,6 +438,38 @@ def diffsign(f,recta,min,max):
     retval += "\\end{itemize}"
     return retval
 
+# Estudia el signo de la función dada la función y los puntos frontera.
+def estudiarSigno(f):
+    recta=[-Infinity,Infinity]
+    for a in _getRealroots(f):
+        recta.append(a)
+    for a in ptsDiscontinuidad(f=f,isLog=false):
+        recta.append(a)
+    recta=sorted(recta) 
+
+    retval = "\\begin{itemize}"
+    for i in xrange(len(recta)-1):
+        rval=random_between(recta[i],recta[i+1])
+        retval += "\\item $\\left("+latex(recta[i])+","+latex(recta[i+1])+"\\right)$:"
+        if (Verbose == 1):
+            retval += " Tomamos, por ejemplo, $f("+latex(rval)+") = "+latex(round(f(rval),3))+"...$  y miramos su signo:" 
+        else:
+            retval += "$f("+latex(rval)+") = "+latex(round(f(rval),3)) +"$"
+        actual=sign(f(rval))
+        if actual==1: 
+            if (Verbose == 1):
+                retval += "Positivo"  
+            else:
+                retval += "+"
+        else:
+            if (Verbose == 1):
+                retval += "Negativo"
+            else:
+                retval += "-"
+
+    retval += "\\end{itemize}"
+    return retval
+
 # Enumera una lista de valores entre llaves.
 def printlist(m):
     retval = "\\{"
@@ -482,10 +526,6 @@ def _f_sign_monot(recta,f,min,max):
 
 
 def estudiarSignoDiff(f):
- _retval = _f_sign_monot(recta,f,min,max)
- return _retval
-
-def estudiarSigno(f): 
  _retval = _f_sign_monot(recta,f,min,max)
  return _retval
 
