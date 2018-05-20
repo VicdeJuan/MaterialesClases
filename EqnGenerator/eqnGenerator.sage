@@ -1,5 +1,5 @@
 import re
-
+var('x')
 def _latex(ss):
     s=str(ss)
     for gs in map(list,re.findall("([0-9]+)/([0-9]+)",s)):
@@ -39,13 +39,15 @@ def eqn_generator(sumandos,iteraciones,solucion,max,lat,numeq,print_sol,numop):
         left = "+".join([str_eqn(eqn.left(),str) for eqn in eqns])
         right= "+".join([str_eqn(eqn.right(),str) for eqn in eqns])
     retval = (left+"="*numeq+right).replace("+-","-")
-    if print_sol:
-        retval += "%% Solución: " + str(solucion)
+    if lat:
+        retval = "\\["+retval+"\\]"
+        if print_sol:
+            retval = "Sol: " + str(solucion) + ":" + retval
     return retval
 
  
 for i in xrange(30):
     sol=i-10
-    print(eqn_generator(sumandos = 3, iteraciones = 8,solucion = sol, max = 10 ,lat = latex, numeq = 1,print_sol = true,numop=4))
+    print(eqn_generator(sumandos = 3, iteraciones = 8,solucion = sol, max = 10 ,lat = True, numeq = 1,print_sol = True,numop=4))
     print 
     print
