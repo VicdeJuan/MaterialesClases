@@ -1,5 +1,7 @@
 
 \newcommand{\fullAnalisis}[1]{
+\textit{Esta solución ha sido generada automáticamente. Puede contener errores}
+	
 \input{#1}
 \mydominio
 \mysimetria
@@ -80,7 +82,7 @@ En este caso:
 \ifverbose
 Los posibles puntos en los que la función puede tener una asíntota vertical son aquellos en los que se anula el denominador. 
 %
-Por ello calculamos:
+Por ello calculamos, si no lo hemos hecho ya:
 %
 \[\sagestr{latex(f.denominator(normalize=False))} = 0 \]
 \fi
@@ -129,7 +131,7 @@ Incluimos a estos puntos aquellos en los que la función primitiva no exista, si
 En azul se marcan las asíntotas verticales, en rojo las horizontales y en morado las oblícuas.
 \fi
 \begin{center}
-\sageplot{_myplot(f,AH=uniq(AH),AV=uniq(AV),AO=AO)}
+\sageplot{_myplot(f,AH=uniq(AH),AV=uniq(AV),AO=AO,extremos=ptsCrit)}
 \end{center}
 }
 
@@ -352,12 +354,14 @@ def puntosEjeY(func):
 # f: función
 # boolean onlyReal: para calcular sólo soluciones reales.
 def solveDerivadaNula(f,sols,onlyReal):
-    _sols = solve(diff(f(x))==0,x,solution_dict=True)
+    _emptylist(sols)
+    __sols = solve(diff(f(x))==0,x,solution_dict=True)
     if onlyReal:
-        sols = [a[x] for a in _sols if imag(a[x])==0]
+        _sols = [a[x] for a in __sols if imag(a[x])==0]
     else: 
-        sols=_sols
-
+        _sols=__sols
+    for b in _sols:
+        sols.append(b) 
     i=0
     retval=""
     for r in sols:
@@ -522,7 +526,7 @@ def dominion(f,hasDen,hasLog,hasRt):
 # int list AV: lista de puntos en los que hay una asíntota vertical.
 # int list AH: lista de puntos en los que hay una asintota horizontal.
 # EXPR AO: ecuación de la asíntota oblícua y=mx+n
-def _myplot(f,AV,AH,AO):
+def _myplot(f,AV,AH,AO,extremos):
  
  discont=list(set(ptsDiscontinuidad(f=f,isLog=false)).difference(AV))
  xmin=-8
@@ -544,10 +548,18 @@ def _myplot(f,AV,AH,AO):
  for i in xrange(len(discont)):
   x0=discont[i]
   ld=limit(f(x),x=x0,dir="plus")
-  
   P+=circle((x0,ld),0.2,facecolor='white',fill=True)
+ for i in xrange(len(extremos)):
+  x0=extremos[i]
+  P+=circle((x0,f(x0)),0.15,facecolor='orange',fill=True)
+  
  if AO != []:
   P+=plot(AO,color='purple',xmin=xmin,xmax=xmax,ymin=ymin,ymax=ymax)
+ _emptylist(extremos)
+ _emptylist(AH)
+ _emptylist(AV)
+ _emptylist(AO)
+ 
  return P
 \end{sagesilent}
 
