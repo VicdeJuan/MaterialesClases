@@ -1,0 +1,454 @@
+\documentclass[palatino,nosec,nochap,nobuilddate]{Docencia}
+
+\title{Ejemplos resueltos de derivadas}
+\author{Departamento de Matemáticas}
+\date{17/18}
+
+
+% Paquetes adicionales
+
+\usepackage[author={Víctor de Juan, 2017}]{pdfcomment}
+
+\makeatletter
+\newcommand{\annotate}[2][]{%
+\pdfstringdef\x@title{#1}%
+\edef\r{\string\r}%
+\pdfstringdef\x@contents{#2}%
+\pdfannot
+width 2\baselineskip
+height 2\baselineskip
+depth 0pt
+{
+/Subtype /Text
+/T (\x@title)
+/Contents (\x@contents)
+}%
+}
+\makeatother
+
+
+
+\usepackage{eso-pic}
+\newcommand\BackgroundPic{%
+\put(0,0){%
+\parbox[b][\paperheight]{\paperwidth}{%
+\vfill
+\centering
+\includegraphics[width=\paperwidth,height=\paperheight,%
+keepaspectratio]{../../../../BWLogo.jpeg}%
+\vfill
+}}}
+
+
+
+
+\begin{abstract}
+
+\begin{enumerate}
+\item $\displaystyle f(x) = x\sqrt[3]{x^2}$
+\item $\displaystyle f(x) = x·e^x$
+\item $\displaystyle f(x) = x·\sen(x)$
+\item $\displaystyle f(x) = x·\ln(x)$
+\item $\displaystyle f(x) = \sen(x)·\cos(x)$
+\item $\displaystyle f(x) = \frac{x^2+1}{x}$
+\item $\displaystyle f(x) = (x^2+2x)·\sen(x)$
+\item $\displaystyle f(x) = (e^x - x)·\ln{x}$
+\item $\displaystyle f(x) = \sqrt{x^2+x}$
+\item $\displaystyle f(x) = (\arcsen{x})^3$
+\item $\displaystyle f(x) = \ln(4x)$
+\item $\displaystyle f(x) = (\cos{x})^2 = \cos^2{x}$
+\item $\displaystyle f(x) = \sen{(3x^2)}$
+\item $\displaystyle f(x) = \cos{(x^2+1)} $
+\item $\displaystyle f(x) = \tg{(x^2-3x)}$
+\item $\displaystyle f(x) = \sen{\sqrt{x^2+3x}} $
+\item $\displaystyle f(x) =  \cos{\frac{x-1}{x}}$
+\item $\displaystyle f(x) = \tg{\sqrt{x-1}} $
+\item $\displaystyle f(x) = -\sen{\frac{x}{-x^4+x-1}} $
+\item $\displaystyle f(x) = \tg{\frac{2}{\sqrt{1-x}}} $
+\end{enumerate}
+
+\nota{No está exento de erratas. En caso de descubrir alguna, por favor, comunicarlas al autor.}
+\end{abstract}
+
+\begin{document}
+\pagestyle{plain}
+\maketitle
+
+%\tableofcontents
+%% Contenido.
+
+
+
+
+\begin{enumerate}
+
+
+\vspace{0.3cm}\hrule\vspace{0.6cm} \item $\displaystyle f(x) = x\sqrt[3]{x^2}$
+	\paragraph{Opción 1: Introducir la $x$ en el radical}
+
+	\[
+		f(x) = x\sqrt[3]{x^2} = \sqrt[3]{x^5}
+	\]
+	Y ahora derivamos:
+
+	\[
+		f(x) = \sqrt[3]{x^5} = x^{\frac{5}{3}} \to f'(x) = \frac{5}{3}x^{\rfrac{5}{3}-1} = \frac{5x^{\rfrac{2}{3}}}{3} = \frac{5\sqrt[3]{x^2}}{3}
+	\]
+
+	\paragraph{Opción 2: Derivar como un producto}
+
+	\[
+		f(x) = \underbrace{x}_{u}\underbrace{\sqrt[3]{x^2}}_{v} 
+	\]
+	
+	Utilizamos la regla del producto: $f(x) = u·v \to f'(x) = u'·v + u·v'$
+
+	\[
+		f'(x) = \underbrace{1}_{u'}·\underbrace{\sqrt[3]{x^2}}_{v} + \underbrace{x}_{u}·\underbrace{\left(x^{\rfrac{2}{3}}\right)'}_{v'} = \sqrt[3]{x^2} + x·\left(\frac{2}{3}·x^{\rfrac{2}{3}-1}\right) = \sqrt[3]{x^2} + \frac{2}{3}x·x^{\rfrac{-1}{3}} 
+	\]
+
+	Utilizamos: $x^a·x^b = x^{a+b}$
+
+	\[
+		f'(x) = \sqrt[3]{x^2} + x^{1-\rfrac{1}{3}} = \sqrt[3]{x^2} + \frac{2}{3}x^{\rfrac{2}{3}} = \sqrt[3]{x^2} + \frac{2}{3}\sqrt[3]{x^2} = \frac{5}{3}\sqrt[3]{x^2}
+	\]
+
+\textbf{Posibles errores:}
+
+	\begin{enumerate}
+		\item Ignorar que es un producto:
+		\[f(x) = x\sqrt[3]{x^2} \to f'(x) = 1·\frac{2}{3}x^{\rfrac{-1}{3}} = ...\]
+
+		\item Igualar la función a la derivada
+		\[f(x) = x·\sqrt[3]{x^2} \textcolor{red}{\neq} \underbrace{1}_{u'}·\underbrace{\sqrt[3]{x^2}}_{v} + \underbrace{x}_{u}·\underbrace{\left(x^{\rfrac{2}{3}}\right)'}_{v'}\]
+	\end{enumerate}
+
+
+\vspace{0.3cm}\hrule\vspace{0.6cm} \item $\displaystyle f(x) = x·e^x$
+
+	Derivamos como un producto:
+
+	\[
+		f(x) = \underbrace{x}_{u}·\underbrace{e^x}_{v}
+	\]
+
+	Utilizamos la regla del producto: $f(x) = u·v \to f'(x) = u'·v + u·v'$ y la tabla de derivadas: $f(x) = x \to f'(x) = 1$ y $f(x) = e^x \to f'(x) = e^x$
+
+	\[
+		f'(x) = 1·e^x + x·e^x = e^x(x+1)
+	\]
+
+
+
+
+\vspace{0.3cm}\hrule\vspace{0.6cm} \item $\displaystyle f(x) = x·\sen(x)$
+	
+	Derivamos como un producto:
+
+	\[
+		f(x) = \underbrace{x}_{u}·\underbrace{\sen(x)}_{v}
+	\]
+
+	Utilizamos la regla del producto: $f(x) = u·v \to f'(x) = u'·v + u·v'$ y la tabla de derivadas: $f(x) = x \to f'(x) = 1$ y $f(x) = \sen(x) \to f'(x) = \cos(x)$
+
+	\[
+		f'(x) = 1·\sen(x) + x·\cos(x)
+	\]
+
+
+	
+
+
+\vspace{0.3cm}\hrule\vspace{0.6cm} \item $\displaystyle f(x) = x·\ln(x)$
+
+	Derivamos como un producto:
+
+	\[
+		f(x) = \underbrace{x}_{u}·\underbrace{\ln(x)}_{v}
+	\]
+
+	Utilizamos la regla del producto: $f(x) = u·v \to f'(x) = u'·v + u·v'$ y la tabla de derivadas: $f(x) = x \to f'(x) = 1$ y $f(x) = \ln(x) \to f'(x) = \frac{1}{x}$
+
+	\[
+		f'(x) = 1·\ln(x) + x·\frac{1}{x} = \ln(x) + 1
+	\]
+
+
+
+
+\vspace{0.3cm}\hrule\vspace{0.6cm} \item $\displaystyle f(x) = \sen(x)·\cos(x)$
+
+	Derivamos como un producto:
+
+	\[
+		f(x) = \underbrace{\sen(x)}_{u}·\underbrace{\cos(x)}_{v}
+	\]
+
+	Utilizamos la regla del producto: $f(x) = u·v \to f'(x) = u'·v + u·v'$ y la tabla de derivadas: $f(x) = \sen(x) \to f'(x) = \cos(x)$ y $f(x) = \cos(x) \to f(x) = -\sen(x)$
+
+	\[
+		f'(x) = \cos(x)·\cos(x) + \sen(x)·(-\sen(x)) = \cos^2(x) - \sen^2(x)
+	\]
+
+
+
+
+\vspace{0.3cm}\hrule\vspace{0.6cm} \item $\displaystyle f(x) = \frac{x^2+1}{x}$
+
+	\paragraph{Opción 1}
+	Recomendada en funciones racionales con un monomio en el denominador
+
+	\[
+		f(x) = \frac{x^2+1}{x} = \frac{x^2}{x} + \frac{1}{x} = x+\frac{1}{x}
+	\]
+
+	Derivamos utilizando la regla de la suma: $f(x) = u+v \to f'(x) = u'+v'$ y utilizando las tablas: $f(x) = x^n \to f'(x) = n·x^{n-1}$ 
+
+	\[
+		f(x) = x+\frac{1}{x} \to f'(x) = 1+\left(x^{-1}\right)' = 1+(-1)·x^{-1-1} = 1-x^{-2} = 1-\frac{1}{x^2}
+	\]
+
+	\paragraph*{Opción 2} 
+
+	Utilizamos la regla del cociente: $\displaystyle f(x) = \frac{u}{v} \to f'(x) = \frac{u'·v - u·v'}{v^2}$
+
+	En este caso: $u = x^2+1$ y $v = x$.
+
+	\[
+		f(x) = \frac{x^2+1}{x} \to f'(x) = \frac{(x^2+1)'·x - \textcolor{red}{(}x^2+1\textcolor{red}{)}·1}{x^2} = \frac{2x·x - \textcolor{red}{(}x^2+1\textcolor{red}{)}}{x^2} =
+	\]
+	\[
+		= \frac{2x^2-x^2-1}{x^2} = \frac{x^2-1}{x^2} = 1-\frac{1}{x^2}
+	\]
+
+	\textit{El paréntesis está en rojo porque es un error común olvidárselo}
+
+
+
+\vspace{0.3cm}\hrule\vspace{0.6cm} \item $\displaystyle f(x) = (x^2+2x)·\sen(x)$
+
+	Tenemos un producto, con $u=(x^2+2x)$, que a su vez, es una suma.
+
+	Utilizando las reglas de la suma y del producto, consultando la tabla de las derivadas:
+
+	\[
+		f(x) = \underbrace{(x^2+2x)}_{u}·\underbrace{\sen(x)}_{v} \to f'(x) = \underbrace{(2x+2)}_{u'}·\underbrace{\sen(x)}_{v} + \underbrace{(x^2+2x)}_{u}·\underbrace{\cos(x)}_{v'}
+	\]
+
+	Si se prefiere:
+	\[
+		f'(x) = x^2\cos(x) + 2x(\sen(x) + \cos(x)) + 2 \sen(x)
+	\]
+	
+	\textbf{¿Y se puede...} deshacer el paréntesis antes de derivar? Por poder se puede, pero es más largo:
+
+	\[
+		f(x) = \underbrace{x^2}_{u_1}·\underbrace{\sen(x)}_{v_1} + \underbrace{2x}_{u_2}\underbrace{\sen(x)}_{v_2} \to f'(x) = u_1'v_1 + u_1·v_1' + u_2'·v_2+u_2·v_2' = ...
+	\]
+
+	Pudiendo ahorrar tiempo y cálculos...
+
+
+\vspace{0.3cm}\hrule\vspace{0.6cm} \item $\displaystyle f(x) = (e^x - x)·\ln{x}$
+
+	Misma estructura que el apartado anterior.
+
+	\[
+		f(x) = \underbrace{(e^x - x)}_{u}·\underbrace{\ln{x}}_{v} \to f'(x) = \underbrace{(e^x-1)}_{u'}·\underbrace{\ln(x)}_v + \underbrace{(e^x-x)}_{u}·\underbrace{\frac{1}{x}}_{v'}
+	\]
+
+	\[
+		f'(x) = (e^x-1)·\ln(x) + \frac{e^x}{x} - 1
+	\]
+
+
+
+
+
+\vspace{0.3cm}\hrule\vspace{0.6cm} \item $\displaystyle f(x) = \sqrt{x^2+x}$
+
+Utilizamos: $f(x) = u^n \to n·u^{n-1}·u'$, $f(x) = u+v \to f'(x) = u'+v'$ y la regla de la cadena.
+
+
+\[
+f(x) = \sqrt{x^2+x} = (x^2+x)^{\rfrac{1}{2}} \to f'(x) = \frac{1}{2}·(x^2+x)^{\rfrac{1}{2}-1}·(x^2+x)' = \frac{2x+1}{2\sqrt{x^2+x}}
+\]
+
+
+\vspace{0.3cm}\hrule\vspace{0.6cm} \item $\displaystyle f(x) = (\arcsen{x})^3$
+
+Utilizamos $f(x) = \arcsen(x) \to f'(x) = \frac{1}{\sqrt{1-x^2}}$ y $f(u) = u^n\to f'(u) = nx^{n-1}u'$. Además, tenemos una función compuesta por lo que necesitamos la regla de la cadena.
+
+\[
+f(x) = (\arcsen{x})^3 \to 3(\arcsen{x})^2·\frac{1}{\sqrt{1-x^2}}
+\]
+
+\vspace{0.3cm}\hrule\vspace{0.6cm} \item $\displaystyle f(x) = \ln(4x)$
+
+Utilizamos $f(u) = k·u, k\in\real \to f'(u) = ku'$, $f(u) = \ln(u) \to f'(u)= \frac{1}{u}·u' = \frac{u'}{u}$ y la regla de la cadena.
+
+\[
+f(x) = \ln(4x) \to f'(x) = \frac{1}{4x}·(4x)' = \frac{4}{4x} = \frac{1}{x}
+\]
+
+
+\vspace{0.3cm}\hrule\vspace{0.6cm} \item $\displaystyle f(x) = (\cos{x})^2 = \cos^2{x}$
+
+Utilizamos $f(x) = \cos{x} \to f'(x) = -\sen{x}$ y $f(u) = u^n \to f'(u) = n·u^{n-1}·u'$.
+
+\[
+	f(x) = \left(\cos(x)\right)^2 \to f'(x) = 2(\cos(x))·\underbrace{(-\sen(x))}_{(\cos(x))'} = -2\sen(x)\cos(x)
+\]
+
+	
+
+
+
+\vspace{0.3cm}\hrule\vspace{0.6cm} \item $\displaystyle f(x) = \sen{(3x^2)}$
+
+Utilizamos: $f(u) = \sen{u} \to f'(u) = \cos{(u)}·u'$, $f(u) = k·u, k\in\real \to f'(u) = k·u'$ y $f(x) = x^n \to n·x^{n-1}$
+
+\[
+	f(x) = \sen{(3x^2)} \to f'(x) = \cos{(3x^2)}·(3x^2)' = \cos{(3x^2)}·3·(x^2)' = \cos{(3x^2)}·6x
+\]
+
+\textbf{Error muy grave:}
+
+\[
+	\cos{3x^2}·6x \textcolor{red}{\neq} \cos{18x^3}
+\]
+¿Cómo evitarlo? Utilizando paréntesis, para indicar claramente a qué afecta el coseno. (Lo mismo para $\sen(x)$,$\tg(x)$ y $\ln(x)$)
+
+\[
+	\cos{\left(3x^2\right)}·6x
+\]
+
+
+\vspace{0.3cm}\hrule\vspace{0.6cm} \item $\displaystyle f(x) = \cos{(x^2+1)} $
+
+Utilizamos: $f(x) = x^n \to n·x^{n-1}$, $f(u) = \cos(u) \to f'(u) = -\sen{(u)}·u'$
+. También utilizamos, $f(x) = u \pm v \to f'(x) = u' \pm v'$
+
+\[
+	f(x) = \cos{(x^2+1)} \to f'(x) = -\sen{(x^2+1)}·2x = -2x\sen{(x^2+1)}
+\]
+
+\vspace{0.3cm}\hrule\vspace{0.6cm} \item $\displaystyle f(x) = \tg{(x^2-3x)}$
+
+Utilizamos $f(u) = \tg{u} \to f'(u) = (\tg^2(u)+1)·u'$ y $f(x) = x^n \to f'(x) = nx^{n-1}$
+. También utilizamos, $f(x) = u \pm v \to f'(x) = u' \pm v'$
+
+\[
+	f(x) = \tg{(x^2-3x)} \to f'(x) = \left(\tg^2(x^2-3x)+1\right)·(2x-3)
+\]
+
+
+Otra posibilidad: utilizando $f(u) = \tg{u} \to f'(u) = \frac{1}{\cos^2{u}}·u'$
+
+\[
+	f(x) = \tg{(x^2-3x)} \to f'(x) = \left(\frac{1}{\cos^2(x^2-3x)}\right)·(2x-3) = \frac{2x-3}{\cos^2(x^2-3x)}
+\]
+
+\textbf{Curiosidad:} Estas 2 soluciones son exactamente la misma. Escribiendo $\tg(x) = \frac{\sen(x)}{\cos(x)}$ obtenemos:
+
+\[
+\left(\tg^2(x^2-3x)+1\right)·(2x-3) = \left(\frac{\sen^2(x^2-3x)}{\cos^2(x^2-3x)}+1\right)·(2x-3) =
+\]
+\[
+= \left(\frac{\sen^2(x^2-3x)+\cos^2(x^2-3x)}{\cos^2(x^2-3x)}\right)·(2x-3) \overset{(1)}{=}  \left(\frac{1}{\cos^2(x^2-3x)}\right)·(2x-3) = \frac{2x-3}{\cos^2(x^2-3x)}
+\]
+
+(1): Utilizando la igualdad $\sen^2(x) + \cos^2(x) = 1$.
+\vspace{0.3cm}\hrule\vspace{0.6cm} \item $\displaystyle f(x) = \sen{\sqrt{x^2+3x}} $
+
+Utilizamos: $f(u) = \sen(u) \to f'(u) = \cos(u)·u'$, $f(u) = \sqrt{u} \to f'(u) = \frac{1}{2\sqrt{u}}·u'$ y $f(x) = x^n \to f'(x) = nx^{n-1}$
+. También utilizamos, $f(x) = u \pm v \to f'(x) = u' \pm v'$
+
+\[
+	f(x) = \sen{\sqrt{x^2+3x}} \to f'(x) = \cos{\left(\sqrt{x^2+3x}\right)}·\left(\sqrt{x^2+3x}\right)' \]
+
+\[= \cos{\left(\sqrt{x^2+3x}\right)}·\frac{1}{2\sqrt{x^2+3x}}·(x^2+3x)'  = \frac{\cos{\left(\sqrt{x^2+3x}\right)}·(2x+3)}{2\sqrt{x^2+3x}}
+\]
+
+
+\vspace{0.3cm}\hrule\vspace{0.6cm} \item $\displaystyle f(x) =  \cos{\frac{x-1}{x}}$
+
+Utilizamos: $f(u) = \cos{u} \to f'(u) = -\sen{(u)}·u'$, $f(x) = \frac{u}{v} \to f'(x) = \frac{u'v-uv'}{v^2}$
+. También utilizamos, $f(x) = u \pm v \to f'(x) = u' \pm v'$
+
+\[
+	f(x) =  \cos{\frac{x-1}{x}} \to f'(x) = -\sen{\left(\frac{x-1}{x}\right)}·\underbrace{
+	\frac{x-(x-1)}{x^2}}_{u'} = \frac{-\sen{\frac{x-1}{x}}}{x^2}
+\]
+
+
+
+
+\vspace{0.3cm}\hrule\vspace{0.6cm} \item $\displaystyle f(x) = \tg{\sqrt{x-1}} $
+
+Utilizamos $f(u) = \tg{u} \to f'(u) = (\tg^2(u)+1)·u'$ y $f(u) = \sqrt{u} \to f'(u) = \frac{1}{2\sqrt{u}}·u'$.
+ También utilizamos, $f(x) = u \pm v \to f'(x) = u' \pm v'$
+
+\[
+	f(x) = \tg{\sqrt{x-1}} \to f'(x) = \left(\tg^2(\sqrt{x-1})+1\right)·\frac{1}{2\sqrt{x-1}}·1 = \frac{\tg^2(\sqrt{x-1})+1}{2\sqrt{x-1}}
+\]
+
+Otra posibilidad: utilizando $f(u) = \tg{u} \to f'(u) = \frac{1}{\cos^2{u}}·u'$
+
+\[
+	f(x) = \tg{\sqrt{x-1}} \to f'(x) = \left(\frac{1}{\cos^2(\sqrt{x-1})}\right)·\frac{1}{2\sqrt{x-1}}·1 = \frac{1}{2·\sqrt{x-1}·\cos^2(\sqrt{x-1})}
+\]
+
+\vspace{0.3cm}\hrule\vspace{0.6cm} \item $\displaystyle f(x) = -\sen{\frac{x}{-x^4+x-1}} $
+
+Utilizamos: $f(u) = \sen(u) \to f'(u) = \cos(u)·u'$ y $f(x) = \frac{u}{v} \to f(x) = \frac{u'v-uv'}{v^2}$
+. También utilizamos, $f(x) = u \pm v \to f'(x) = u' \pm v'$
+
+\[
+	f(x) = -\sen{\frac{x}{-x^4+x-1}} \to f'(x) = -\cos{\left( \frac{x}{-x^4+x-1}\right)}·\frac{(-x^4+x-1)-x·(-4x^3+1)}{(-x^4+x-1)^2} =
+	\]
+
+\[ 	
+ 	-\cos{\left( \frac{x}{-x^4+x-1}\right)}·\frac{-x^4+x-1+4x^4-x}{(-x^4+x-1)^2} =
+    -\cos{\left( \frac{x}{-x^4+x-1}\right)}·\frac{3x^4-1}{(-x^4+x-1)^2}
+\]
+
+\newpage
+\vspace{0.3cm}\hrule\vspace{0.6cm} \item $\displaystyle f(x) = \tg{\frac{2}{\sqrt{1-x}}} $
+
+Utilizamos $f(u) = \tg{u} \to f'(u) = (\tg^2(u)+1)·u'$, $f(u) = u^n \to f'(u) = n·u^{n-1}·u'$, $f(x) = u \pm v \to f'(x) = u' \pm v'$  y $f(u) = k·u, k\in\real \to f'(u) = k·u'$.
+
+Podemos darnos cuenta que de la tangente no tenemos un cociente sino: $2·(1-x)^{\rfrac{-1}{2}}$.
+
+
+\[
+	f(x) = \tg{\frac{2}{\sqrt{1-x}}} \to f'(x) = \left[\tg^2\left(\frac{2}{\sqrt{1-x}}\right)+1\right] · \left(2·(1-x)^{\rfrac{-1}{2}}\right)' =\]
+
+\[  \left[\tg^2\left(\frac{2}{\sqrt{1-x}}\right)+1\right] · 2\frac{\textcolor{red}{(-1)}}{2}·(1-x)^{\rfrac{-1}{2}-1}·\textcolor{red}{(-1)} = +\left[\tg^2\left(\frac{2}{\sqrt{1-x}}\right)+1\right] ·(1-x)^{\rfrac{-3}{2}}
+\]
+
+\[
+	f'(x) = \left[\tg^2\left(\frac{2}{\sqrt{1-x}}\right)+1\right] \frac{1}{\sqrt{(1-x)^3}}
+\]
+
+Otra posibilidad: utilizando $f(u) = \tg{u} \to f'(u) = \frac{1}{\cos^2{u}}·u'$
+
+
+
+\[
+	f(x) = \tg{\frac{2}{\sqrt{1-x}}} \to f'(x) = \left[\frac{1}{\cos^2\left(\frac{2}{\sqrt{1-x}}\right)}\right] · \left(2·(1-x)^{\rfrac{-1}{2}}\right)' =\]
+
+\[  \left[\frac{1}{\cos^2\left(\frac{2}{\sqrt{1-x}}\right)}\right] · 2\frac{\textcolor{red}{(-1)}}{2}·(1-x)^{\rfrac{-1}{2}-1}·\textcolor{red}{(-1)} = +\left[\frac{1}{\cos^2\left(\frac{2}{\sqrt{1-x}}\right)}\right] ·(1-x)^{\rfrac{-3}{2}}
+\]
+
+\[
+	f'(x) = \frac{1}{\cos^2\left(\displaystyle\frac{2}{\sqrt{1-x}}\right)·\sqrt{(1-x)^3}}
+\]
+
+
+\end{enumerate}
+
+
+\printindex
+\end{document}
+\grid

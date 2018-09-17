@@ -1,0 +1,497 @@
+\documentclass[palatino,nosec,nochap,nobuilddate]{Docencia}
+\usetikzlibrary[patterns]
+
+
+\title{Ejercicios resueltos de geometría}
+\author{Departamento de Matemáticas}
+\date{17/18}
+
+
+% Paquetes adicionales
+
+\usepackage[author={Víctor de Juan, 2017}]{pdfcomment}
+
+\makeatletter
+\newcommand{\annotate}[2][]{%
+\pdfstringdef\x@title{#1}%
+\edef\r{\string\r}%
+\pdfstringdef\x@contents{#2}%
+\pdfannot
+width 2\baselineskip
+height 2\baselineskip
+depth 0pt
+{
+/Subtype /Text
+/T (\x@title)
+/Contents (\x@contents)
+}%
+}
+\makeatother
+
+
+
+\usepackage{eso-pic}
+\newcommand\BackgroundPic{%
+\put(0,0){%
+\parbox[b][\paperheight]{\paperwidth}{%
+\vfill
+\centering
+\includegraphics[width=\paperwidth,height=\paperheight,%
+keepaspectratio]{../../../BWLogo.jpeg}%
+\vfill
+}}}
+
+
+
+
+
+\begin{abstract}
+Algunos ejercicios de geometría resueltos.
+
+\nota{Estos ejemplos no están exentos de erratas. En caso de descubrir alguna, por favor, comunicarlas al autor.}
+\end{abstract}
+
+% --------------------
+\newcommand{\cimplies}{\text{\hl{$\implies$}}}
+
+\begin{document}
+\pagestyle{plain}
+\maketitle
+
+\AddToShipoutPicture{\BackgroundPic}
+
+\newpage
+\begin{problem}[57]
+Dado el triángulo $A(5,1)$, $B(3,7)$, $C(-2,3)$
+
+\ppart Calcula el circuncentro.
+
+\ppart Calcula el baricentro.
+
+\solution
+
+\spart El circuncentro es el punto de corte de las mediatrices\footnote{Recta perpendicular a un lado que pasa por el punto medio del lado.} de un triángulo. Con calcular 2 de las 3 mediatrices es suficiente.
+
+El proceso a seguir será
+\begin{enumerate}
+	\item Calcular la mediatriz del lado $AB$.
+	\subitem Calcular la recta $r$ que pasa por $A$ y por $B$.
+	\subitem Calcular el punto medio $M_{ab}$ de $A,B$.
+	\subitem Calcular la recta perpendicular a $r$ que pasa por $M_{ab}$.
+	\item Calcular la mediatriz del lado $BC$.
+	\subitem Calcular la recta $s$ que pasa por $B$ y por $C$.
+	\subitem Calcular el punto medio $M_{bc}$ de $B,C$.
+	\subitem Calcular la recta perpendicular a $s$ que pasa por $M_{bc}$.
+	\item Calcular el punto de corte que forman $s$ y $r$ (resolver el sistema).
+\end{enumerate}
+
+	\paragraph{1)}
+\begin{itemize}
+	\item Recta $r$ que pasa por $A$ y $B$:
+		\subitem $[\overrightarrow{AB}] = (-2,6)$
+		\[r': \displaystyle\frac{x-5}{-2} = \frac{y-1}{6} \dimplies 6x-30 = -2y+2 \dimplies 6x+2y-32 = 0\dimplies 3x+y-16=0\]
+	\item Punto medio de $A,B$. \[M = \left(\frac{a_1+b_1}{2},\frac{a_2+b_2}{2}\right) = \left(\frac{5+3}{2},\frac{1+7}{2} \right) = (4,4)\]
+	\item Recta $r'$ perpendicular a $r$ que pasa por $M$. 
+
+	El vector director de $r'$ será perpendicular al vector director de $r$. 
+
+	El vector director de $r$, $V_{r} = (-B,A) =(-1,3)$, por lo que $V_{r'} = (3,1)$, ya que $(-1,3)·(3,1) = -3+3=0 \implies V_{r'}\perp V_r$
+
+	Recta $r'$ que pasa por $M(4,4)$ con $V_{r'} = (3,1)$.
+
+	\[
+		r':\frac{x-4}{3} = \frac{y-4}{1} \dimplies x-4 = 3y-12 \dimplies \text{\hl{$r': x-3y+8 = 0$}}
+	\]
+\end{itemize}
+
+	\paragraph{2)}
+\begin{itemize}
+	\item Recta $s$ que pasa por $B,C$:
+	\subitem $[\overrightarrow{BC}] = (-5,-4)$
+		\[s: \displaystyle \frac{x-3}{-5} = \frac{y-7}{-4} \dimplies -4x+12 = -5y+35 \dimplies -4x+5y-23 = 0\]
+
+	\item Punto medio de $B,C$.
+	\[
+		M_{bc}=\left(\frac{b_1+c_1}{2},\frac{b_2+c_2}{2}\right) = \left( \frac{3+(-2)}{2},\frac{7+3}{2} \right) = (\rfrac{1}{2},5)
+	\]
+
+	\item Recta $s'$ perpendicular a $s$. 
+
+	El vector director de $s$, $V_s = (-B,A) = (-5,-4)$.
+	El vector director de $s'$ será $V_{s'} = (4,-5)$, ya que $(-5,-4)·(4,-5) = -20+20=0\implies V_s\perp V_{s'}$
+
+	Recta $s'$ que pasa por $M_{bc}$ con $V_{s'} = (4,-5)$
+
+	\[
+		\frac{x-\rfrac{1}{2}}{4} = \frac{y-5}{-5} \dimplies -5x+\rfrac{5}{2} = 4y-20 \dimplies 5x+4y-20-\rfrac{5}{2} = 0 \dimplies \text{\hl{$s': 10x+8y-45 = 0$}}
+	\]
+\end{itemize}
+
+\paragraph{3)} Punto de corte de $r,s$:
+
+\[
+\left\{
+	\begin{array}{c}
+		r': x-3y+8 = 0\\
+		s': 10x+8y-45 = 0
+	\end{array}
+\right\} \dimplies 
+\left\{
+	\begin{array}{c}
+		r': x-3y+8 = 0\\
+		s': -38y+125 = 0
+	\end{array}
+\right\} \dimplies ... \implies (x,y) = \left(\frac{71}{38},\frac{125}{38}\right)
+\]
+
+Conclusión: el circuncentro es $\hat{C} = \left(\frac{71}{38},\frac{125}{38}\right)$
+
+\spart El baricentro es el punto de corte de las medianas\footnote{Recta que une el vértice con el punto medio del segmento opuesto.} de un triángulo.
+
+
+El proceso a seguir será:
+\begin{enumerate}
+	\item Calcular la mediana del lado $AB$.
+	\subitem Calcular el punto medio $M_{ab}$ de $A,B$
+	\subitem Calcular la recta $r$ que pasa por $M_{ab}$ y por $C$.
+	\item Calcular la mediana del lado $BC$.
+	\subitem Calcular el punto medio $M_{bc}$ de $B,C$
+	\subitem Calcular la recta $r$ que pasa por $M_{bc}$ y por $A$.
+\end{enumerate}
+
+\paragraph{1)}
+\begin{itemize}
+	\item $M_{ab} = (4,4)$ (apartado anterior)
+	\item Recta $r$ que pasa por $M_{ab}$ y por $C$.
+	\subitem Vector director de la recta: $V_r = [\overrightarrow{CM_{ab}}] = \left(-2-4,3-4\right) = (-6,-1)$
+	\[r: \frac{x-4}{-6} = \frac{y-4}{-1} \dimplies -x+4 = -6y+24 \dimplies x-6y+20 = 0\]
+\end{itemize}
+\paragraph{2)}
+\begin{itemize}
+	\item $M_{bc} = (\rfrac{1}{2},5)$ (apartado anterior)
+	\item Recta $s$ que pasa por $M_{bc}$ y por $A$.
+	\subitem Vector director de la recta $V_s = [\overrightarrow{AM_{bc}}] = (\rfrac{1}{2} - 5,5-1) = (-\rfrac{9}{2},4)$
+	\[
+		s: \frac{x-\rfrac{1}{2}}{-\rfrac{9}{2}} = \frac{y-5}{4} \dimplies 4x-2 = -\frac{9}{2}y+\frac{45}{2} \dimplies 4x+\frac{9}{2}y - \frac{49}{2} = 0 \dimplies 8x+9y-49=0
+	\]
+
+\paragraph{3)} {Punto de corte}
+\[
+\left\{
+	\begin{array}{c}
+		r: x-6y+20 = 0\\
+		s: 8x+9y-49=0
+	\end{array}
+\right\} \dimplies 
+\left\{
+	\begin{array}{c}
+		r: x-6y+20 = 0\\
+		s: -57y + 209= 0
+	\end{array}
+\right\} \dimplies ... \implies (x,y) = \left(2,\frac{11}{3}\right)
+\]
+
+Conclusión: el baricentro $G = \displaystyle\left(2,\frac{11}{3}\right)$
+
+\end{itemize}
+\end{problem}
+
+\newpage
+\begin{problem}[111]
+
+Calcula el área y el perímetro del cuadrilátero que forman las rectas $r:3x+4y=12$ y $s: 5x+6y = 30$ con los ejes coordenados.
+
+\solution
+
+Esquema del ejercicio:
+
+\definecolor{zzttqq}{rgb}{0.6,0.2,0}
+\definecolor{xdxdff}{rgb}{0.49,0.49,1}
+\definecolor{uququq}{rgb}{0.25,0.25,0.25}
+\begin{tikzpicture}[line cap=round,line join=round,x=1.0cm,y=1.0cm]
+\draw[->,color=black] (-4.08,0) -- (14.14,0);
+\foreach \x in {-4,-3,-2,-1,1,2,3,4,5,6,7,8,9,10,11,12}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[color=black] (6.98,0.08) node [anchor=south west] { x};
+\draw[->,color=black] (0,-3.76) -- (0,8.32);
+\foreach \y in {-3,-2,-1,1,2,3,4,5,6,7,8}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0.1,7.92) node [anchor=west] { t};
+\draw[color=black] (0pt,-10pt) node[right] {\footnotesize $0$};
+\clip(-4.08,-3.76) rectangle (14.14,8.32);
+\fill[color=zzttqq,fill=zzttqq,fill opacity=0.1] (0,5) -- (6,0) -- (4,0) -- (0,3) -- cycle;
+\draw [domain=-4.08:14.14] plot(\x,{(--12-3*\x)/4});
+\draw [domain=-4.08:14.14] plot(\x,{(--30-5*\x)/6});
+\draw [color=zzttqq] (0,5)-- (6,0);
+\draw [color=zzttqq] (6,0)-- (4,0);
+\draw [color=zzttqq] (4,0)-- (0,3);
+\draw [color=zzttqq] (0,3)-- (0,5);
+\begin{scriptsize}
+\draw[color=black] (-3.94,5.72) node {$r$};
+\draw[color=black] (-3.5,8.16) node {$s$};
+\fill [color=uququq] (0,5) circle (1.5pt);
+\draw[color=uququq] (0.16,5.26) node {$A$};
+\fill [color=xdxdff] (6,0) circle (1.5pt);
+\draw[color=xdxdff] (6.16,0.26) node {$B$};
+\fill [color=uququq] (4,0) circle (1.5pt);
+\draw[color=uququq] (4.16,0.26) node {$C$};
+\fill [color=uququq] (0,3) circle (1.5pt);
+\draw[color=uququq] (0.16,3.26) node {$D$};
+\draw[color=zzttqq] (3.62,2.88) node {Cuadrilátero};
+\end{scriptsize}
+\end{tikzpicture}
+
+
+El proceso a seguir será:
+\begin{enumerate}
+	\item Calcular los puntos de corte de la recta $r$ con cada eje.
+	\item Calcular los puntos de corte de la recta $s$ con cada eje.
+	\item Sumar las distancias entre los 4 puntos (Perímetro).
+	\item ¿Calcular el área?
+\end{enumerate}
+
+Puntos de corte. Nombramos los puntos según el dibujo.
+\begin{itemize}
+
+	\item $s$ con el eje $y$ (recta $x=0$)
+	\[
+		\left\{\begin{array}{ccc}
+			x&&=0\\
+			5x+&6y &= 30
+		\end{array}\right\}\to 6y=30 \dimplies y=5
+	\]
+	Punto de corte $A = (0,5)$
+	
+	\item $s$ con el eje $x$ (recta $y=0$)
+	\[
+		\left\{\begin{array}{ccc}
+			&y&=0\\
+			5x+&6y &= 30
+		\end{array}\right\}\to 5x=30 \dimplies x=6
+	\]
+	Punto de corte $B = (6,0)$
+
+	\item $r$ con el eje $x$ (recta $y=0$)
+	\[
+		\left\{\begin{array}{ccc}
+			&y&=0\\
+			3x+&4y &= 12
+		\end{array}\right\}\to 3x=12 \dimplies x=4
+	\]
+	Punto de corte $C = (4,0)$
+	\item $r$ con el eje $y$ (recta $x=0$)
+	\[
+		\left\{\begin{array}{ccc}
+			x&&=0\\
+			3x+&4y &= 12
+		\end{array}\right\}\to 4y=12 \dimplies y=3
+	\]
+	Punto de corte $D = (0,3)$
+
+\end{itemize}
+
+Los lados del cuadrilátero son $AB$,$BC$,$CD$,$DA$.\footnote{Cuidado si has nombrado los puntos de otra manera. Los segmentos $AC$ y $BD$ no son los lados sino las diagonales.}
+
+\paragraph{Perímetro:} 
+
+$[\overrightarrow{AB}]= (-6,5) \to  d(A,B) = |[\overrightarrow{AB}]| = \sqrt{(-6)^2+(5)^2} = \sqrt{61}$
+
+$[\overrightarrow{BC}]= (-2,0) \to  d(B,C) = |[\overrightarrow{BC}]| = \sqrt{(-2)^2+(0)^2} = \sqrt{4} = 2$
+
+$[\overrightarrow{CD}]= (-4,3) \to  d(C,D) = |[\overrightarrow{CD}]| = \sqrt{(-4)^2+(3)^2} = \sqrt{25} = 5$
+
+$[\overrightarrow{DA}]= (0,-2) \to  d(D,A) = |[\overrightarrow{DA}]| = \sqrt{(0)^2+(2)^2} = \sqrt{4} = 2$
+
+\[
+P = d(A,B)+ d(B,C)+ d(C,D)+ d(D,A) = \sqrt{61}+2+5+2 = 9+\sqrt{61} u.
+\]
+
+\paragraph{Área}
+
+Para calcular el área es necesario dividir el cuadrilátero en 2 triángulos y calcular el área de los 2 triángulos:
+
+%<<<<<<<WARNING>>>>>>>
+% PGF/Tikz doesn't support very well hatch filling
+% Use PStricks for a perfect hatching export
+
+\definecolor{ttttff}{rgb}{0.2,0.2,1}
+\definecolor{wwfftt}{rgb}{0.4,1,0.2}
+\definecolor{zzttqq}{rgb}{0.6,0.2,0}
+\definecolor{xdxdff}{rgb}{0.49,0.49,1}
+\definecolor{uququq}{rgb}{0.25,0.25,0.25}
+\begin{center}
+\begin{tikzpicture}[line cap=round,line join=round,x=1.0cm,y=1.0cm]
+\draw[->,color=black] (-0.95,0) -- (10.31,0);
+\foreach \x in {,1,2,3,4,5,6,7,8,9,10}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[color=black] (9.88,0.05) node [anchor=south west] { x};
+\draw[->,color=black] (0,-1.32) -- (0,6.15);
+\foreach \y in {-1,1,2,3,4,5,6}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0.1,6.1) node [anchor=west] { t};
+\draw[color=black] (0pt,-10pt) node[right] {\footnotesize $0$};
+\clip(-0.95,-1.32) rectangle (10.31,6.15);
+\fill[color=zzttqq,fill=zzttqq,fill opacity=0.1] (0,5) -- (6,0) -- (4,0) -- (0,3) -- cycle;
+\fill[pattern color=wwfftt,fill=wwfftt,pattern=vertical lines] (0,5) -- (0,3) -- (6,0) -- cycle;
+\fill[pattern color=ttttff,fill=ttttff,pattern=north west lines] (0,3) -- (6,0) -- (4,0) -- cycle;
+\draw [domain=-0.95:10.31] plot(\x,{(--12-3*\x)/4});
+\draw [domain=-0.95:10.31] plot(\x,{(--30-5*\x)/6});
+\draw [color=zzttqq] (0,5)-- (6,0);
+\draw [color=zzttqq] (6,0)-- (4,0);
+\draw [color=zzttqq] (4,0)-- (0,3);
+\draw [color=zzttqq] (0,3)-- (0,5);
+\draw [color=wwfftt] (0,5)-- (0,3);
+\draw [color=wwfftt] (0,3)-- (6,0);
+\draw [color=wwfftt] (6,0)-- (0,5);
+\draw [color=ttttff] (0,3)-- (6,0);
+\draw [color=ttttff] (6,0)-- (4,0);
+\draw [color=ttttff] (4,0)-- (0,3);
+\begin{scriptsize}
+\draw[color=black] (-0.87,3.5) node {$r$};
+\draw[color=black] (-0.85,5.58) node {$s$};
+\fill [color=uququq] (0,5) circle (1.5pt);
+\draw[color=uququq] (0.1,5.16) node {$A$};
+\fill [color=xdxdff] (6,0) circle (1.5pt);
+\draw[color=xdxdff] (5.99,0.17) node {$B$};
+\fill [color=uququq] (4,0) circle (1.5pt);
+\draw[color=uququq] (3.71,0.15) node {$C$};
+\fill [color=uququq] (0,3) circle (1.5pt);
+\draw[color=uququq] (-0.11,2.89) node {$D$};
+\end{scriptsize}
+\end{tikzpicture}
+\end{center}
+
+\subparagraph{Forma 1}
+Para hallar el área del cuadrilátero sumaremos el área del triángulo azul ($\hat{ABD}$)y del triángulo verde ($\hat{BCD}$).
+
+\paragraph{$\hat{BCD}$}
+
+Con el dibujo podemos ver que la altura del vértice $D$ es $3u.$ y la base $BC$ mide $2u.$
+
+$A_1 = \frac{3·2}{2} = 3u^2$
+
+\paragraph{$\hat{ADB}$}
+
+Con el dibujo podemos ver que la altura del vértice $B$ es $6u.$ y la base $AD$ mide $2u.$
+
+$A_2 = \frac{6·3}{2} = 9u^2$
+
+\subparagraph{Forma 2}
+
+
+
+%<<<<<<<WARNING>>>>>>>
+% PGF/Tikz doesn't support very well hatch filling
+% Use PStricks for a perfect hatching export
+
+\begin{center}
+\definecolor{ttttff}{rgb}{0.2,0.2,1}
+\definecolor{qqffqq}{rgb}{0,1,0}
+\definecolor{zzttqq}{rgb}{0.6,0.2,0}
+\definecolor{xdxdff}{rgb}{0.49,0.49,1}
+\definecolor{uququq}{rgb}{0.25,0.25,0.25}
+\begin{tikzpicture}[line cap=round,line join=round,x=1.0cm,y=1.0cm]
+\draw[->,color=black] (-0.95,0) -- (10.31,0);
+\foreach \x in {,1,2,3,4,5,6,7,8,9,10}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[color=black] (5.88,0.05) node [anchor=south west] { x};
+\draw[->,color=black] (0,-1.32) -- (0,6.15);
+\foreach \y in {-1,1,2,3,4,5,6}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0.06,5.9) node [anchor=west] { t};
+\draw[color=black] (0pt,-10pt) node[right] {\footnotesize $0$};
+\clip(-0.95,-1.32) rectangle (10.31,6.15);
+\fill[color=zzttqq,fill=zzttqq,fill opacity=0.1] (0,5) -- (6,0) -- (4,0) -- (0,3) -- cycle;
+\fill[pattern color=qqffqq,fill=qqffqq,pattern=north west lines] (0,3) -- (0,0) -- (4,0) -- cycle;
+\fill[pattern color=ttttff,fill=ttttff,pattern=north east lines] (0,5) -- (0,0) -- (6,0) -- cycle;
+\draw [domain=-0.95:10.31] plot(\x,{(--12-3*\x)/4});
+\draw [domain=-0.95:10.31] plot(\x,{(--30-5*\x)/6});
+\draw [color=zzttqq] (0,5)-- (6,0);
+\draw [color=zzttqq] (6,0)-- (4,0);
+\draw [color=zzttqq] (4,0)-- (0,3);
+\draw [color=zzttqq] (0,3)-- (0,5);
+\draw [color=qqffqq] (0,3)-- (0,0);
+\draw [color=qqffqq] (0,0)-- (4,0);
+\draw [color=qqffqq] (4,0)-- (0,3);
+\draw [color=ttttff] (0,5)-- (0,0);
+\draw [color=ttttff] (0,0)-- (6,0);
+\draw [color=ttttff] (6,0)-- (0,5);
+\begin{scriptsize}
+\draw[color=black] (-0.87,3.5) node {$r$};
+\draw[color=black] (-0.85,5.58) node {$s$};
+\fill [color=uququq] (0,5) circle (1.5pt);
+\draw[color=uququq] (0.1,5.16) node {$A$};
+\fill [color=xdxdff] (6,0) circle (1.5pt);
+\draw[color=xdxdff] (5.99,0.17) node {$B$};
+\fill [color=uququq] (4,0) circle (1.5pt);
+\draw[color=uququq] (3.71,0.15) node {$C$};
+\fill [color=uququq] (0,3) circle (1.5pt);
+\draw[color=uququq] (-0.11,2.89) node {$D$};
+\draw[color=zzttqq] (3.3,2.65) node {Cuadrilátero};
+\fill [color=uququq] (0,0) circle (1.5pt);
+\draw[color=uququq] (0.1,0.17) node {$E$};
+\end{scriptsize}
+\end{tikzpicture}
+\end{center}
+
+El área del cuadrilátero será el área rallada azul (triángulo $OAB$) menos el área rallada verde (triángulo $OCD$).
+
+\end{problem}
+
+\newpage
+\begin{problem}[108]
+Calcula el área del triángulo de vértices $A(-2,2), B(5,-1), C(3,4)$ (sin utilizar la fórmula de \textit{distancia entre un punto y una recta}).
+
+\solution
+
+El proceso a seguir será:
+
+\begin{enumerate}
+	\item Elegir una altura para calcular. Por ejemplo, la altura de $A$.
+	\item Calcular la recta $s$ que pasa por $B$ y $C$
+	\item Calcular la recta $r$ que pasa por $A$ y es perpendicular a $BC$.
+	\item Punto de intersección $I$ de $s$ y $r$.
+	\item Altura: $d(I,A)$ y base: $d(B,C)$. Calculamos el área
+\end{enumerate}
+
+\paragraph{2)}
+$[\overrightarrow{BC}] = (-2,5)$
+
+Recta que pasa por $B$ y tiene como vector director $V_s = [\overrightarrow{BC}] = (-2,5)$:
+\[
+	s: \frac{x-5}{-2} = \frac{y-(-1)}{5} \dimplies 5x-25 = -2y-2 \dimplies 5x+2y-23 = 0
+\]
+
+\paragraph{3)}
+$V_r = (5,2)$ porque $V_r·V_s = (-2,5)·(5,2) = -10+10 = 0$
+
+Recta que pasa por $A$ y tiene como $V_r = (5,2)$
+\[
+	r: \frac{x-(-2)}{5} = \frac{y-2}{2} \dimplies 2x+4=5y-10 \dimplies 2x-5y+14=0
+\]
+
+\paragraph{4)} Punto de corte
+
+\[
+\left\{
+	\begin{array}{c}
+		r: 5x+2y-23 = 0\\
+		s: 2x-5y+14=0
+	\end{array}
+\right\} \dimplies ... \implies (x,y) = \left(3,4\right)
+\]
+
+El punto de intersección $I = \left(3,4\right)$
+
+\paragraph{5)}
+
+Base: $d(B,C) = |[\overrightarrow{BC}]| = \sqrt{(-2)^2+5^2} = \sqrt{4+25} = \sqrt{29}$
+
+Altura: $d(A,I) = |[\overrightarrow{AI}]| = \sqrt{\left(3+2\right)^2 + \left(4-2\right)^2} = \sqrt{29}$
+
+Área: 
+\[A=\frac{b·h}{2} = \frac{\sqrt{29}·\sqrt{29}}{2} = \frac{29}{2}u^2 \]
+\end{problem}
+
+
+\end{document}

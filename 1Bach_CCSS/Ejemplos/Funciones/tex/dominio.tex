@@ -1,0 +1,10 @@
+\paragraph{Dominio}
+
+
+\begin{sagesilent}
+_den0=solve(f.denominator(normalize=False) == 0,x,solution_dict=false)
+den0 = [a[x] for a in _den0 if imag(a[x])==0]
+\end{sagesilent}
+\[
+	D(f) = \{x\in\real \tq \sagestr{f.denominator()} \neq 0\} = \real-\{\sagestr{den0}\}
+\]

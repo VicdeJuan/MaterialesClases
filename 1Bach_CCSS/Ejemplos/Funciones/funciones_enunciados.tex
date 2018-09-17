@@ -1,0 +1,88 @@
+\documentclass[palatino,nosec]{Docencia}
+
+
+\title{Ejercicios funciones}
+\author{Departamento de Matemáticas}
+\date{17/18}
+
+\begin{abstract}
+\end{abstract}
+
+% Paquetes adicionales
+
+\usepackage[author={Víctor de Juan, 2017}]{pdfcomment}
+
+\makeatletter
+\newcommand{\annotate}[2][]{%
+	\pdfstringdef\x@title{#1}%
+	\edef\r{\string\r}%
+	\pdfstringdef\x@contents{#2}%
+	\pdfannot
+	width 2\baselineskip
+	height 2\baselineskip
+	depth 0pt
+	{
+		/Subtype /Text
+		/T (\x@title)
+		/Contents (\x@contents)
+	}%
+}
+\makeatother
+
+% --------------------
+\newcommand{\cimplies}{\text{\hl{$\implies$}}}
+\renewcommand{\vx}{\overset{\rightarrow}{x}}
+\renewcommand{\vy}{\overset{\rightarrow}{y}}
+\renewcommand{\vz}{\overset{\rightarrow}{z}}
+\newcommand{\vi}{\overset{\rightarrow}{i}}
+\newcommand{\vj}{\overset{\rightarrow}{j}}
+\renewcommand{\vec}[1]{\overset{\rightarrow}{#1}}
+
+\usepackage{pgf,tikz}
+\usetikzlibrary{arrows}
+
+\begin{document}
+\pagestyle{plain}
+
+	
+\begin{problem} Demuestra que el vértice de la parábola $f(x) = ax^2+bx+c$ tiene de coordenada horizontal $x=\rfrac{-b}{2a}$
+\solution
+\[
+	f'(x) = 2ax+b
+\]
+\end{problem}
+
+
+\begin{problem} Halla las rectas tangentes a la función $f(x)$ en los máximos (no es necesario intervalos de crecimiento y decrecimiento).
+\[
+f(x) = 3x^4-4x^3-36x^2
+\]
+
+¿Hay algún máximo absoluto?
+
+\solution
+
+\end{problem}
+
+\begin{problem} Estudia la monotonía (intervalos de crecimiento, decrecimiento y extremos relativos y absolutos) de $f(x) = x^4-2x^2$
+\solution
+\end{problem}
+
+\begin{problem} Estudia la monotonía (intervalos de crecimiento, decrecimiento y extremos relativos y absolutos) de $f(x) = x^3$
+\solution
+\end{problem}
+
+\begin{problem} Estudia sistemáticamente la función: \[f(x) = \frac{2x-1}{x^2-4x+4}\]
+
+\solution
+\end{problem}
+
+\begin{problem} Estudia las asíntotas de \[f(x) =\frac{x^3-4x^2+x+6}{2x^3-14x^2+32x-24}\]
+\solution
+\end{problem}
+
+\begin{problem} Deriva $f(x) = \tan(x^2-3x)$
+\solution
+\end{problem}
+
+\end{document}
