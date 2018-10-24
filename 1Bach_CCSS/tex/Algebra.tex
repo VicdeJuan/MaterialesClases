@@ -1,10 +1,10 @@
 % -*- root: ../Cuaderno.tex -*-
 
-\section{Álgebra}
+\chapter{Álgebra}
 
-\subsection{Repaso de 4º}
+\section{Repaso de 4º}
 
-\subsubsection{Factorización}
+\subsection{Factorización}
 
 \begin{itemize}
 	\item Alguien sale a la pizarra a factorizar. Utilizando 
@@ -138,13 +138,18 @@ Por grupos los demás ejercicios:
 
 \end{itemize}
 
+	\item Factorizar $P(x) = 9x^3-\frac{27}{2}x^2+\frac{13}{2}x-1 = 9·(x-1/2)(x-2/3)(x-1/3)$. Pista (para ahorraros pruebas innecesarias con Ruffini), todas las raíces son fraccionarias y positivas.
+
+	\item Factorizar $P(x) = x^7+2x^4+x = x(x^3+1)^2$
+
+	
 
 \item Sea $P(x) = 21x^2+10x-2$. $P(x) + 3 = 21(x+1/3)(x+1/7)$.
 
 \end{enumerate}
 
 
-\subsubsection{Logaritmos}
+\subsection{Logaritmos}
 
 \paragraph{Introducción}
 
@@ -209,51 +214,19 @@ Se llama logaritmo en base $a$ de $N$ al exponente $x$ que cumple: $a^x = N$ y s
 	\item $\log_a a = 1 \dimplies a^1 = a$
 	\item $\log_a a^q = q \dimplies a^q = a^q$ por definición.
 	\item $a^{\log_a N} = N$
-\todo{Sesión 2}
-	\begin{proof}
-		Sea $b = \log_a N \dimplies a^b = N$.
-
-		Entonces, $a^{\log_a N} = N \dimplies a^n = N$
-	\end{proof}
 \end{enumerate}
 
+\paragraph{Propiedades}
 
+Vamos a razonar las propiedades de los logaritmos teniendo en cuenta que son exponentes. De hecho, las propiedades de los logaritmos no son otra cosa que las propiedades de las potencias escritas de otra manera.
 
-\paragraph{Propiedades:}
 \begin{itemize}
 	\item $\log_a(AB) = \log_a(A) + \log_a(B)$
-		\begin{proof}
-			\[\left.\begin{array}{c}
-				\log_a(A) = p \dimplies a^p = A\\
-				\log_a(B) = p \dimplies a^q = B
-			\end{array}\right\}\implies A·B = a^{p+q} \implies \log_a(AB) = \log_aa^{p+q}\]
-			\[
-				\log_a(AB) = \log_aa^{p+q} \overset{?}{\implies} \log_a(AB) = p+q \overset{?}{=} \log_aA + \log_aB
-			\]
-		\end{proof}
+	\subitem Por ejemplo:
+	\[9·8 = 2^x \dimplies x = \log_2 (9·8) = \log_2 8 + \log_2 9\]
 	\item $\log_a\left(\rfrac{A}{B}\right) = \log_a(A) - \log_a(B)$
-	\begin{proof}
-		Análoga. Para completar por vosotros. Si no lo conseguís, intentadlo.
-	\end{proof}
 	\item $\log_a(A)^n = n·\log_a(A)$ \hl{\textbf{Ojo:} $\left[\log_a(A+B)\right]^n \neq n·\log_a(A)$}
-	\begin{proof}
-		Tomamos $\log_aA = p \dimplies a^p = A$
-
-		\[
-			a^p = A \dimplies a^{np}=A^n \dimplies \log_aa^{np} = \log_aA^n \dimplies np = \log_aA^n
-		\]
-		\[ 
-			\dimplies n\log_aA = \log_aA^n
-		\]
-	\end{proof}
 	\item $\displaystyle\log_aA = \frac{\log_bA}{\log_ba}$ \textbf{(Cambio de base})
-		\begin{proof}
-			Tomamos $\log_aA = p \dimplies a^p = A$
-			\[
-				\log_ba^p = \log_bA \dimplies p\log_ba = \log_bA \dimplies p=\log_aA=\frac{\log_bA}{\log_ba}
-			\]
-
-		\end{proof}
 \end{itemize}
 
 \paragraph{Tomar logaritmos:}
@@ -262,204 +235,19 @@ Se llama logaritmo en base $a$ de $N$ al exponente $x$ que cumple: $a^x = N$ y s
 A = B \overset{1}{\dimplies} a^{\log_a A} = a^{\log_a B} \dimplies \log_aA=\log_aB
 \]
 
-\subsubsection{Ejemplos con logaritmos}
+\subsection{Ejemplos con logaritmos}
 
 \begin{itemize}
 	\item $\log \sqrt{0,0001}$
 	\item \annotate{Dejé la demostración para que lo hicieran ellos. Se atascaron bastante. No repetir.}{Demuestra} $\log_a b · \log_b a = 1$ 
 \end{itemize}
 
-\subsubsection{Ejercicios con logaritmos}
-\todo{Sesión 3. Corregimos el 50a, de deberes lo demás para empezar corrigiendo.}
-Pág 21, ejers 50,52.
 
-\subsubsection{Aplicación de los logaritmos}
+\section{Tema 2: Ecuaciones}
 
-\paragraph{pH}
+\subsection{Teoría sobre ecuaciones}
 
-Para medir el nivel de acidez, pH, que mide la concentración de iones hidronio ($H_3O^+$)
-
-\[pH=-\log[H_30^+]\]
-
-\paragraph*{Despejar el tiempo} En el crecimiento exponencial de bacterias:
-$P = p_0·k^t$ donde $p_0$ es la cantidad inicial, $t$ son los periodos de tiempo y $k$ la tasa de multiplicación.
-
-Pag 23, ejer 57.
-
-\paragraph{Interés compuesto}
-
-\nota{\hl{Que no copien todo esto, sino que lo entiendan.}}
-
-Sea $C$ el capital inicial. Tras 1 periodo de tiempo, obtengo el r\% de intereses. Entonces tendré: $C_1 = C_0 + \rfrac{r}{100}C_0 = C_0·\left(1+\frac{r}{100}\right)$
-
-Pasado otro periodo de tiempo tendré $C_2 = C_1·\left(1+\frac{r}{100}\right) = C_0·\left(1+\frac{r}{100}\right)·\left(1+\frac{r}{100}\right) = C_0 ·\left(1+\frac{r}{100}\right)^2$
-
-En general, para $t$ periodos de tiempo tendremos: $C_t = C_0·\left(1+\frac{r}{100}\right)^t$.
-
-La fórmula del interés compuesto capitalizado en $p$ periodos, \hl{para un interés nominal $r$ es}: 
-
-\[C = C_0·\left(1+\frac{r}{100p}\right)^{pt}\]
-
-
-\paragraph{3 preguntas? \hl{No.}}
-\begin{itemize}
-	\item[a] Pero... ¿es lo mismo un interés anual del 5\% capitalizado cada mes, que un interés anual del 5\% capitalizado cada año?
-
-	\item[b] ¿Y si capitalizo cada semana? ¿Y cada día? ¿Y si capitalizo \textit{instantáneamente}? \hl{(Sí)}
-
-	\item[c] ¿Cuánto tiempo tengo que dejar el dinero si quiero ganar una cantidad concreta?
-\end{itemize}
-
-\paragraph{a)}
-Pero, ¿es lo mismo un interés mensual del 5\% durante 12 meses que un interés anual del 5\% durante 12 meses? Sí. ¿A quién le importa que sean meses o años?
-
-Pero... ¿es lo mismo un interés anual del 5\% capitalizado cada mes, que un interés anual del 5\% capitalizado cada año? ¿Hay alguno que sea mayor? 
-
-\begin{example}
-
-Tengo $C= 1000$ a un $r=5\%$. Tengo 2 opciones para elegir y no se cual es mejor. 
-
-\begin{itemize}
-	\item[a)] Un interés anual del 5\% capitalizado cada mes durante 5 años.
-
-	\[
-		C = C_0·(1+\rfrac{r}{100p})^{t·p} = 1000·(1+\rfrac{5}{1200})^{12*5} = 1283.36
-	\]
-	\item[b)] Un interés anual del 5\% capitalizado cada año durante 5 años.
-
-	\[
-		C = C_0·(1+\rfrac{r}{100p})^{t·p} = 1000·(1+\rfrac{5}{100})^{5} = 1276.28
-	\]
-
-	Es más rentable la opción a. 
-
-	\nota{\hl{De hecho}, ¿cuál es el interés equivalente que hay que aplicar al año en el caso a)?}
-
-	\[
-		C = C_0·(1+\rfrac{r}{100})^{t} \dimplies \frac{C}{C_0} = (1+\rfrac{r}{100})^t \implies \sqrt[t]{\frac{C}{C_0}} = \sqrt[t]{(1+\rfrac{r}{100})^t} \dimplies
-	\]
-	\[
- 		\sqrt[t]{\frac{C}{C_0}} -1 = \rfrac{r}{100} \dimplies r = 100·\left(\sqrt[t]{\frac{C}{C_0}} -1 \right)\implies r = 100·\left(\sqrt[5]{\frac{1283.36}{1000}} - 1\right) = 5.1162...
-	\]
-
-	Conclusión, un 5\% mensual es lo mismo que un 5.1162...\% anual. Por esto, y para que no nos puedan timar los bancos existe la \concept{TAE} (Tasa Anual Equivalente.)
-
-
-\end{itemize}
-\end{example}
-
-\paragraph{b)}
-¿Y si capitalizo cada semana? ¿Y cada día? ¿Y si capitalizo \textit{instantáneamente}? 
-
-\paragraph{c)}
-Tengo entendido que durante el mes de julio, Miguel ha trabajado de hamaquero en la playa y cobrado 150 al mes. ¿Puede ser? Su banco le ofrece un depósito con un interés del 10\% y Miguel querría pagarse su carrera, que será algo así como 10000, sino sigue subiendo.
-%
-¿Cuánto tiempo tiene que dejar su dinero en el banco para pagarse la carrera?
-
-\[
-	C = C_0·(1+\rfrac{r}{100})^{t} \dimplies \log\frac{C}{C_0} = t\log(1+\rfrac{r}{100}) \dimplies t = \frac{\log\frac{C}{C_0}}{\log(1+\rfrac{r}{100})} = \frac{\log\frac{10000}{150}}{\log\left(1+\rfrac{10}{100}\right)} 
-\]
-
-\[
-	t = 44.06\text{ años}
-\]
-
-De momento lo dejamos aquí. El próximo tema que tiene ecuaciones volveremos a trabajar con el interés, las bacterias, etc.
-
-\todo{Fin sesión 4.}
-
-\section{Tema 2: álgebra}
-
-\subsection{Binomio de Newton}
-
-\paragraph{Combinatoria básica} ¿Cuántas parejas puedo hacer con 5 cartas? $\binom{5}{2}$
-
-\begin{defn}[Número combinatorio] Dados 2 números naturales no nulos $m$ y $n$, siendo $m≥n$, se denomina número combinatorio $\binom{m}{n}$, y se lee "m" sobre "n" a $\binom{m}{n} = \frac{m!}{n!(m-n)!}$
-\end{defn}
-
-\paragraph{Propiedades}
-\begin{itemize}
-	\item $\binom{m}{0}=\binom{m}{m}=1$
-	\begin{proof}
-		\[\binom{m}{m} = \frac{m!}{m!(m-m)!} = 1\]
-	\end{proof}
-	\item $\binom{m}{n}=\binom{m}{m-n}$ 
-	\begin{proof}
-		\[\binom{m}{n} = \frac{m!}{n!(m-n)!} = \frac{m!}{(m-(m-n))!(m-n)!} = \binom{m}{m-n} \]
-	\end{proof}
-	\item $\binom{m}{n} + \binom{m}{n+1}=\binom{m+1}{n+1}$
-	\begin{proof}
-		\[
-			\binom{m}{n} + \binom{m}{n+1} = \frac{m!}{n!(m-n)!} + \frac{m!}{(n+1)!(m-n-1)!} = 
-		\]
-		\[
-			\frac{m!(n+1)}{(n+1)n!(m-n)!} + \frac{m!(m-n)}{(n+1)!(m-n-1)!(m-n)}
-		\]
-		\[
-			\frac{m!(n+1+m-n)}{(n+1)!(m-n)!} = \frac{(m+1)!}{(n+1)!(m-n)!} = 
-		\frac{(m+1)!}{(n+1)!((m+1)-(n+1))!} = \binom{m+1}{n+1}
-		\]
-	\end{proof}
-\end{itemize}
-
-\nota{No copiar}
-
-En cursos anteriores hemos visto $(a+b)^2 = a^2+2ab+b^2$. Si tenemos muy buena memoria igual recordamos $(a+b)^3 = a^3+3ab^2+3a^2b+a^3$. Pero, ¿cómo calcular, sin desarrollar $(a+b)^6$? 
-
-$(a+b)^6 = (a+b)(a+b)(a+b)(a+b)(a+b)(a+b)(a+b)$ ¿Cuántos productos $abbbbb$ va a haber? $babbbb,bbabbb,bbbabb,bbbbab,bbbbba$. Esto es lo mismo que preguntarnos, ¿de cuántas maneras diferentes puedo ordenar la secuencia de letras $abbbbb$? O, lo que es lo mismo, ¿cuántas combinaciones hay de colocar la $a$ en las 6 posiciones?
-%
-¿Y para el producto $aabbbb$? Hay 6 huecos y queremos rellenar 2 de ellos con $a$ y dejar 4 libres (fijémonos que es lo mismo que querer rellenar 4 con $b$ y dejar 2 libres. Debemos obtener las mismas posibilidades). ¿De cuántas maneras lo puedo hacer? ¿Cuántas parejas de casilleros puedo hacer con 6 casilleros?
-
-Razonando de esta manera, llegamos a que el coeficiente de $aabbbb = a^2b^4 = \binom{6}{2}=\binom{6}{4}$. Repitiendo el razonamiento, llegaríamos a que el coeficiente sería $a^{m-n}b^m = \binom{m}{n}$. 
-
-De esta manera podemos escribir:
-
-\[
-	(a+b)^6 = \binom{6}{0}a^0b^6 + \binom{6}{1}a^1b^5 + \binom{6}{2}a^2b^4 + ... = \sum_{i=0}^6 \binom{6}{i}a^ib^{6-i}
-\]
-
-Generalizando esta idea para cualquier exponente $n$ obtenemos:
-
-\concept{Binomio de Newton}:
-$
-\displaystyle (a\text{\hl{+}}b)^n = \sum_{i=0}^n \binom{n}{i} a^ib^{n-i}
-$
-
-\paragraph{Curiosidad matemática:} Triángulo de Pascal.
-
-De aquí construimos el triángulo y jugamos un rato con él. Potencias de 2 sumando los números, potencias de 11 y Fibonnaci.
-
-\begin{figure}[hbpt]
-	\centering
-	\includegraphics[scale=0.17]{img/Pascal.png}
-	\label{img::TrianguloPascal}
-	\caption{Triángulo de Pascal y su relación con la serie de Fibonacci}
-\end{figure}
-
-
-\todo{Fin sesión. Demasiado tiempo invertido en esto para lo que en realidad es.}
-Triángulo de Pascal (vídeo brutal de \href{https://www.youtube.com/watch?v=0iMtlus-afo}{Numberphile})
-
-\paragraph{\hl{Sesión 21/09}:} Empezar con un ejemplo de uso de la fórmula para $(3x-2)^5$. Así, utilizamos la calculadora para números combinatorios. 
-Ejercicios del libro. (Yo 15, 16. Ellos 20 y 21).
-
-
-
-
-
-
-
-
-
-\subsection{Ecuaciones}
-
-\subsubsection{Teoría sobre ecuaciones}
-
-\begin{defn}
-2 ecuaciones son equivalentes si y solamente si tienen las mismas soluciones.
-\end{defn}
-
-\obs Dividir por 0 no mantiene la equivalencia (ver demostración día 1 de $0=1$).
+\obs Dividir por 0 no mantiene la equivalencia.
 
 \obs
 \[
@@ -468,25 +256,12 @@ Ejercicios del libro. (Yo 15, 16. Ellos 20 y 21).
 \[
 	\left(5-\rfrac{9}{2}\right)^2 = \left(4-\rfrac{9}{2}\right)^2 \text{\hl{\;\;;\;\;}} 5-\rfrac{9}{2} = 4-\rfrac{9}{2} \dimplies 5=4
 \]
+
 Es decir, en general, tomar una raíz no mantiene equivalencia entre ecuaciones (tampoco elevar a una potencia).
 
-\todo{Sesión}
-
-\paragraph{Sesión 27/09:} 
-\begin{itemize}
-	\item Empezar preguntando si están todos los ejercicios de polinomios corregidos (Porque yo diría que no). En ese caso, que vayan corrigiendo ellos. 
-	%
-	Mientras hay algunos en la pizarra, 
-\begin{itemize}
-	\item Factorizar $P(x) = 9x^3-\frac{27}{2}x^2+\frac{13}{2}x-1 = 9·(x-1/2)(x-2/3)(x-1/3)$. Pista (para ahorraros pruebas innecesarias con Ruffini), todas las raíces son fraccionarias y positivas.
-
-	\item Factorizar $P(x) = x^7+2x^4+x = x(x^3+1)^2$
-\end{itemize}
-	
 
 
-	\item 
-\end{itemize}
+
 
 \paragraph{Clasificación de ecuaciones}
 
@@ -498,18 +273,7 @@ Las ecuaciones según sus soluciones pueden ser:
 \end{itemize}
 
 
-\subsubsection{Ecuación de segundo grado}
-
-$ax^2+bx+c=0$. ¿Alguien sabe de dónde viene la fórmula?
-
-\[
-	x^2+\frac{b}{a}x+\frac{c}{a}=0 \dimplies x^2+2\frac{b}{2a}x+\frac{c}{a}=0\dimplies x^2+2\frac{b}{2a}+\left(\frac{b}{2a}\right)^2-\left(\frac{b}{2a}\right)^2+\frac{c}{a} = 0
-\]
-\[
-	\left(x+\frac{b}{2a}\right)^2 = \frac{b^2}{4a^2}-\frac{c}{a} \implies x+\frac{b}{2a} = \sqrt{\frac{b^2-4ac}{4a^2}} \dimplies x = \frac{\sqrt{b^2-4ac}}{2a} -\frac{b}{2a}
-\]
-
-\subsubsection{Racionales}
+\subsection{Racionales}
 
 Ecuaciones racionales.
 
@@ -526,53 +290,60 @@ Ecuaciones racionales.
 
 \hl{¿Son soluciones las 2?}
 
-Para trabajar: Pág 46, ejer 36.
+La equivalencia la hemos perdido si $x\neq \pm2$, por lo que las soluciones $x_1 = 0 \wedge x_2 = -1$ son válidas (\ul{y no es necesario hacer la comprobación}).
 
-\paragraph{36,a}
-\[
-	\frac{1}{1-\frac{1}{x+1}} = \frac{x+1}{x} \dimplies \frac{1}{\frac{x+1-1}{x+1}}=\frac{x+1}{x} \dimplies \frac{x+1}{x} = \frac{x+1}{x} \text{\hl{$\implies$}} x+1=x+1 \dimplies x=λ, ∀λ∈ℝ
-\]
+\todo{Empezar corrigiendo 84 ad, y este}
 
-\paragraph{Sesión 28/09}
+\paragraph{Cuidado:} casuística nueva de equivalencias e implicaciones. Hasta ahora, los valores peculiares de las implicaciones que no son equivalencias sólo nos ahorraban alguna comprobación\footnote{que tampoco está demás hacer para asegurarnos que hemos operado bien}.
+%
+Pero puede darse el caso de que pasen otras cosas. Por ejemplo, ¿qué pasa en esta simplificación?
 
+\[(x-1)·\frac{x}{x+1} = (x-1)·(x^2-9) \text{\hl{$\implies$}} \frac{x}{x+1} = x^2-9\]
+
+A la izquierda el 1 es solución y a la derecha no, luego las ecuaciones no son equivalentes. Pero, ¿qué pasa con el $x=1$?
+
+En esta implicación he \ul{perdido una solución}. Es una equivalencia si $x\neq 1$, y en el caso $x=1$, tengo una solución. 
+
+\paragraph{Más ejemplos}
 \begin{itemize}
-	\item Empezar corrigiendo el ejercicio anterior: La solución de la última ecuación sí es $x\inℝ$, pero en la primera, $x\in\{0,-1\}$ no son soluciones.
+	\item
+	\[
+		\frac{1}{1-\frac{1}{x+1}} = \frac{x+1}{x} \dimplies \frac{1}{\frac{x+1-1}{x+1}}=\frac{x+1}{x} \dimplies \frac{x+1}{x} = \frac{x+1}{x} \text{\hl{$\implies$}} x=λ, ∀λ∈ℝ\setminus\{0,-1\}
+	\]
 
-	\item Definición de ecuación compatible indeterminada.
-	
-	\item Corregir la otra ecuación (36,b). Mientras alguien la hace en la pizarra, trabajamos con: $2x-\frac{3x-1}{3} = x+\frac{1}{4}$. Solución: ecuación incompatible.
+	\item
+	\[
+		\frac{1+\displaystyle\frac{x+1}{x-1}}{2-\displaystyle\frac{x-1}{x+1}}=2 \dimplies \frac{\displaystyle\frac{x-1+x+1}{x-1}}{\displaystyle\frac{2x+2-x+1}{x+1}} = 2 \dimplies
+	\]
+	\[	
+		\frac{\displaystyle\frac{2x}{x-1}}{\displaystyle\frac{x+3}{x+1}}=2 \text{\hl{$\implies$}} 2x^2+2x=x^2+4x-6 \dimplies 2x=6 \dimplies x=3
+	\]
+
+	\item
+
+	\[
+		\frac{3}{x} - \frac{x}{x+2} = \frac{5x-1}{x^2+x-2}
+	\]
+
+	\item Ejercicios 83 y siguientes del libro.
 \end{itemize}
 
-\paragraph{36,b}
-\[
-	\frac{1+\displaystyle\frac{x+1}{x-1}}{2-\displaystyle\frac{x-1}{x+1}}=2 \dimplies \frac{\displaystyle\frac{x-1+x+1}{x-1}}{\displaystyle\frac{2x+2-x+1}{x+1}} = 2 \dimplies
-\]
-\[	
-	\frac{\displaystyle\frac{2x}{x-1}}{\displaystyle\frac{x+3}{x+1}}=2 \dimplies 2x^2+2x=x^2+4x-6 \dimplies 2x=6 \dimplies x=3
-\]
-
-
-Mientras corregimos los 2, para los siguientes \todo{Sin hacer}:
-
-\[
-	\frac{3}{x} - \frac{x}{x+2} = \frac{5x-1}{x^2+x-2}
-\]
-
-Lo corrigen ellos. El 33.
-
-\subsubsection{Radicales}
-
+\subsection{Ecuaciones irrracionales}
 
 \paragraph{Ejemplo:}
 \[
 	\sqrt{x+1} - \sqrt{x^2-5}=0 \text{\hl{$\implies$}} x+1 = x^2-5 \dimplies (x_0,x_1) = (3,-2)
 \]
 
-Comprobamos: $\sqrt{-2+1} = \sqrt{(-2)^2-5} \dimplies \sqrt{-1} = \sqrt{-1}$; -2 no es una solución en los reales.
+\textbf{Comprobamos} porque hemos perdido la equivalencia: 
+
+$\sqrt{-2+1} = \sqrt{(-2)^2-5} \dimplies \sqrt{-1} = \sqrt{-1}$; -2 no es una solución en los reales.
 
 Por otro lado: $\sqrt{3+1} = \sqrt{3^2-5} \dimplies \sqrt{2}=\sqrt{2}$
 
-\paragraph{Ejercicio:} (creo que está sin corregir)
+\textit{La comprobación no sería necesaria si hubiéramos reparado en que la equivalencia se mantendría siempre que el interior de las raíces fuera positivo, es decir $x\geq -1 \wedge x\geq \sqrt{5}$}
+
+\paragraph{Ejercicio:} 
 \[
 	\sqrt{x+4}+\sqrt{x-1} = 5 \text{\hl{$\implies$}} (x+4)+(x-1) + 2\sqrt{(x+4)(x-1)} = 25 \text{\hl{$\implies$}} (22-2x)^2 = 4(x^2+3x-4) \dimplies 
 \]
@@ -585,37 +356,30 @@ Comprobamos:
 	\sqrt{5+4}+\sqrt{5-1} = 3+2 = 5
 \]
 
-\paragraph{Ejercicio 40 b:} Truco: aplicar el binomio de Newton.
+\textit{Aquí la comprobación si resulta mucho más útil porque nos ahorra resolver la inecuación $(x+4)(x-1) \geq 0$}
 
-
-\paragraph{40 a}
-
-\paragraph{Sesión 29/09}
 \begin{itemize}
-	\item Empezar con la comprobación del 40 b.
-	\item Seguir con la corrección del 40 a, si han tenido problemas.
-	\item Empezar logarítmicas.
-	\item No preservación de la equivalencia.
-	\item Ejemplo de 3 maneras diferentes.
-	\item Para trabajar.
-	\item Deberes para el martes (salvo que sea el problema los deberes): 
-	\[
-		\sqrt{x^3+2\sqrt{x^3}+1} = 0 \dimplies \sqrt{(\sqrt{x^3}+1)^2} = 0 \text{\hl{$\implies$}} \sqrt{x^3}=-1 \dimplies x=-1
-	\]
-	Comprobamos: $\sqrt{(-1)^2+2\sqrt{-1^3}+1} = \sqrt{2+2\sqrt{-1}} \notin ℝ$
-
-	El otro camino:
-	\[
-		\sqrt{x^3+2\sqrt{x^3}+1} = 0 \implies x^3+2\sqrt{x^3}+1 = 0 \dimplies 2\sqrt{x^3} = -x^3-1 \implies 4x^3=x^6+2x^3+1 \dimplies 
-	\]
-	\[
-		x^6-2x^3+1=0 \dimplies t^2-2t+1=0 \dimplies t_1=-1 \implies x^3=t=-1\implies x=\sqrt[3]{-1}=-1
-	\]
-	Comprobamos: $\sqrt{(-1)^2+2\sqrt{-1^3}+1} = \sqrt{2+2\sqrt{-1}} \notin ℝ$
-
+	\item Dudas.
+	\item Corregir irracional. 89b.
+	\item 85e,90a no lo hagáis.
+	\item Empezamos 
 \end{itemize}
 
-\subsubsection{Logarítmicas}
+
+
+\subsection{Exponenciales y logarítmicas}
+
+Pregunta: $a^x=a^y \overset{?}{\dimplies} x=y$
+
+$x=y\implies a^x=a^y$ Sí.
+
+$a^x=a^y\implies x=y$ No. Contraejemplo: $1^2=1^3$.  Basicamente, si los logaritmos no mantenían la equivalencia, tampoco lo iban a hacer estas.
+
+Siempre que la base no sea $0,±1$ sí serán equivalentes. ¿Y si tenemos un polinomio como base? Pues como puede ser uno de esos valores, no mantenemos la equivalencia o calculamos para qué valores sí sería equivalente o no.
+
+Trabajamos 108abc, 109ac,111c (el más difícil de todos)
+
+\subsection{Logarítmicas}
 
 Los logaritmos tampoco conservan las equivalencias:
 
@@ -629,18 +393,25 @@ Versión innecesariamente larga:
 
 Versión corta:
 \[
-	(-2)^2 = (2)^2 \text{\hl{$\implies$}} 2\log(-2) = 2\log(2) \dimplies \log(-2)^2 = \log(2^2) \dimplies \log(-2) = \log(2) \dimplies -2=2
+	(-2)^2 = (2)^2 \text{\hl{$\implies$}} 2\log(-2) = 2\log(2) \dimplies \log(-2) = \log(2) \dimplies -2=2
 \]
 
 Ecuación de ejemplo:
+
+
+\[
+	\log x=t \implies 5t=3t+\log6^2 \dimplies 2t=2\log6 \dimplies t=\log6 \dimplies \log x=\log6 \text{\hl{$\implies$}} x=6
+\]
+
+Si estás más versado en la abstracción algebraica:
 
 \[
 	5\log x=3\log x+2\log 6 \dimplies 2\log x=2\log6 \text{\hl{$\implies$}} x=6
 \]
 
 
-El libro lo hace de otra manera:
-
+Incluso, habría una tercera manera:
+ 
 \[
 	5\log x=3\log x+2\log 6 \dimplies \log x^5=\log36x^3 \dimplies x^5=36x^3 \dimplies
 \]
@@ -648,15 +419,10 @@ El libro lo hace de otra manera:
 	x^5-36x^3 = 0 \dimplies x^3(x^2-36) = 0 \dimplies x^3(x+6)(x-6) = 0
 \]
 
-Incluso, habría una tercera manera:
 
-\[
-	\log x=t \implies 5t=3t+\log6^2 \dimplies 2t=2\log6 \dimplies t=\log6 \dimplies \log x=\log6 \text{\hl{$\implies$}} x=6
-\]
 
-Trabajamos: página 48, ejercicio 45 b,d.
 
-\paragraph{45b}
+\paragraph{Ejercicio}
 \[
 	\log\frac{2x-2}{x} = 2\log(x-1)-\log x \dimplies \log \frac{2x-2}{x}=\log\frac{(x-1)^2}{x} \cimplies \frac{2(x-1)}{x} = \frac{(x-1)^2}{x} \overset{1}{\cimplies}
 	\]
@@ -667,7 +433,7 @@ En 1 hemos simplificado 2 factores. $x$ y $(x-1)$. En esta simplificación podr�
 
 En este caso no son solución porque $\log 0$ no existe.
 
-\paragraph{45d}
+\paragraph{Ejercicio}
 \[
 \frac{\log (4-x)}{\log(x+2)}=2 \cimplies \log(4-x) = \log(x+2)^2 \cimplies 4-x=(x+2)^2 \dimplies 4-x=x^2+4x+4 \dimplies
 	\]
@@ -675,23 +441,15 @@ En este caso no son solución porque $\log 0$ no existe.
 \]
 $x_2=-5$ no es solución porque $\nexists\log(-5+2)=\log(-3)$. Por otro lado, $\frac{\log4}{\log2} = \log_24=2$ cqc.
 
-\paragraph{Sesión 3/10}
-\begin{itemize}
-	\item Empezar re-explicando la pérdida de equivalencias. Cuando simplificamos, marcamos en la equivalencia $x\neq-1$. Al final, comprobamos si los valores intermedios son soluciones o no.
-	\item Corregimos el 45bd.
-	\item Mientras, trabajar el 46 b.
-	\item Comentario al 46a (cambio de base), 45c (rango inexistente).
-	\item Problema.
-	\item Equivalencia exponenciales. Trabajamos 52 abc, mientras corrigen el d.
-\end{itemize}
 
-\paragraph{46a} mientras corrigen
+
+\paragraph{Ejercicio} mientras corrigen
 
 \[
 	\log_x 3 = \ln \sqrt{3} \dimplies \frac{\ln3}{\ln x}=\ln\sqrt{3} \dimplies \frac{\ln3}{\ln x}=\frac{\ln3}{2} \dimplies \frac{1}{\ln x}=\frac{1}{2} \implies \ln x = 2 \implies e^2=x
 \]
 
-\paragraph{46b}
+\paragraph{Ejercicio}
 \[
 	\log_332+\log_{\rfrac{1}{3}}(6-x) = \log_{\sqrt{3}}x \dimplies \log_332+\frac{\log_3(6-x)}{\log_3\rfrac{1}{3}} = \frac{\log_3x}{\log_3{\sqrt{3}}} \dimplies 
 \]
@@ -709,27 +467,22 @@ Comprobamos:
 \]
 
 
-\paragraph{Problema interés compuesto:} Uno de ellos ha trabajado en verano y ha cobrado una miseria. Quiere pagarse la universidad que cuesta tanto.
-a) ¿Cuántos años tiene que esperar?
-b) ¿Y si quiere esperar como máximo 5 años, qué intereses tendría que tener?
-\textbf{Observación:} Todas las capitalizaciones son mensuales.
-
-
-\subsubsection{Exponenciales}
-
-Pregunta: $a^x=a^y \overset{?}{\dimplies} x=y$
-
-$x=y\implies a^x=a^y$ Sí.
-
-$a^x=a^y\implies x=y$ No. Contraejemplo: $1^2=1^3$.  Basicamente, si los logaritmos no mantenían la equivalencia, tampoco lo iban a hacer estas.
-
-Siempre que la base no sea $0,±1$ sí serán equivalentes. ¿Y si tenemos un polinomio como base? Pues como puede ser uno de esos valores, no mantenemos la equivalencia.
-
-Trabajamos 52 entero.
 
 \section{Sistemas de ecuaciones}
 
+Minimísimo repaso a la reducción como método para resolver sistemas de ecuaciones.
+
 \subsection{Sistemas lineales: Gauss}
+
+Por grupos, resolver:
+\[
+\left\{\begin{array}{lccccc}
+e_1: &2x&+y&-2z&=&7\\
+e_2: &x&+y&+z&=&0\\
+e_3: &3x&+2y&+2z&=&1
+\end{array}\right\} \dimplies (x,y,z) = (1,1,-2)
+\]
+
 
 
 Clase 1: Explicación de los apuntes de MariNieves y realización de 1 sistema.
@@ -759,104 +512,6 @@ Una vez llegado al \hl{sistema escalonado} pueden darse 3 situaciones:
 	\item Número de incógnitas = número de ecuaciones, siendo la última ecuación compatible determinada $\implies$ Compatible determinado.
 \end{itemize}
 
-\subsubsection{Gauss con parámetro}
-
-Se considera el siguiente sistema lineal:
-\[
-\left\{\begin{array}{ccccc}
-x&+y&+z&=&6\\
-x&-y&+2z&=&4\\
-2x&-y&+az&=&0
-\end{array}\right\}
-\]
-Se pide:
-\begin{itemize}
-	\item Discutir el sistema según los valores del parámetro a.
-	\item Resolverlo para $a=2$.
-\end{itemize}
-
-
-\hrule
-
-\hl{Escribir:} Para encontrar los casos posibles para discutir, se iguala a 0 el coeficiente de la "z" (o de la incógnita correspondiente).
-
-\begin{itemize}
-
-\item Se considera el siguiente sistema lineal: \[
-\left\{\begin{array}{ccccc}
-x&+y&-z&=&0\\
-2x&-ay&+z&=&0\\
--x&+2y&-2z&=&0
-\end{array}\right\}
-\]
-Se pide:
-\begin{itemize}
-	\item Discutir el sistema según los valores del parámetro a.
-	\item Resolverlo para $a=0$.
-\end{itemize}
-
-
-\item Se considera el siguiente sistema lineal:\[
-\left\{\begin{array}{ccccc}
-x&+y&+2z&=&2\\
--3x&+2y&+3z&=&-2\\
-2x&-ay&-5z&=&-4
-\end{array}\right\}
-\]
-Se pide:
-\begin{itemize}
-	\item Discutir el sistema según los valores del parámetro a.
-	\item Resolverlo para $a=2$.
-\end{itemize}
-
-
-\paragraph{Sesión 24/10/2017}
-\begin{itemize}
-	\item Corregir el anterior.
-	\item Trabajar los 2 siguientes.
-\end{itemize}
-
-
-\item Se considera el siguiente sistema lineal:\[
-\left\{\begin{array}{ccccc}
-5x&-2y&-az&=&3\\
-&-y&+z&=&1\\
-x&-y&+z&=&a
-\end{array}\right\}
-\]
-Se pide:
-\begin{itemize}
-	\item Discutir el sistema según los valores del parámetro a.
-	\item Resolverlo para $a=2$.
-\end{itemize}
-
-\item Se considera el siguiente sistema lineal:\[
-\left\{\begin{array}{ccccc}
-ax&+2y&+z&=&0\\
-ax&-y&+2z&=&0\\
-x&-ay&+2z&=&0
-\end{array}\right\}
-\]
-Se pide:
-\begin{itemize}
-	\item Discutir el sistema según los valores del parámetro a.
-	\item Resolverlo para $a=1$.
-\end{itemize}
-
-\item Se considera el siguiente sistema lineal:
-\[\left\{\begin{array}{rcrcrcl}
-x&+&2y&+&z&=&0\\
-x&+&(a+2)y&+&2z&=&0\\
-x&+&(2-a)y&+&(a-2)z&=&0
-\end{array}\right\}
-\]
-Se pide:
-\begin{itemize}
-	\item Discutir el sistema según los valores del parámetro a.
-	\item Resolverlo para $a=2$.
-\end{itemize}
-
-\end{itemize}
 
 \subsection{Sistemas no lineales}
 

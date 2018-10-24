@@ -1,0 +1,81 @@
+
+\paragraph{Interés compuesto}
+
+\nota{\hl{Que no copien todo esto, sino que lo entiendan.}}
+
+Sea $C$ el capital inicial. Tras 1 periodo de tiempo, obtengo el r\% de intereses. Entonces tendré: $C_1 = C_0 + \rfrac{r}{100}C_0 = C_0·\left(1+\frac{r}{100}\right)$
+
+Pasado otro periodo de tiempo tendré $C_2 = C_1·\left(1+\frac{r}{100}\right) = C_0·\left(1+\frac{r}{100}\right)·\left(1+\frac{r}{100}\right) = C_0 ·\left(1+\frac{r}{100}\right)^2$
+
+En general, para $t$ periodos de tiempo tendremos: $C_t = C_0·\left(1+\frac{r}{100}\right)^t$.
+
+La fórmula del interés compuesto capitalizado en $p$ periodos, \hl{para un interés nominal $r$ es}: 
+
+\[C = C_0·\left(1+\frac{r}{100p}\right)^{pt}\]
+
+
+\paragraph{3 preguntas? \hl{No.}}
+\begin{itemize}
+	\item[a] Pero... ¿es lo mismo un interés anual del 5\% capitalizado cada mes, que un interés anual del 5\% capitalizado cada año?
+
+	\item[b] ¿Y si capitalizo cada semana? ¿Y cada día? ¿Y si capitalizo \textit{instantáneamente}? \hl{(Sí)}
+
+	\item[c] ¿Cuánto tiempo tengo que dejar el dinero si quiero ganar una cantidad concreta?
+\end{itemize}
+
+\paragraph{a)}
+Pero, ¿es lo mismo un interés mensual del 5\% durante 12 meses que un interés anual del 5\% durante 12 meses? Sí. ¿A quién le importa que sean meses o años?
+
+Pero... ¿es lo mismo un interés anual del 5\% capitalizado cada mes, que un interés anual del 5\% capitalizado cada año? ¿Hay alguno que sea mayor? 
+
+\begin{example}
+
+Tengo $C= 1000$ a un $r=5\%$. Tengo 2 opciones para elegir y no se cual es mejor. 
+
+\begin{itemize}
+	\item[a)] Un interés anual del 5\% capitalizado cada mes durante 5 años.
+
+	\[
+		C = C_0·(1+\rfrac{r}{100p})^{t·p} = 1000·(1+\rfrac{5}{1200})^{12*5} = 1283.36
+	\]
+	\item[b)] Un interés anual del 5\% capitalizado cada año durante 5 años.
+
+	\[
+		C = C_0·(1+\rfrac{r}{100p})^{t·p} = 1000·(1+\rfrac{5}{100})^{5} = 1276.28
+	\]
+
+	Es más rentable la opción a. 
+
+	\nota{\hl{De hecho}, ¿cuál es el interés equivalente que hay que aplicar al año en el caso a)?}
+
+	\[
+		C = C_0·(1+\rfrac{r}{100})^{t} \dimplies \frac{C}{C_0} = (1+\rfrac{r}{100})^t \implies \sqrt[t]{\frac{C}{C_0}} = \sqrt[t]{(1+\rfrac{r}{100})^t} \dimplies
+	\]
+	\[
+ 		\sqrt[t]{\frac{C}{C_0}} -1 = \rfrac{r}{100} \dimplies r = 100·\left(\sqrt[t]{\frac{C}{C_0}} -1 \right)\implies r = 100·\left(\sqrt[5]{\frac{1283.36}{1000}} - 1\right) = 5.1162...
+	\]
+
+	Conclusión, un 5\% mensual es lo mismo que un 5.1162...\% anual. Por esto, y para que no nos puedan timar los bancos existe la \concept{TAE} (Tasa Anual Equivalente.)
+
+
+\end{itemize}
+\end{example}
+
+\paragraph{b)}
+¿Y si capitalizo cada semana? ¿Y cada día? ¿Y si capitalizo \textit{instantáneamente}? 
+
+\paragraph{c)}
+Tengo entendido que durante el mes de julio, Miguel ha trabajado de hamaquero en la playa y cobrado 150 al mes. ¿Puede ser? Su banco le ofrece un depósito con un interés del 10\% y Miguel querría pagarse su carrera, que será algo así como 10000, sino sigue subiendo.
+%
+¿Cuánto tiempo tiene que dejar su dinero en el banco para pagarse la carrera?
+
+\[
+	C = C_0·(1+\rfrac{r}{100})^{t} \dimplies \log\frac{C}{C_0} = t\log(1+\rfrac{r}{100}) \dimplies t = \frac{\log\frac{C}{C_0}}{\log(1+\rfrac{r}{100})} = \frac{\log\frac{10000}{150}}{\log\left(1+\rfrac{10}{100}\right)} 
+\]
+
+\[
+	t = 44.06\text{ años}
+\]
+
+De momento lo dejamos aquí. El próximo tema que tiene ecuaciones volveremos a trabajar con el interés, las bacterias, etc.
+

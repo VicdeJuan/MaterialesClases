@@ -1,0 +1,120 @@
+\documentclass[palatino,nosec]{Docencia}
+
+
+\title{Ejercicios de polinomios}
+\author{Víctor de Juan}
+\date{17/18}
+
+
+
+% Paquetes adicionales
+
+\usepackage[author={Víctor de Juan, 2017}]{pdfcomment}
+
+\makeatletter
+\newcommand{\annotate}[2][]{%
+\pdfstringdef\x@title{#1}%
+\edef\r{\string\r}%
+\pdfstringdef\x@contents{#2}%
+\pdfannot
+width 2\baselineskip
+height 2\baselineskip
+depth 0pt
+{
+/Subtype /Text
+/T (\x@title)
+/Contents (\x@contents)
+}%
+}
+\makeatother
+
+% --------------------
+
+\begin{document}
+
+\section{Ejercicios resueltos de polinomios}
+
+\begin{enumerate}
+
+\item Sea $P(x) = 3x^3-3x^2-3x+3 \;\;\; [\text{sol: } = 3(x-1)(x+1)^2]$
+\begin{itemize}
+	\item ¿Es divisible por $(x-1)$? Comprobamos $P(1) = 3-3-3+3 = 0 \overset{T.F}{\implies}$ Sí.
+\end{itemize}
+
+\item Factoriza: $P(x) = 3x^3-x^2+9x-3 [\text{ Solución: }] = 3(x^2+3)\left(x-\rfrac{1}{3}\right)$
+\hrule
+
+
+
+\item Sea $P(x) = 6x^3-10x^2+4x \;\;\; [\text{sol: } = 6x(x-1)(x-\frac{2}{3})]$
+\begin{itemize}
+	\item Factoriza.
+	\subitem $P(0) = 0$. Por el teorema del factor sabemos que $x-0$ es un factor.
+	\subitem Posibles raíces $α=\frac{m}{n}$ con $n=±1,\pm2,\pm4$ y $m=\pm1,\pm2,\pm3,\pm6$.	
+	\subitem Por el teorema de la factorización, $Q(x) = 3x^3-5x+2x$ tendrá las mismas raíces que $P(x) = 6x^3-10x^2+4x$.\footnote{\textit{Ojo, no podemos simplificar, pero las raíces son las mismas.}}. Ahora las posibles raíces son $\frac{n}{m}$ donde $n\in\{\pm1,\pm2\}$ y $m\in\{\pm1,\pm3\}$
+	\subitem $P(1) = 0$. Por el teorema del factor sabemos que $0$ es una raíz. ¿Es esto más fácil que Ruffini? ¿Y ahora?
+\end{itemize}
+
+\hrule
+
+\item Sea $P(x) = 2x^3-2x^2+kx+4$.
+\begin{itemize}
+	\item Halla el valor de $k$ para que $P(x)$ sea divisible por $x-2$.
+	\subitem Por el teorema del factor, buscamos $P(2) = 0$. Entonces:
+	\[
+		P(2) = 0 \dimplies 2^4-2^3+2k+4 = 0 \dimplies 16-12+2k = 0 \dimplies k = -2
+	\]
+\end{itemize}
+
+
+\hrule
+
+\item Sea $P(x) = x^4+4x^3+6x^2+4x+1$
+\begin{itemize}
+	\item Factoriza.
+	\subitem Por el binomio de Newton $P(x) = (x+1)^4$
+\end{itemize}
+
+\hrule
+
+\item Sea $P(x) = 21x^2+10x-2 \;\;\; [\text{sol: } =  21(x+1/3)(x+1/7)]$.
+
+\hrule
+
+\item \textbf{Ampliación: } Sea $P(x) = 6x^3+ax^2+bx-1$, con $a,b\inℤ$
+\begin{itemize}
+	\item Halla el valor de $a,b$ para que $P(x)$ sea divisible por $(x-\frac{1}{3})$ y por $(x-\frac{1}{5})$.
+	\subitem Por el teorema de las raíces fraccionarias, $5$ no divide al coeficiente principal, por lo que $P(x)$ no puede ser divisible por $(x-\frac{1}{5})$.
+	\item Halla el valor de $a,b$ para que $P(x)$ sea divisible por $(x-\frac{1}{3})$ y por $(x-\frac{1}{2})$.
+	\subitem Por el teorema del factor, buscamos:
+	\[
+	\left\{
+		\begin{array}{c}
+			P(\frac{1}{2}) = 0 \dimplies \frac{6}{8} + \frac{a}{4} + \frac{b}{2} - 1 = 0\\
+			P(\frac{1}{3}) = 0 \dimplies \frac{6}{27} + \frac{a}{9} + \frac{b}{3} - 1 = 0
+		\end{array}\right\}\dimplies ... \quad (a,b) = (-1,-4)
+	\]
+\end{itemize}
+
+\hrule
+
+\item \textbf{Ampliación: } Sea $P(x) = 4x^2+bx+1$, $b\inℤ$. 
+\begin{itemize}
+	\item Sabemos que sus raíces $α_1,α_2$ son fraccionarias y positivas. ¿Cuáles son? ¿Cuánto vale $b$?
+	\subitem Por el teorema de las raíces fraccionarias, $α_1 = \frac{n_1}{m_1}$, sabemos que $n_1$ divide a $1$. Análogo para $α_2$.
+
+	Por otro lado, sabemos que $m_2$ divide a 4. Las posibilidades son $2,4$, con lo que $α_1,α_2 \in \{\frac{1}{2},\frac{1}{4}\}$
+
+	Por el teorema del resto, $P(\frac{1}{2}) = 1+b\frac{1}{2}+1 = 0 \implies b=-4$. 
+	Por el teorema del resto, $P(\frac{1}{4}) = \frac{1}{4}+b\frac{1}{4}+1 = 0 \implies b=-2$.
+
+	Si queremos que sea divisible por los 2 factores, b tiene que valer a la vez $4$ y $-2$. Entonces, necesariamente $P(x) = 4(x-\frac{1}{2})^2$ o $P(x) = 4(x-\frac{1}{4})^2$. 
+
+	Desarrollando la segunda opción, obtenemos como término independiente $\frac{1}{4}$, por lo que no es posible.
+
+\end{itemize}
+
+\end{enumerate}
+
+\end{document}
+\grid
