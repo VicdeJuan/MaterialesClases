@@ -19,16 +19,146 @@ Rellenar de ejemplos el margen del libro a lápiz.
 \end{itemize}
 
 \subsection{Tabla de frecuencias}
-Ejercicio 4.
+Comentar la tabla resuelta. 
+
+\begin{itemize}
+	\item ¿Por qué $\sqrt{n}$? Por simetría. Para tener el mismo número de intervalos que de datos por intervalo.
+	\item Las $h_i$ y $H_i$ son porcentajes. ¿Cuánta gente está por debajo de $x$ kilos? Miramos la $H_i$ que corresponda.
+	\item Interpretación de $x_i$. ¿Para qué sirven entonces los intervalos? Porque en realidad la variable con la que trabajo es una variable continua.
+\end{itemize}
 
 \subsection{Medidas}
 
-\subsubsection{Centralización}
-Ejercicios 10 y 12.
+\subsubsection{Centralización y posición}
 
-\subsubsection{Posición}
+
+\paragraph{Medidas de posición}
+
+Las medidas de posición son los percentiles, aunque cuando dividimos la muestra en 4 partes hablamos de cuartiles. Al dividir la muestra en 10, hablamos de deciles. Al dividir la muestra en 2, hablamos de la mediana.
+
+
+
+\paragraph{Utilidad de la mediana:} comparemos 2 muestras:
+\[A=\{0,0,0,0,0,9,9,9,9\} \to \overline{x}_A = \frac{9*4}{9}=4\;\;\; Me_A = 0\]
+\[B=\{4,4,4,4,4,4,4,4,4\} \to \overline{x}_A = \frac{9*4}{9}=4\;\;\; Me_A = 4\]
+
+Estas 2 muestras tienen la misma media. La mediana nos ayuda a distinguir. 
+
+\subparagraph{Sensibilidad a datos atípicos}
+Supongamos una variante de la muestra $A$ anterior:
+
+\[A'=\{0,0,0,0,0,9,9,9,90\} \to \overline{x}_A = \frac{9*3+90}{9}=29,25\;\;\; Me_A = 0\]
+
+Por un dato atípico, la media sale realmente disparada. La mediana, en cambio, no se ve afectada.
+
+\paragraph{Ejercicio 54 del libro}
+
+\paragraph{Ejercicios prácticos de calcular percentiles} sobre la tabla resuelta de la página 223. 
+%
+Calculamos los cuartiles, deciles y percentiles.
+
+\begin{defn}[Percentil n]
+Es el dato que tiene a su izquerda el $n\%$ de los datos de la muestra.
+\end{defn} 
+
+\[
+\begin{array}{c|c|c}
+x_i & f_i&F_i\\\hline
+1&15&15\\
+2&7&22\\
+3&33&56\\
+4&10&6
+\end{array}
+\]
+
+Vamos a calcular $P_{47}$
+
+\[
+P_{47} \to 47\% · 66 = 22,82 \to P_{47} = d_{23} = 3
+\]
+
+El $P_{47}$ debería ser el dato que está en la posición $22,82$. Como esa posición no existe, podríamos pensar en hacer la media entre el $d_{22}$ y el $d_{23}$. Incluso, una media ponderada. Pero no vamos a meternos tanto. 
+%
+Para calcular percentiles nos quedaremos con la primera frecuencia acumulada que supera, es decir, $\displaystyle P_k = d_{i}$ donde $i$ es el mínimo que cumple $F_i\geq k\%·N$
+
+Cuando trabajamos con muestras de datos pequeños, los percentiles no funcionan bien. Cuando trabajamos con muestras grandes sí. ¿Qué sentido tiene esto? 
+%
+Si queremos medir la dispersión de 4 datos, no tiene mucho sentido, porque ya, simplemente viendo los datos nos lo imaginamos bien. 
+%
+¿Cuándo tienen sentido los percentiles? 
+%
+Cuando un bebé nace, querríamos saber si su peso está dentro de unos márgenes normales. 
+%
+Si el peso del hijo es $P_{99}$, es de los bebés más gordos que han nacido, ya que el $99\%$ de los bebés nacidos han pesado menos que él. 
+
+\textit{En el ejemplo de los bebés, al tener tantísimos datos, los percentiles se comportan de una manera razonable. ¿Cómo corregir los percentiles para que funcionen en muestras de datos pequeñas? Estudia Matemáticas.}
+
+\obs Con la mediana sí nos podemos poner exquisitos y calcular su valor exacto.
 
 \subsubsection{Dispersión}
+
+\textit{Que todo el mundo copie esto. Por si lo necesitas para tu vida futura. Yo no me sé las fórmulas de memoria. Sé de dónde salen y las razono y eso voy a intentar con vosotros.}
+
+\begin{defn}[Rango]
+\end{defn}
+
+Una medida de la dispersión bastante intuitiva sería: ¿Cuánto se separa cada dato de la media? Y si sumo todas esas desviaciones, debería obtener una medida general. ¿Y por qué no cuánto se separa de la mediana? Total, la mediana también es una medida de centralidad. \footnote{Por esto necesitamos que la mediana sea un valor concreto y no puede ser un intervalo.}
+%
+Por motivos más complejos (de los que hablaremos al llegar a regresión), la que se utiliza habitualmente es la media, aunque en ocasiones sí se utiliza la mediana. ¿Por qué? Porque es menos sensible a datos atípicos.
+
+Supongamos una muestra $A=\{5,5,5,5,5,5,5,5\}$ ¿Cuál sería su desviación? Sea cual sea lo que entendamos por desviación, debería ser 0.
+
+Supongamos otra muestra, algo más compleja: $B = \{ 2,2,2,3,3,3,4,4,4,5,5,5 \} \to \overline{x}_B=3,5$
+\paragraph{Opción 1:} Suma de las desviaciones
+
+\[ \sum_{i=1}^{12} (x_i-\overline{x}) = 0\]
+
+¿Porqué ocurre esto? Claramente los datos no datos uniformes. Tomando $i=1\to x_1-\overline{x} = -1,5$. Por otro lado, $i=12 \to x_{12}-\overline{x} = 1,5$, los datos se cancelan al sumarlos.
+
+\paragraph{Opción 2:} Para solucionarlo podríamos pensar en el valor absoluto, para que esto no ocurra.
+
+\[ \sum_{i=1}^{12} \abs{x_i-\overline{x}} = 12\]
+
+Esto ya parece algo más razonable, pero el valor absoluto es una operación matemática con la que resulta muy complicado trabajar, porque aparecen ramas... 
+
+\subparagraph{Opción 2.2: } Media de las desviaciones ¿Y si tengo el doble de datos pero igual de distribuidos?  Esta manera de calcular la desviación aumenta. ¿Cómo corregirlo? Dividiendo por el número de datos.
+
+\[ \frac{\sum_{i=1}^{12} \abs{x_i-\overline{x}}}{12} = 1\]
+
+\paragraph{Opción 3:} Otra manera de poner positivo algo que es negativo sería elevar a una potencia de índice par. Por ejemplo, 2.
+
+\[ \frac{\sum_{i=1}^{12} \left(x_i-\overline{x}\right)^2}{12} = \frac{5}{4} = 1.25\]
+
+\subparagraph{Opción 3.2} ¿Y podría elevar a orden 4? Hombre, por poder sí, pero entonces las diferencias pequeñas se hacen demasiado pequeñas y las grandes demasiado grandes.
+
+\[ \frac{\sum_{i=1}^{12} \left(x_i-\overline{x}\right)^4}{12} = \frac{41}{16} > 2·\frac{5}{4}\]
+
+
+\paragraph{Opción 4:} A ver, si hemos elevado al cuadrado, hemos introducido artificialmente un mucho ruido en la medición. ¿Cómo podríamos contrarrestar eso? Haciendo la raíz cuadrada.
+
+\[ \sqrt{\frac{\displaystyle\sum_{i=1}^{12} \left(x_i-\overline{x}\right)^2}{12}} = 1.12\]
+
+\begin{table}[hbtp]
+\centering
+\label{SD:medidasDispersion}
+\caption{Distintas opciones para medir la dispersión con respecto a la media.}
+\begin{tabular}{c|ccc}
+\textbf{Nombre} & \textbf{Medidas} & \textbf{Medida razonable} & \textbf{Contras}\\\hline\hline
+ & $\displaystyle\sum_{i=1}^{N} (x_i-\overline{x})$ & No & Puede resultar 0 en datos sí dispersos\\\\
+Desv. media  & $\displaystyle\sum_{i=1}^{N} \abs{x_i-\overline{x}}$ & Sí & Difícil de trabajar con el valor absoluto\\\\
+Varianza $\sigma^2$ & $\displaystyle \frac{\displaystyle\sum_{i=1}^{N} \left(x_i-\overline{x}\right)^2}{N}$ & Sí. & Medida algo falseada por elevar al cuadrado\\\\
+Desv. típica $\sigma$ & $\displaystyle \sqrt{\frac{\displaystyle\sum_{i=1}^{N} \left(x_i-\overline{x}\right)^2}{N}}$ &Sí. & Corrección artificial de elevar al cuadrado\\\\\hline
+\end{tabular}
+\\
+\textit{\textbf{Obs:} Todas estas mismas medidas se pueden calcular respecto de la mediana. Cambiarían los nombres}
+\end{table}
+
+\subsection{Problema práctico}
+
+Problema 50 del libro. 
+
+
+\todo{Hacer el ejercicio 239.55 durante el puente}
 
 \section{Probabilidad, binomial y normal}
 
