@@ -1,8 +1,8 @@
-\documentclass[palatino,nosec]{Docencia}
+\documentclass[palatino,nochap]{Docencia}
 
 \usepackage{sagetex}
 
-\title{Análisis de Funciones}
+\title{Polinomios para factorizar.}
 %\newcommand{\subtitle}[1]{\def\thesubtitle{#1}\@subsettrue}
 %\subtitle{4º ESO Matemáticas Académicas}
 \author{Departamento de Matemáticas}
@@ -13,6 +13,10 @@
 \begin{abstract}
 
 Ejercicios de polinomios generados automáticamente.
+
+$x_2 = 3 [2]$, significa que la segunda raíz obtenida es $3$ y tiene multiplicidad $2$, es decir, el polinomio tiene 2 factores $(x-2)$.
+%
+Si entre corchetes no aparece ningún número, significa que su multiplicidad es 1.
 
 
 \textit{Nota: Este documento se ha generado automáticamente utilizando \href{www.sagemath.org/es/}{Sage}, \LaTeX\xspace y \href{https://github.com/sagemath/sagetex}{sagetex} para la integración de las 2 herramientas mencionadas.}
@@ -55,11 +59,11 @@ Ejercicios de polinomios generados automáticamente.
 
 
 \begin{document}
-
-\begin{itemize}
+\pagestyle{plain}
+\maketitle
+\tableofcontents
+\newpage
 
 \input{polys}
-
-\end{itemize}
 
 \end{document}

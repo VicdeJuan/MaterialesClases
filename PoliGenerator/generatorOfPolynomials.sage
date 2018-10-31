@@ -1,5 +1,8 @@
 import re
 var('x')
+
+set_random_seed(0)
+
 def _latex(ss):
     s=str(ss)
     for gs in map(list,re.findall("([0-9]+)/([0-9]+)",s)):
@@ -17,16 +20,30 @@ def countDups(l):
     
     return d
 
-def str_poly(ss,counter):
+def str_poly(ss,counter,sols):
+    if sols:
+        return _str_poly_sol(ss,counter)
+    else:
+        return _str_poly_no_sol(ss,counter)
+
+def _str_poly_sol(ss,counter):    
     poly=ss[0]
     roots=""
     i=1
     _rootDict=countDups(ss[1])
     for r in _rootDict:
-        roots += "x_"+str(i)+" = " + _latex(r) + " text{ de multiplicidad }" + _latex(_rootDict[r]) + " ; "
+        roots += "x_"+str(i)+" = " + _latex(r)
+        if _rootDict[r] > 1:
+            roots+= "["+ _latex(_rootDict[r]) + "]"
+        roots+=" ; "
         i+=1
 
-    return "\\subitem $P_{" + str(counter) + "}(x) = " + _latex(poly) + "$ con raices: $" + _latex(roots) + "$"
+    return "\\subitem $P_{" + str(counter) + "}(x) = " + _latex(poly) + "$ con raices: $" + _latex(roots) + " $"
+
+def _str_poly_no_sol(ss,counter):    
+    poly=ss
+
+    return "\\subitem $P_{" + str(counter) + "}(x) = " + _latex(poly) + "$"
 
 
 def mystr(s,funstr):
@@ -56,8 +73,10 @@ def _genIrreductiblePoly():
 def _genP(grado,fixedroots,rfrac,rootsRank,coefRank,degree2):
     P(x) = 1
     raices=[]
+
+    denAcum=1
     
-    if degree2 and grado>1:
+    if degree2 and grado>2:
         grado-=2
         P(x) = _genIrreductiblePoly()
 
@@ -73,14 +92,19 @@ def _genP(grado,fixedroots,rfrac,rootsRank,coefRank,degree2):
                 else:
                     cps = coprime(_r*_r)
                     den = cps[random_between(0,len(cps),true)]
-            rfrac-=1
+                rfrac-=1
             raices.append(Rational(1.0*_r/den))
+            denAcum *= den
         else:
             raices.append(fixedroots.pop())
+
         P(x) = P(x) * (x-raices[i])
-    coef=int(random_between(coefRank[0],coefRank[1],true))
-    if coef == 0:
-        coef=1
+    if denAcum == 1:
+        coef=int(random_between(coefRank[0],coefRank[1],true))
+        if coef == 0:
+            coef=1
+    else:
+        coef=denAcum
     return [coef*P(x),raices]
     
 
@@ -89,9 +113,9 @@ def _genP(grado,fixedroots,rfrac,rootsRank,coefRank,degree2):
 def genP(grado,fixedroots,rfrac,printsol,strfun,counter,rootsRank,coefRank,degree2):
     _r=_genP(grado,fixedroots,rfrac,rootsRank,coefRank,degree2)    
     if printsol:
-        return strfun([_r[0].expand(),_r[1]],counter)
+        return strfun([_r[0].expand(),_r[1]],counter,printsol)
     else:
-        return strfun(_r[0].expand(),counter)
+        return strfun(_r[0].expand(),counter,printsol)
  
 # Escribimos el titulo. Recibe la informacion necesaria para describir el tipo de polinomios que viene a continuacion.
 # int rfrac: Numero de raices fraccionarias
@@ -105,34 +129,44 @@ def ppart(rfrac,deg,degree2):
 
     deg2=""
     if degree2:
-        deg2 = " (contiene polinomios irreducibles de grado 2)"
+        deg2 = " (contiene un polinomio irreducible de grado 2)"
     
-    return "\\item Polinomios de grado: " + str(deg) + " " + fracroots + " raices fraccionarias" + deg2 + ".\\\\\\"
+    return "\\textbf{Polinomios de grado " + str(deg) + "\\\\} " #+ fracroots + " raices fraccionarias" + deg2 + ".\\\\\\"
 
 
 
 
-rootsRank=[-2,3]            # Rango de valores que pueden tomar las raices
-coefRank=[2,7]              # Rango de valores que pueden tomar los coeficientes principales.
-numToGen=1                  # Numero de polinomios a generar de cada tipo.
+rootsRank=[-3,4]            # Rango de valores que pueden tomar las raices
+coefRank=[-3,3]             # Rango de valores que pueden tomar los coeficientes principales.
+numToGen= 8                 # Numero de polinomios a generar de cada tipo.
 printsol = true             # Imprimir las raices de cada polinomio.
 num=0                       # Contador auxiliar para llevar la numeracion de los polinomios generados.
 hasDegree2Pols = true       # Contiene 1 polinomio de grado 2 irreducible.
-degree = 10                 # Grado maximo de los polinomios.
+degree = 5                  # Grado maximo de los polinomios.
 
-for rfrac in range(4): # rfrac: numero de raices fraccionarias por polinomio.
-    for _deg in range(degree-1): 
-        deg=_deg+2  # deg: grado del polinomio.
-        print(ppart(rfrac=rfrac,deg=deg,degree2=hasDegree2Pols))
-        for i in xrange(numToGen): 
-            num = num + 1
-            print genP(grado=deg,
-                    fixedroots=[],
-                    rfrac=rfrac,
-                    printsol = printsol, 
-                    strfun=str_poly, 
-                    counter = num,
-                    rootsRank = rootsRank,
-                    coefRank = coefRank,
-                    degree2 = hasDegree2Pols)
-            print
+for hasDegree2Pols in range(2):
+    if hasDegree2Pols:
+        print "\\section{Con polinomios irreducibles de grado 2}"
+    else:
+        print "\\section{Sin polinomios irreducibles de grado 2}"
+
+    for rfrac in range(4): # rfrac: numero de raices fraccionarias por polinomio.
+        print "\\subsection{Hasta "+str(rfrac) + " raices fraccionarias}"
+        for _deg in range(degree-1): 
+            deg=_deg+2  # deg: grado del polinomio.
+            if rfrac>deg:
+                continue
+    
+            print(ppart(rfrac=rfrac,deg=deg,degree2=hasDegree2Pols))
+            for i in xrange(numToGen): 
+                num = num + 1
+                print genP(grado=deg,
+                        fixedroots=[],
+                        rfrac=rfrac,
+                        printsol = printsol, 
+                        strfun=str_poly, 
+                        counter = num,
+                        rootsRank = rootsRank,
+                        coefRank = coefRank,
+                        degree2 = hasDegree2Pols)
+                print
