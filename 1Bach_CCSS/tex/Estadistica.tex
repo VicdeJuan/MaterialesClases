@@ -145,7 +145,7 @@ Esto ya parece algo más razonable, pero el valor absoluto es una operación mat
 \begin{tabular}{c|ccc}
 \textbf{Nombre} & \textbf{Medidas} & \textbf{Medida razonable} & \textbf{Contras}\\\hline\hline
  & $\displaystyle\sum_{i=1}^{N} (x_i-\overline{x})$ & No & Puede resultar 0 en datos sí dispersos\\\\
-Desv. media  & $\displaystyle\sum_{i=1}^{N} \abs{x_i-\overline{x}}$ & Sí & Difícil de trabajar con el valor absoluto\\\\
+Desv. media  & $\displaystyle\frac{\displaystyle\sum_{i=1}^{N} \abs{x_i-\overline{x}}}{N}$ & Sí & Difícil de trabajar con el valor absoluto (derivadas)\\\\
 Varianza $\sigma^2$ & $\displaystyle \frac{\displaystyle\sum_{i=1}^{N} \left(x_i-\overline{x}\right)^2}{N}$ & Sí. & Medida algo falseada por elevar al cuadrado\\\\
 Desv. típica $\sigma$ & $\displaystyle \sqrt{\frac{\displaystyle\sum_{i=1}^{N} \left(x_i-\overline{x}\right)^2}{N}}$ &Sí. & Corrección artificial de elevar al cuadrado\\\\\hline
 \end{tabular}
@@ -153,14 +153,173 @@ Desv. típica $\sigma$ & $\displaystyle \sqrt{\frac{\displaystyle\sum_{i=1}^{N} 
 \textit{\textbf{Obs:} Todas estas mismas medidas se pueden calcular respecto de la mediana. Cambiarían los nombres}
 \end{table}
 
+\paragraph{Día 5/11:} Todos separados. Marta, Nacho, Álvaro.
+
+Quiero silencio absoluto. Si hago preguntas, las contestas cuando te de el turno de palabra. 
+%
+La metodología general de la clase va a cambiar. 
+%
+
+
+Problema 50 del libro. ¿Dudas? 
+
+¿Quién lo ha hecho? Lo apunto. 
+%
+Los demás, lo deben entregar el miércoles en hoja aparte.
+%
+Quien hable, mañana.
+%
+Sino, al final de la clase.
+%
+Hazlo tú, hazle una fotocopia y entregame la fotocopia. 
+%
+Lo corregimos ese día.
+%
+Cada día de retraso supone un negativo.
+%
+Una cutrez, mediocre, cuenta como no entregado.
+
+
+
+\textbf{Repasamos medidas de dispersión: } fórmula y ya está. Tizas de colores para las letras.
+
+\begin{defn}[Varianza]
+\[
+	\sigma^2 = \frac{\displaystyle\sum_{i=1}^{N} \left(x_i-\overline{x}\right)^2}{N}
+\]
+Donde $N$ es el número total de datos, $x_i$ cada uno de los datos y $\overline{x}$ la media.
+
+\obs En caso de haber datos $x_i$ repetidos, existirá un número de veces que cada dato se repite $f_i$. 
+%
+Podemos calcular la varianza de una manera más sencilla:
+\[
+	\sigma^2 = \frac{\displaystyle\sum_{i=1}^{n} f_i·\left(x_i-\overline{x}\right)^2}{N}
+\]
+Donde $n$ el número de clases (filas de la tabla de frecuencias) y lo demás se mantiene.
+\end{defn}
+
+\begin{prop}
+	\[\sigma^2 = \frac{\displaystyle\sum_{i=1}^{N} \left(x_i-\overline{x}\right)^2}{N} = \frac{\displaystyle\sum_{i=1}^N x_i^2}{N} - \overline{x}^2\]
+\obs Por los datos repetidos, se cumple:
+	\[\sigma^2 = \frac{\displaystyle\sum_{i=1}^{n} f_i\left(x_i-\overline{x}\right)^2}{N} = \frac{\displaystyle\sum_{i=1}^N f_ix_i^2}{N} - \overline{x}^2\]
+\end{prop}
+
+Si alguien me demuestra esta proposición fuera de clase +0,25 en el examen (que te recuerdo que vale 2 tercios).
+
+\begin{proof}
+	\begin{dmath}
+	\sigma^2 = \frac{\displaystyle\sum_{i=1}^{N} \left(x_i-\overline{x}\right)^2}{N} =
+	  \frac{\displaystyle\sum_{i=1}^{N} \left(x_i^2+\overline{x}^2-2x_i\overline{x}\right)}{N} = 
+	  \frac{\displaystyle\sum_{i=1}^{N} x_i^2}{N} + \underbrace{\frac{\displaystyle\sum_{i=1}^{N}\overline{x}^2}{N}}_{\small\displaystyle\sum_{i=1}^9 z = 9·z}-\frac{\displaystyle\sum_{i=1}^{N} 2x_i\overline{x}}{N} =
+	  \frac{\displaystyle\sum_{i=1}^{N} x_i^2}{N} + \frac{N·\overline{x}^2}{N}-2\overline{x}\underbrace{\frac{\displaystyle\sum_{i=1}^N x_i}{N}}_{\text{ def. }\overline{x}} = 
+	  \frac{\displaystyle\sum_{i=1}^{N} x_i^2}{N} + \overline{x}^2-2\overline{x}^2 = 
+	  \frac{\displaystyle\sum_{i=1}^{N} x_i^2}{N} - \overline{x}^2
+	\end{dmath}
+	En caso de datos repetidos, donde $N$ no es el número total de datos, sino de filas de la tabla. Llamamos $T$ al número total de datos
+	\begin{dmath}
+		\sigma^2 = \frac{\displaystyle\sum_{i=1}^{N} \left(x_i-\overline{x}\right)^2}{T} =
+	  \frac{\displaystyle\sum_{i=1}^{N} f_i\left(x_i^2+\overline{x}^2-2x_i\overline{x}\right)}{N} = 
+	  \frac{\displaystyle\sum_{i=1}^{N} f_ix_i^2}{N} + \underbrace{\frac{\displaystyle\sum_{i=1}^{N}f_i\overline{x}^2}{N}}_{\small\displaystyle\sum_{i=1}^9 z = 9·z}-\frac{f_i\displaystyle\sum_{i=1}^{N} 2x_i\overline{x}}{N} =
+	  \frac{\displaystyle\sum_{i=1}^{N} x_i^2}{N} + \frac{N·\overline{x}^2}{N}-2\overline{x}\underbrace{\frac{\displaystyle\sum_{i=1}^N x_i}{N}}_{\text{ def. }\overline{x}} = 
+	  \frac{\displaystyle\sum_{i=1}^{N} x_i^2}{N} + \overline{x}^2-2\overline{x}^2 = 
+	  \frac{\displaystyle\sum_{i=1}^{N} x_i^2}{N} - \overline{x}^2
+	\end{dmath}
+\end{proof}
+
+En la varianza se eleva al cuadrado cada diferencia de una manera algo arbitraria. 
+%
+Para corregir ese falseamiento se podría utilizar la raíz cuadrada.
+
+\begin{defn}[Desviación típica]
+	\[ 
+		\sigma = \sqrt{\sigma^2} = \sqrt{\displaystyle\frac{\displaystyle\sum_{i=1}^{N} \left(x_i-\overline{x}\right)^2}{N}}
+	\]
+\end{defn}
+
+\obs Para la varianza se eleva al cuadrado, pero se podría elevar a cualquier número par. Lo único que buscamos es que la suma se vuelva positiva.
+
+\begin{defn}[Mi varianza personal]
+\[
+	\sigma^{2a} = \frac{\displaystyle\sum_{i=1}^{N} \left(x_i-\overline{x}\right)^{2a}}{N}
+\]
+Donde $N$ es el número total de datos, $x_i$ cada uno de los datos, $\overline{x}$ la media y $a\in\mathbb{Z}$
+\end{defn}
+
+
+\begin{defn}[Mi desviación típica personal]
+\[
+	\sigma^{a} = \sqrt{\displaystyle\frac{\displaystyle\sum_{i=1}^{N} \left(x_i-\overline{x}\right)^{2a}}{N}}
+\]
+Donde $N$ es el número total de datos, $x_i$ cada uno de los datos, $\overline{x}$ la media y $a\in\mathbb{Z}$
+\end{defn}
+
+\newcommand{\coefdemierda}{Coeficiente de variación\xspace}
+\begin{defn}[\coefdemierda]
+Se define como $\frac{\sigma}{\overline{x}}$
+\end{defn}
+
+\obs ¿Qué ocurre con el \coefdemierda si $\overline{x} = 0$? 
+Por eso no se utiliza este coeficiente.
+
+
+
 \subsection{Problema práctico}
 
-Problema 50 del libro. 
-
-
-\todo{Hacer el ejercicio 239.55 durante el puente}
+Calcular la varianza, desviación típica y 
 
 \section{Probabilidad, binomial y normal}
+
+\subsection{Combinatoria}
+
+% https://www.fing.edu.uy/tecnoinf/mvd/cursos/pye/materiales/practico/pye-pr02.pdf
+\begin{enumerate}
+	\item En un centro escolar hay 40 en 1º de ESO, 35 en 2º, 32 en 3º y 28 en 4º. Para hablar con la dirección se quiere formar una comisión que esté integrada por un alumno de cada curso. ¿Cuántas comisiones se pueden formar?
+	\subitem Si el alumno de 1º de la ESO ya ha sido elegido. ¿Cuántas comisiones distintas se pueden formar?
+	\item ¿Cuántos números de tres cifras se pueden formar con las cifras pares 1, 2, 3 y 4 sin que se repita ninguna? b) ¿Cuántos terminan en 34? c) ¿Cuántos habrá que sean mayores que 300?
+	\item ¿De cuántas maneras 10 personas en 4 sitios?
+	\item En una urna hay tres bolas rojas, tres verdes, cuatro negras y dos azules. ¿De cuántas maneras distintas pueden sacarse, bola a bola, de la urna?
+	\item De cuántas formas puedo repartir 3 premios entre 3 personas, suponiendo que no repito personas.
+	\item 10 alumnos. Se reparten 3 premios.
+		\subitem ¿Qué caso debería salir más? Premios iguales, premios distintos, se puede repetir persona por premio o no.
+		\subitem a) Los premios son iguales
+		\subitem b) Los premios son distintos
+		\subitem ¿Una persona puede recibir 2 premios? Contesta.
+	\item Número de diagonales de un cuadrado, de un hexágono, de un heptágono, de un polígono de $k$ lados.
+	\item 5 hombres y 4 mujeres. Hombres en lugares impares y mujeres en lugares pares.
+	\item Número de posibles matrículas.
+	\item En un grupo de 10 amigos, ¿cuántas distribuciones de sus fechas de cumpleaños pueden darse al año?
+	\item Lanzo 4 monedas al aire. ¿Cuántos resultados posibles puedo obtener?
+	\item Un alumno tiene que elegir 7 de las 10 preguntas de un examen. ¿De cuántas maneras puede elegirlas? ¿Y si las 4 primeras son obligatorias?
+	\item Una línea de tren tiene 25 estaciones. ¿Cuántos billetes distintos habrá que imprimir si cada billete lleva impresas las estaciones de origen y destino?
+	\item ¿De cuántas maneras distintas pueden llegar 3 atletas a la meta? (Pueden llegar exactamente al mismo tiempo).
+	\item ¿Cuántos números de DNI distintos existen? ¿Y números de teléfono?
+	\item Una lista de Spotify tiene 30 canciones. ¿Cuántas posibles reproducciones de la lista completa, si las canciones se reproducen aleatoriamente, puede haber? ¿Y si la primera canción siempre debe ser la misma? ¿Y si no se repiten aleatoriamente, sino que siguen el orden alfabético?
+	\subitem ¿Cuál es la probabilidad de que una lista de reproducción de 30 canciones reproducidas al azar siga el orden alfabético?
+	\item Una persona tiene 6 chaquetas y 10 pantalones. ¿De cuántas formas distintas puede combinar estas prendas?
+	\item ) Una familia, formada por los padres y tres hijos, van al cine. Se sientan en butacas consecutivas.
+		\subitem a) ¿De cuántas maneras distintas pueden sentarse?
+		\subitem b) ¿Y si los padres se sientan en los extremos?
+	\item Con los números 3, 5, 6, 7 y 9 
+		\subitem ¿cuántos productos distintos se pueden obtener multiplicando dos de estos números? 
+		\subitem ¿Cuántos de ellos son múltiplos de 2? 
+		\subitem ¿Cuántos cocientes distintos se pueden obtener dividiendo dos de estos números?
+	\item ¿Cuántos números hay entre 2000 y 3000 que tengan sus cifras diferentes?
+	\item ¿Cuántos resultados distintos pueden aparecer al lanzar un dado 4 veces?
+	\item 16)a) ¿Cuántos números de 6 cifras puedes escribir con los dígitos 1, 2 y 3?. b) ¿Cuántos de ellos contienen todos los dígitos 1, 2 y 3 al menos una vez?
+	\item Todas las personas que asisten a una reunión se estrechan la mano. Si hubo 105 apretones, ¿cuántas personas asistieron?
+	\item ¿Cuántas columnas tenemos que cubrir para acertar seguro una quiniela?. Cada columna tiene 15 resultados a elegir entre 1, X, 2. 
+	\item Ocho amigos van de viaje llevando para ello dos coches. Si deciden ir 4 en cada coche.
+		\subitem a) ¿De cuántas formas pueden ir si todos tienen carnet de conducir?
+		\subitem b) ¿De cuántas formas pueden ir si sólo tres tienen carnet de conducir?
+	\item  ¿De cuántas maneras pueden ordenarse 6 libros en un estante si:
+		\subitem a) es posible cualquier ordenación?
+		\subitem b) 3 libros determinados deben estar juntos?
+		\subitem c) dos libros determinados deben ocupar los extremos?
+		\subitem d) tres libros son iguales entre sí?
+	\item ¿Cuántas palabras distintas se pueden formar con las letras de la palabra SOBRE?
+	\item ¿Cuántas palabras distintas se pueden formar con las letras de la palabra MATEMATICAS?
+	\item 
+\end{enumerate}
 
 \subsection{Probabilidad}
 
