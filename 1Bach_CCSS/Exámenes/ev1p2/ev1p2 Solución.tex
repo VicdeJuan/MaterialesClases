@@ -1,0 +1,332 @@
+\documentclass[palatino,nosec,nochap]{Docencia}
+
+
+\title{Solucionario primer parcial}
+\author{}
+\date{18/19}
+
+
+% Paquetes adicionales
+
+\usepackage[author={Víctor de Juan, 2017}]{pdfcomment}
+
+\makeatletter
+\newcommand{\annotate}[2][]{%
+\pdfstringdef\x@title{#1}%
+\edef\r{\string\r}%
+\pdfstringdef\x@contents{#2}%
+\pdfannot
+width 2\baselineskip
+height 2\baselineskip
+depth 0pt
+{
+/Subtype /Text
+/T (\x@title)
+/Contents (\x@contents)
+}%
+}
+\makeatother
+
+
+
+\usepackage{eso-pic}
+\newcommand\BackgroundPic{%
+\put(0,0){%
+\parbox[b][\paperheight]{\paperwidth}{%
+\vfill
+\centering
+%\includegraphics[width=\paperwidth,height=\paperheight,%keepaspectratio]{../../../BWLogo.jpeg}%
+\vfill
+}}}
+
+
+
+
+
+\begin{abstract}
+Solucionario del examen final de la primera evaluación de Matemáticas Aplciadas a las Ciencias Sociales de 1º de Bachillerato.
+
+\nota{Estos ejemplos no están exentos de erratas. En caso de descubrir alguna, por favor, comunicarlas al autor.}
+\end{abstract}
+
+% --------------------
+\newcommand{\cimplies}{\text{\hl{$\implies$}}}
+
+\begin{document}
+\pagestyle{plain}
+\maketitle
+
+\AddToShipoutPicture{\BackgroundPic}
+
+\newpage
+
+
+\begin{problem}[1]
+Sabiendo que $\log(a) = 4$ y $\log(a) = 2·\log(b)$, calcular las siguientes operaciones enunciando la propiedad de los logaritmos que se está utilizando en cada caso.
+\ppart $\log(a·b) + \log(a/b)$
+\ppart $\log_a(b)·\log_b(a)$
+
+\solution
+
+$\log(a) = 2·\log(b) \dimplies \log(b) = \frac{4}{2} = 2$
+
+\spart $\log(a·b) + \log(a/b) = \log(a) + \log(b) +\log(a) - \log(b) = 2\log(a) = 2·4 = 8$
+
+Hemos utilizado: $\log_a(AB) = \log_a(A) + \log_a(B)$ y $\log_a(A/B) = \log_a(A) - \log_a(B)$
+
+\spart Utilizando el cambio de base, $\log_a(A) = \frac{\log_b(A)}{\log_b(a)}$, tenemos:
+
+$\log_a(b)·\log_b(a) = \log_a(b) · \frac{\log_a(a)}{\log_a(b)} = 1$
+
+\end{problem}
+
+\begin{problem}
+
+Un grupo de estudiantes para financiar su viaje de fin de curso vende para el día de San Valentín claveles amarillos, blancos y rojos, por un importe de 1, 2 y 3 euros respectivamente. Han vendido 900 claveles en total y han recaudado 1600 euros, siendo el número de claveles blancos vendidos la mitad del total de rojos y amarillos. ¿Cuántos claveles de cada color han vendido?
+
+\solution
+
+Llamamos $a$ al número de claveles amarillos, $b$ al número de claveles blancos y $r$ al número de claveles rojos.
+
+\begin{itemize}
+	\item "Han vendido 900 claveles:" $a+b+r = 900$
+	\item "recaudado 1600 euros:" $1a+2b+3r = 1600$
+	\item "blancos la mitad del total de rojos y amarillos: " $b = \frac{r+a}{2} \dimplies r+a-2b=0$
+\end{itemize}
+
+\[
+\left\{\begin{array}{lcccl}
+a&+b&+r&=&900\\
+a&+2b&+3r&=&1600\\
+a&-2b&+r&=&0
+\end{array}\right\}
+\]
+
+Resolvemos por el método de Gauss y obtenemos: $(a,b,r) = (400,300,200)$
+
+\end{problem}
+
+
+
+
+\begin{problem}
+
+Discute y resuelve el siguiente sistema:
+
+\[
+\left\{\begin{array}{lcccl}
+x&+2y&-2z&=&4\\
+2x&+5y&-2z&=&10\\
+4x&+9y&-6z&=&18
+\end{array}\right\}
+\]
+
+\solution
+
+\[
+\left\{\begin{array}{lcccl}
+x&+2y&-2z&=&4\\
+2x&+5y&-2z&=&10\\
+4x&+9y&-6z&=&18
+\end{array}\right\}
+\overset{(1)}{\dimplies}
+\left\{\begin{array}{lcccl}
+x&+2y&-2z&=&4\\
+ &y&+2z&=&2 \\
+4x&+9y&-6z&=&18
+\end{array}\right\}
+\overset{(2)}{\dimplies}\]
+\[
+\left\{\begin{array}{lcccl}
+x&+2y&-2z&=&4\\
+ &y&+2z&=&2 \\
+ &y&+2z&=&2 \\
+\end{array}\right\}
+\dimplies
+\underbrace{\left\{\begin{array}{lcccl}
+x&+2y&-2z&=&4\\
+ &y&+2z&=&2 
+\end{array}\right\}}_{\text{Discusión: C.I (*)}}
+\]
+
+(*): Es un sistema compatible indeterminado porque es un sistema escalonado con más incógnitas que ecuaciones.
+
+Al ser compatible indeterminado, el sistema tiene infinitas soluciones.
+
+\paragraph{Resolución:} 
+%
+Tomamos $y=λ$ y sustituimos en $E_2$.
+
+\[y+2z=2 \dimplies λ+2z=2 \dimplies z=\frac{2-λ}{2}\]
+
+Sustituimos $y=λ,z=\frac{2-λ}{2}$ en $E_1$:
+
+\[x+2y-2z = 4 \dimplies x= 4+2z-2y = 4+2\left(\frac{2-λ}{2}\right)-2λ = 4+2-λ-2λ = 6-3λ = 3(2-λ)\]
+
+\textbf{Solución:} $(x,y,z) = \left(3(2-λ),λ,\frac{2-λ}{2}\right)$
+
+\paragraph{1)} $E_2=E_2-2E_1$
+
+\[
+\left\{\begin{array}{lcccl}
+2x&+4y&-4z&=&8\\
+2x&+5y&-2z&=&10\\
+\hline
+&-y&-2z&=&-2 
+\end{array}\right\}
+\]
+
+\paragraph{2)} $E_3=E_2-4E_1$
+
+\[
+\left\{\begin{array}{lcccl}
+4x&+9y&-6z&=&18\\
+4x&+10y&-4z&=&20\\
+\hline
+&-y&-2z&=&-2 
+\end{array}\right\}
+\]
+
+
+\paragraph*{Comprobación:} Sustituimos $(x,y,z) = \left(3(2-λ),λ,\frac{2-λ}{2}\right)$ en el sistema inicial:
+
+
+\[
+\left\{\begin{array}{lcccll}
+x&+2y&-2z&=&4 &\to 6-3λ + 2λ - 2\displaystyle\left(\frac{2-λ}{2}\right) = 6-λ-2+λ = 4\\
+2x&+5y&-2z&=&10 &\to 12-6λ +5λ - 2\displaystyle\left(\frac{2-λ}{2}\right) = 12-λ-2+λ = 10\\
+4x&+9y&-6z&=&18 &\to 24-12λ + 9λ - 6\displaystyle\left(\frac{2-λ}{2}\right) = 24-3λ-6+3λ = 18
+\end{array}\right\}\begin{array}{c}\\\\\\\\\text{cqc}\end{array}
+\]
+
+\end{problem}
+
+\begin{problem}
+Las puntuaciones obtenidas por los participantes en un estudio tienen la siguiente distribución:
+
+Puntuación	1	2	3	4	5	6
+Frecuencia	11	22	33	44	55	66
+
+Calcular la mediana y el percentil
+
+\solution
+
+\begin{tabular}{ccc}
+$x_i$ & $f_i$ & $F_i$\\\hline
+1 & 11 & 11\\
+2 & 22 & 33\\
+3 & 33 & 66\\
+4 & 44 & 110\\
+5 & 55 & 165\\
+6 & 66 & 231
+\end{tabular}
+
+\textbf{Mediana: } hay 231 datos. Como son datos impares, será el dato de la posición: $\frac{231+1}{2} = 116$. En este caso será un $4$, ya que la primera frecuencia acumulada en sobrepasar el $116$ es $F_5 = 165$.
+
+\textbf{Percentil: } Buscamos el dato de la posición: $43\%·231 = 99,33$. En este caso, $P_{43} = 3$, ya que la primera frecuencia acumulada en superar $99$ es $F_4 = 110$.
+
+\end{problem}
+
+\begin{problem}
+Una heladería sirve helados de 1,2 y 3 bolas con 6 sabores diferentes. Si quieren hacer una carta, en la que excluyeran helados de sabores repetidos, ¿cuántos elementos tendrían que poner?
+
+\solution
+
+Los elementos de la carta tendrán que ser:
+
+\begin{itemize}
+	\item Helados de una bola: $6$
+	\item Helados de 2 bolas, sin repetir sabor: $\frac{6·5}{2} = 15$. \textit{Como primera bola podemos poner 6 sabores distintos. Una vez elegida la primera bola, la segunda solo puede ser de 5 sabores. Se divide entre 2 para eliminar duplicados: es el mismo helado vainilla-chocolate que chocolate-vainilla}
+	\item Helados de 3 bolas, sin repetir sabor: $6C3 = \frac{6·5·4}{3!} = 21$. \textit{Dividimos entre $3!$ para eliminar duplicados. Hay $3!$ maneras distintas de ordenar 3 bolas de helado, pero todas esas ordenaciones son un único helado.}
+\end{itemize}
+
+En total habrá $6+15+21$ elementos en la carta.
+
+\end{problem}
+
+
+\begin{problem}
+Dados los siguientes datos:  $-1;2;2$
+\ppart Añade 1 dato para que la desviación típica disminuya. (Calcula ambas desviaciones para comprobar que efectivamente ha disminuido).
+\ppart Añade 4 datos para que la media se mantenga.
+
+\solution
+
+\spart La desviación típica disminuye si añado un dato que reduzca la dispersión. Como la desviación típica se calcula respecto de la media, añadiendo un dato igual que la media, la desviación típica debería reducirse:
+
+$\overline{x} = \frac{-1+2+2}{3} = 1$.
+
+\[ \sigma = \sqrt{\frac{(-1)^2+2^2+2^2}{3} - \overline{x}^2 }= \sqrt{3-1} = \sqrt{2}\]
+
+
+\[ \sigma' = \sqrt{\frac{(-1)^2+2^2+2^2+1^2}{4} - \overline{x}^2 }= \sqrt{\frac{10}{4}-1} = \sqrt{1.5}\]
+
+Efectivamente, $\sigma' > \sigma$
+
+\spart  Añadiendo $\overline{x}$ 4 veces la media se mantiene:
+
+\end{problem}
+
+\begin{problem}
+Protágoras tiene en su armario 3 pantalones beige, 2 negros, uno azul y otro amarillo. Por otro lado, tiene 3 camisetas amarillas, 2 negras. ¿Cuántos \textit{outfits} puede ponerse que no repitan color?
+
+\solution
+
+\textit{Consideramos que los 2 pantalones negros son diferentes aunque tengan el mismo color}
+
+
+Para calcular los que no repiten color calculamos el total y restamos lo que sí repiten color.
+
+Total: tiene $3+2+1+1 = 7$ pantalones y $3+2 = 5$ camisetas. Tiene, en total, $7·5=35$ diferentes.
+
+Repitiendo color. 
+\begin{itemize}
+	\item Repitiendo amarillo: $1·3=3$
+	\item Repitiendo negro: $2·2=4$
+	\item Total: $3+4=7$
+\end{itemize}
+
+\textbf{Solución: } $35-7=28$
+
+\end{problem}
+
+\begin{problem}
+
+Resuelve 2 de las siguientes ecuaciones:
+
+\ppart $\sqrt{x+5}+\sqrt{x} = 5$
+
+\ppart $24·2^{x-2} + 3·2^{x+1} = 48$
+
+\ppart $\displaystyle \frac{1}{x^2+5x+6} - \frac{1}{x+2} = \frac{1}{x+3} + x$
+
+\solution
+
+\spart \[\sqrt{x+5}+\sqrt{x} = 5 \implies (x+5) + x + 2\sqrt{x(x+5)} = 25 \dimplies 2\sqrt{x(x+5)}  = 20-2x \dimplies \sqrt{x(x+5)} =10 - x \implies x(x+5) = 100+x^2-20x \dimplies -25x=-100 \dimplies x=4\]
+
+Comprobación: $\sqrt{4+5}+\sqrt{4} = 3+2=5$
+
+\spart 
+\[
+	24·\frac{2^x}{2^2} + 3·2·2^x = 24 \dimplies 6·2^x+6·2^x=24 \dimplies 12·2^x=24 \dimplies 2^x=2 \dimplies x=1
+\]
+
+No es necesario hacer comprobación porque se ha mantenido la equivalencia de principio a fin.
+
+\spart 
+\[
+\frac{1}{x^2+5x+6} - \frac{1}{x+2} = \frac{1}{x+3} + x \dimplies \frac{1}{(x+2)(x+3)} - \frac{x+3}{(x+2)(x+3)} = \frac{(x+2)}{x+3} + \frac{x(x+2)(x+3)}{(x+2)(x+3)} \implies\]\[\implies  {1} - {(x+3)} = {(x+2)} + {x(x+2)(x+3)} \dimplies -2-x = x+2+x^3+5x^2+6x \dimplies x^3+5x^2+8x+4=0
+\]
+
+$x^3+5x^2+8x+4 = (x+1)(x+2)(x+2) \implies x_1 = -1 \;\; x_2=-2$ 
+
+\textbf{Comprobación:}
+
+$x=-2$ no es solución porque anula denominadores.
+
+$x=-1$ 
+\[\frac{1}{(-1)^2+5(-1)+6} - \frac{1}{(-1)+2} = \frac{1}{(-1)+3} + (-1) \dimplies \frac{1}{2}-1 = \frac{1}{2}-1 \dimplies 0=0\]
+
+\end{problem}
+
+\end{document}
