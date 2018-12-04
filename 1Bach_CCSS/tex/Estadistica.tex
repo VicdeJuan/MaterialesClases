@@ -153,33 +153,6 @@ Desv. típica $\sigma$ & $\displaystyle \sqrt{\frac{\displaystyle\sum_{i=1}^{N} 
 \textit{\textbf{Obs:} Todas estas mismas medidas se pueden calcular respecto de la mediana. Cambiarían los nombres}
 \end{table}
 
-\paragraph{Día 5/11:} Todos separados. Marta, Nacho, Álvaro.
-
-Quiero silencio absoluto. Si hago preguntas, las contestas cuando te de el turno de palabra. 
-%
-La metodología general de la clase va a cambiar. 
-%
-
-
-Problema 50 del libro. ¿Dudas? 
-
-¿Quién lo ha hecho? Lo apunto. 
-%
-Los demás, lo deben entregar el miércoles en hoja aparte.
-%
-Quien hable, mañana.
-%
-Sino, al final de la clase.
-%
-Hazlo tú, hazle una fotocopia y entregame la fotocopia. 
-%
-Lo corregimos ese día.
-%
-Cada día de retraso supone un negativo.
-%
-Una cutrez, mediocre, cuenta como no entregado.
-
-
 
 \textbf{Repasamos medidas de dispersión: } fórmula y ya está. Tizas de colores para las letras.
 
@@ -215,14 +188,14 @@ Si alguien me demuestra esta proposición fuera de clase +0,25 en el examen (que
 	  \frac{\displaystyle\sum_{i=1}^{N} x_i^2}{N} + \overline{x}^2-2\overline{x}^2 = 
 	  \frac{\displaystyle\sum_{i=1}^{N} x_i^2}{N} - \overline{x}^2
 	\end{dmath}
-	En caso de datos repetidos, donde $N$ no es el número total de datos, sino de filas de la tabla. Llamamos $T$ al número total de datos
+	En caso de datos repetidos, donde $N$ no es el número total de datos, sino de filas de la tabla. Llamamos $n$ al número total de datos
 	\begin{dmath}
-		\sigma^2 = \frac{\displaystyle\sum_{i=1}^{N} \left(x_i-\overline{x}\right)^2}{T} =
-	  \frac{\displaystyle\sum_{i=1}^{N} f_i\left(x_i^2+\overline{x}^2-2x_i\overline{x}\right)}{N} = 
-	  \frac{\displaystyle\sum_{i=1}^{N} f_ix_i^2}{N} + \underbrace{\frac{\displaystyle\sum_{i=1}^{N}f_i\overline{x}^2}{N}}_{\small\displaystyle\sum_{i=1}^9 z = 9·z}-\frac{f_i\displaystyle\sum_{i=1}^{N} 2x_i\overline{x}}{N} =
-	  \frac{\displaystyle\sum_{i=1}^{N} x_i^2}{N} + \frac{N·\overline{x}^2}{N}-2\overline{x}\underbrace{\frac{\displaystyle\sum_{i=1}^N x_i}{N}}_{\text{ def. }\overline{x}} = 
-	  \frac{\displaystyle\sum_{i=1}^{N} x_i^2}{N} + \overline{x}^2-2\overline{x}^2 = 
-	  \frac{\displaystyle\sum_{i=1}^{N} x_i^2}{N} - \overline{x}^2
+		\sigma^2 = \frac{\displaystyle\sum_{i=1}^{n} \left(x_i-\overline{x}\right)^2}{N} =
+	  \frac{\displaystyle\sum_{i=1}^{n} f_i\left(x_i^2+\overline{x}^2-2x_i\overline{x}\right)}{N} = 
+	  \frac{\displaystyle\sum_{i=1}^{n} f_ix_i^2}{N} + \underbrace{\frac{\displaystyle\sum_{i=1}^{n}f_i\overline{x}^2}{N}}_{\small\displaystyle\sum_{i=1}^9 z = 9·z}-\frac{f_i\displaystyle\sum_{i=1}^{n} 2x_i\overline{x}}{N} =
+	  \frac{\displaystyle\sum_{i=1}^{n} x_i^2}{N} + \frac{N·\overline{x}^2}{N}-2\overline{x}\underbrace{\frac{\displaystyle\sum_{i=1}^N x_i}{N}}_{\text{ def. }\overline{x}} = 
+	  \frac{\displaystyle\sum_{i=1}^{n} x_i^2}{N} + \overline{x}^2-2\overline{x}^2 = 
+	  \frac{\displaystyle\sum_{i=1}^{n} x_i^2}{N} - \overline{x}^2
 	\end{dmath}
 \end{proof}
 
@@ -265,25 +238,46 @@ Por eso no se utiliza este coeficiente.
 
 \subsection{Problema práctico}
 
-Calcular la varianza, desviación típica y 
+Problema 21 y problema 50.
+
+Trabajar en 27, 28, 29, 30 (puede ser esquemático),32 ,35 ,39 ,43 ,51 ,53
+
 
 \section{Probabilidad, binomial y normal}
 
 \subsection{Combinatoria}
 
+Principio multiplicativo:
+
+Caminos para ir de $A$ a $C$, pasando por $B$. ¿Cuántos caminos posibes hay? 
+
 % https://www.fing.edu.uy/tecnoinf/mvd/cursos/pye/materiales/practico/pye-pr02.pdf
 \begin{enumerate}
 	\item En un centro escolar hay 40 en 1º de ESO, 35 en 2º, 32 en 3º y 28 en 4º. Para hablar con la dirección se quiere formar una comisión que esté integrada por un alumno de cada curso. ¿Cuántas comisiones se pueden formar?
+	{$40·35·32·28=54400$}
 	\subitem Si el alumno de 1º de la ESO ya ha sido elegido. ¿Cuántas comisiones distintas se pueden formar?
-	\item ¿Cuántos números de tres cifras se pueden formar con las cifras pares 1, 2, 3 y 4 sin que se repita ninguna? b) ¿Cuántos terminan en 34? c) ¿Cuántos habrá que sean mayores que 300?
-	\item ¿De cuántas maneras 10 personas en 4 sitios?
+	{$35·32·28=360$}
+	\item ¿Cuántos números de tres cifras se pueden formar con las cifras 1, 2, 3 y 4 sin que se repita ninguna? 
+	{$4·3·2·1 = 4! = 24$}
+		\subitem b) ¿Cuántos terminan en 34? 
+		{$2$, el $1234$ y el $2134$}
+		\subitem c) ¿Cuántos habrá que sean mayores que 300?
+		{24, porque el más pequeño, $1234$ es mayor que 300}
+	\item ¿De cuántas maneras 4 personas en 10 sitios?
+	{$10·9·8·7 = 5040$}
+	\subitem ¿Y si pueden sentarse unos encima de otros? 
+	{$10·10·10·10 = 10000$}
+	\item ¿De cuántas maneras puedo ordenar 4 bolas?
+	\item En una urna hay 6 bolas distintas, ¿De cuántas maneras distintas pueden sacarse? 
+	\item En una urna hay 3 bolas rojas, 1 azul, 1 amarilla y 1 naranja ¿De cuántas maneras distintas pueden sacarse? 
+	\item En una urna hay 8 bolas: 4 verdes y las otras 4 distintas. ¿De cuántas maneras distintas pueden sacarse?
+	\item En una urna hay 10 bolas: 2 rojas, 4 verdes y las otras 4 distintas. ¿De cuántas maneras pueden sacarse?
 	\item En una urna hay tres bolas rojas, tres verdes, cuatro negras y dos azules. ¿De cuántas maneras distintas pueden sacarse, bola a bola, de la urna?
-	\item De cuántas formas puedo repartir 3 premios entre 3 personas, suponiendo que no repito personas.
-	\item 10 alumnos. Se reparten 3 premios.
-		\subitem ¿Qué caso debería salir más? Premios iguales, premios distintos, se puede repetir persona por premio o no.
-		\subitem a) Los premios son iguales
-		\subitem b) Los premios son distintos
-		\subitem ¿Una persona puede recibir 2 premios? Contesta.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\item 10 alumnos. Se reparten 3 premios. Se dan varios casos: Premios iguales o distintos. Una persona puede recibir varios premios o no.
+	\subitem ¿En qué caso deberían salir más posibilidades?
+	\subitem Comprueba tu intuición calculando las posibilidades de cada caso.
 	\item Número de diagonales de un cuadrado, de un hexágono, de un heptágono, de un polígono de $k$ lados.
 	\item 5 hombres y 4 mujeres. Hombres en lugares impares y mujeres en lugares pares.
 	\item Número de posibles matrículas.
@@ -296,7 +290,7 @@ Calcular la varianza, desviación típica y
 	\item Una lista de Spotify tiene 30 canciones. ¿Cuántas posibles reproducciones de la lista completa, si las canciones se reproducen aleatoriamente, puede haber? ¿Y si la primera canción siempre debe ser la misma? ¿Y si no se repiten aleatoriamente, sino que siguen el orden alfabético?
 	\subitem ¿Cuál es la probabilidad de que una lista de reproducción de 30 canciones reproducidas al azar siga el orden alfabético?
 	\item Una persona tiene 6 chaquetas y 10 pantalones. ¿De cuántas formas distintas puede combinar estas prendas?
-	\item ) Una familia, formada por los padres y tres hijos, van al cine. Se sientan en butacas consecutivas.
+	\item Una familia, formada por los padres y tres hijos, van al cine. Se sientan en butacas consecutivas.
 		\subitem a) ¿De cuántas maneras distintas pueden sentarse?
 		\subitem b) ¿Y si los padres se sientan en los extremos?
 	\item Con los números 3, 5, 6, 7 y 9 
@@ -305,7 +299,8 @@ Calcular la varianza, desviación típica y
 		\subitem ¿Cuántos cocientes distintos se pueden obtener dividiendo dos de estos números?
 	\item ¿Cuántos números hay entre 2000 y 3000 que tengan sus cifras diferentes?
 	\item ¿Cuántos resultados distintos pueden aparecer al lanzar un dado 4 veces?
-	\item 16)a) ¿Cuántos números de 6 cifras puedes escribir con los dígitos 1, 2 y 3?. b) ¿Cuántos de ellos contienen todos los dígitos 1, 2 y 3 al menos una vez?
+	\item a) ¿Cuántos números de 6 cifras puedes escribir con los dígitos 1, 2 y 3?. b) ¿Cuántos de ellos contienen todos los dígitos 1, 2 y 3 al menos una vez? 
+	\item ¿Cuántos números de 4 cifras puedes escribir con los dígitos 1,2,3 y 4? b) ¿Cuántos de ellos contienen los 4 dígitos? c) ¿Cuántos de ellos tienen alguna cifra repetida?
 	\item Todas las personas que asisten a una reunión se estrechan la mano. Si hubo 105 apretones, ¿cuántas personas asistieron?
 	\item ¿Cuántas columnas tenemos que cubrir para acertar seguro una quiniela?. Cada columna tiene 15 resultados a elegir entre 1, X, 2. 
 	\item Ocho amigos van de viaje llevando para ello dos coches. Si deciden ir 4 en cada coche.
@@ -318,10 +313,90 @@ Calcular la varianza, desviación típica y
 		\subitem d) tres libros son iguales entre sí?
 	\item ¿Cuántas palabras distintas se pueden formar con las letras de la palabra SOBRE?
 	\item ¿Cuántas palabras distintas se pueden formar con las letras de la palabra MATEMATICAS?
-	\item 
 \end{enumerate}
 
 \subsection{Probabilidad}
+
+{¿Qu\'e es una probabilidad? La respuesta intuitiva será un número entre $0$ y $1$. Primera en la frente: \hl{es una función}. Siempre es la "probabilidad de un suceso", ¿no? Necesito saber de qué suceso. 
+
+Una probabilidad es una función. ¿Cuántas cosas recibe una función?
+
+Todas las funciones tienen \hl{un origen y un destino}. Una probabilidad llega a un número real. ¿De qué parte? (Ejemplo de raíces: parte de números positivos para dar un número real).
+
+Dado un dado, ¿cuál es su espacio muestral? Razonado con el mítico dibujito de funciones 
+$E=\{1,2,3,4,5,6\}$. Ahora puedo calcular $P(\{3\}) = ...$, ¿no? Perfecto. ¿La probabilidad, entendida como función, \hl{¿parte del espacio muestral?} No, porque ¿$P(\{1\}\cup\{2\})$? 
+
+Vamos a ver una \hl{definición axiomática} de la probabilidad. ¿Axioma? ¿A alguien le dice algo? Os lo cuento, fundamentalmente, para que tengáis una \textbf{visi\'on real de lo que son las Matemáticas.}}
+
+Un axioma es una propiedad que se acepta sin demostración. A partir de ahí construimos la teoría al completo.
+
+{¿Cuántas propiedades crees que hacen falta aceptar sin demostrar para la teoría de la probabilidad?}
+
+
+\begin{defn}[Axiomática de Kolmogorov]
+Dado un conjunto de sucesos elementales $E$ (llamado espacio muestral), $\mathcal{P}(E)$ al conjunto de todos los subconjutos de $E$ y una función $P$ que asigna un valor real a cualquier suceso $A$.
+
+Decimos que $P$ es una probabilidad del espacio $E$ si cumple las siguientes propiedades:
+
+\begin{itemize}
+	\item $\forall A\in \mathcal{P}(E), P(A)\geq 0$
+	\item $P(E) = 1$
+	\item $\forall A\in \mathcal{P}(E)$ con $\{A_1,A_2,..., A_k\}$ sucesos incompatibles dos a dos. Entonces \[ P\left(\bigcup_{j=1}^k A_j\right) = \sum_{j=1}^k P(A_j) \]
+\end{itemize}
+\end{defn}
+
+\textit{¿Y esta definición por qué? ¿Dónde ha quedado eso de casos favorables entre posibles? Lo seguiremos utilizando, pero es una consecuencia lógica de estas propiedades.}
+
+\textit{Sólo con estas 3 propiedades vamos a poder construir todas las demás. ¿Te acuerdas cuando el año pasado decía que las Matem\'aticas de 4º son un poco "de andar por casa"?}
+
+\begin{example} Un dado. 
+
+$E = \{1,2,3,4,5,6\}$
+
+$\mathcal{P}(E) = \{1,2,3,4,5,6,\{1,2\},\{1,3\},\{1,4\} ... , \{6,6\},\{1,2,3\} ..., \emptyset \}$
+
+$\emptyset \equiv$ "no sale nada"
+
+Por cierto, ¿cuántos elementos tiene? $6+6·5+6·5·4+6·5·4·3+... + 6!+1$
+
+Definiendo $P(e) = \rfrac{1}{6} \forall e\in E$, con la tercera propiedad podemos calcular:
+
+$P(\{1\} \cup \{2\} = P(\{1\}) + P(\{2\}) = \rfrac{2}{6} = \rfrac{1}{3}$
+
+\textit{Hacer énfasis en que la probabilidad recibe conjuntos, no números}\end{example}
+
+\begin{example}
+Sea $E=\{e_1,e_2,e_3\}$. Estudia si las siguientes funciones son espacios de probabilidad:
+
+\begin{itemize}
+	\item $P_1(e_1) = 1/2 ; P_1(e_2) = 1/2 ; P_1(e_3) = 1/3$
+	\item $P_2(e_1) = 1/3 ; P_2(e_2) = 0 ; P_2(e_3) = 2/3$
+\end{itemize}
+\end{example}
+
+\begin{prop}[Propiedades de una función de Probabilidad]
+$\forall A,B \in \mathcal{P}(E)$
+\begin{itemize}
+	\item $P(\overline{A}) = 1 - P(A)$
+	\begin{proof}
+		\[1=P(E) = P(A\cup\overline{A} = P(A) + P(\overline{A})\]
+	\end{proof}
+	\item $P(\emptyset) = 0$ porque $\overline{\emptyset} = E$
+	\item $A\subset B \dimplies P(A) \leq P(B)$
+	\item $0\leq P(A)\leq 1$
+	\item $P(A\cup B) = P(A) + P(B) - P(A\cap B)$
+\end{itemize}
+\end{prop}
+
+\begin{prop}[Regla de Laplace]
+En un espacio muestral equiprobable $E$ con $n$ elementos, podemos calcular:
+
+\[\forall A\in \mathcal{P}(E)\;\;\; P(A) = \frac{\text{fav.}}{\text{pos}}\]
+\end{prop}
+
+Problemas 11,12,13,14
+
+\subsubsection{Probabilidad condicionada}
 
 \subsection{Binomial}
 
