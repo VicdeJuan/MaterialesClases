@@ -343,6 +343,9 @@ Decimos que $P$ es una probabilidad del espacio $E$ si cumple las siguientes pro
 	\item $P(E) = 1$
 	\item $\forall A\in \mathcal{P}(E)$ con $\{A_1,A_2,..., A_k\}$ sucesos incompatibles dos a dos. Entonces \[ P\left(\bigcup_{j=1}^k A_j\right) = \sum_{j=1}^k P(A_j) \]
 \end{itemize}
+
+\obs Llamamos \concept{suceso} a los elementos de $\mathcal{P}(E)$.
+
 \end{defn}
 
 \textit{¿Y esta definición por qué? ¿Dónde ha quedado eso de casos favorables entre posibles? Lo seguiremos utilizando, pero es una consecuencia lógica de estas propiedades.}
@@ -363,7 +366,11 @@ Definiendo $P(e) = \rfrac{1}{6} \forall e\in E$, con la tercera propiedad podemo
 
 $P(\{1\} \cup \{2\} = P(\{1\}) + P(\{2\}) = \rfrac{2}{6} = \rfrac{1}{3}$
 
-\textit{Hacer énfasis en que la probabilidad recibe conjuntos, no números}\end{example}
+\textit{Hacer énfasis en que la probabilidad recibe conjuntos, no números}
+
+Calcular la probabilidad de sacar un número par y mayor que $3$ (Razonamiento con dibujos aplicando el tercer axioma).
+
+\end{example}
 
 \begin{example}
 Sea $E=\{e_1,e_2,e_3\}$. Estudia si las siguientes funciones son espacios de probabilidad:
@@ -372,6 +379,8 @@ Sea $E=\{e_1,e_2,e_3\}$. Estudia si las siguientes funciones son espacios de pro
 	\item $P_1(e_1) = 1/2 ; P_1(e_2) = 1/2 ; P_1(e_3) = 1/3$
 	\item $P_2(e_1) = 1/3 ; P_2(e_2) = 0 ; P_2(e_3) = 2/3$
 \end{itemize}
+
+\obs Fíjate lo que nos hemos abstraído, que no necesitamos nada de nada. 
 \end{example}
 
 \begin{prop}[Propiedades de una función de Probabilidad]
@@ -396,12 +405,443 @@ En un espacio muestral equiprobable $E$ con $n$ elementos, podemos calcular:
 
 Problemas 11,12,13,14
 
-\subsubsection{Probabilidad condicionada}
+
+\subsection{Empezando probabilidad de 0}
+
+\subsubsection{Operaciones con conjuntos}
+
+\begin{prop}[Propiedades de conjuntos]
+Algunas propiedades de conjuntos, necesarias para probabilidad:
+
+	\begin{itemize}
+		\item $A\cup A=A$ y $A\cap A = A$
+		\item $A\cup B=B\cup A$ y $A\cap B = B\cap A$
+		\item $A\cup \emptyset=A$ y $A\cap \emptyset = \emptyset$
+		\item $A\cup (B\cap C) = (A\cup B)\cap (A\cup C)$
+		\item $A\cap (B\cup C) = (A\cap B)\cup (A\cap C)$
+		\item $\overline{\overline{B}} = B$
+		\item $\overline{A}\cap A = \emptyset$
+		\item $A\setminus B = A\cap \overline{B}$
+		\item[DeMorgan] $\overline{A\cup B} = \overline{A}\cap\overline{B}$
+		\item[DeMorgan] $\overline{A\cap B} = \overline{A}\cup\overline{B}$
+	\end{itemize}
+\end{prop}
+\begin{proof}
+Dibujaremos gráficamente cada propiedad.
+\end{proof}
+
+\begin{problem}[1]
+Simplifica las siguientes igualdades:
+
+\ppart $(A\cup B)\cap (A\cup B)\cap A=A$
+
+\ppart $(B\cup A)\cap \overline{\left(\overline{B}\cap \overline{A}\right)} = A\cup B$
+
+\ppart $\left[A\setminus (A\cup B)\right]\cup B = B$
+
+\ppart $(A\cap B) \cup (A\cap \overline{B}) = A$
+
+\ppart $(A\setminus B) \cap B = \emptyset$
+
+
+\solution
+\end{problem}
+
+Problemas 11 y 12.
+
+\begin{problem}[2]
+En una urna de lotería hay bolas 4 bolas amarillas, 3 rojas, 5 naranjas y 1 morada.
+
+Calcula las siguientes probabilidades:
+
+(Sacando de una en una)
+\ppart No morada.
+
+\textbf{Regla de LaPlace}
+
+\ppart Ni roja ni amarilla.
+
+(Sacando de varias en varias)
+
+\ppart Las 3 bolas rojas.
+
+\ppart 2 bolas rojas y una amarilla.
+
+\solution
+\end{problem}
+
+\textbf{Tablas de contingencia:} explicar probabilidad condicionada desde tablas de contingencia.
+
+En una tabla, traducir frases a probabilidades y sucesos con condicionadas.
+
+\textit{Para resolver este problema en uno de los tercios de la pizarra hacemos una raya vertical discontinua a la derecha para ir escribiendo el resumen teórico con las fórmulas y demás. Sé que no les gusta y prefieren primero la teoría y luego ejemplos, pero considero importante que vean de dónde salen las fórmulas y que las razonen desde el ejemplo.}
+
+
+\begin{problem}[G1]
+En una clase hay 140 mujeres, de las cuales 60 llevan gafas. Hay también 60 hombres con gafas y 40 hombres sin ellas.
+
+Si elegimos una persona al azar,
+\ppart ¿Cuál es la probabilidad de que lleve gafas?
+\ppart ¿Cuál es la probabilidad de que lleve gafas, sabiendo que es mujer?
+\ppart ¿Cuál es la probabilidad de que lleve gafas, sabiendo que es hombre?
+
+\solution
+
+
+
+\spart Hay 120 (60+60) personas que llevan gafas. En total hay 240 personas (140+60+40), luego, utilizando la regla de Laplace:  $P(G) = \frac{90}{210} = \frac{3}{7}$
+
+\obs Errores cometidos. ¿Qué es "G"?
+
+\obs Enseñar a simplificar fracciones con la calculadora.
+
+\obs Construimos la tabla de "contingencia", que es una buena manera de agrupar la información.
+
+\hl{Construir tabla}
+
+\spart Ahora sólo me importan mujeres, ¿no? Es como si no hubiera hombres. Para la regla de Laplace, mis casos posibles son 140 (las mujeres = $M$) y los favorables son 60 (las mujeres que llevan gafas = $M\cap G$)
+
+Es decir: $P(\text{ gafas, sabiendo que son mujeres} ) = \frac{P(G\cap M)}{P(G)} = \frac{60}{140}$
+
+\spart ...
+
+\end{problem}
+
+
+\begin{problem}[G2]
+En una clase hay 140 mujeres, de las cuales 60 llevan gafas. Hay también 30 hombres con gafas y 40 hombres sin ellas.
+
+Si elegimos una persona al azar,
+\ppart ¿Cuál es la probabilidad de que lleve gafas?
+\ppart ¿Cuál es la probabilidad de que lleve gafas, sabiendo que es mujer?
+\ppart ¿Cuál es la probabilidad de que lleve gafas, sabiendo que es hombre?
+
+\solution
+
+\spart Construimos la tabla y contestamos a las preguntas.
+
+\spart ...
+
+\spart ...
+
+\end{problem}
+
+\subsubsection{Independencia}
+
+\begin{defn}[Independencia]
+2 sucesos son independientes si $P(A \tq B) = P(A)$
+\end{defn}
+
+\textbf{Ejemplos}
+\begin{itemize}
+	\item En el problema $G1$, ¿género y gafas son independientes?
+	\item En el problema $G2$, ¿género y gafas son independientes?
+\end{itemize}
+
+Vamos a darle a la maquinaria de la lógica.
+
+
+\hl{Corregir 17 y 18. 
+Explicar independencia desde la intersección.
+}
+\begin{corol}
+Si $A$ y $B$ son sucesos independientes ($P(A) = P(B\tq A)$)
+
+$P(B\tq A) = \frac{P(B\cap A)}{P(A)} \to P(A\cap B) = P(A) · P(B\tq A) = P(A) · P(B)$
+\end{corol}
+
+
+
+\hl{Resolver el 17 como árbol}
+
+\textbf{Problemas de Árbol}
+Problema 76,75,77
+
+\textbf{Probabilidad total}
+Problema 82,83,84...
+
+Resolviendo un problema de diagrama de árbol, razonar el teorema.
+\begin{theorem}[Probabilidad Total]
+Sea $\{A_i\}_0^n$ una partición del espacio muestral $E$.
+
+Sea $B$ un proceso del espacio muestral.
+
+$P(B) = \sum_{i=0}^n P(B\tq A_i)$
+\end{theorem}
+
+
+\textbf{Bayes}
+Problema 87 (o alguno de los del libro de esa página)
+
+\begin{theorem}[Bayes]
+\begin{gather*}
+\left\{
+\begin{array}{c}
+	P(A\tq B) = \frac{P(A\cap B)}{P(B)} \to P(A\cap B) = P(A\tq B)· P(B)\\
+	P(B\tq A) = \frac{P(B\cap A)}{P(A)} \to P(B\cap A) = P(B\tq A)· P(A)
+\end{array} \right\} 
+\\
+\implies P(A\tq B)· P(B) = P(B\tq A)· P(A) \dimplies 
+\\
+P(B\tq A) = \frac{P(A\tq B)· P(B)}{P(A)}
+\end{gather*}
+\end{theorem}
+
+Problemas 88 y 89. \hl{¿Entran así en selectividad?}
+
+
+\textbf{Cuestiones teóricas}
+
+
+\section{Distribuciones de probabilidad}
+
+\begin{problem}
+Se tira un dado de 6 caras 100 veces. Calcula la probabilidad de:
+
+\ppart A="sacar 100 veces un 6"
+
+\ppart B="sacar exactamente una vez un 5 y todo lo demás 6"
+
+\ppart C="sacar exactamente una vez un 5"
+
+\ppart D="sacar exactamente 2 veces un 5"
+
+\ppart E="sacar exactamente 3 veces un 5"
+
+\ppart F="sacar exactamente $k$ veces un 5"
+
+\solution
+
+\end{problem}
+
+\textit{Fijaos, hemos llegado a una fórmula general de cálculo de probabilidades para resolver este caso específico sin necesidad de hacer el árbol ni nada de nada. Ya sabéis que me gusta partir de ejemplos para deducir las fórmulas generales.
+\\
+Esto, tiene un nombre propio y es con lo que empezamos tema nuevo: Distribuciones de probabilidad.
+\\
+En el libro viene bastante bien, asíque lo vamos a seguir. Página 294.
+}
+
+4 conceptos a distinguir, leyendo las definiciones del libro.
+\begin{itemize}
+	\item Distribución de probabilidad: binomial.
+	\subitem \textit{La manera que tiene la probabilidad de distribuirse entre los sucesos}.
+	\item Variable aleatoria: en los apartados C-F, sería el número de cincos.
+	\subitem $P(C) = P(X=1)$.
+	\subitem $P(E) = P(X=3)$.
+	\item Función de probabilidad: función que devuelve la probabilidad.
+	\item Función de distribución [para dentro de unos días. Básicamente es la probabilidad acumulada.].
+\end{itemize}
+
+Ejemplo página 292.
+\begin{itemize}
+	\item Podría definir cualquier variable aleatoria.
+\end{itemize}
+
+
+\textit{Cuando estén claros:} 
+
+¿Podemos calcular la media de una distribución? En el ejemplo de la 292 y después el ejemplo del número de cincos. ¿Se puede calcular? Y, calculando la media, ¿se puede calcular la desviación típica?
+
+Ya hemos visto las páginas 292-294. Lo interesante de este tema son 2 distribuciones especiales y sólo haremos ejercicios relativos a ellas. Lo demás, solamente es útil para pasar a las distribuciones que verdaderamente se utilizan.
+
+Página 295: distribución binomial. Ejemplo resuelto.
+
+Reconocer distribuciones binomiales, ejercicio 43.
+
+Deberes: 46
+
+
+______
+
+Ejercicio resuelto página 296. Ejercicios tipo para hacer con esto.
 
 \subsection{Binomial}
 
+Problemas. Media y varianza - desviación típica.
+
 \subsection{Normal}
+
+Desde la binomial a la normal.
+
+% Código en Sage para dibujar.
+%import scipy.stats
+%n=200
+%p=0.5
+%binom_dist = scipy.stats.binom(n,p)
+%bar_chart([binom_dist.pmf(x) for x in range(n*p*2)])
+
+Vamos dibujando binomiales cada vez con más datos y probabilidades cambiantes (primero de los extremos de la probabilidad (0,0009) hacia los no extremos (0,4)). ¿Hay alguna aproximación? Tal vez haya una curva suave que se parezca...
+
+Sí la hay.  Te presento a distribución normal. En estadística se denomina normal a todo lo que sigue esta distribución. Centrado, y más pegado o menos pegado.
+
+Casi todo está cerca de la media. Esta distribución sólo necesita de la media y la desviación típica (que no varianza). Según la media y la desviación típica que le demos sean, la gráfica será de una u otra manera.
+
+Podemos ver que todas tienen la misma forma y conociendo cómo funciona una de ellas, podríamos conocer todas las demás. Solamente hay que mover el centro y la reajustar la tripa. A este "mover el centro y reajustar la tripa" se le llama "tipificar", volverlo típico, de la distribución normal típica, la 0,1. 
+
+[Utilizar el PPT de apoyo]
+
+
+De la misma manera: ejemplo resuelto 3. Leo yo el enunciado, antes de decirles que es del libro. Problemas 15 y 16. Para comparar datos y poder tomar decisiones. 
+
+
+\hl{Clase del viernes 1/02}
+Corregimos el 16.
+
+Una vez entendida la tipificación, vamos con el cálculo de probabilidades. ¿Por qué no se calcula la probabilidad de "medir exactamente 1,75"? Porque... en realidad, 1.75 es entre 1.745 y 1.754, luego ya tengo un intervalo. 
+Además, lo habitual será preguntarme por "¿Cuánta gente es más alta de 1.90?". En general, me interesarán intervalos, por ello la normal va por intervalos.
+
+Tipificar el volver típico. Vamos a dedicarnos hoy a familiarizarnos con la distribución normal típica y con la tabla de la normal
+
+Supongamos que tengo una normal de media 0 y de desviación típica 1. La tabla lo que me da es lo que dice el dibujo, el área, la suma de las barras, la probabilidad de estar por debajo. Como la distribución es simétrica, la media está en el medio, coincide con la mediana (esto no siempre es así). La mitad de la gente está por debajo, la mitad por encima.
+
+\begin{itemize}
+	\item $P(Z<0)$
+	\item $P(Z<1)$
+	\item $P(Z<1,13)$
+	\item $P(Z<1,1234)$
+	\item $P(Z > 1) = 1 - P(Z\leq 1) = ...$ [contrario]
+	\item $P(Z > 3) = $ [contrario]
+	\item $P(Z  > -1) = P(Z < 1)$ [simetría]
+	\item $P(Z  > -1,21) = P(Z < 1)$ [simetría]
+	\item $P(Z  < -1) = P(Z > 1) = 1 - P(Z<1)$ [simetría y suceso contrario.]
+	\item $P(Z  < -4) = P(Z > 1) = 1 - P(Z<1)$ [simetría y suceso contrario.]
+\end{itemize}
+
+Ejercicios 66,67,68,69[abc]; 72; 74 ; Tipificar + De deberes 66-69[de]
+
+Supongamos que la altura media de una mujer es 1,70cm y la desviación típica 7cm. ¿Cuántas personas podríamos esperar que midieran más menos de 1.75?
+
+Necesitaríamos la tabla de la normal de media 1,70cm y de desviación típica 7cm, ¿no? Otra opción, más sencilla porque no podemos hacer estadística con Excel (todavía) sería \textit{tipificar} los datos, volverlos típicos, llevárnoslos a nuestra escala \textit{típica}, que sería la normal de media 0 y desviación típica 1. Tipificamos este valor: $\frac{1,85-1,70}{7} = $
+
+Aprendemos a utilizar la tabla de la normal. 
+
+A calcular los que nos faltan. Simetría y susceso contrario.
+
+Una vez hayamos aprendido, empezaremos a resolver $P(Z<k) = 0,2325$ y $P(X<k) = 0,2325$ y derivados.
+
+
+\begin{itemize}
+	\item Procedimiento general: conseguimos un número mayor que 0,5 a la derecha y después arreglamos el interior del paréntesis jugando con la simetría.
+	\item $P(X>k) = 0,8413$ [-1,00]
+	\[P(X>k) = P(X<-k) = 0,8413 \implies -k = 1 \implies k=-1\]
+	\item $P(X>k) = 0,9920$ [-2,41]
+	\[P(X>k) = P(X<-k) = 0,9920 \implies -k = 2,41 \implies k=-2,41\]
+	\hrule{}
+	\item $P(X<k) = 0,1587$ [-1,00]
+	\[P(X<k) = 0,1587 \dimplies P(X>k) = 0,8413 \dimplies P(X<-k) = 0,8413 \implies -k = 1 \dimplies k=-1\]
+	\item $P(X<k) = 0,2877$ [-0,56]
+	\[P(X<k) = 0,2877 \dimplies P(X>k) = 0,7123 \dimplies P(X<-k) = 0,7123 \implies -k = 0,56\]
+	\hrule{}
+	\item $P(X>k) = 0,1492$ [1,04]
+	\[ P(X>k) = 0,1492 \dimplies P(X<k) = 1-0,1492 = 0,8508 \implies k=1.04\]
+	Comprobación \[P(X>1.04) = 1-P(X<1.04) = 1- 0.8508 = 0,1492\]
+	\item $P(X>k) = 0,0078$ [2,42]
+	\[ P(X>k) = 0,0078 \dimplies P(X<k) = 1-0,0078 = 0,9922 \implies k=2.42\]
+	Comprobación \[P(X>2.42) = 1-P(X<2.42) = 1- 0.9922 = 0,0078\]
+	\subitem $P(X>2k+1) = 0,1736$ [0,93]
+	\[ P(X>2k+1) = 0,1736 \dimplies P(X<2k+1) = 1-0,1736 = 0,8264 \implies 2k+1=0.94 \implies k=-0,03\]
+	\subitem $P\left(X<\frac{k-2}{3}\right) = 0,2877$ [0,56]
+	\[ P\left(X<\frac{k-2}{3}\right) = 0,2877 \dimplies PP\left(X>\frac{k-2}{3}\right) = P\left(X<-\frac{k-2}{3}\right) = 0,7123\]
+	\[ \implies -\frac{k-2}{3} = 0,56 \implies k=0,56·3+2 = k=3,68\]
+
+	\item Ejercicios 87 y 85
+
+	Deberes: ejercicio 75
+
+\end{itemize}
+
+\hl{Clase del lunes 11: } Corregimos el 75, el 85 y hacemos más de calcular media y desviación típica.
+
+¿Qué pasa si el valor buscado no coincide en la tabla? Que cogemos el más cercano.
+
+Después, problemas de enunciado natural.
+
+Hallar media y desviación típica desde unas pocas probabilidades.
+
+\hl{Clase martes 12/02}
+Corregir 85 cd. Hacerlos bien [Del solucionario si hace falta].
+Resultados del 75 ce, que cometimos el mismo error.
+
+
+\subsection{Aproximación de la binomial a la normal}
+
+Si $X\equiv B(n,p)$, se puede aproximar por $X\equiv N(\mu=n·p, \sigma=\sqrt{n·p·(1-p)}$. ¿Cuándo se puede hacer esto? Cuando $np>5$ y $n(1-p)>5$
+
+Problema 19.
+
+Problema 91. Antes de nada, ¿es una binomial? 
+\begin{itemize}
+	\item Independencia.
+	\item Cuento número de éxitos.
+	\item Tengo una probabilidad y un número de intentos.
+\end{itemize}
+
+Deberes: Problema 92. También se puede hacer.
+
+Comentamos problema 94. Es una binomial, pero si quieres aproximar con la normal, es perfectamente válido, si lo argumentas.
+
+\subsubsection{Cálculo de media y desviación típica}
+
+\begin{itemize}
+	\item $X\equiv N(\mu,2); P(X<5) = 0,9332$. $[\mu = 2]$
+	\[
+	P\left(X<5\right) = P\left(\frac{X-\mu}{\sigma}<\frac{5-\mu}{\sigma}\right) = P\left(Z<\frac{5-\mu}{2}\right) = 0,9332
+	\]
+	Buscamos en la tabla 0,9332 y tenemos que:
+	$\frac{5-\mu}{2} = 1,5 \implies \mu=5-3=2$
+	\item $X\equiv N(3,\sigma); P(X<10) = 0,6368$. $[\sigma = 20]$
+	\[
+		P\left(X<10\right) = P\left(\frac{X-3}{\sigma}>\frac{10-3}{\sigma}\right) =0,6368 \implies \frac{10-3}{\sigma}=0,35 \implies 
+	\]
+	\item $X\equiv N(\mu,\sigma); P(X<12) = 0,5; P(X>6) = 0,8413$. $[\mu = 12, \sigma = 6]$
+	\[
+		P(X<12) = 0,5 \implies \mu = 12
+	\]
+	\[
+		P\left(X>6\right) = \left(\frac{X-12}{\sigma}>\frac{6-12}{\sigma}\right) = \left(Z<-\frac{-1}{2\sigma}\right) = 0,8413
+	\]
+	Consultando en la tabla: $-\frac{-1}{2\sigma} = 0,8413 \implies \sigma = \frac{1}{2·0,8413} = 1,79$
+\end{itemize}
 
 
 \section{Estadística bidimensional}
+
+Preparar PPT con los ejemplos del libro:
+
+Clase 1) Tabla de datos bidimensionales. Construir una, calcular distribuciones marginales y condicionadas para interiorizar bien las tablas, lo que significan, etc.
+
+Algún ejercicio de marginales + diagramas de dispersión. Covarianza vs correlación
+
+Covarianza: cuánto varía cada dato respecto de la media. $\sigma_{xy}$. No hace falta que te sepas las fórmula porque vamos a utilizar la calculadora a mansalva. 
+
+Esperadme en clase mañana sentados por grupos de calculadoras iguales.
+
+Rectas de regresión e intuición gráfica.
+
+Cálculo de todo con calculadora.
+
+\hl{Clase 27/02}
+
+Recta de regresión de Y sobre X (PPT)
+
+Tablita resumen del coeficiente de correlación (PPT)
+
+La recta de regresión siempre pasa por el punto $(\gor{x},\gor{y})$
+
+¿Qué recta calcular? ¿Y sobre X o X sobre Y? Si quiero predecir Y, hago Y sobre X. Si quiero predecir X, hacemos X sobre Y.
+
+Recomendación: https://www.vitutor.com/estadistica/bi/ejercicios\_correlacion.html
+
+\subsubsection{Causalidad vs Correlación}
+
+\begin{itemize}
+	\item https://www.telecinco.es/informativos/ciencia/beneficios-chupar-chupete-bebe_0_2661750040.html
+	\item https://www.infosalus.com/nutricion/noticia-bebidas-endulzadas-artificialmente-reducen-riesgo-recurrencia-cancer-colon-muerte-20180723074434.html
+	\item https://www.infobae.com/america/tendencias-america/2018/10/23/un-estudio-afirma-que-la-comida-organica-reduce-un-25-el-riesgo-de-cancer/
+\end{itemize}
+
+Ejercicios para clase: 64 b,d,e ; 65
+Ejercicios para practicar: 62, 63
+
+
 

@@ -112,10 +112,12 @@ def _genP(grado,fixedroots,rfrac,rootsRank,coefRank,degree2):
 #a partir de los argumentos recibidos.
 def genP(grado,fixedroots,rfrac,printsol,strfun,counter,rootsRank,coefRank,degree2):
     _r=_genP(grado,fixedroots,rfrac,rootsRank,coefRank,degree2)    
+    allPols.append(_r[0].expand())
     if printsol:
         return strfun([_r[0].expand(),_r[1]],counter,printsol)
     else:
         return strfun(_r[0].expand(),counter,printsol)
+
  
 # Escribimos el titulo. Recibe la informacion necesaria para describir el tipo de polinomios que viene a continuacion.
 # int rfrac: Numero de raices fraccionarias
@@ -131,26 +133,27 @@ def ppart(rfrac,deg,degree2):
     if degree2:
         deg2 = " (contiene un polinomio irreducible de grado 2)"
     
-    return "\\textbf{Polinomios de grado " + str(deg) + "\\\\} " #+ fracroots + " raices fraccionarias" + deg2 + ".\\\\\\"
+    return "\\textbf{Polinomios de grado " + str(deg) + "} " #+ fracroots + " raices fraccionarias" + deg2 + ".\\\\\\"
 
 
 
 
 rootsRank=[-3,4]            # Rango de valores que pueden tomar las raices
 coefRank=[-3,3]             # Rango de valores que pueden tomar los coeficientes principales.
-numToGen= 8                 # Numero de polinomios a generar de cada tipo.
-printsol = true             # Imprimir las raices de cada polinomio.
+numToGen= 25                # Numero de polinomios a generar de cada tipo.
+printsol = false            # Imprimir las raices de cada polinomio.
 num=0                       # Contador auxiliar para llevar la numeracion de los polinomios generados.
-hasDegree2Pols = true       # Contiene 1 polinomio de grado 2 irreducible.
-degree = 5                  # Grado maximo de los polinomios.
+hasDegree2Pols = false      # Contiene 1 polinomio de grado 2 irreducible.
+degree = 6                  # Grado maximo de los polinomios.
+allPols=[]
 
-for hasDegree2Pols in range(2):
+for hasDegree2Pols in range(1):
     if hasDegree2Pols:
         print "\\section{Con polinomios irreducibles de grado 2}"
     else:
         print "\\section{Sin polinomios irreducibles de grado 2}"
 
-    for rfrac in range(4): # rfrac: numero de raices fraccionarias por polinomio.
+    for rfrac in range(2): # rfrac: numero de raices fraccionarias por polinomio.
         print "\\subsection{Hasta "+str(rfrac) + " raices fraccionarias}"
         for _deg in range(degree-1): 
             deg=_deg+2  # deg: grado del polinomio.
@@ -170,3 +173,10 @@ for hasDegree2Pols in range(2):
                         coefRank = coefRank,
                         degree2 = hasDegree2Pols)
                 print
+
+print "\\newpage\\section{Soluciones}"
+for i in xrange(len(allPols)):
+    p=allPols[i]
+    print "\\subitem \\begin{dmath*}P_{"+str(i+1)+"}(x) = " + latex(p.factor())+"\\end{dmath*}\\vspace{-1.2cm}"
+print ""
+	
