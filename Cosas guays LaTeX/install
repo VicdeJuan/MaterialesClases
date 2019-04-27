@@ -1,8 +1,8 @@
 #!/bin/bash
-alias kpsewhich="/mnt/c/texlive/2018/bin/win32/kpsewhich.exe"
+
 tred=$(tput setaf 1)
 treset=$(tput sgr0)
-latex_dir=$(dirname $(kpsewhich article.cls))
+latex_dir=$(dirname $(/mnt/c/texlive/2018/bin/win32/kpsewhich.exe article.cls))
 
 function trycopy() {
 	file=$1
