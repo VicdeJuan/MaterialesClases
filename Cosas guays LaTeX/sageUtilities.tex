@@ -30,7 +30,7 @@
 %\[ D(f) = \{x\in\real \tq \sage{f.denominator()(x)} \neq 0\} = \sagestr{dominion(f=f,hasDen=True,hasLog=false,hasRt=false)}\]
 %
 \[
-\sagestr{dominion(f=f,hasDen=True,hasLog=false,hasRt=false)}
+\sagestr{dominion(f=f)}
 \]
 }
 
@@ -186,7 +186,8 @@ def random_between(j,k):
   return round((k+j)/2.0,2)
 
 #Resuelve los puntos de discontinuidad de la función.
-def ptsDiscontinuidad(f,isLog):
+def ptsDiscontinuidad(f):
+    hasLog=f(x).operator() == (log(x).operator())
     _den0=solve(f.denominator(normalize=False) == 0,x,solution_dict=True)
     den0 = [a[x] for a in _den0 if imag(a[x])==0]
     return den0
@@ -296,7 +297,7 @@ def asintotesHO(f,AH,AO):
 
             m=limit(f/x,x=infty)
             r+= "\[m=\\lim_{x\\mapsto "+latex(infty)+"} \\frac{f(x)}{x} = \\lim_{x\\mapsto "+latex(infty)+"} \\frac{"+latex(f(x))+"}{x}=\\lim_{x\\mapsto "+latex(infty)+"} "+latex(f(x)/x)+" = ... = "+latex(m)+"\]"
-            if (abs(m) != Infinity):
+            if (abs(m) != Infinity and m != 0):
                 if (Verbose == 1):
                     r+= "        En este caso tenemos m=$"+latex(m)+"$ por lo que sí hay asíntota oblícua. Calculamos n:"
                 r+= "    \[n= \\lim_{x\\mapsto "+latex(infty)+"} f(x) - m·x = \\lim_{x\\mapsto "+latex(infty)+"}\\left("+latex(f(x))+"-"+latex(m)+"x \\right) = \\lim_{x\\mapsto "+latex(infty)+"}"+latex(f(x)-m*x)+" = "+ limit(f-m*x,x=infty)+"\]"
@@ -307,7 +308,7 @@ def asintotesHO(f,AH,AO):
                 AO.append(m*x+n)
             else:
                 if (Verbose == 1):
-                    r+= "En este caso, ese límite tenemos $m="+latex(m)+"$ por lo que \\textbf{no hay asíntota} oblícua (ni horizontal)."
+                    r+= "En este caso, tenemos $m="+latex(m)+"$ por lo que \\textbf{no hay asíntota} oblícua (ni horizontal)."
                 else:
                     r+= "\\textbf{No hay A.O. ni A.H.}"
     AH=uniq(AH)
@@ -381,7 +382,7 @@ def solveDerivadaNula(f,sols,onlyReal):
 
 
 def ptsFrontera(f,ptscrit,recta):
-    puntosFrontera = flatten([ptsDiscontinuidad(f=f,isLog=false),ptscrit])
+    puntosFrontera = flatten([ptsDiscontinuidad(f=f),ptscrit])
     recta=[-Infinity]
 
     i=0
@@ -443,7 +444,7 @@ def estudiarSigno(f):
     recta=[-Infinity,Infinity]
     for a in _getRealroots(f):
         recta.append(a)
-    for a in ptsDiscontinuidad(f=f,isLog=false):
+    for a in ptsDiscontinuidad(f=f):
         recta.append(a)
     recta=sorted(recta) 
 
@@ -493,7 +494,7 @@ def _f_sign_monot(recta,f,min,max):
  recta=[-Infinity,Infinity]
  for a in _getRealroots(g):
   recta.append(a)
- for a in ptsDiscontinuidad(f=f,isLog=false):
+ for a in ptsDiscontinuidad(f=f):
   recta.append(a)
  recta=sorted(recta) 
  retval = "Los intervalos a estudiar son: "+latex(intervalos(recta))
@@ -546,17 +547,66 @@ def ismin(f,x0):
  return retval
  
 
+## Devuelve los intervalos solución de una inecuación.
+# tosolve: inecuación a pasarle a solve direcamente. 
+#   Ejemplo: x^2-9 >= 0
+def __getIntervalsFromIneq(tosolve):
+    return str(tosolve)
+
 ## Devuelve en texto el dominio de la función. 
 # f: función
-# boolean hasDen: una función racional
-# boolean hasLog: una función logarítmica
-# boolean hasRt: una función irracional
+    
+def dominion(f):
+    hasLog=f(x).operator() == (log(x).operator())
+    hasRt = f(x).operator() == (sqrt(x).operator())
+    hasDen = f.denominator(normalize=False) == 1
 
-def dominion(f,hasDen,hasLog,hasRt):
- s0=latex(f.denominator(normalize=False)(x))
- s1=",".join(str(a[x]) for a in solve(f.denominator(normalize=False) == 0,x,solution_dict=True))
- return "D(f) = \\{x\\in\\real \\tq "+s0+" \\neq 0 \\} = \\real \\setminus \{"+ s1 + "\}"
- 
+    doms = ""
+    denominator=f.denominator(normalize=False)
+    intersect = 0
+    if denominator != 1:
+        s0=latex(denominator)
+        s1=",".join(str(a[x]) for a in solve(f.denominator(normalize=False) == 0,x,solution_dict=True))
+        doms += "\\{x\\in\\real \\tq "+s0+" \\neq 0 \\} = \\real \\setminus \{"+ s1 + "\}\n"
+        intersect+=1
+        
+    if hasLog:
+        if hasLog==1:
+            base=e
+        else:
+            base=hasLog
+        #Gnapa para arreglar
+        argument=base^f(x)
+        s0=latex(argument)
+        print(argument)
+        #s1=",".join(str(a[x]) for a in solve(argument>0,x,solution_dict=True))
+        s1=__getIntervalsFromIneq(argument>0)
+        if intersect > 0:
+            doms += "\\cap"
+        intersect+=1
+        doms += "\\{x\\in\\real \\tq "+s0+" > 0 \\} = "+ s1 + "\n"
+
+
+        
+    if hasRt:
+        #Gnapa para arreglar
+        argument = f(x)^2
+        s0=latex(argument)
+        print(argument)
+        #s1=",".join(str(a[x]) for a in solve(argument>=0,x,solution_dict=True))
+        s1=__getIntervalsFromIneq(argument>=0)
+        if intersect > 0:
+            doms += "\\cap"
+        intersect+=1
+
+        doms += "\\{x\\in\\real \\tq "+s0+" > 0 \\} = "+ s1 + "\n"
+        doms+=""  
+              
+    if doms == "":
+        doms = "\\real"
+        
+    return "D(f) = " + doms
+
 ### Función para pintar las gráficas.
 # f: función
 # int list AV: lista de puntos en los que hay una asíntota vertical.
@@ -564,13 +614,21 @@ def dominion(f,hasDen,hasLog,hasRt):
 # EXPR AO: ecuación de la asíntota oblícua y=mx+n
 def _myplot(f,AV,AH,AO):
  
- discont=list(set(ptsDiscontinuidad(f=f,isLog=false)).difference(AV))
+ discont=list(set(ptsDiscontinuidad(f=f)).difference(AV))
  xmin=-8
  xmax=8
  ymin=-10
  ymax=10
  c1=['blue','red','green','black','purple',colors]
- P=plot(f,xmin=xmin,xmax=xmax,ymin=ymin,ymax=ymax,figsize=6,plot_points=2500,legend_label="f(x)", axes_labels=['$x$','$y$'],exclude=f.denominator()==0,color='green')
+
+ 
+ #Si no tiene denominador, gripa con el argumento de excluir denominadores
+ pts_toexclude=[]
+ if f.denominator(normalize=False) != 1:
+    pts_toexclude = f.denominator()==0
+ 
+ P=plot(f(x),xmin=xmin,xmax=xmax,ymin=ymin,ymax=ymax,figsize=6,plot_points=2500,legend_label="f(x)", axes_labels=['$x$','$y$'],exclude=pts_toexclude,color='green')
+ 
  j=0
  for i in xrange(len(AV)):
   lab="x="+str(AV[i])
