@@ -2,12 +2,16 @@ TARGET=main
 NAME=EstudioFunciones
 LATEX=/mnt/c/texlive/2018/bin/win32/pdflatex.exe
 LTXMK=/mnt/c/texlive/2018/bin/win32/latexmk.exe
+SAGEUTILSDIR="../../Cosas guays LaTeX/"
 
 
 
 
-all: sage
+all: copy sage
 	$(LATEX) $(TARGET)
+
+copy:
+	cp $(SAGEUTILSDIR)sageUtilities.tex sageUtilities.notvalid
 
 latex: tex/ $(TARGET).tex
 	$(LATEX) $(TARGET)

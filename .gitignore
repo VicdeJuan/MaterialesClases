@@ -1,3 +1,5 @@
+*.eps
+*.notvalid
 *.pyg
 _minted*
 *.tmp

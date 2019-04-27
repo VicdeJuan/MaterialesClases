@@ -3,11 +3,11 @@
 \title{Estudios sistemáticos de funciones}
 \author{Departamento de Matemáticas Safa}
 \date{\today}
-\usepackage[author={Víctor de Juan, 2017}]{pdfcomment}
+
+\usepackage[author={Víctor de Juan, 2019}]{pdfcomment}
 \subtitle{Algunos ejemplos resueltos para 1º Bachillerato}
 
 \usepackage{sagetex}
-
 
 \newif\ifverbose
 \verbosetrue
@@ -22,12 +22,12 @@ Este documento trata el estudio sistemático de las siguientes funciones:
 	\item \inputfun{tex/function3}$f(x) = \displaystyle\sagestr{latex(f(x))}$
 	\item \inputfun{tex/function4}$f(x) = \displaystyle\sagestr{latex(f(x))}$
 	\item \inputfun{tex/function5}$f(x) = \displaystyle\sagestr{latex(f(x))}$
-	\item \inputfun{tex/fun1}$f(x) = \displaystyle\sagestr{latex(f(x))}$
-	\item \inputfun{tex/fun3}$f(x) = \displaystyle\sagestr{latex(f(x))}$
-	\item \inputfun{tex/fun4}$f(x) = \displaystyle\sagestr{latex(f(x))}$
-	\item \inputfun{tex/fun2}$f(x) = \displaystyle\sagestr{latex(f(x))}$
-	\item \inputfun{tex/fun6}$f(x) = \displaystyle\sagestr{latex(f(x))}$
-	\item \inputfun{tex/fun5}$f(x) = \displaystyle\sagestr{latex(f(x))}$
+	%\item \inputfun{tex/fun1}$f(x) = \displaystyle\sagestr{latex(f(x))}$
+	%\item \inputfun{tex/fun3}$f(x) = \displaystyle\sagestr{latex(f(x))}$
+	%\item \inputfun{tex/fun4}$f(x) = \displaystyle\sagestr{latex(f(x))}$
+	%\item \inputfun{tex/fun2}$f(x) = \displaystyle\sagestr{latex(f(x))}$
+	%\item \inputfun{tex/fun6}$f(x) = \displaystyle\sagestr{latex(f(x))}$
+	%\item \inputfun{tex/fun5}$f(x) = \displaystyle\sagestr{latex(f(x))}$
 %\item \inputfun{tex/fun5} $f(x) = \sage{f(x)}$
 \end{enumerate}
 
@@ -54,6 +54,7 @@ Este documento trata el estudio sistemático de las siguientes funciones:
 
 \begin{document}
 
+\input{sageUtilities.notvalid}
 \ifverbose
 	\begin{sagesilent}
 		Verbose=1
@@ -68,18 +69,128 @@ Este documento trata el estudio sistemático de las siguientes funciones:
 \maketitle
 
 
-\newexample{tex/function}
-\newexample{tex/function2}
-\newexample{tex/function3}
-\newexample{tex/function4}
-\newexample{tex/function5}
 
-\newexample{tex/fun1}
-\newexample{tex/fun3}
-\newexample{tex/fun4}
-\newexample{tex/fun2}
-\newexample{tex/fun6}
-\newexample{tex/fun5}
+
+
+
+\begin{problem} Estudia sistemáticamente la función
+	\[
+		f(x)=\frac{x^2-5x+6}{x-4}
+	\]
+\solution
+
+\textit{Esta solución ha sido generada automáticamente. Puede contener errores.}
+
+\fullAnalisisBach{tex/function}
+
+\end{problem}
+
+
+\begin{problem} Estudia sistemáticamente la función
+	\[
+		f(x)=\frac{x^2-5x}{x^2+25}
+	\]
+\solution
+
+\textit{Esta solución ha sido generada automáticamente. Puede contener errores.}
+
+\fullAnalisisBach{tex/function2}
+
+\end{problem}
+
+\begin{problem} Estudia sistemáticamente la función
+	\[
+		f(x)=\frac{x^2-5x}{x^2-25}
+	\]
+\solution
+
+\textit{Esta solución ha sido generada automáticamente. Puede contener errores.}
+
+\fullAnalisisBach{tex/fun1}
+
+\end{problem}
+
+
+\begin{problem} Estudia sistemáticamente la función
+	\[
+		f(x)=\frac{x+6}{x-1}
+	\]
+\solution
+
+\textit{Esta solución ha sido generada automáticamente. Puede contener errores.}
+
+\fullAnalisisBach{tex/function3}
+
+\end{problem}
+
+\begin{problem} Estudia sistemáticamente la función
+	\[
+		f(x)=\frac{1}{x^2}
+	\]
+\solution
+
+\textit{Esta solución ha sido generada automáticamente. Puede contener errores.}
+
+\fullAnalisisBach{tex/function5}
+
+\end{problem}
+
+
+\begin{problem} Estudia sistemáticamente la función
+	\[
+		f(x)=\frac{x+2}{x-2}
+	\]
+\solution
+
+\textit{Esta solución ha sido generada automáticamente. Puede contener errores.}
+
+\fullAnalisisBach{tex/fun4}
+
+\end{problem}
+
+
+%\begin{problem} Estudia sistemáticamente la función
+%	\[
+%		f(x)=\frac{e^x}{x}
+%	\]
+%\solution
+%
+%\textit{Esta solución ha sido generada automáticamente. Puede contener errores.}
+%
+%\fullAnalisisBach{tex/fun2}
+%
+%\end{problem}
+%
+%\begin{problem} Estudia sistemáticamente la función
+%	\[
+%		f(x)=\log(x^2+6)
+%	\]
+%\solution
+%
+%\textit{Esta solución ha sido generada automáticamente. Puede contener errores.}
+%
+%\fullAnalisisBach{tex/fun5}
+%
+%\end{problem}
+%
+%\begin{problem} Estudia sistemáticamente la función
+%	\[
+%		f(x)=x(e^x-1)
+%	\]
+%\solution
+%
+%\textit{Esta solución ha sido generada automáticamente. Puede contener errores.}
+%
+%\fullAnalisisBach{tex/fun6}
+%
+%\end{problem}
+%
+%\newexample{tex/fun1}
+%\newexample{tex/fun3}
+%\newexample{tex/fun4}
+%\newexample{tex/fun2}
+%\newexample{tex/fun6}
+%\newexample{tex/fun5}
 
 
 \end{document}
