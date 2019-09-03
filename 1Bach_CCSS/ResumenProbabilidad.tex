@@ -1,0 +1,93 @@
+\documentclass[palatino,nosec]{Docencia}
+
+
+\usepackage{breqn}
+
+
+\title{Cuaderno de clase}
+\author{Víctor de Juan}
+\date{17/18}
+
+\begin{abstract}
+Cuaderno de clase de Matemáticas I, con el desarrollo continuado (sin estar separado por sesiones).
+\end{abstract}
+
+% Paquetes adicionales
+
+\usepackage[author={Víctor de Juan, 2017}]{pdfcomment}
+
+\makeatletter
+\newcommand{\annotate}[2][]{%
+\pdfstringdef\x@title{#1}%
+\edef\r{\string\r}%
+\pdfstringdef\x@contents{#2}%
+\pdfannot
+width 2\baselineskip
+height 2\baselineskip
+depth 0pt
+{
+/Subtype /Text
+/T (\x@title)
+/Contents (\x@contents)
+}%
+}
+\makeatother
+
+% --------------------
+\newcommand{\cimplies}{\text{\hl{$\implies$}}}
+\renewcommand{\vx}{\overset{\rightarrow}{x}}
+\renewcommand{\vy}{\overset{\rightarrow}{y}}
+\renewcommand{\vz}{\overset{\rightarrow}{z}}
+\newcommand{\vi}{\overset{\rightarrow}{i}}
+\newcommand{\vj}{\overset{\rightarrow}{j}}
+\renewcommand{\vec}[1]{\overset{\rightarrow}{#1}}
+
+\usepackage{pgf,tikz}
+\usetikzlibrary{arrows}
+
+
+\begin{document}
+\pagestyle{plain}
+
+Resumen de fórmulas de probabilidad:
+
+\[
+P(A\cup B) = P(A) + P(B) - P(A\cap B)
+\]
+
+Básica: $P(A\cap B) = P(A) · P(B\tq A)$. 
+
+De aquí se deducen muchas otras:
+
+\begin{itemize}
+ 	\item 
+ $P(A\cap B) = P(A) · P(B\tq A) \to P(B\tq A) = \displaystyle\frac{P(A\cap B)}{P(A)}$
+
+ \item Probabilidad total (es bastante más elaborado que sólo esto. Puedes mirarlo en el libro):
+ \[
+ 	P(A) = P(B)·P(A\tq B) + P(\overline{B})·P(A\tq \overline{B})
+ \]
+\item 
+\small
+\[
+\left.\begin{array}{c}
+	P(A\cap B) = P(A) · P(B\tq A)\\
+	P(A\cap B) = P(B) · P(A\tq B)
+\end{array} \right\} 
+\rightarrow 
+	P(A) · P(B\tq A) = P(B) · P(A\tq B) \dimplies 
+	\underbrace{\left\{ \begin{array}{l} 
+		P(A) = \displaystyle\frac{P(B) · P(A\tq B)}{P(A\tq B)}\\
+		\\
+		P(B) = \displaystyle\frac{P(A) · P(B\tq A)}{P(B\tq A)}
+	\end{array}\right.}_{\text{Teorema de Bayes}}
+\]
+
+\textbf{Si son independientes:} $P(A\tq B) = P(A)$
+
+Por lo tanto, $P(A\cap B) = P(A)·P(B)$, sólo si son independientes.
+\end{itemize} 
+ 
+
+\end{document}
+
