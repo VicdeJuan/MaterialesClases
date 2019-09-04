@@ -80,7 +80,6 @@ Sea $P(x) = 3x^3-3x^2-3x+3$ .¡Factoriza! $P(x) = 3(x-1)(x+1)^2$
 	\subitem $P(1) = 0$. Por el teorema del factor sabemos que $0$ es una raíz. ¿Es esto más fácil que Ruffini? ¿Y ahora?
 \end{itemize}
 
-Por grupos los demás ejercicios:
 \item Sea $P(x) = 2x^3-2x^2+kx+4$.
 \begin{itemize}
 	\item Halla el valor de $k$ para que $P(x)$ sea divisible por $x-2$.
@@ -168,6 +167,7 @@ Vamos a aprender una nueva manera de multiplicar. En realidad ya sabéis, aunque
 \end{tabular}
 \end{center}
 \item Caso 4: ¿Y para números que no son potencias enteras? Por ejemplo, $64*40$. Pues si $32=2^5$ y $64=2^6$, $40=2^{5,...}$ ¿Tiene sentido?
+
 \item Caso 5: Lo que hicieron, Yost y Napier, fue coger la tabla del 1,0001 en lugar de la tabla del 3 y dividir por mil los números rojos, dando lugar a la tabla de logaritmos:
 
 \begin{center}
@@ -198,6 +198,9 @@ Vamos a aprender una nueva manera de multiplicar. En realidad ya sabéis, aunque
 
 \end{itemize}
 
+$40=2^{5...}$. Ese $5...$ es lo que llamamos "logaritmo" en base 2 de 40. ¡Los logaritmos son exponentes! Es el \textit{exponente al que hay que elevar} ...
+
+
 \begin{defn}[Logaritmo]
 Sean $a\in ℝ>0,a≠1$ y $N\in\real$.
 
@@ -206,6 +209,17 @@ Se llama logaritmo en base $a$ de $N$ al exponente $x$ que cumple: $a^x = N$ y s
 	\log_aN=x\dimplies a^x=N
 \]
 \end{defn}
+
+\textbf{Conectando con otras operaciones matemáticas:} 
+\[
+	\begin{array}{c}
+		2^3=8\\
+		\sqrt[3]{8}=2\\
+		\text{??? }= 3
+	\end{array}
+\]
+
+La relación $2^3=8$ se puede expresar de otras maneras, dando como resultado el 2 (raíz cúbica) y dando como resultado el 3 (logaritmo).
 
 \nota{De la propia definición se entiende:}
 \begin{enumerate}
@@ -224,22 +238,27 @@ Vamos a razonar las propiedades de los logaritmos teniendo en cuenta que son exp
 	\item $\log_a(AB) = \log_a(A) + \log_a(B)$
 	\subitem Por ejemplo:
 	\[9·8 = 2^x \dimplies x = \log_2 (9·8) = \log_2 8 + \log_2 9\]
+	\subitem Como los logaritmos son exponentes, esta propiedad se podría leer: \textit{el exponente de un producto es la suma de los exponentes}.
 	\item $\log_a\left(\rfrac{A}{B}\right) = \log_a(A) - \log_a(B)$
-	\item $\log_a(A)^n = n·\log_a(A)$ \hl{\textbf{Ojo:} $\left[\log_a(A+B)\right]^n \neq n·\log_a(A)$}
+	\item Como los logaritmos son exponentes, ¿cómo se leería esta propiedad?
+	\item $\log_a(A)^n = n·\log_a(A)$ 
+
 	\item $\displaystyle\log_aA = \frac{\log_bA}{\log_ba}$ \textbf{(Cambio de base})
 \end{itemize}
 
 \paragraph{Tomar logaritmos:}
 
 \[
-A = B \overset{1}{\dimplies} a^{\log_a A} = a^{\log_a B} \dimplies \log_aA=\log_aB
+A = B \overset{A>0; a>0; a\neq 1}{\dimplies} a^{\log_a A} = a^{\log_a B} \dimplies \log_aA=\log_aB
 \]
+
 
 \subsection{Ejemplos con logaritmos}
 
+Calcula:
 \begin{itemize}
 	\item $\log \sqrt{0,0001}$
-	\item \annotate{Dejé la demostración para que lo hicieran ellos. Se atascaron bastante. No repetir.}{Demuestra} $\log_a b · \log_b a = 1$ 
+	\item \textit{[Ejercicio de examen de años anteriores]} Demuestra $\log_a b · \log_b a = 1$ 
 \end{itemize}
 
 
@@ -247,21 +266,24 @@ A = B \overset{1}{\dimplies} a^{\log_a A} = a^{\log_a B} \dimplies \log_aA=\log_
 
 \subsection{Teoría sobre ecuaciones}
 
-\obs Dividir por 0 no mantiene la equivalencia.
 
-\obs
+\begin{example}
 \[
 	-20 = -20 \dimplies 25-45 = 16-36 \dimplies 5^2-5·9 = 4^2-4·9 \dimplies 5^2-5·9+\left(\rfrac{9}{2}\right)^2 = 4^2-4·9+\left(\rfrac{9}{2}\right)^2 \dimplies
 \]
 \[
 	\left(5-\rfrac{9}{2}\right)^2 = \left(4-\rfrac{9}{2}\right)^2 \text{\hl{\;\;;\;\;}} 5-\rfrac{9}{2} = 4-\rfrac{9}{2} \dimplies 5=4
 \]
-
-Es decir, en general, tomar una raíz no mantiene equivalencia entre ecuaciones (tampoco elevar a una potencia).
-
+\end{example}
 
 
+\obs Dividir por 0 no mantiene la equivalencia.
+%
+En general, tomar una raíz no mantiene equivalencia entre ecuaciones (tampoco elevar a una potencia).
 
+\begin{defn}[Ecuaciones equivalentes]
+Dos ecuaciones son equivalentes si tienen las mismas incógnitas y las mismas soluciones.
+\end{defn}
 
 \paragraph{Clasificación de ecuaciones}
 
@@ -271,6 +293,25 @@ Las ecuaciones según sus soluciones pueden ser:
 	\item Compatible determinada: tiene un número finito de soluciones. Ejemplo: $3x=6$.
 	\item Compatible indeterminada: tiene infinitas soluciones. Ejemplo $2x-\frac{3x-1}{3} = x+\frac{1}{3}$. Solución: $x=λ, ∀λ∈ℝ$.
 \end{itemize}
+
+
+\begin{example}
+	¿Son equivalentes?
+	\begin{itemize}
+		\item $9x=3x^2 \dimplies 9=3x$ [CD]
+		\item $9=3x \dimplies x=3$ [CD]
+		\item $4=5 \dimplies 1=0$ [IN]
+		\item $9x=3^2x \dimplies 0x=0$ [CI]
+		\item[difícil] $9x=\frac{(3x)^2}{x} \dimplies 9x=9x$ [CI]
+
+\paragraph{Conclusiones:} \textbf{¡Ojo con simplificar ecuaciones!} Cuando "desaparezcan" incógnitas mirar con cuidado, porque estaremos perdiendo soluciones en la inmensa mayoría de los casos.
+
+¿Cuándo no?
+
+	\item $\frac{\sqrt{9x^2}}{x^2}=\frac{3x}{x^2} \dimplies \frac{9}{x} = \frac{9}{x} \dimplies 0=0$
+	\end{itemize}
+\end{example}
+
 
 
 \subsection{Racionales}
@@ -292,7 +333,10 @@ Ecuaciones racionales.
 
 La equivalencia la hemos perdido si $x\neq \pm2$, por lo que las soluciones $x_1 = 0 \wedge x_2 = -1$ son válidas (\ul{y no es necesario hacer la comprobación}).
 
-\todo{Empezar corrigiendo 84 ad, y este}
+
+
+\hl{Ejercicios: 84 ad + propios con trampa de equivalencias}
+
 
 \paragraph{Cuidado:} casuística nueva de equivalencias e implicaciones. Hasta ahora, los valores peculiares de las implicaciones que no son equivalencias sólo nos ahorraban alguna comprobación\footnote{que tampoco está demás hacer para asegurarnos que hemos operado bien}.
 %

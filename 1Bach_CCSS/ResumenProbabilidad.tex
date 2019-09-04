@@ -49,45 +49,46 @@ depth 0pt
 \begin{document}
 \pagestyle{plain}
 
-Resumen de fórmulas de probabilidad:
+% Resumen de fórmulas de probabilidad:
 
-\[
-P(A\cup B) = P(A) + P(B) - P(A\cap B)
-\]
+% \[
+% P(A\cup B) = P(A) + P(B) - P(A\cap B)
+% \]
 
-Básica: $P(A\cap B) = P(A) · P(B\tq A)$. 
+% Básica: $P(A\cap B) = P(A) · P(B\tq A)$. 
 
-De aquí se deducen muchas otras:
+% De aquí se deducen muchas otras:
 
-\begin{itemize}
- 	\item 
- $P(A\cap B) = P(A) · P(B\tq A) \to P(B\tq A) = \displaystyle\frac{P(A\cap B)}{P(A)}$
+% \begin{itemize}
+%  	\item 
+%  $P(A\cap B) = P(A) · P(B\tq A) \to P(B\tq A) = \displaystyle\frac{P(A\cap B)}{P(A)}$
 
- \item Probabilidad total (es bastante más elaborado que sólo esto. Puedes mirarlo en el libro):
- \[
- 	P(A) = P(B)·P(A\tq B) + P(\overline{B})·P(A\tq \overline{B})
- \]
-\item 
-\small
-\[
-\left.\begin{array}{c}
-	P(A\cap B) = P(A) · P(B\tq A)\\
-	P(A\cap B) = P(B) · P(A\tq B)
-\end{array} \right\} 
-\rightarrow 
-	P(A) · P(B\tq A) = P(B) · P(A\tq B) \dimplies 
-	\underbrace{\left\{ \begin{array}{l} 
-		P(A) = \displaystyle\frac{P(B) · P(A\tq B)}{P(A\tq B)}\\
-		\\
-		P(B) = \displaystyle\frac{P(A) · P(B\tq A)}{P(B\tq A)}
-	\end{array}\right.}_{\text{Teorema de Bayes}}
-\]
+%  \item Probabilidad total (es bastante más elaborado que sólo esto. Puedes mirarlo en el libro):
+%  \[
+%  	P(A) = P(B)·P(A\tq B) + P(\overline{B})·P(A\tq \overline{B})
+%  \]
+% \item 
+% \small
+% \[
+% \left.\begin{array}{c}
+% 	P(A\cap B) = P(A) · P(B\tq A)\\
+% 	P(A\cap B) = P(B) · P(A\tq B)
+% \end{array} \right\} 
+% \rightarrow 
+% 	P(A) · P(B\tq A) = P(B) · P(A\tq B) \dimplies 
+% 	\underbrace{\left\{ \begin{array}{l} 
+% 		P(A) = \displaystyle\frac{P(B) · P(A\tq B)}{P(A\tq B)}\\
+% 		\\
+% 		P(B) = \displaystyle\frac{P(A) · P(B\tq A)}{P(B\tq A)}
+% 	\end{array}\right.}_{\text{Teorema de Bayes}}
+% \]
 
-\textbf{Si son independientes:} $P(A\tq B) = P(A)$
+% \textbf{Si son independientes:} $P(A\tq B) = P(A)$
 
-Por lo tanto, $P(A\cap B) = P(A)·P(B)$, sólo si son independientes.
-\end{itemize} 
+% Por lo tanto, $P(A\cap B) = P(A)·P(B)$, sólo si son independientes.
+% \end{itemize} 
  
+
 
 \end{document}
 
