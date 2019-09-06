@@ -1,0 +1,125 @@
+\documentclass[palatino,nosec]{Docencia}
+
+
+\title{Cuaderno de clase}
+\author{Víctor de Juan}
+\date{19/20}
+
+\begin{abstract}
+Cuaderno de clase de Matemáticas I, con el desarrollo continuado (sin estar separado por sesiones).
+\end{abstract}
+
+% Paquetes adicionales
+
+\usepackage[author={Departamento Matemáticas, 2019}]{pdfcomment}
+
+\makeatletter
+\newcommand{\annotate}[2][]{%
+\pdfstringdef\x@title{#1}%
+\edef\r{\string\r}%
+\pdfstringdef\x@contents{#2}%
+\pdfannot
+width 2\baselineskip
+height 2\baselineskip
+depth 0pt
+{
+/Subtype /Text
+/T (\x@title)
+/Contents (\x@contents)
+}%
+}
+\makeatother
+
+% --------------------
+\newcommand{\cimplies}{\text{\hl{$\implies$}}}
+\renewcommand{\vx}{\overset{\rightarrow}{x}}
+\renewcommand{\vy}{\overset{\rightarrow}{y}}
+\renewcommand{\vz}{\overset{\rightarrow}{z}}
+\newcommand{\vi}{\overset{\rightarrow}{i}}
+\newcommand{\vj}{\overset{\rightarrow}{j}}
+\renewcommand{\vec}[1]{\overset{\rightarrow}{#1}}
+
+\usepackage{pgf,tikz}
+\usetikzlibrary{arrows}
+
+\begin{document}
+\pagestyle{plain}
+\maketitle
+\tableofcontents
+
+
+%% Contenido.
+
+\chapter{Primera evaluación}
+
+\section{Introducción a la asignatura}
+
+\hl{Sed “críticos” en general}. Lo que os cuenten razonadlo. No os lo creáis sin más. Y de esto, nos vamos a hartar en Matemáticas.
+
+\subsubsection{Temario de la asignatura}
+
+El \hl{orden} que vamos a seguir difiere un poco del del libro, porque así nos parece a MariNieves y a mi. 
+
+Vamos a dar un paso más en la resolución de \hl{ecuaciones y sistemas}. 
+%
+El año pasado resolvíais ecuaciones del tipo: $81^{2x} = \frac{1}{3};\quad x-\sqrt{x-3} = \sqrt{x-2}$, sistemas de ecuaciones 2x2... Este año vamos a ir más allá, vamos a resolver sistemas de 3x3. 
+
+El año pasado tuvisteis una introducción a la geometría. Este año vamos a trabajar con \hl{problemas serios el plano}: distancia punto a recta, distancia entre rectas, cónicas... Por cierto, \ul{¿sabéis porqué se llaman cónicas?}
+
+Y ahora que ya sabéis algo de trigonometría, vamos a ir más allá. Vamos a \hl{exprimir la trigonometría} hasta dominarla. Es algo fundamental en matemáticas. 
+
+Y vamos a dar uno de los temas más bonitos de todo el bachillerato. ¡\hl{Los números complejos}! ¿A alguien le dice algo? ¿A alguien le suena? 
+%
+Ya veréis que, en realidad, no son difíciles. Simplemente arrastramos $\sqrt{-1}$ en las operaciones, como una expresión algebraica, llamando $i=\sqrt{-1}$. 
+%
+Precioso. 
+
+Y uno de los contenidos centrales del curso, del que hablaréis cuando terminéis el colegio y habréis oído hablar... Las míticas \hl{derivadas}. Os suena, ¿no? 
+%
+Pues este año nos meteremos en ese berenjenal, a aprender qué es una derivada y para que sirve.
+%
+También veremos las \hl{Integrales}.
+%
+Terminaremos el curso con probabilidad y estadística.
+
+Todo esto es una visión general del temario del curso. 
+%
+Pero hay otro aspecto fundamental de la asignatura. 
+%
+En otros años lo fundamental puede ser coger habilidad y soltura en los cálculos, saber resolver los problemas... 
+%
+Este curso va de \hl{razonar y justificar}. Me importa relativamente poco si el resultado está bien o no, en comparación con lo que me importa si el procedimiento está razonado y justificado. 
+%
+Las matemáticas no son magia, todo tiene una razón de ser. Todo tiene una explicación. 
+%
+Por ejemplo, ya no nos vamos a centrar tanto en "resuelve esto o lo otro", sino en "demuestra, comprueba, discute esto o lo otro".
+%
+¿Se entiende?
+
+Por ejemplo, ¿porqué el \hl{teorema de Pitágoras} funciona? 
+%
+Claro, porque probando con unos números funciona. 
+%
+¿Quién te asegura que para absolutamente cualquier triángulo rectángulo va a funcionar? Eso hace 4 años te lo creíste. 
+%
+Este año vamos a demostrar el teorema.
+
+En general, va a haber pocos actos de fe. 
+%
+En el curso habrá demostraciones y los contenidos no vendrán dados por arte de magia. 
+%
+Ojo, el teorema fundamental del álgebra no lo podremos demostrar porque hacen falta matemáticas más complejas. 
+%
+Todo lo demás, lo podremos demostrar.
+
+\subsection{Criterios de evaluación}
+
+\input{tex/Algebra.tex}
+\input{tex/Geometria}
+\input{tex/Trigonometría}
+\input{tex/Complejos}
+\input{tex/Análisis}
+
+\printindex
+\end{document}
+\grid

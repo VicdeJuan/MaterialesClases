@@ -1,0 +1,641 @@
+
+\chapter{Geometría}
+
+\section{Vectores en $\real^2$}
+
+\begin{defn}[Vector fijo]
+Segmento orientado.
+\end{defn}
+
+\obs Un segmento orientado tiene un principio, un final, una dirección, un sentido y una longitud (o módulo).
+
+Por ejemplo, el vector que une $(1,3)$ con $(2,2)$. Pero estos vectores necesitan un hábitat. ¿Dónde viven? En el conjunto de los puntos. 
+
+¿Existe el punto $(e,π)$? Claro que sí. De una manera general, el conjunto de los puntos son pares de números reales. La manera formal y matemática de definir el conjunto de puntos es el producto cartesiano.
+
+\begin{defn}[Producto cartesiano]
+Sean $A$ y $B$ 2 conjuntos. Se define el producto cartesiano como
+
+\[
+	A\times B = \left\{ (a,b) \tq a\in A \wedge b\in B \right\}
+\]
+\end{defn}
+
+\obs $A\times B \neq B\times A$
+
+\begin{example}
+\[\{2,4,6\}\times \{1,3,5\} = \{(2,1),(2,3),(2,5),(4,1),...,(6,5)\}\]
+\[\{1,3,5\}\times \{2,4,6\} = \{(1,2),(1,4),(1,6),(3,2),...,(6,5)\}\]
+\end{example}
+
+Vamos a \hl{definir $\real^2$}, con el que vamos a trabajar a partir de ahora. 
+
+\[\real^2 = \real\times\real = \{ (x,y)\in\real^2 \tq x,y\in\real\}\]
+
+\begin{example}
+	\begin{itemize}
+		\item $(2,3)\in\real^2$
+		\item $(\sqrt{-1},\pi)\not\in\real^2$
+		\item $(e,\sqrt{2})\in\real^2$
+	\end{itemize}
+\end{example}
+
+
+\subparagraph{Representación de estos elementos en el plano}
+
+\textit{Dibujo del plano y representación de los ejemplos. ¿Puntos?¿Vectores?}
+De momento puntos, porque para poder tener vectores necesitamos tener un origen, un destino, una longitud, una dirección y un sentido. ¿No?
+
+No, ¿verdad? Los vectores del año pasado no nos importaba el origen ni el destino. Sólo nos importaban módulo, dirección y sentido. ¿Por qué? Porque trabajábamos con vectores libres. ¿Qué es un vector libre?
+
+\paragraph*{Vectores libres}
+
+\begin{defn}[Vector libre]
+Representante canónico del conjunto de vectores con mismo módulo, dirección y sentido.
+\end{defn}
+
+Como las fracciones equivalentes. $[\rfrac{1}{2}] = \{\rfrac{1}{2},\rfrac{2}{4},\rfrac{4}{8},...\}$. Distintas maneras de expresar la misma realidad.
+
+
+
+$\real^2$ por si sólo no es nada, asique vamos a definir operaciones en esta estructura algebraica.
+
+
+
+\subsection{Operaciones en $\real^2$}
+\subsubsection{Suma:}
+$\appl{+}{\real^2\times\real^2}{\real^2}$  y se define como $(a,b)+(c,d) = (a+c,b+d)$.
+
+\begin{example}
+$(2,3) + (-1,4) \overset{(1)}{=} (2+(-1),3+4)  \overset{(2)}{=} (1,7)$
+
+Donde en $(1)$ aplicamos la suma en $\real^2$ y en $(2)$ aplicamos la suma en $\real$.
+
+\hl{\textbf{Representación gráfica de la suma}} (en dibujos sin base. Sobre fondo liso.)
+
+\end{example}
+
+\subparagraph{Propiedades de la suma en $\real^2$:} Formalmente, \textit{ley de composición interna.}
+
+\begin{itemize}
+	\item \textbf{Conmutativa: } $(a,b)+(c,d) = (c,d)+(a,b), \;\forall (a,b),(c,d)\in\real^2$
+	\item \textbf{Asociativa: } $\left((a,b)+(c,d)\right) + (e,f) = (a,b)+\left((c,d)+(e,f)\right), \;\forall (a,b),(c,d),(e,f)\in\real^2$
+	\item \textbf{Elemento neutro: } $(a,b) + (0,0) = (a,b), \;\forall (a,b)\in\real^2$.
+	\item \textbf{Elemento simétrico: } $(a,b) + (-a,-b) = (0,0) \;\forall (a,b)\in\real^2$
+\end{itemize}
+
+\obs El par $(\real^2,+)$ es un grupo conmutativo.
+
+\subsubsection{Producto por un escalar} Formalmente, \textit{ley de composición externa con con dominio de operadores en $\real$.}
+
+$\appl{·}{\real\times\real^2}{\real^2}$ y se define como $λ·(a,b) = (λa,λb), \;\forallλ\in\real,(a,b)\in\real^2$
+
+\begin{example}
+$2·(\sqrt{2},\pi) = (2\sqrt{2},2\pi)$
+
+\hl{\textbf{Representación gráfica}} (en dibujos sin base. Sobre fondo liso.)
+
+\end{example}
+
+\subparagraph{Propiedades del producto con dominio de operadores en $\real$}
+
+\begin{itemize}
+	\item \textbf{Distributiva} para los escalares: $(α+λ)·(a,b) = α(a,b) + λ(a,b), \;\forall α,λ\in\real,\;\forall(a,b)\in\real^2$
+	\item \textbf{Distributiva} para los elementos de $\real^2$: $λ·\left((a,b)+(c,d)\right) = λ(a,b) + λ(c,d), \;\forall λ\in\real,\;\forall(a,b),(a,b)\in\real^2$
+	\item \textbf{Asociativa para los escalares: } $λ·(α·(a,b)) = (λ·α)(a,b), \;\forallλ,α\in\real,\;\forall(a,b)\in\real^2$
+	\item \textbf{Elemento neutro} $1·(a,b) = (a,b), \;\forall(a,b)\in\real^2$ 	
+\end{itemize}
+
+
+¿Podemos decir que $\real^2$ es un cuerpo? Para ello tendríamos que definir $(a,b)·(c,d),\;\forall(a,b),(c,d)\in\real^2$, cosa que no hemos hecho. A la estructura algebraica $(\real^2,+,·)$ tal y como la hemos definido la llamamos \concept[Espacio\IS Vectorial]{Espacio vectorial}.
+
+Igual que hemos definido $\real^2$, podríamos haber definido $\real^3$, estructura con la que trabajaréis el año que viene. De hecho, podríamos definir $\real^{25}$ de una manera muy similar.
+%
+Como curiosidad matemática, hasta podríamos definir $\real\times...\times\real$ infinitas veces y estudiar qué pasa con ello. 
+
+¿Y todo esto en qué se concreta? Vamos a aterrizar toda esta abstracción matemática. Los elementos de $\real^2$ no son otra cosa que los vectores con los que trabajábamos el año pasado.
+
+\subsubsection{Combinaciones lineales}
+
+\begin{defn}[Combinación lineal]
+Combinación lineal de $\vec{x},\vec{y},\vec{z}\in\real^2$ es cualquier expresión algebraica de la forma $α\vec{x}+β\vec{y}+λ\vec{z}$ con $α,β,λ\in\real$
+\end{defn}
+
+\begin{example}
+	\begin{itemize}
+		\item $2·(1,1) + \sqrt{2}·(0,1) = (2,2+\sqrt{2})$
+		\item $1·(1,0) + (-\rfrac{1}{2})(2,0) = (0,0)$ (\textit{Combinación lineal nula})
+		\item Venga, ponedme 2 ejemplos vosotros.
+	\end{itemize}
+\end{example}
+
+\begin{defn}[Dependencia lineal]
+Sean $\vec{x},\vec{y},\vec{z}\in\real^2$. 
+
+\[\vz \text{ depende linealmente de } \vx,\vy \dimplies \existsα,λ\in\real \tq \vz = α\vx+λ\vy\]
+\end{defn}
+
+También podríamos definirlo para 2 vectores. $α·\vx = λ·\vy$.
+
+¿Existen $α,β\in\real$ para que $α(1,0) = λ(0,1)$? No. Bueno, $α=λ=0$.
+
+\begin{defn}[Independencia lineal]
+Sean $\vec{x},\vec{y}\in\real^2$. 
+
+\[\vx,\vy \text{ linealmente independientes } \dimplies \left(α\vx+λ\vy = (0,0) \implies α=λ=0\right)\]
+\end{defn}
+
+\begin{problem} Demostrar que $a=(2,2)$ y $b=(3,5)$ son linealmente independientes.
+\solution
+
+Buscamos $α,β$ tales que $αa+βb = (0,0)$. 
+
+\[
+	α(2,2) + β(3,5) = (0,0) \dimplies (2α+3β,2α+5β) = (0,0) \dimplies 
+\]
+\[
+\left\{
+	\begin{array}{c}
+		2α+3β = 0\\
+		2α+5β=0
+	\end{array}
+\right\}\dimplies 
+\left\{
+	\begin{array}{c}
+		2α+3β = 0\\
+		2β=0
+	\end{array}
+\right\}\dimplies (α,β) = (0,0) 
+\]
+\end{problem}
+
+\begin{problem} Halla el valor o valores de $m$ para que  $a=(1,3)$ y $b=(2,m)$ sean linealmente dependientes.
+\solution
+
+Por definición de dependencia lineal, buscamos $α,β$ tales que $αa+βb = (0,0)$.
+
+\[
+α(1,3) + β(2,m) = (0,0) \dimplies (α+2β,3α+m·β) = (0,0) \dimplies 
+\]
+\[
+\left\{
+	\begin{array}{c}
+		α+2β = 0\\
+		3α+m·β=0
+	\end{array}
+\right\}\overset{(1)}{\dimplies}
+\left\{
+	\begin{array}{c}
+		α+2β = 0\\
+		(m-6)β=0
+	\end{array}
+\right\}
+\]
+\textit{donde $(1): E_2=E_2-3E_1$}
+
+Si $m=6$, tenemos $0β=0$, cuya solución es $β\in\real$. 
+
+\textbf{Conclusión:} para $m=6$ los vectores son linealmente dependientes. Valdría tomar $β=-1$ y $α=2$.
+
+Comprobación: $αa+βb = 2(1,3)+(-1)(2,6) = (2-2,6-6) = (0,0)$
+\end{problem}
+
+\obs $(1,3),(2,6)$ son linealmente dependientes porque son proporcionales. Esto es cierto en general:
+
+\begin{prop}
+Los vectores $\vx=(x_1,x_2),\vy=(y_1,y_2)\in\real^2$ son linealmente dependientes $\dimplies \frac{x_1}{y_1}=\frac{x_2}{y_2} \text{ (es decir, son proporcionales)}$ 
+\end{prop}
+
+
+\begin{problem} Halla el valor o valores de $m$ para que  $a=(1,3)$ y $b=(2,m)$ sean linealmente dependientes.
+\solution
+
+Utilizamos: "2 vectores son linealmente dependientes si y sólo si son proporcionales".
+
+Buscamos $m$ tal que $\rfrac{1}{2} = \rfrac{3}{m}$, lo cual es cierto si $m=6$.
+\end{problem}
+
+\begin{defn}[Rango de un conjunto de vectores]
+El rango de un conjunto de vectores es el número de vectores linealmente independientes que contiene.
+\end{defn}
+
+\begin{example}
+	\begin{itemize}
+		\item $\text{Rg}\{(0,1),(1,0),(0,3)\} = 2$
+	\end{itemize}
+\end{example}
+
+\begin{problem}
+Halla los valores de $m$ para los que el conjunto de vectores $C=\{(1,3),(3,m)\}$ tenga rango 2. ¿Hay algún valor para que el rango sea 0?
+
+\solution
+
+\end{problem}
+
+\section{Plano afín}
+
+\paragraph{Concreción de lo abstracto} 
+
+¿Qué necesitamos para orientarnos en el plano? ¿Cuál puede ser un sistema de referencia? No copiar, primero entender.\textit{Con la pizarra borrada, sitúo un punto. ¿Cómo ponernos de acuerdo para definirle unas coordenadas? Necesitamos un origen y una base}
+
+
+Sistema de referencia: un origen y una escala (base). Normalmente tomamos como origen el $(0,0)$ y como base la canónica $\{(1,0),(0,1)\}$.
+
+\subsubsection{Base de un espacio vectorial}
+
+\begin{defn}[Sistema de generadores]
+$B = \{\vx_1,\vx_2,...,\vx_n\}$ con $\forall i=1,...,n\;\;\vx_i,\in\real^2$ es un sistema de generadores si y sólo si $\forall \vz\in\real^2,\;\; \existsα_1,α_2,...,α_n\in\real \tq \vz=α_1\vx_1+α_2\vx_2 + ... + α_n\vx_n \left( = \sum_{i=1}^n α_i\vx_i\right)$
+\end{defn}
+
+\begin{defn}[Base]
+Un conjunto $B=\{\vx,\vy\}$ con $\vx,\vy\in\real^2$ es una base de $\real^2$ si y sólo si cumple:
+
+	\begin{itemize}
+		\item $\vx,\vy$ linealmente independientes.
+		\item $\{\vx,\vy\}$ es un sistema de generadores.
+	\end{itemize}
+
+\end{defn}
+
+\begin{example}
+	\begin{itemize}
+		\item Sea $B_1=\{(0,1),(1,0)\}$ una base de $\real^2$. El vector $(3,6)$ tiene de \concept[Coordenadas de un vector]{coordenadas} $3$ y $6$ porque $(3,6) = 3·(1,0) + 6·(0,1)$.
+		\obs $B_1$ se denomina base canónica y se suele representar por $B=\{\vi,\vj\}$.
+
+		\item ¿Es una base?
+			\begin{problem}
+			\ppart ¿Es $B_2 = \{(1,1),(1,-1)\}$ una base de $\real^2$?
+			\ppart ¿Cuáles son las coordenadas del vector $(7,5)$ en esta base?
+
+			\solution
+			\spart Buscamos demostrar que los vectores son linealmente independientes y que las coordenadas de un vector cualquiera $\vz=(z_1,z_2)$ son únicas. 
+
+			\paragraph{Independencia lineal:} 
+
+			\[
+				(0,0) = α(1,1) + β(1,-1) \dimplies (0,0) = (α+β,α-β) \dimplies 
+			\]
+			\[
+				\left\{
+					\begin{array}{c}
+						α+β=0\\
+						α-β=0
+					\end{array}
+				\right\}\dimplies
+				\left\{
+					\begin{array}{c}
+						α+β=0\\
+						2α=0
+					\end{array}
+				\right\}\implies (α,β) = (0,0)
+			\]
+
+			\paragraph{Generación:} Las coordenadas de un vector cualquiera $\vz=(z_1,z_2)$ deberían ser únicas.
+
+			\[
+				(z_1,z_2) = α(1,1) + β(1,-1) \dimplies (z_1,z_2) = (α+β,α-β) \dimplies 
+			\]
+			\[
+				\left\{
+					\begin{array}{c}
+						α+β=z_1\\
+						α-β=z_2
+					\end{array}
+				\right\}\dimplies
+				\left\{
+					\begin{array}{c}
+						α+β=z_1\\
+						2α=z_2
+					\end{array}
+				\right\}\dimplies (α,β) = (z_1-\rfrac{z_2}{2},\rfrac{z_2}{2})
+			\]
+
+			Dado un vector cualquiera hemos encontrado una expresión única de sus coordenadas. 
+			%
+			Entonces, el conjunto genera $\real^2$.
+
+			\spart 
+			\[
+				(7,5) = α(1,1) + β(1,-1) \dimplies (7,5) = (α+β,α-β) \dimplies 
+			\]
+			\[
+				\left\{
+					\begin{array}{c}
+						α+β=7\\
+						α-β=5
+					\end{array}
+				\right\}\dimplies
+				\left\{
+					\begin{array}{c}
+						α+β=7\\
+						2α=12
+					\end{array}
+				\right\}\implies (α,β) = (6,1)
+			\]
+			\end{problem}
+
+	\end{itemize}
+\end{example}
+
+
+
+\begin{figure}[h]
+\centering
+\definecolor{xdxdff}{rgb}{0.49,0.49,1}
+\definecolor{ttqqff}{rgb}{0.2,0,1}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\draw[->,color=black] (-1.8,0) -- (4.14,0);
+\foreach \x in {-1,1,2,3,4}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[color=black] (4.04,0.02) node [anchor=south west] { x};
+\draw[->,color=black] (0,-0.33) -- (0,3.31);
+\foreach \y in {,1,2,3}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0.03,3.19) node [anchor=west] { y};
+\draw[color=black] (0pt,-10pt) node[right] {\footnotesize $0$};
+\clip(-1.8,-0.33) rectangle (4.14,3.31);
+\draw [->,line width=1pt] (0,0) -- (1,0);
+\draw [->,line width=1pt] (0,0) -- (0,1);
+\draw [->,line width=1pt,color=ttqqff] (0,0) -- (1,0.5);
+\draw [->] (0,0) -- (1,2);
+\draw [->,line width=1pt,color=ttqqff] (0,0) -- (-0.2,1);
+\draw [->] (0,0) -- (-0.27,1.36);
+\draw [->] (0,0) -- (1.27,0.64);
+\draw [dotted,domain=-1.8:4.14] plot(\x,{(-1.91--1.36*\x)/-0.27});
+\draw [dotted,domain=-1.8:4.14] plot(\x,{(--1.91--0.64*\x)/1.27});
+\begin{scriptsize}
+\draw[color=black] (0.47,-0.1) node {$i$};
+\draw[color=black] (-0.06,0.48) node {$j$};
+\draw[color=ttqqff] (0.56,0.21) node {$v$};
+\fill [color=xdxdff] (0,0) circle (1.5pt);
+\draw[color=xdxdff] (0.05,0.08) node {$A$};
+\draw[color=ttqqff] (-0.13,0.41) node {$u$};
+\draw[color=black] (-0.21,1.15) node {αu};
+\draw[color=black] (1.12,0.61) node {βv};
+\draw[color=black] (-1.75,0.73) node {$c$};
+\end{scriptsize}
+\end{tikzpicture}
+\caption{Cambio de base de otros vectores que no tienen nada que ver, hecho gráficamente .}
+\end{figure}
+
+\paragraph{Ejercicio}
+\begin{problem}
+Sea $B=\{(3,0),(1,-1)\}$. 
+\ppart ¿Es una base de $\real^2$?
+\ppart En caso de que sea una base, calcula las coordenadas del vector $(6,6)$ en la base $B$.
+\ppart ¿Es una base ortogonal?
+\solution
+\spart
+\textbf{Linealmente independientes:}
+\[
+α(3,0) + β(1,-1) = (0,0) \dimplies \left\{\begin{array}{c}3α+β=0\\-β=0 \end{array}\right\} \dimplies  (α,β) = (0,0)
+\]
+\textbf{Generadores:} 
+\[
+α(3,0) + β(1,-1) = (x,y) \dimplies\underbrace{\left\{\begin{array}{c}3α+β=x\\-β=y \end{array}\right\}}_{SCD} \dimplies  (α,β) = (\rfrac{x+y}{3},-y) \implies \exists! (a,b)\in\real^2
+\]
+
+\spart 
+\[
+	(6,6) = α(3,0) + β(1,-1) \dimplies (6,6) = (3α+β,-β) \dimplies (α,β) = (4,-6)
+\]
+\end{problem}
+
+
+\subsection{Repaso:}
+
+\subparagraph{Coordenadas de un vector entre los puntos $A=(a_1,a_2)$ y $B=(b_1,b_2)$:} 
+
+$[\vec{OA}] + [\vec{AB}] =  [\vec{OB}] \dimplies [\vec{AB}] =  [\vec{OB}] - [\vec{OA}] = (b_1,b_2) - (a_1,a_2) = (b_1-a_1,b_2-a_2)$
+
+
+\subparagraph{Vector de posición} Llamamos $[\vec{OA}]$ al vector de posición del punto $A=(a_1,a_2)$, cuyas coordenadas son $[\vec{OA}] = (a_1-0,a_2-0)=(a_1-a_2)$
+
+
+\begin{example}
+Hallar las coordenadas de $[\vec{AB}]$ con $A=(1,2)$ y $B=(3,5)$.
+
+$[\vec{AB}] = (1-3,2-5)$
+\end{example}
+
+\begin{problem}
+Sean 3 puntos $A=(1,-1), B=(0,2), C=(-1,m)$.
+
+\ppart Halla, si es posible, el valor de $m$ para que $[\vec{AB}] = [\vec{BC}]$
+
+\ppart Halla, si es posible, el valor de $m$ para que $[\vec{AB}] = [\vec{AC}]$
+
+\solution
+
+\spart 
+\[
+\left.\begin{array}{l}
+	[\vec{AB}] = (-1,3)\\
+	\left[\vec{BC}\right] = (-1,m-2)
+\end{array}\right\} \implies m-2=3 \dimplies m=5
+\]
+
+\spart 
+\[
+\left.\begin{array}{l}
+	[\vec{AB}] = (-1,3)\\
+	\left[\vec{AC}\right] = (-2,m+1)
+\end{array}\right\} \implies \text{ Imposible } [\vec{AB}] = [\vec{AC}]
+\]
+
+
+\end{problem}
+
+\subparagraph{Punto medio de un vector} \textit{Apoyarse en un dibujo} $A=(a_1,a_2)$ y $B=(b_1,b_2)$. 
+
+Por definición, el punto medio $M=(m_1,m_2)$ cumplirá: $[\vec{AM}] = [\vec{MB}]$
+
+\[
+[\vec{AB}] = [\vec{AM}] + [\vec{MB}]
+[\vec{AB}] = 2[\vec{AM}] \dimplies 
+2(m_1-a_1,m_2-a_2) = (b_1-a_1,b_2-a_1) \dimplies
+\]
+\[
+\left\{
+	\begin{array}{c}
+	2m_1-2a_1 = b_1-a_1\\
+	2m_2-2a_2 = b_2-a_2
+	\end{array}
+\right\}\dimplies
+\left\{
+	\begin{array}{c}
+	m_1 = \displaystyle\frac{b_1+a_1}{2}\\
+	m_2 = \displaystyle\frac{b_2+a_2}{2}
+	\end{array}
+\right\}
+\dimplies (m_1,m_2) = \left(\frac{b_1+a_1}{2},\frac{b_2+a_2}{2}\right)
+\]
+
+
+\paragraph{Módulo de un vector:} Sea $\vec{x} = (x_1,x_2)$. ¿Cuál es la longitud del vector en la base canónica? (\textit{Dibujar.} Pitágoras.)
+
+$\norm{\vec{x}} = \sqrt{x_1^2+x_2^2}$
+
+¿Y si fuera otra base? ¿Se mantendría? No
+
+\subsection{Producto escalar}
+
+\begin{defn}[Producto escalar]
+Sean $\vx=(x_1,x_2),\vy=(y_1,y_2)\in\real^2$. 
+
+El producto escalar es una operación: $\appl{·}{\real^2\times\real^2}{\real}$ que opera de la siguiente manera: 
+
+\[\vx·\vy = |\vx|·|\vy|·\cos{\hat{(\vx,\vy)}}\]
+\end{defn}
+
+\paragraph{Propiedades:} $\forall\vx,\vx,\vz\in\real^f2$
+
+\begin{itemize}
+	\item \textbf{Conmutativo: } $\vx·\vy = \vy·\vx$
+	\item \textbf{Bilineal:}
+	\subitem  $(λ\vx)·\vy=λ(\vx·\vy)$
+	\subitem  $\vx·(\vy+\vz) = \vx·\vy + \vx·\vz$
+	\item \textbf{No negatividad:} $\vx·\vx ≥0$
+\end{itemize}
+
+
+\begin{defn}[Ortogonalidad]
+$\vx,\vy\in\real^2$ son ortogonales $\dimplies \vx·\vy=0$.
+\end{defn}
+
+\begin{defn}[Perpendicular]
+$\vx,\vy\in\real^2$ son perpendiculares $\dimplies$ forman un ángulo recto.
+\end{defn}
+
+¿Es lo mismo perpendicular que ortogonal? Perpendicular $\implies$ ortogonal, pero no al revés.
+
+\begin{defn}[Norma de un vector]
+	$\norm{\vx} = \vx·\vx$
+\end{defn}
+
+
+\subsection{Ejercicios}
+
+
+\begin{problem}
+Sea $B=\{(-2,2),(1,-1)\}$. 
+\ppart ¿Es una base de $\real^2$?
+\ppart En caso de que sea una base, calcula las coordenadas del vector $(6,6)$ en la base $B$.
+\solution
+\spart
+\textbf{Linealmente independientes:}
+\[
+α(-2,2) + β(1,-1) = (0,0) \dimplies \left\{\begin{array}{c}-2α+β=0\\2α-β=0 \end{array}\right\} \dimplies \underbrace{\left\{\begin{array}{c}-2α+β=0\end{array}\right\} }_{SCI}
+\]
+Los vectores no son linealmente independientes. Tomando $α=1,β=2$ por ejemplo.
+
+\textbf{Generadores:} 
+Ni me lo planteo.
+
+
+\spart 
+Menos todavía.
+
+\end{problem}
+
+\begin{problem}
+Sean $A=(0,0),B=(-1,3),C=(2,5)$. ¿Están alineados?
+\solution
+
+Que estén alineados es lo mismo que decir que 2 de ellos sean linealmente dependientes, o proporcionales y que tengan algún punto en común.
+
+$[\vec{AB}] = (-1,3)$, $[\vec{AC}] = (2,5)$. Como vectores fijos tienen en común el punto $A$. ¿Son L.D.? 
+
+\[
+	\frac{-1}{2} ≠ \frac{3}{5} \implies \text{ No L.D.} \dimplies \text{ No alineados.}
+\]
+
+\end{problem}
+
+\begin{problem}
+Sean $A=(0,0),B=(-1,3),C=(m,m+8)$. Halla $m$ para que estén alineados.
+\solution
+$[\vec{AB}] = (-1,3)$, $[\vec{AC}] = (m,m+8)$
+
+\[
+	\frac{-1}{m} = \frac{3}{m+8} \implies -m-8 = 3m \dimplies -8=4m \dimplies m=-2
+\]
+
+\obs También podríamos haber construido el vector $[\vec{BC}]$, pero hemos elegido $[\vec{AC}]$ por simplificar los cálculos.
+\end{problem}
+
+\begin{problem}
+Sean $A=(0,0),B=(-1,3),C=(2,m)$. Halla $m$ para que $|[\vec{AB}]| = λ|[\vec{AC}]|$
+\solution
+
+$[\vec{AB}] = (-1,2\sqrt{6}) \to |[\vec{AB}]| = \sqrt{1+24}=5$
+
+$[\vec{AC}] = (3,m) \to |[\vec{AB}]| = \sqrt{9+m^2}$
+
+Necesitamos $\sqrt{9+m^2} = 5 \implies 9+m^2 = 25 \dimplies m^2=16 \dimplies m=\pm4$.
+
+\end{problem}
+
+\section{Geometría Analítica}
+
+Ha sido muy caótico...
+
+
+\subsection{Lugares geométricos}
+
+Definición, fórmula, desarrollo fórmula (por el libro), ejemplo.
+
+\begin{itemize}
+	\item Circunferencia.
+	\subitem Posición relativa de recta y circunferencia. Intersección y distancia.
+	\subitem Halla $k$ para que la recta $Ax+By+k=0$ sea tangente a la circunferencia.
+	\item Mediatriz.
+	\subitem 2 maneras de calcular. Ejercicio 53 (ellos).
+	\item Bisectriz. 
+	\subitem Ejercicio 55 (yo).
+	\subitem Ejercicio 56 (ellos).
+	\subitem Deberes: 127.
+	\subitem Lugar geométrico de los puntos del plano que equidistan de 2 rectas paralelas.
+	\item Elipse: suma de distancias a los focos.
+	\subitem Fórmula (deducción del libro), eje mayor, eje menor.
+	\subitem Focos eje $X$, focos eje $Y$.
+	\subitem Deducir la fórmula dado un dibujo.
+	\subitem Ejercicio 18.
+	\subitem Si $a<b$, la ecuación $\rfrac{x^2}{a} + \rfrac{y^2}{b} = 1$ representa una elipse cuyo eje mayor está contenido en el eje Y.
+	\item Hipérbola: diferencia de distancias a los focos.
+	\subitem Fórmula, eje mayor, eje menor.
+	\subitem Focos eje $X$, focos eje $Y$.
+	\subitem Forma ejercicio 22.
+	\subitem Actividad resuelta 161.34.
+	\item Parábola: equidista foco y directriz.
+	\subitem Ejercicio resuelto 24 (yo). ¿Cuántas soluciones?
+	\subitem Parábola de directriz x=3. ¿Forma?
+	\subitem El punto medio entre la directriz y el foco siempre pertenece a la parábola. ¿V/F?
+\end{itemize}
+
+
+\begin{itemize}
+	\item Trabajo cooperativo. 
+	\item Los 3 lugares geométricos que faltan. Imponer la restricción de distancias en los 3. Ver en el libro la deducción de las fórmulas y a lo que llegamos.
+	\item Ejercicio 18.
+	\item Ejercicio 22 cambiando enunciado (forma de la hipérbola).
+	\item Ejercicio 25 cambiando enunciado (forma de la parábola).
+	\item Sin geogebra:
+		\subitem Esboza la hipérbola 59ad parábolas del 62abhi.
+	\item Con geogebra: 
+		\subitem 55d (salvo excentricidad). ¿Qué pasa si intercambias el 6 y el 10? 
+		\subitem 59a (salvo excentricidad). ¿Qué pasa si intercambias el 144 y el 25?
+
+\end{itemize}
+
+\subsubsection{Cónicas}
+A saber:
+\begin{itemize}
+	\item Reconocer y diferenciar los 4 tipos de cónicas, tanto gráfica como algebraicamente.
+	\item Conocer la definición como lugar geométrico de los puntos de los 3 tipos de cónicas.
+	\subitem Aplicar la definición para contestar cuestiones breves.
+	\item Dibujar a mano alzada una cónica dados los datos necesarios (una directriz y un foco, etc).
+	\item Resolver posición relativa de una recta y una cónica (resolver el sistema).
+	\item Halla $k$ para que la recta $Ax+By+k=0$ sea tangente a la circunferencia.
+
+\end{itemize}

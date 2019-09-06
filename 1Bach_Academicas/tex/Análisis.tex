@@ -1,0 +1,438 @@
+
+\chapter{Análisis}
+
+
+\section{Funciones}
+
+El objetivo de esta función es ser capaz de representar gráficas de funciones dada su expresión algebraica. 
+%
+Para ello vamos a ir desarrollando diferentes herramientas que nos van a resultar tremendamente útiles para este propósito.
+
+\subsection{Concepto}
+
+Lo primero es tener claro qué es una función.
+
+\begin{defn}[Función]
+Una función asigna a cada elemento de un conjunto $X$, un único elemento de otro, $Y$. Escribimos $f: X \to Y; x\in X\to f(x)\in Y$
+\end{defn}
+
+Ejemplos hablados. Añade 2 de tu propia cosecha.
+\begin{itemize}
+	\item A cada uno le asigno su edad.
+	\item A cada uno su estatura.
+	\item A cada uno su brazo.
+	\item A un número su doble.
+	\item A un número su raíz cuadrada.
+\end{itemize}
+
+\begin{itemize}
+	\item A un número complejo su conjugado.
+	\subitem Sí, pero sólo vamos a hablar de \concept{funciones reales de variable real}. 
+\end{itemize}
+
+Escribimos:  $f: D(f)\subset\real \to I\subset\real; x\to f(x)$
+
+\textit{Como curiosidad hay funciones de variable ``funcional'', es decir, que asocia funciones con otras cosas. Este tipo de cosas se estudian en matemáticas.}
+
+
+\subsubsection{Dominio y recorrido} Condiciones generales de cada función:
+
+$f:\real\to\real\quad\quad D(f) = {x / \exists f(x)}$
+
+Ejemplos:
+\begin{itemize}
+	\item $f_1(x) = 3x^2+2$
+	\item Racionales $f_2(x) = \frac{x+2}{x-1}$
+	\item Radicales $f_3(x) = \sqrt{x^2-9}$
+	\item Radicales $f_4(x) = \sqrt[3]{x^2-16}$
+	\item Exponenciales $f_5(x) = e^x$
+	\item Logaritmos $f_6(x) = \log(x+2)$
+	\item Trigonométricas $f_7(x) = \cos(x)$
+	\item Trigonométricas $f_8(x) = \sin(x)$
+	\item Combo: $f_9(x) = \frac{\log(x-5)}{x+7}$
+	\item Combo: $f_{10}(x) = \frac{\sqrt{5-x}}{x+7}$
+\end{itemize}
+
+
+\paragraph{Clasificacion de funciones} \textit{Damos la definición formal y la intuitiva.}
+
+\begin{itemize}
+	\item Inyectiva: $x\neq y \implies f(x) \neq f(y)  $
+	\item Sobreyectiva: $\forall y\in Y \exists x\in X / f(x) = y$
+	\item Biyectiva: sobreyectiva e inyectiva a la vez.
+\end{itemize}
+
+\concept{Gráfica de una función:} $G(f) = {\left(a,f(a)\right)}$
+
+\subsection{Operaciones con funciones}
+\begin{itemize}
+	\item Suma, resta $(f\pm g)(x) = f(x) \pm g(x)$
+	\subitem $D(f\pm g) = D(f)\cap D(g)$.
+	\item Producto
+	\subitem $D(f·g) = D(f)\cap D(g)$.
+	\item Cociente 
+	\subitem $D\left(\rfrac{f(x)}{g(x)}\right) = D(f)\cap D(g) \setminus \{x/g(x) = 0\}$
+	\item Composición $(g\circ f)(x) = g\left(f(x)\right)$ y se lee ``f compuesta con g''.
+	\subitem El dominio se recalcula.
+\end{itemize}
+
+\concept{Función inversa} $f^{-1}(x):Y\to X$ y cumple $(f\circ f^{-1})(x) = x$
+
+\paragraph{Ejemplo:} Comprueba si son inversas
+\begin{itemize}
+	\item $f(x) = x^3-1$; $f^{-1}(x) = \sqrt[3]{x+1}$ (sí)
+	\item $f(x) = x^2+1$; $f^{-1}(x) = \sqrt{x}$ (no)
+\end{itemize}
+
+\paragraph{Ejemplo:} Calcula la función inversa de $f(x) = \frac{2x+1}{3}$ y de $g(x) = \frac{-1}{3x}$ 
+
+\hl{13/03} Corregir pregunta: ¿son funciones inversas?
+
+Construir funciones inversas.
+
+\subsubsection{Clasificacion de funciones}
+
+\begin{defn}[Inyectividad]
+$f(x) : D(f) \to \real$ inyectiva $\dimplies\forall a,b\in D(f) a\neq b \implies f(a) \neq f(b)$
+\end{defn} 
+
+\begin{defn}[Sobreyectividad]
+	$f(x) : D(f) \to \real$ sobreyectiva $\dimplies \forall b\in\real \exists a\in D(f) \tlq f(a) = b$
+
+	Es decir, una función es sobreyectiva si su imagen son todos los números reales.
+\end{defn}
+
+
+\begin{defn}[Biyectividad] 
+	Inyectividad y sobreyectividad
+\end{defn}
+
+\paragraph{Ejemplos:} Razonando gráficamente.
+
+\begin{itemize}
+	\item $f(x) = x^3$ (biyectiva)
+	\item $f(x) = x^2$ (nada)
+	\item Dibujo función cúbica sí sobreyectica, no inyectiva.
+	\item $f(x) = e^x$ (inyectiva)
+	\item $f(x) = \log(x)$ (inyectiva)
+\end{itemize}
+
+\obs Una función no inyectiva no puede tener inversa.
+
+\section{Continuidad}
+\subsection{Límites}
+
+\subsubsection{Repaso de límites de 4º}
+
+\paragraph{Introducción}
+
+Con el excel y geogebra. Definición intuitiva de límite. \textit{Reto: escribe tu propia definición de límite y vete hablándola conmigo.}
+
+\begin{itemize}
+	\item Excel: valor del límite: me voy acercando sin llegar a tocar.
+	\item Geogebra: mismo gráficamente. Hacer zoom hasta la saciedad.
+\end{itemize}
+
+\begin{defn}[Límite en un punto finito]
+Sea $f(x):\real\to\real$.
+
+\[\lim_{x\to a} f(x) = b\]
+
+El límite de la función $f(x)$ en un punto $x=a$ es el valor $b$ al que se aproxima la función cuando la variable se aproxima al punto, sin \hl{nunca} alcanzarlo.
+\end{defn}
+
+Ejemplos:
+\begin{itemize}
+	\item $\lim_{x\to 3} x^2 + 1 = 10$
+	\item $\lim_{x\to 0} \frac{\sin x}{x} = 1$ (cálculo con calculadora) ¿Existe la función en el punto? Nooooo ¿Existe el límite? Siiiii.
+	\item $\lim_{x\to 0} \frac{1}{x^2}$ (cálculo con calculadora). ¿Existe la función en el punto? Nooooo ¿Existe el límite? Puede existir. Decimos que es $\pm\infty$.
+
+\obs Puede ser que la función no se acerque a ningún valor, sino que cada vez se haga más grande. En ese caso el resultado del límite será $+\infty$.
+
+\obs Puede ser que la función no se acerque a ningún valor, sino que cada vez se haga más pequeño. En ese caso el resultado del límite será $-\infty$.
+\end{itemize}
+
+
+\paragraph{Infinito, ¿concepto o valor?}
+\subparagraph{Aritmética del infinito}
+
+\hl{Empezar aquí}
+
+\begin{defn}[Límite en el infinito]
+Sea $f(x):\real\to\real$.
+
+\[\lim_{x\to \pm\infty} f(x) = b\]
+
+El límite de una función $f(x):\real\to\real$ en el infinito ($\pm\infty$) es el valor $b$ al que se aproxima la función cuando la variable toma valores \hl{arbitrariamente} grandes (o pequeños).
+\end{defn}
+
+\obs Se cumplen las mismas observaciones de antes.
+
+\begin{example}
+	\[\lim_{x\to\infty}x=\infty\]
+	\[\lim_{x\to\infty}\frac{1}{x}=0\]
+\end{example}
+
+\begin{defn}[Exsitencia del límite en un punto finito] 
+	El límite existe si existen y son iguales los límites laterales. 
+\end{defn}
+
+
+\paragraph{Propiedades de los límites} (me lo he saltado).
+
+Sea $a\in\real\cup\{\infty,-\infty\}$, $f,g:\real\to\real$ y que dado $a$, $\exists\lim_{x\to a}f(x) \;;\; \exists\lim_{x\to a}g(x)$
+\begin{itemize}
+	\item $\lim_{x\to a} \left(f(x) \pm g(x)\right) = \lim_{x\to a} f(x) \pm \lim_{x\to a} g(x)$
+	\item $\lim_{x\to a} \left(f(x) · g(x)\right) = \lim_{x\to a} f(x) · \lim_{x\to a} g(x)$
+	\item $\lim_{x\to a} \left(f(x) \pm g(x)\right) = \lim_{x\to a} f(x) \pm g(x)$
+	\item $\lim_{x\to a} \left(\frac{f(x)}{g(x)}\right) = \lim_{x\to a} f(x) \pm g(x)$
+	\item $\lim_{x\to a} \left(f(x)\right)^{g(x)} = \left(\lim_{x\to a} f(x)\right)^{\lim_{x\to a} g(x)}$	
+	\item $\lim_{x\to a} (f\circ g)(x) = ?$	
+\end{itemize}
+
+\begin{example}
+\[\lim_{x\to 0}\frac{1}{x}\]
+ \[\lim_{x\to 4}\left(\frac{x+1}{x}\right)^{\frac{1}{x-4}}\]
+\end{example}
+
+\paragraph{Indeterminaciones}
+
+\begin{itemize}
+	\item $k/0$
+	\subitem Vistas (la $h$). Son indeterminaciones a medias, ya que sólo tienen 2 posibilidades: $\pm∞$
+	\item $\infty/\infty$ (potencia más alta del denominador)
+	\subitem $\displaystyle\lim_{x\to∞}\frac{x^2+5x+6}{x+\sqrt{x}} = \lim_{x\to∞}\frac{\frac{x^2}{x}+5\frac{x}{x}+\frac{6}{x}}{\frac{x}{x}+\sqrt{\frac{x}{x^2}}} = \lim_{x\to∞}\frac{x+5+\rfrac{6}{x}}{1+\frac{1}{\sqrt{x}}} = ∞$
+	\item $0/0$ (simplificar)
+	\subitem $\displaystyle\lim_{x\to1}\frac{x^2-5x+4}{x-1}$
+	\subitem $\displaystyle\lim_{x\to1}\frac{x-1}{\sqrt{x-1}}$
+	\item $\infty-\infty$
+	\subitem $\displaystyle\lim_{x\to-∞}x^2+x = \lim_{x\to-∞} x(x+1) = (-∞)·(-∞) = ∞$
+	\subitem El problema viene con 
+
+	$\displaystyle\lim_{x\to∞}\sqrt{x^2+1}-x = \lim_{x\to∞}\frac{(\sqrt{x^2+1}-x)(\sqrt{x^2+1}+x)}{\sqrt{x^2+1}+x} = \lim_{x\to∞} \frac{x^2+1-x^2}{\sqrt{x^2+1}+x} = 0$
+	\item $1^{+\infty}$
+		\subitem Estas indeterminaciones aparecen cuando $\displaystyle\lim_{x\to a}f(x)^{g(x)}\;\lim_{x\to a}f(x) = 1\;\lim_{x\to a}g(x) = ∞$ y se resuelven utilizando:
+		\[
+			\displaystyle\lim_{x\to a}f(x)^{g(x)} = e^λ, \text{ donde } λ = \lim_{x\to a} (f(x)-1)g(x)
+		\]
+		\subitem $\displaystyle\lim_{x\to \infty}\left(\frac{x-1}{x}\right)^x = e^λ$ donde $λ=\displaystyle\lim_{x\to∞}\left(\frac{x-1}{x}-1\right)·x = -1$
+\end{itemize}
+
+\subsection{Continuidad}
+
+\begin{defn}[Continuidad\IS en un punto]
+
+Una función $f(x):ℝ\toℝ$ es continua en un punto $a$ si y sólo si se cumplen:
+\begin{itemize}
+	\item $\displaystyle∃\lim_{x\to a}f(x)$
+	\item $\displaystyle∃f(a)$
+	\item $\displaystyle\lim_{x\to a}f(x) = f(a)$
+\end{itemize}
+
+\obs Normalmente diremos: si existen y son iguales el límite y el valor en el punto.
+\end{defn}
+
+\paragraph{Tipos de discontinuidades}
+
+Explicar gráficamente los casos.s
+
+\begin{example}
+\begin{itemize}
+	\item ¿Es continua la función $f(x)= \frac{x^2-1}{x-1}$ en $x=2$?
+	\item ¿Es continua la función $f(x)$ en $x=1$? 
+	\item ¿Es continua la función $f(x) = \sqrt{x}$ en $x=0$?
+	\item Funciones definidas a trozos (hasta aquí).
+\end{itemize}
+\end{example}
+
+\begin{defn}[Continuidad\IS en un intervalo abierto]
+Una función $f(x):ℝ\toℝ$ es continua en $(a,b)\inℝ$ si es continua $∀c\in(a,b)$.
+\end{defn}
+
+\begin{itemize}
+	\item ¿Es continua la función $f(x) = \frac{x^2-1}{x-1}$ en $(2,∞)$?
+	\item ¿Es continua la función $f(x) = \sqrt{x}$ en $(0,∞)$?
+\end{itemize}
+
+
+
+\begin{example}
+Estudia la continuidad de la función $f(x) = \frac{\sqrt{x}}{x-4}$
+
+\obs Una función sólo puede ser continua en su dominio. En este caso: $D(f) = \{x\inℝ\tq x≥0\}-\{x\in\real\tq x-4=0\} = [0,∞)-\{4\}$
+
+La función es continua en $(0,4) ∪ (4,∞)$
+
+\end{example}
+
+\section{Derivabilidad}
+
+\begin{defn}[Derivada\IS en un punto]
+Sea $\appl{f}{ℝ}{ℝ}$ una función continua. Se define la derivada de $f$ en el punto $a$ como:
+
+\[
+	f'(a) = \lim_{x\to a}\frac{f(x)-f(a)}{x-a}
+\]
+\end{defn}
+
+\obs $f$ \concept[Función\IS derivable]{derivable} en $x=a \dimplies \exists f'(a)$
+\obs A la función inicial la llamaremos primitiva.
+
+\begin{example}
+Cálculo de la derivada de $f(x) = x^2+2x-1$ en $x=3$.
+
+\[
+	f'(3) = \lim_{\x\to3}\frac{x^2+2x-1 - (3^2+2·3-1)}{x-3} = \lim_{\x\to3}\frac{x^2+2x-15}{x-3} = \lim_{\x\to3}\frac{(x-3)(x+5)}{x-3} = \lim_{\x\to3}(x+5) = 8
+\]
+
+\end{example}
+
+\begin{example}
+Cálculo de la derivada de $f(x) = |x|$ en $x=0$.
+
+\[
+	f'(0) = \lim_{x\to0}\frac{|x| - |0|}{x-0} = \lim_{x\to0}\frac{|x|}{x} = \left\{\begin{array}{l}\displaystyle\lim_{x\to0^+}\frac{x}{x} = 1 \\ \displaystyle\lim_{x\to0^-}\frac{-x}{x}=-1\end{array}\right\}\implies \nexists\lim_{x\to0}f(x)
+\]
+
+Conclusión: La función $f(x)$ no es derivable en $x=0$. ¿Es continua? Sí.
+\end{example}
+
+\begin{example}
+Cálculo de la derivada de $f(x) = \frac{1}{x}$ en $x=0$.
+
+\[
+	f'(0) = \nexists\lim_{x\to0}\frac{\rfrac{1}{x}-\rfrac{1}{0}}{x-0}
+\]
+
+No es derivable. ¿Es continua? No.
+\end{example}
+
+\obs \textbf{Derivable} $\implies$ \textbf{Continua}. \textit{Para que una función sea derivable en un punto es necesario que sea continua en ese punto}\footnote{Está en su tabla de derivadas}.
+
+¿En física habéis derivado polinomios? ¿Cuál sería la "derivada" del polinomio? $f'(x) = 2x+2$. ¿Cuánto vale $f'(3)$? $f'(3) = 2·3+2=8$. ¿Casualidad?
+
+Pero... ¿porqué esto es cierto? ¿De dónde sale ese $3x^2+2$? Esto es a lo que llamamos la función derivada:
+
+\begin{defn}[Función\IS derivada]
+Sea $\appl{f}{ℝ}{ℝ}$ una función continua. Se define la función derivada de $f$ como la función que a cada punto le asigna el valor de su derivada.
+
+\[
+	f'(x) = \lim_{h\to 0}\frac{f(x+h)-f(x)}{h}
+\]
+\end{defn}
+
+\begin{example}
+Cálculo de la función derivada $f'(x)$ de un polinomio, por ejemplo $f(x)=x^2+2x-1$
+
+\[
+	f'(x) = \lim_{h\to0}\frac{f(x+h)-f(x)}{h} = \lim_{h\to0}\frac{(x+h)^2+2(x+h)-1 - x^2+2x-1}{h} =
+\]
+\[
+	\lim_{h\to0}\frac{(x^2+2xh+h^2+2x+2h-1 - x^2-2x+1}{h} = \lim_{h\to0}\frac{2xh+h^2+2h}{h} =
+\]
+\[
+	\lim_{h\to0}\frac{h(2x+h+2)}{h} = \lim_{h\to0} 2x+h+2) = 2x+2
+\]
+
+Conclusión: la función derivada de $f(x) = x^2+2x-1$ es $f'(x) = 2x+2$.
+\end{example}
+
+\paragraph{Propiedades de la derivada:}
+\begin{prop}[Cálculo operativo]
+	Sean $f, g$ derivables en $a$. Entonces
+	\begin{itemize}
+		\item $(k·f(x))' = k·f'(x) ∀k\in\real$
+		\item $(f\pm g)'(a)=f'(a)\pm g'(a)$
+		\item $(fg)'(a)=f'(a)g(a)+f(a)g'(a)$
+		\item Si $g(a)\neq 0 $, $\left(\frac{1}{g}\right)'(a)=\frac{-g'(a)}{(g(a))^2}$
+		\item Si $g(a)\neq 0$, $\left(\frac{f}{g}\right)'(a)=\frac{f'(a)g(a)-f(a)g'(a)}{(g(a))^2}$
+		\item $(g\circ f)'(a)= g'(f(a))f'(a)$
+	\end{itemize}
+\end{prop}
+
+\hl{Explicación de la tabla de derivadas}
+
+\paragraph{Regla de la cadena}
+
+\paragraph*{A practicar:}
+\begin{itemize}
+	\item $\displaystyle f(x) = x\sqrt[3]{x^2}$
+	\item $\displaystyle f(x) = x·e^x$
+	\item $\displaystyle f(x) = x·\sen(x)$
+	\item $\displaystyle f(x) = x·\ln(x)$
+	\item $\displaystyle f(x) = \sen(x)·\cos(x)$
+	\item $\displaystyle f(x) = \frac{x^2+1}{x}$
+	\item $\displaystyle f(x) = (x^2+2x)·\sen(x)$
+	\item $\displaystyle f(x) = (e^x - x)·\ln{x}$
+	\item $\displaystyle f(x) = \sqrt{x^2+x}$
+	\item $\displaystyle f(x) = (\arcsen{x})^3$
+	\item $\displaystyle f(x) = \ln(4x)$
+	\item $\displaystyle f(x) = (\cos{x})^2 = \cos^2{x}$
+	\item $\displaystyle f(x) = \sen{(3x^2)}$
+	\item $\displaystyle f(x) = \cos{(x^2+1)} $
+	\item $\displaystyle f(x) = \tg{(x^2-3x)}$
+	\item $\displaystyle f(x) = \sen{\sqrt{x^2+3x}} $
+	\item $\displaystyle f(x) =  \cos{\frac{x-1}{x}}$
+	\item $\displaystyle f(x) = \tg{\sqrt{x-1}} $
+	\item $\displaystyle f(x) = -\sen{\frac{x}{-x^4+x-1}} $
+	\item $\displaystyle f(x) = \tg{\frac{2}{\sqrt{1-x}}} $
+\end{itemize}
+
+\subsection{Interpretación geométrica de la derivada}
+
+
+
+\section{Integrales inmediatas}
+
+
+
+\section{Estudio sistemático de una función}
+
+\begin{itemize}
+	\item Dominio, siempre.
+	\item Puntos de corte con los ejes.
+	\item Simetría.
+	\item Asíntotas, repaso de 4º.
+	\item Monotonía.
+	\item Curvatura.
+\end{itemize}
+
+\subsection{Monotonía}
+
+Diferenciar los intervalos en los que la función crece de aquellos en los que la función decrece. También, ¿dónde están los máximos y los mínimos?
+
+\begin{itemize}
+	\item Ejemplo: dada la función $f(x) = 3x^2+2x+5$, encuentra sus extremos relativos.
+	\item Los extremos relativos se encuentran en los puntos donde la derivada se hace 0. ¿Por qué? Interpretación gráfica.
+	\item ¿Cómo distinguir máximo de mínimo? En este caso, la parábola va hacia arriba, por lo que debe ser mínimo. 
+	\subitem Por un lado negativa (función decrece), por otro positiva (función creciente).
+	\subitem Segunda derivada positiva, lo que marca que es un mínimo.
+	\item Concavidad: segunda derivada positiva -> mínimo, convexa.
+\end{itemize}
+
+\begin{itemize}
+	\item $f'(x) > 0 \implies f(x)$ crece. 
+	\item $f'(x) < 0 \implies f(x)$ decrece. 
+	\item $f'(x) = 0 \implies $ extremo relativo. ¿Máximo, mínimo?
+	\item $f''(x) > 0 \implies $ mínimo y convexa-contenta (desde el semieje negativo de $y$).
+	\item $f''(x) < 0 \implies $ máximo y cóncava desde el semieje negativo de $y$.
+	\item 
+\end{itemize}
+
+Clase del jueves:
+
+\begin{itemize}
+	\item Corregir: demuestra que el vértice de la parábola es $\rfrac{-b}{2a}$
+	\item Halla las rectas tangentes a la función $f(x)$ en los máximos (no es necesario intervalos de crecimiento y decrecimiento).
+	\[
+		f(x) = 3x^4-4x^3-36x^2
+	\]
+	\item Estudia la monotonía (intervalos de crecimiento, decrecimiento y extremos relativos y absolutos) de $f(x) = x^4-2x^2$
+	
+	\item Estudia sistemáticamente la función: $f(x) = \frac{2(x-2)+1}{(x-2)^2} = \frac{2x-1}{x^2-4x+4}$
+	\subitem Punto de corte eje x: $(1.5,0)$, eje y: $(0,-0.75)$, mínimo absoluto: $(1,-1)$
+	
+	\item Estudia las asíntotas de $f(x) =\frac{x^3-4x^2+x+6}{2x^3-14x^2+32x-24}$
+	
+	\item Deriva $f(x) = \tan(x^2-3x)$
+\end{itemize}
