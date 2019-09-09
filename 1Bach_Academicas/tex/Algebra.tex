@@ -1,5 +1,5 @@
 % -*- root: ../Cuaderno.tex -*-
-
+\newpage
 \section{Números reales}
 
 \subsection{Introducción}
@@ -39,6 +39,19 @@ Como $a$ es par, podemos escribirlo como $a=2·k$, para algún $k\in ℤ$.
 \]
 
 Conclusión: $\mcd{a,b} = 2 ≠ 1$. Hemos llegado a una contradicción partiendo de un supuesto ($\sqrt{2}\in ℚ$) "inventado", por lo que ese supuesto debe ser falso. 
+
+\paragraph{Un argumento alternativo} no tan convincente aunque más fácil de entender sería: 
+
+$2·b^2 = a^2$. Así, en la descomposición factorial de $a^2$ aparecería el factor $b^2$, por lo que $\mcd{a^2,b^2}=b^2$.
+
+\[
+\left.
+\begin{array}{c}
+	\mcd{a,b} = 1 \implies \mcd{a^2,b^2} = 1\\
+	\mcd{a^2,b^2}=b^2
+\end{array}\right\} \implies b=\pm 1 \implies \sqrt{2}\in ℤ
+\]
+
 \end{proof}
 
 \paragraph{\hl{No os creáis cualquier demostración:}}
@@ -160,11 +173,9 @@ Llamamos entorno reducido de centro $a$ y radio $r$, y se denota por $E_r(a)$ a:
 
 \subsection{Logaritmos}
 
-\paragraph{\annotate{En la sesión vimos el vídeo. Como 10-12 se enteraron más o menos bien. 2 no se enteraron de absolutamente nada. Creo que mejor no ponerlo años sucesivos.}{Introducción}}
+\paragraph{Introducción}
 
 Vamos a aprender una nueva manera de multiplicar. En realidad ya sabéis, aunque no seáis conscientes.\footnote{Fuente: \href{https://www.youtube.com/watch?v=FB3\_BeukBBk\&t=99s}{Mark Foskey, youtube.com}}
-
-
 
 
 
@@ -248,11 +259,17 @@ Se llama logaritmo en base $a$ de $N$ al exponente $x$ que cumple: $a^x = N$ y s
 				\log_a(AB) = \log_aa^{p+q} \overset{?}{\implies} \log_a(AB) = p+q \overset{?}{=} \log_aA + \log_aB
 			\]
 		\end{proof}
+		\subitem "El exponente de un producto es la suma de los exponentes".
 	\item $\log_a\left(\rfrac{A}{B}\right) = \log_a(A) - \log_a(B)$
 	\begin{proof}
 		Análoga. Para completar por vosotros. Si no lo conseguís, intentadlo.
 	\end{proof}
-	\item $\log_a(A)^n = n·\log_a(A)$ \hl{\textbf{Ojo:} $\left[\log_a(A+B)\right]^n \neq n·\log_a(A)$}
+	\subitem "El exponente de un cociente es la resta de los exponentes".
+	\item $\log_a(A)^n = n·\log_a(A)$
+	\begin{proof} 
+		\[\log_aA^n = \log_a(A·A·A·A...) = \log_aA+\log_aA+... = n \log_aA\]
+	\end{proof}
+	\hl{¿Os convence esta demostración?} No debería... ¿Y si $n\not\in\mathbb{N}$? La demostración deja de valer. ¡Sed críticos!
 	\begin{proof}
 		Tomamos $\log_aA = p \dimplies a^p = A$
 
@@ -279,11 +296,19 @@ Se llama logaritmo en base $a$ de $N$ al exponente $x$ que cumple: $a^x = N$ y s
 A = B \overset{1}{\dimplies} a^{\log_a A} = a^{\log_a B} \dimplies \log_aA=\log_aB
 \]
 
+¿Implicaciones o equivalencias?
+
+
+\[
+A = B \implies a^{\log_a A} = a^{\log_a B} \dimplies \log_aA=\log_aB
+\]
+
+
 \subsubsection{Ejemplos con logaritmos}
 
 \begin{itemize}
 	\item $\log \sqrt{0,0001}$
-	\item \annotate{Dejé la demostración para que lo hicieran ellos. Se atascaron bastante. No repetir.}{Demuestra} $\log_a b · \log_b a = 1$ 
+	\item Demuestra $\log_a b · \log_b a = 1$ 
 \end{itemize}
 
 \subsubsection{Ejercicios con logaritmos}
@@ -328,7 +353,7 @@ La fórmula del interés compuesto capitalizado en $p$ periodos, \hl{para un int
 \end{itemize}
 
 \paragraph{a)}
-Pero, ¿es lo mismo un interés mensual del 5\% durante 12 meses que un interés anual del 5\% durante 12 meses? Sí. ¿A quién le importa que sean meses o años?
+Pero, ¿es lo mismo un interés mensual del 5\% durante 12 meses que un interés anual del 5\% durante 12 años? Sí. ¿A quién le importa que sean meses o años?
 
 Pero... ¿es lo mismo un interés anual del 5\% capitalizado cada mes, que un interés anual del 5\% capitalizado cada año? ¿Hay alguno que sea mayor? 
 
