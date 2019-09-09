@@ -15,6 +15,15 @@
 	\message{Loading Palatino fonts}
 }
 
+\DeclareOption{avenir}{%
+	\renewcommand{\rmdefault}{avenir}
+	\renewcommand{\sfdefault}{avenir}
+	\renewcommand{\ttdefault}{avenir}
+	\renewcommand*{\familydefault}{\rmdefault}
+	\def\@fontsizeopt{11pt}
+	\message{Loading Palatino fonts}
+}
+
 \DeclareOption{sansserif}{
 	\renewcommand*{\familydefault}{\sfdefault}
 	\def\@fontsizeopt{12pt}
