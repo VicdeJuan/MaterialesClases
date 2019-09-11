@@ -61,82 +61,80 @@ Partiendo de $x=y$
 x^2 = xy \dimplies x^2-y^2 = xy-y^2 \dimplies (x+y)(x-y) = y(x-y) \dimplies x+y = y \dimplies 2y = y \implies \text{\hl{2=1}}
 \]
 
-\nota{Si sobrara tiempo: belleza intrínseca de las matemáticas: ¿Qué hay más, enteros o pares?}
+\textit{Si sobrara tiempo: belleza intrínseca de las matemáticas: ¿Qué hay más, enteros o pares?}
 
 
-\todo{Sesión 1}
+% \subsubsection{Grupo y Cuerpo}
 
-\subsubsection{Grupo y Cuerpo}
+% \begin{defn}[Grupo]
+% Sea un conjunto $G\neq \emptyset$ y $\ast$ una operación (ley de composición interna), diremos que $(G,\ast)$ es un grupo si cumple las siguientes propiedades:
+% \begin{enumerate}
+% 	\item \textbf{Cerrado por la operación}. $\forall x, y \in G, \; x \ast y \in G$
+% 	\item \textbf{Asociatividad}. $\forall x, y, z \in G, \; (x \ast y) \ast z = x \ast (y \ast z)$
+% 	\item \textbf{Existencia del elemento neutro}. $\exists  e \in G \tq ,\; \forall\, x\in G\; x\ast e=x$.
+% 	\item \textbf{Existencia del inverso}. $\forall x \in G ,\; \exists x' \in G \tq x\ast x'=x'\ast x=e$.
+% \end{enumerate}
+% \end{defn}
 
-\begin{defn}[Grupo]
-Sea un conjunto $G\neq \emptyset$ y $\ast$ una operación (ley de composición interna), diremos que $(G,\ast)$ es un grupo si cumple las siguientes propiedades:
-\begin{enumerate}
-	\item \textbf{Cerrado por la operación}. $\forall x, y \in G, \; x \ast y \in G$
-	\item \textbf{Asociatividad}. $\forall x, y, z \in G, \; (x \ast y) \ast z = x \ast (y \ast z)$
-	\item \textbf{Existencia del elemento neutro}. $\exists  e \in G \tq ,\; \forall\, x\in G\; x\ast e=x$.
-	\item \textbf{Existencia del inverso}. $\forall x \in G ,\; \exists x' \in G \tq x\ast x'=x'\ast x=e$.
-\end{enumerate}
-\end{defn}
+% \begin{prop}[Unicidad\IS del neutro e inverso]
+%   En todo grupo se cumplen las propiedades de unicidad del elemento neutro y del inverso.
+% \end{prop}
 
-\begin{prop}[Unicidad\IS del neutro e inverso]
-  En todo grupo se cumplen las propiedades de unicidad del elemento neutro y del inverso.
-\end{prop}
+% \begin{proof}[\textbf{Reducción al absurdo}]
+% Primero demostramos que el neutro es único. \\
+% Sean $e$, y $e'$ dos elementos neutros de $G$, se cumple que $e\ast e'\overset{1}{=}e'$, pero también se cumple que $e'\ast e\overset{2}{=}e$. Esto implica que $e'=e$.\\
+% 1: $e$ elemento neutro.\\
+% 2: $e'$ elemento neutro.
 
-\begin{proof}[\textbf{Reducción al absurdo}]
-Primero demostramos que el neutro es único. \\
-Sean $e$, y $e'$ dos elementos neutros de $G$, se cumple que $e\ast e'\overset{1}{=}e'$, pero también se cumple que $e'\ast e\overset{2}{=}e$. Esto implica que $e'=e$.\\
-1: $e$ elemento neutro.\\
-2: $e'$ elemento neutro.
+% Por otro lado, si suponemos la existencia de dos elementos inversos $a',a''\in G$, entonces $e=a\ast a'=a\ast a''$. \\
 
-Por otro lado, si suponemos la existencia de dos elementos inversos $a',a''\in G$, entonces $e=a\ast a'=a\ast a''$. \\
+% \[
+% 	aa' = aa'' \dimplies a'(aa') = a'(aa'') \overset{asoc.}{\dimplies} (a'a)a'=(a'a)a'' \overset{e.n.}{\dimplies} a'=a'' 
+% \]
+% \end{proof}
 
-\[
-	aa' = aa'' \dimplies a'(aa') = a'(aa'') \overset{asoc.}{\dimplies} (a'a)a'=(a'a)a'' \overset{e.n.}{\dimplies} a'=a'' 
-\]
-\end{proof}
+% \begin{example}
+% 	\begin{itemize}
+% 		\item Sí: $(ℤ,+),(ℚ,+),(ℝ,+),(\{0,1\},+)$
+% 		\item No: $(ℕ,+),(ℤ,·),(?,·)$
+% 		\item No: $(I,+)$ porque $(1+\sqrt{2}) - (\sqrt{2}\in ℤ)$
+% 	\end{itemize}
+% \end{example}
 
-\begin{example}
-	\begin{itemize}
-		\item Sí: $(ℤ,+),(ℚ,+),(ℝ,+),(\{0,1\},+)$
-		\item No: $(ℕ,+),(ℤ,·),(?,·)$
-		\item No: $(I,+)$ porque $(1+\sqrt{2}) - (\sqrt{2}\in ℤ)$
-	\end{itemize}
-\end{example}
+% \nota{Si el grupo es \hl{conmutativo}, se llama grupo conmutativo o abeliano por el matemático noruego Abel del siglo XIX.}
 
-\nota{Si el grupo es \hl{conmutativo}, se llama grupo conmutativo o abeliano por el matemático noruego Abel del siglo XIX.}
-
-El \hl{producto tiene problemas} para ser ley de composición interna de grupos. 
-%
-Sin embargo, podemos considerar $(ℚ,+,·)$. 
-%
-Ahora hay 2 operaciones y por lo tanto no podemos considerarlo grupo.
+% El \hl{producto tiene problemas} para ser ley de composición interna de grupos. 
+% %
+% Sin embargo, podemos considerar $(ℚ,+,·)$. 
+% %
+% Ahora hay 2 operaciones y por lo tanto no podemos considerarlo grupo.
 
 
-\begin{defn}[Cuerpo] 
-Sea $K$ un conjunto y sean $(+)$ y $(·)$ dos operaciones binarias cerradas, llamadas suma y producto. 
-%
-$(K,+,·)$ es un cuerpo si se cumple:
-\begin{enumerate}
-\item $(A, +)$ es un grupo abeliano.
-\item El producto es asociativo.
-\item Se cumplen las leyes distributivas: 
-	\subitem $\forall a,b,c \in A \; a\cdot(b+c)=a\cdot b + a\cdot c$ 
-	\subitem $(a+b)\cdot c= a \cdot c + b \cdot c$
-\item El producto es conmutativo.
-\item Existe elemento neutro para el producto.
-\item $\left(A\backslash \{0\},·\right)$ es un grupo. (Siendo 0 el elemento neutro de la suma.)
-\end{enumerate}
-\end{defn}
+% \begin{defn}[Cuerpo] 
+% Sea $K$ un conjunto y sean $(+)$ y $(·)$ dos operaciones binarias cerradas, llamadas suma y producto. 
+% %
+% $(K,+,·)$ es un cuerpo si se cumple:
+% \begin{enumerate}
+% \item $(A, +)$ es un grupo abeliano.
+% \item El producto es asociativo.
+% \item Se cumplen las leyes distributivas: 
+% 	\subitem $\forall a,b,c \in A \; a\cdot(b+c)=a\cdot b + a\cdot c$ 
+% 	\subitem $(a+b)\cdot c= a \cdot c + b \cdot c$
+% \item El producto es conmutativo.
+% \item Existe elemento neutro para el producto.
+% \item $\left(A\backslash \{0\},·\right)$ es un grupo. (Siendo 0 el elemento neutro de la suma.)
+% \end{enumerate}
+% \end{defn}
 
-\nota{Si sólo se cumplen a,b,c se llama anillo.}
+% \nota{Si sólo se cumplen a,b,c se llama anillo.}
 
-\begin{example}
-	\begin{itemize}
-		\item Sí: $(ℝ,+,·),(ℚ,+,·),\left[(ℂ,+,·)\right]$
-		\item No: $(ℤ,+,·),\left[(\mathcal{M},+,·)\right]$
-		\item $\left(I,+,·\right)$ no, porque $(I,+)$ no es un grupo.
-	\end{itemize}
-\end{example}
+% \begin{example}
+% 	\begin{itemize}
+% 		\item Sí: $(ℝ,+,·),(ℚ,+,·),\left[(ℂ,+,·)\right]$
+% 		\item No: $(ℤ,+,·),\left[(\mathcal{M},+,·)\right]$
+% 		\item $\left(I,+,·\right)$ no, porque $(I,+)$ no es un grupo.
+%  	\end{itemize}
+%  \end{example}
 
 
 \subsubsection{Entornos (libro):} Dado un intervalo $(3,7)$, ¿cuál es su centro? ¿cuál es su amplitud? (Calcular). A veces nos interesará escribir el mismo intervalo de puntos haciendo énfasis en el centro y el radio. 
@@ -167,7 +165,7 @@ Llamamos entorno reducido de centro $a$ y radio $r$, y se denota por $E_r(a)$ a:
 \]
 \end{defn}
 
-\nota{El libro utiliza otra notación que no nos gusta. Apuntad la buena.}
+\hl{El libro utiliza otra notación que no nos gusta. Apuntad la buena.}
 
 \hl{Seguimos pasando páginas del libro y comentando}
 
@@ -237,15 +235,11 @@ Se llama logaritmo en base $a$ de $N$ al exponente $x$ que cumple: $a^x = N$ y s
 	\item $\log_a a = 1 \dimplies a^1 = a$
 	\item $\log_a a^q = q \dimplies a^q = a^q$ por definición.
 	\item $a^{\log_a N} = N$
-\todo{Sesión 2}
 	\begin{proof}
 		Sea $b = \log_a N \dimplies a^b = N$.
-
 		Entonces, $a^{\log_a N} = N \dimplies a^n = N$
 	\end{proof}
 \end{enumerate}
-
-
 
 \paragraph{Propiedades:}
 \begin{itemize}
@@ -308,12 +302,9 @@ A = B \implies a^{\log_a A} = a^{\log_a B} \dimplies \log_aA=\log_aB
 
 \begin{itemize}
 	\item $\log \sqrt{0,0001}$
+	\item Ejercicio 21.49\_a,c,e,g; 52\_a,c;104\_bd
 	\item Demuestra $\log_a b · \log_b a = 1$ 
 \end{itemize}
-
-\subsubsection{Ejercicios con logaritmos}
-\todo{Sesión 3. Corregimos el 50a, de deberes lo demás para empezar corrigiendo.}
-Pág 21, ejers 50,52.
 
 \subsubsection{Aplicación de los logaritmos}
 
@@ -343,13 +334,13 @@ La fórmula del interés compuesto capitalizado en $p$ periodos, \hl{para un int
 \[C = C_0·\left(1+\frac{r}{100p}\right)^{pt}\]
 
 
-\paragraph{3 preguntas? \hl{No.}}
+\paragraph{3 preguntas?} Contestadas más adelante:
 \begin{itemize}
-	\item[a] Pero... ¿es lo mismo un interés anual del 5\% capitalizado cada mes, que un interés anual del 5\% capitalizado cada año?
+	\item[a] Pero... ¿es lo mismo un interés anual del 5\% capitalizado cada mes, que un interés anual del 5\% capitalizado cada año? \hl{No.}}
 
-	\item[b] ¿Y si capitalizo cada semana? ¿Y cada día? ¿Y si capitalizo \textit{instantáneamente}? \hl{(Sí)}
+	\item[b] ¿Y si capitalizo cada semana? ¿Y cada día? ¿Y si capitalizo \textit{instantáneamente}? \hl{Tampoco}
 
-	\item[c] ¿Cuánto tiempo tengo que dejar el dinero si quiero ganar una cantidad concreta?
+	\item[c] ¿Cuánto tiempo tengo que dejar el dinero si quiero ganar una cantidad concreta? Aquí sirven los logaritmos.
 \end{itemize}
 
 \paragraph{a)}
@@ -394,7 +385,7 @@ Tengo $C= 1000$ a un $r=5\%$. Tengo 2 opciones para elegir y no se cual es mejor
 ¿Y si capitalizo cada semana? ¿Y cada día? ¿Y si capitalizo \textit{instantáneamente}? 
 
 \paragraph{c)}
-Tengo entendido que durante el mes de julio, Miguel ha trabajado de hamaquero en la playa y cobrado 150 al mes. ¿Puede ser? Su banco le ofrece un depósito con un interés del 10\% y Miguel querría pagarse su carrera, que será algo así como 10000, sino sigue subiendo.
+Tengo entendido que durante el mes de julio, ??? ha trabajado de hamaquero en la playa y cobrado 150 al mes. ¿Puede ser? Su banco le ofrece un depósito con un interés del 10\% y Miguel querría pagarse su carrera, que será algo así como 10000, sino sigue subiendo.
 %
 ¿Cuánto tiempo tiene que dejar su dinero en el banco para pagarse la carrera?
 
@@ -406,13 +397,17 @@ Tengo entendido que durante el mes de julio, Miguel ha trabajado de hamaquero en
 	t = 44.06\text{ años}
 \]
 
-De momento lo dejamos aquí. El próximo tema que tiene ecuaciones volveremos a trabajar con el interés, las bacterias, etc.
-
-\todo{Fin sesión 4.}
+Ejercicio 31.122
 
 \section{Tema 2: álgebra}
 
 \subsection{Binomio de Newton}
+
+$
+\displaystyle (a\text{\hl{+}}b)^n = \sum_{i=0}^n \binom{n}{i} a^ib^{n-i}
+$
+
+Vamos a ir desgranando y entendiendo la fórmula. Empezamos con $\binom{n}{i}$
 
 \paragraph{Combinatoria básica} ¿Cuántas parejas puedo hacer con 5 cartas? $\binom{5}{2}$
 
@@ -430,18 +425,6 @@ De momento lo dejamos aquí. El próximo tema que tiene ecuaciones volveremos a 
 		\[\binom{m}{n} = \frac{m!}{n!(m-n)!} = \frac{m!}{(m-(m-n))!(m-n)!} = \binom{m}{m-n} \]
 	\end{proof}
 	\item $\binom{m}{n} + \binom{m}{n+1}=\binom{m+1}{n+1}$
-	\begin{proof}
-		\[
-			\binom{m}{n} + \binom{m}{n+1} = \frac{m!}{n!(m-n)!} + \frac{m!}{(n+1)!(m-n-1)!} = 
-		\]
-		\[
-			\frac{m!(n+1)}{(n+1)n!(m-n)!} + \frac{m!(m-n)}{(n+1)!(m-n-1)!(m-n)}
-		\]
-		\[
-			\frac{m!(n+1+m-n)}{(n+1)!(m-n)!} = \frac{(m+1)!}{(n+1)!(m-n)!} = 
-		\frac{(m+1)!}{(n+1)!((m+1)-(n+1))!} = \binom{m+1}{n+1}
-		\]
-	\end{proof}
 \end{itemize}
 
 \nota{No copiar}
@@ -467,7 +450,7 @@ $
 \displaystyle (a\text{\hl{+}}b)^n = \sum_{i=0}^n \binom{n}{i} a^ib^{n-i}
 $
 
-\paragraph{Curiosidad matemática:} Triángulo de Pascal.
+\paragraph{Curiosidad matemática:} Triángulo de Pascal (vídeo brutal de \href{https://www.youtube.com/watch?v=0iMtlus-afo}{Numberphile})
 
 De aquí construimos el triángulo y jugamos un rato con él. Potencias de 2 sumando los números, potencias de 11 y Fibonnaci.
 
@@ -479,16 +462,15 @@ De aquí construimos el triángulo y jugamos un rato con él. Potencias de 2 sum
 \end{figure}
 
 
-\todo{Fin sesión. Demasiado tiempo invertido en esto para lo que en realidad es.}
-Triángulo de Pascal (vídeo brutal de \href{https://www.youtube.com/watch?v=0iMtlus-afo}{Numberphile})
 
-\paragraph{\hl{Sesión 21/09}:} Empezar con un ejemplo de uso de la fórmula para $(3x-2)^5$. Así, utilizamos la calculadora para números combinatorios. 
-Ejercicios del libro. (Yo 15, 16. Ellos 20 y 21).
+
+Ejemplo de uso de la fórmula para $(3x-2)^5$. Así, utilizamos la calculadora para números combinatorios. 
+Ejercicios del libro. (Yo 15. Ellos 20. Yo 16, ellos 21).
 
 
 \subsection{Teoremas de factorización}
 
-\paragraph{Sesión 22/09:} Empezar con título. 2.2) Factorización. Ejemplo. La factorización del polinomio. ¿Qué raíces puede tener? Ni $\pm1,\pm3$, ¿entonces? Teorema de las raíces racionales.
+Empezar con título. 2.2) Factorización. Ejemplo. La factorización del polinomio. ¿Qué raíces puede tener? Ni $\pm1,\pm3$, ¿entonces? Teorema de las raíces racionales.
 
 Factoriza (yo con ellos): $P(x) = 3x^3-x^2+9x-3 = 3(x^2+3)\left(x-\rfrac{1}{3}\right)$
 
@@ -544,7 +526,7 @@ Sea $P(x) = a_nx^n+a_{n-1}x^{n-1}+...+a_1x+a_0$, con $a_n≠0$,$a_i\inℤ$ una r
 	\subitem $P(1) = 0$. Por el teorema del factor sabemos que $0$ es una raíz. ¿Es esto más fácil que Ruffini? ¿Y ahora?
 \end{itemize}
 
-Por grupos los demás ejercicios:
+
 \item Sea $P(x) = 2x^3-2x^2+kx+4$.
 \begin{itemize}
 	\item Halla el valor de $k$ para que $P(x)$ sea divisible por $x-2$.
@@ -560,8 +542,6 @@ Por grupos los demás ejercicios:
 	\item Factoriza (Newton)
 \end{itemize}
 
-\todo{Sesión.}
-\paragraph{Sesión 26/09}: \hl{Empezar corrigiendo}.
 
 \item Sea $P(x) = x^3+2·k·x^2+4·k·x+8$
 \begin{itemize}
@@ -617,6 +597,10 @@ Por grupos los demás ejercicios:
 
 \item Sea $P(x) = 21x^2+10x-2$. $P(x) + 3 = 21(x+1/3)(x+1/7)$.
 
+\item Factorizar $P(x) = 9x^3-\frac{27}{2}x^2+\frac{13}{2}x-1 = 9·(x-1/2)(x-2/3)(x-1/3)$. Pista (para ahorraros pruebas innecesarias con Ruffini), todas las raíces son fraccionarias y positivas.
+
+\item Factorizar $P(x) = x^7+2x^4+x = x(x^3+1)^2$
+
 \end{enumerate}
 
 \subsection{Ecuaciones}
@@ -638,23 +622,6 @@ Por grupos los demás ejercicios:
 \]
 Es decir, en general, tomar una raíz no mantiene equivalencia entre ecuaciones (tampoco elevar a una potencia).
 
-\todo{Sesión}
-
-\paragraph{Sesión 27/09:} 
-\begin{itemize}
-	\item Empezar preguntando si están todos los ejercicios de polinomios corregidos (Porque yo diría que no). En ese caso, que vayan corrigiendo ellos. 
-	%
-	Mientras hay algunos en la pizarra, 
-\begin{itemize}
-	\item Factorizar $P(x) = 9x^3-\frac{27}{2}x^2+\frac{13}{2}x-1 = 9·(x-1/2)(x-2/3)(x-1/3)$. Pista (para ahorraros pruebas innecesarias con Ruffini), todas las raíces son fraccionarias y positivas.
-
-	\item Factorizar $P(x) = x^7+2x^4+x = x(x^3+1)^2$
-\end{itemize}
-	
-
-
-	\item 
-\end{itemize}
 
 \paragraph{Clasificación de ecuaciones}
 
@@ -681,7 +648,16 @@ $ax^2+bx+c=0$. ¿Alguien sabe de dónde viene la fórmula?
 
 Ecuaciones racionales.
 
-\paragraph{Ejemplo}
+\paragraph{Ejemplos}
+\subparagraph{a)}
+
+\[
+	\frac{2x-5}{x-2} = \frac{1}{2x-x^2}+1 \dimplies \frac{2x-5}{x-2} = \frac{-x^2+2x+1}{-x(x-2)} \text{\hl{$\implies$}} -2x^2+5x = -x^2+2x+1\dimplies \]
+	\[ \dimplies -x^2+3x-1 = 0 \dimplies x^2-3x+1 = 0 \dimplies x_1=1\wedge x_2=2
+\]
+¿Son soluciones las 2? El 2 no. La hemos "ganado" en la equivalencia.
+
+\subparagraph{b)}
 \[
 	\frac{2x}{x-2} + \frac{3x}{x+2} = \frac{7x^2}{x^2-4} \dimplies \frac{2x(x+2)}{(x-2)(x+2)} + \frac{3x(x-2)}{(x+2)(x-2)} = \frac{7x^2}{x^2-4} \dimplies 
 \]
@@ -698,16 +674,11 @@ Para trabajar: Pág 46, ejer 36.
 
 \paragraph{36,a}
 \[
-	\frac{1}{1-\frac{1}{x+1}} = \frac{x+1}{x} \dimplies \frac{1}{\frac{x+1-1}{x+1}}=\frac{x+1}{x} \dimplies \frac{x+1}{x} = \frac{x+1}{x} \text{\hl{$\implies$}} x+1=x+1 \dimplies x=λ, ∀λ∈ℝ
+	\frac{1}{1-\frac{1}{x+1}} = \frac{x+1}{x} \dimplies \frac{1}{\frac{x+1-1}{x+1}}=\frac{x+1}{x} \dimplies \frac{x+1}{x} = \frac{x+1}{x} \text{\hl{$\implies$}} x+1=x+1 \dimplies x=λ, ∀λ∈ℝ - \{0,-1\}
 \]
 
-\paragraph{Sesión 28/09}
 
 \begin{itemize}
-	\item Empezar corrigiendo el ejercicio anterior: La solución de la última ecuación sí es $x\inℝ$, pero en la primera, $x\in\{0,-1\}$ no son soluciones.
-
-	\item Definición de ecuación compatible indeterminada.
-	
 	\item Corregir la otra ecuación (36,b). Mientras alguien la hace en la pizarra, trabajamos con: $2x-\frac{3x-1}{3} = x+\frac{1}{4}$. Solución: ecuación incompatible.
 \end{itemize}
 
@@ -753,20 +724,13 @@ Comprobamos:
 	\sqrt{5+4}+\sqrt{5-1} = 3+2 = 5
 \]
 
-\paragraph{Ejercicio 40 b:} Truco: aplicar el binomio de Newton.
 
+\paragraph{Ejercicios} 
 
-\paragraph{40 a}
+40 b Truco: aplicar el binomio de Newton.
 
-\paragraph{Sesión 29/09}
-\begin{itemize}
-	\item Empezar con la comprobación del 40 b.
-	\item Seguir con la corrección del 40 a, si han tenido problemas.
-	\item Empezar logarítmicas.
-	\item No preservación de la equivalencia.
-	\item Ejemplo de 3 maneras diferentes.
-	\item Para trabajar.
-	\item Deberes para el martes (salvo que sea el problema los deberes): 
+40 a
+
 	\[
 		\sqrt{x^3+2\sqrt{x^3}+1} = 0 \dimplies \sqrt{(\sqrt{x^3}+1)^2} = 0 \text{\hl{$\implies$}} \sqrt{x^3}=-1 \dimplies x=-1
 	\]
@@ -786,14 +750,6 @@ Comprobamos:
 \subsubsection{Logarítmicas}
 
 Los logaritmos tampoco conservan las equivalencias:
-
-Versión innecesariamente larga:
-\[
-	-5 = -5 \dimplies -30+25 = 1-6 \dimplies -30+25+9 = 9+1-6 \dimplies (3-5)^2 = (3-1)^2 \dimplies 
-\]
-\[
-	\log(3-5)^2 = \log(3-1)^2 \dimplies 2\log(3-5) = 2\log(3-1) \dimplies \log(3-5)=\log(3-1) \dimplies \log2=\log-2
-\]
 
 Versión corta:
 \[
@@ -815,6 +771,8 @@ El libro lo hace de otra manera:
 \[
 	x^5-36x^3 = 0 \dimplies x^3(x^2-36) = 0 \dimplies x^3(x+6)(x-6) = 0
 \]
+
+Aquí aparecen 2 soluciones más que habíamos perdido en la equivalencia, pero no hay problema por las condiciones del logaritmo.
 
 Incluso, habría una tercera manera:
 
@@ -877,10 +835,6 @@ Comprobamos:
 \]
 
 
-\paragraph{Problema interés compuesto:} Uno de ellos ha trabajado en verano y ha cobrado una miseria. Quiere pagarse la universidad que cuesta tanto.
-a) ¿Cuántos años tiene que esperar?
-b) ¿Y si quiere esperar como máximo 5 años, qué intereses tendría que tener?
-\textbf{Observación:} Todas las capitalizaciones son mensuales.
 
 
 \subsubsection{Exponenciales}
@@ -904,9 +858,7 @@ Clase 1: Explicación de los apuntes de MariNieves y realización de 1 sistema.
 
 Clase 2: Realización de un ejemplo por mi parte. Tiempo de trabajo para ellos.
 
-Clase 3 (11/10/2017): Corrección ejercicio del libro + dudas del examen. 
-
-\paragraph{Sesión 17/10:} Examen.
+Clase 3 (11/10/2017): Corrección ejercicio del libro.
 
 \paragraph{Sesión 18/10:} Sistemas de Gauss C.Indeterminados e Incompatibles.
 
