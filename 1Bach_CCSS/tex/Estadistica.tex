@@ -99,9 +99,6 @@ Si el peso del hijo es $P_{99}$, es de los bebés más gordos que han nacido, ya
 
 \textit{Que todo el mundo copie esto. Por si lo necesitas para tu vida futura. Yo no me sé las fórmulas de memoria. Sé de dónde salen y las razono y eso voy a intentar con vosotros.}
 
-\begin{defn}[Rango]
-\end{defn}
-
 Una medida de la dispersión bastante intuitiva sería: ¿Cuánto se separa cada dato de la media? Y si sumo todas esas desviaciones, debería obtener una medida general. ¿Y por qué no cuánto se separa de la mediana? Total, la mediana también es una medida de centralidad. \footnote{Por esto necesitamos que la mediana sea un valor concreto y no puede ser un intervalo.}
 %
 Por motivos más complejos (de los que hablaremos al llegar a regresión), la que se utiliza habitualmente es la media, aunque en ocasiones sí se utiliza la mediana. ¿Por qué? Porque es menos sensible a datos atípicos.
@@ -215,7 +212,7 @@ Para corregir ese falseamiento se podría utilizar la raíz cuadrada.
 \[
 	\sigma^{2a} = \frac{\displaystyle\sum_{i=1}^{N} \left(x_i-\overline{x}\right)^{2a}}{N}
 \]
-Donde $N$ es el número total de datos, $x_i$ cada uno de los datos, $\overline{x}$ la media y $a\in\mathbb{Z}$
+Donde $N$ es el número total de datos, $x_i$ cada uno de los datos, $\overline{x}$ la media y $a\in\mathbb{N}$
 \end{defn}
 
 
@@ -223,7 +220,7 @@ Donde $N$ es el número total de datos, $x_i$ cada uno de los datos, $\overline{
 \[
 	\sigma^{a} = \sqrt{\displaystyle\frac{\displaystyle\sum_{i=1}^{N} \left(x_i-\overline{x}\right)^{2a}}{N}}
 \]
-Donde $N$ es el número total de datos, $x_i$ cada uno de los datos, $\overline{x}$ la media y $a\in\mathbb{Z}$
+Donde $N$ es el número total de datos, $x_i$ cada uno de los datos, $\overline{x}$ la media y $a\in\mathbb{N}$
 \end{defn}
 
 \newcommand{\coefdemierda}{Coeficiente de variación\xspace}
@@ -238,10 +235,49 @@ Por eso no se utiliza este coeficiente.
 
 \subsection{Problema práctico}
 
-Problema 21 y problema 50.
+27,28,39,55,50 voluntario para entregar a limpio en menos de 7 días.
 
-Trabajar en 27, 28, 29, 30 (puede ser esquemático),32 ,35 ,39 ,43 ,51 ,53
+Problema 21 
 
+Trabajar en 29, 30 (puede ser esquemático),32 ,35 ,43 ,51 ,53 ,54 
+
+\section{Estadística bidimensional}
+Preparar PPT con los ejemplos del libro:
+
+Clase 1) Tabla de datos bidimensionales. Construir una, calcular distribuciones marginales y condicionadas para interiorizar bien las tablas, lo que significan, etc.
+
+Algún ejercicio de marginales + diagramas de dispersión. Covarianza vs correlación
+
+Covarianza: cuánto varía cada dato respecto de la media. $\sigma_{xy}$. No hace falta que te sepas las fórmula porque vamos a utilizar la calculadora a mansalva. 
+
+Esperadme en clase mañana sentados por grupos de calculadoras iguales.
+
+Rectas de regresión e intuición gráfica.
+
+Cálculo de todo con calculadora.
+
+Recta de regresión de Y sobre X (PPT)
+
+Tablita resumen del coeficiente de correlación (PPT)
+
+La recta de regresión siempre pasa por el punto $(\gor{x},\gor{y})$
+
+¿Qué recta calcular? ¿Y sobre X o X sobre Y? Si quiero predecir Y, hago Y sobre X. Si quiero predecir X, hacemos X sobre Y.
+
+Recomendación: https://www.vitutor.com/estadistica/bi/ejercicios\_correlacion.html
+
+\subsubsection{Causalidad vs Correlación}
+
+\begin{itemize}
+	\item https://www.telecinco.es/informativos/ciencia/beneficios-chupar-chupete-bebe_0_2661750040.html
+	\item https://www.infosalus.com/nutricion/noticia-bebidas-endulzadas-artificialmente-reducen-riesgo-recurrencia-cancer-colon-muerte-20180723074434.html
+	\item https://www.infobae.com/america/tendencias-america/2018/10/23/un-estudio-afirma-que-la-comida-organica-reduce-un-25-el-riesgo-de-cancer/
+\end{itemize}
+
+Ejercicios para clase: 64 b,d,e ; 65
+Ejercicios para practicar: 62, 63
+
+Ejercicios de exámenes de años anteriores.
 
 \section{Probabilidad, binomial y normal}
 
@@ -410,6 +446,8 @@ Problemas 11,12,13,14
 
 \subsubsection{Operaciones con conjuntos}
 
+\hl{Entregar hoja con diagramas de Venn}
+
 \begin{prop}[Propiedades de conjuntos]
 Algunas propiedades de conjuntos, necesarias para probabilidad:
 
@@ -421,7 +459,7 @@ Algunas propiedades de conjuntos, necesarias para probabilidad:
 		\item $A\cap (B\cup C) = (A\cap B)\cup (A\cap C)$
 		\item $\overline{\overline{B}} = B$
 		\item $\overline{A}\cap A = \emptyset$
-		\item $A\setminus B = A\cap \overline{B}$
+		\item $A- B = A\cap \overline{B}$
 		\item[DeMorgan] $\overline{A\cup B} = \overline{A}\cap\overline{B}$
 		\item[DeMorgan] $\overline{A\cap B} = \overline{A}\cup\overline{B}$
 	\end{itemize}
@@ -430,22 +468,7 @@ Algunas propiedades de conjuntos, necesarias para probabilidad:
 Dibujaremos gráficamente cada propiedad.
 \end{proof}
 
-\begin{problem}[1]
-Simplifica las siguientes igualdades:
 
-\ppart $(A\cup B)\cap (A\cup B)\cap A=A$
-
-\ppart $(B\cup A)\cap \overline{\left(\overline{B}\cap \overline{A}\right)} = A\cup B$
-
-\ppart $\left[A\setminus (A\cup B)\right]\cup B = B$
-
-\ppart $(A\cap B) \cup (A\cap \overline{B}) = A$
-
-\ppart $(A\setminus B) \cap B = \emptyset$
-
-
-\solution
-\end{problem}
 
 Problemas 11 y 12.
 
@@ -803,45 +826,6 @@ Comentamos problema 94. Es una binomial, pero si quieres aproximar con la normal
 	Consultando en la tabla: $-\frac{-1}{2\sigma} = 0,8413 \implies \sigma = \frac{1}{2·0,8413} = 1,79$
 \end{itemize}
 
-
-\section{Estadística bidimensional}
-
-Preparar PPT con los ejemplos del libro:
-
-Clase 1) Tabla de datos bidimensionales. Construir una, calcular distribuciones marginales y condicionadas para interiorizar bien las tablas, lo que significan, etc.
-
-Algún ejercicio de marginales + diagramas de dispersión. Covarianza vs correlación
-
-Covarianza: cuánto varía cada dato respecto de la media. $\sigma_{xy}$. No hace falta que te sepas las fórmula porque vamos a utilizar la calculadora a mansalva. 
-
-Esperadme en clase mañana sentados por grupos de calculadoras iguales.
-
-Rectas de regresión e intuición gráfica.
-
-Cálculo de todo con calculadora.
-
-\hl{Clase 27/02}
-
-Recta de regresión de Y sobre X (PPT)
-
-Tablita resumen del coeficiente de correlación (PPT)
-
-La recta de regresión siempre pasa por el punto $(\gor{x},\gor{y})$
-
-¿Qué recta calcular? ¿Y sobre X o X sobre Y? Si quiero predecir Y, hago Y sobre X. Si quiero predecir X, hacemos X sobre Y.
-
-Recomendación: https://www.vitutor.com/estadistica/bi/ejercicios\_correlacion.html
-
-\subsubsection{Causalidad vs Correlación}
-
-\begin{itemize}
-	\item https://www.telecinco.es/informativos/ciencia/beneficios-chupar-chupete-bebe_0_2661750040.html
-	\item https://www.infosalus.com/nutricion/noticia-bebidas-endulzadas-artificialmente-reducen-riesgo-recurrencia-cancer-colon-muerte-20180723074434.html
-	\item https://www.infobae.com/america/tendencias-america/2018/10/23/un-estudio-afirma-que-la-comida-organica-reduce-un-25-el-riesgo-de-cancer/
-\end{itemize}
-
-Ejercicios para clase: 64 b,d,e ; 65
-Ejercicios para practicar: 62, 63
 
 
 
