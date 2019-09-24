@@ -66,7 +66,7 @@ def random_not_null(mn,mx,integer):
         return retval
 
 def _genIrreductiblePoly():
-    P(x)=x*x+random_between(1,5,true)
+    P(x)=x*x+random_not_null(-5,5,true)
     return P(x)
 
 
@@ -76,9 +76,10 @@ def _genP(grado,fixedroots,rfrac,rootsRank,coefRank,degree2):
 
     denAcum=1
     
-    if degree2 and grado>2:
-        grado-=2
-        P(x) = _genIrreductiblePoly()
+    for i in range(degree2):
+        if degree2 and grado>2:
+            grado-=2
+            P(x) = P(x) * _genIrreductiblePoly()
 
     for i in range(grado):
         if fixedroots == []:
@@ -133,50 +134,55 @@ def ppart(rfrac,deg,degree2):
     if degree2:
         deg2 = " (contiene un polinomio irreducible de grado 2)"
     
-    return "\\textbf{Polinomios de grado " + str(deg) + "} " #+ fracroots + " raices fraccionarias" + deg2 + ".\\\\\\"
+    return "" # "\\textbf{Polinomios de grado " + str(deg) + "} " #+ fracroots + " raices fraccionarias" + deg2 + ".\\\\\\"
 
 
 
 
 rootsRank=[-3,4]            # Rango de valores que pueden tomar las raices
 coefRank=[-3,3]             # Rango de valores que pueden tomar los coeficientes principales.
-numToGen= 25                # Numero de polinomios a generar de cada tipo.
+numToGen= 6                 # Numero de polinomios a generar de cada tipo.
 printsol = false            # Imprimir las raices de cada polinomio.
+num_rfrac_max = 5           # Numero maximo de raices fraccionarias.
+num_rfrac_min = 2           # Numero minimo de raices fraccionarias.
 num=0                       # Contador auxiliar para llevar la numeracion de los polinomios generados.
-hasDegree2Pols = false      # Contiene 1 polinomio de grado 2 irreducible.
-degree = 6                  # Grado maximo de los polinomios.
+numDegree2Pols = 1          # Numero maximo de polinomios irreducibles de grado 2.
+degree_max = 5              # Grado maximo de los polinomios.
+degree_min = 3              # Grado minimo de los polinomios.
 allPols=[]
+topMargin_solutions = 1.2   # Margen vertical entre soluciones
 
-for hasDegree2Pols in range(1):
-    if hasDegree2Pols:
-        print "\\section{Con polinomios irreducibles de grado 2}"
+for _numDegree2Pols in range(numDegree2Pols+1):
+    if _numDegree2Pols:
+        print "\\section{Con " + str(_numDegree2Pols) + " polinomio/s irreducible/s de grado 2}"
     else:
         print "\\section{Sin polinomios irreducibles de grado 2}"
 
-    for rfrac in range(2): # rfrac: numero de raices fraccionarias por polinomio.
-        print "\\subsection{Hasta "+str(rfrac) + " raices fraccionarias}"
-        for _deg in range(degree-1): 
-            deg=_deg+2  # deg: grado del polinomio.
-            if rfrac>deg:
-                continue
-    
-            print(ppart(rfrac=rfrac,deg=deg,degree2=hasDegree2Pols))
+    for rfrac in range(num_rfrac_max-num_rfrac_min+1): # rfrac: numero de raices fraccionarias por polinomio.
+        num_rfrac_real = rfrac + num_rfrac_min
+        print "\\subsection{Hasta "+str(num_rfrac_real) + " raices fraccionarias}"
+        for _deg in range(degree_max-degree_min+1): 
+            deg=_deg+degree_min  # deg: grado del polinomio.
+            if num_rfrac_real>deg:
+                num_rfrac_real=deg
+
+            print(ppart(rfrac=num_rfrac_real,deg=deg,degree2=_numDegree2Pols))
             for i in xrange(numToGen): 
                 num = num + 1
                 print genP(grado=deg,
                         fixedroots=[],
-                        rfrac=rfrac,
+                        rfrac=num_rfrac_real,
                         printsol = printsol, 
                         strfun=str_poly, 
                         counter = num,
                         rootsRank = rootsRank,
                         coefRank = coefRank,
-                        degree2 = hasDegree2Pols)
+                        degree2 = _numDegree2Pols)
                 print
 
 print "\\newpage\\section{Soluciones}"
 for i in xrange(len(allPols)):
     p=allPols[i]
-    print "\\subitem \\begin{dmath*}P_{"+str(i+1)+"}(x) = " + latex(p.factor())+"\\end{dmath*}\\vspace{-1.2cm}"
+    print "\\subitem \\begin{dmath*}P_{"+str(i+1)+"}(x) = " + latex(p.factor())+"\\end{dmath*}\\vspace{-" + str(topMargin_solutions) + "cm}"
 print ""
 	
