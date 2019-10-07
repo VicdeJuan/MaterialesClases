@@ -66,7 +66,7 @@ def random_not_null(mn,mx,integer):
         return retval
 
 def _genIrreductiblePoly():
-    P(x)=x*x+random_not_null(-5,5,true)
+    P(x)=x*x+random_not_null(0,5,true)
     return P(x)
 
 
