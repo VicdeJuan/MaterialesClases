@@ -168,12 +168,13 @@ $X:$ número de respuestas contestadas correctamente.
 
 $X\equiv B(6,0'7)$
 
-Probabilidad de acertar más de 2: $P(X>2) = 1 - \left(P(X=0) + P(X=1)\right) \overset{(1)}{=} 0,99$
+Probabilidad de acertar más de 2: $P(X>2) = 1 - \left(P(X=0) + P(X=1) + P(X=2)\right) \overset{(1)}{=} 0,93$
 
 (1):
 Utilizando $P(X=k) = \displaystyle\comb{n}{k}·p^k·(1-p)^{n-k}$, tenemos:
 \[P(X = 0) = \comb{n}{0}·p^0·(1-p)^{n-0} = (1-0'7)^6 = 0'3^{6} = 7,29·10^{-4}   \]
 \[P(X = 1) = \comb{n}{1}·p^1·(1-p)^{n-1} = \comb{6}{1}·p^1·(1-p)^{6-1} = 6·0'7·0'3^{5} = 0'01 \]
+\[P(X = 2) = \comb{n}{2}·p^2·(1-p)^{n-2} = \comb{6}{2}·p^2·(1-p)^{6-2} = 6·0'7^2·0'3^{4} = 0'06 \]
 
 Probabilidad de tener solo un fallo, es lo mismo que acertar todas menos 1, por lo que $P(X=5) = \comb{6}{5}·0'7^5·0'3^{1} = 0'3$
 
