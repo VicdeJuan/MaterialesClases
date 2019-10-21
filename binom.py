@@ -13,7 +13,7 @@ if len(sys.argv) != 5:
 n=int(sys.argv[1])
 _arr_p = sys.argv[2].split("/")
 if len (_arr_p) == 1:
-    p = float(_arr_p)
+    p = float(_arr_p[0])
 elif len(_arr_p) == 2:
     p = float(_arr_p[0])*1.0/float(_arr_p[1])
 k=int(sys.argv[3])
