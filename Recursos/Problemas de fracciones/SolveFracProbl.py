@@ -13,7 +13,9 @@ def lcm(a, b):
     return a * b / gcd(a, b)
 
 
-datos_Font=dict({'unit': "minutos",'total': None, 'data': dict({'f1':{'T':Fraction(3,8), 'd':None, 'name': "f1"} ,'f2' : {'R':Fraction(2,5),'T':None, 'd':None,'name': "f2"}, 'f3': {'T':None, 'd':15,'name': "f3"}})})
+#### La estructura "dict" de data no tiene mucho sentido. Se puede hacer una lista y así está ordenada. Los "d1", "f2D" son completamente inútiles.
+
+datos_Font=dict({'unit': "minutos",'total': None, 'data': dict({'d1':{'T':Fraction(3,8), 'd':None, 'name': "Fontanero 1"} ,'f2' : {'R':Fraction(2,5),'T':None, 'd':None,'name': "Fontanero 2"}, 'f3': {'T':None, 'd':15,'name': "Fontanero 3"}})})
 
 datos_PDM=dict({'unit':"euros", 'total': None, 'data':dict({'f1P':{'T':Fraction(3,7), 'd':None,'name': "Pepe"} ,'f2D' : {'R':Fraction(3,5),'T':None, 'd':None,'name': "Domingo"}, 'f3M': {'T':None, 'd':8,'name': "Manolo"}})})
 
@@ -21,7 +23,24 @@ datos_Naranjas=dict({'unit': "Naranjas",'total': None, 'data': dict({'f1M':{'T':
 
 datos_Dinero=dict({'unit':"Euros", 'total':None, 'data':dict({'f1D':{'T':Fraction(3,4), 'd':None,'name': "Mañana"} ,'f2T' : {'R':Fraction(4,5),'T':None, 'd':None,'name': "Tarde"}, 'f3M': {'T':None, 'd':100,'name': "Sobran"}})})
 
-#datos_edificio=dict({'unit':"Euros", 'total':None, 'data': dict({'f1D':{'T':Fraction(2,5), 'd':None,'name': "Combustible"} ,'f2T' : {'T':Fraction(1,8), 'd':None,'name': "Electricidad"}, 'f3M': {'T':Fraction(1,1)2, 'd':None,'name': "Basuras"},'f4O': {'T':Fraction(1,4), 'd':None,'name': "Mantenimiento"},'f5O': {'T':None, 'd':None,'name': "Limpieza"}})})
+datos_edificio=dict(
+		{'unit':"Euros",
+		 'total':None,
+		 'data': dict(
+		 		{'d1':{
+		 			'T':Fraction(2,5),
+		 			 'd':None,
+		 			 'name': "Combustible"} ,
+		 		'd2' : {'T':Fraction(1,8),
+		 			 'd':None,
+		 			 'name': "Electricidad"},
+		 		'd3': {'T':Fraction(1,12),
+		 			 'd':None,
+		 			 'name': "Basuras"},
+		 		'd4': {'T':Fraction(1,4),
+		 			 'd':None,
+		 			 'name': "Mantenimiento"},
+		 		'd5': {'T':None, 'd':None,'name': "Limpieza"}})})
 
 datos=datos_PDM
 
