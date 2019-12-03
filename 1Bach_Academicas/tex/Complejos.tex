@@ -19,6 +19,7 @@ Hemos obtenido 2 raíces: $α_1 = 1+i$ y $α_2 = 1-i$. ¿Cómo quedaría el poli
 
 Primera utilidad de los números complejos: resolver ecuaciones que antes eran "imposibles" y factorizar polinomios que considerábamos irreducibles.
 
+Hay otra utilidad más: $\sqrt[6]{64}$ tiene 4 soluciones: $\sqrt[6]{64} = \{ 2,-2,1+\sqrt{3},1-\sqrt{3},-1+\sqrt{3},-1-\sqrt{3}\}$
 
 \section{Operaciones en $ℂ$}
 
@@ -29,21 +30,22 @@ Un número complejo es de la forma $z=a+bi$, donde $i=\sqrt{-1}$, y llamamos $a=
 	\item $z_1 = 3$ $\to$ $Re(z_1) = \;\;\quad\quad\;\;\;$; $Im(z_1) = \;\;\;\;\;\;\;$ \footnote{Luego, todos los números reales son complejos.}
 	\item $z_2 = 2-i$ $\to$ $Re(z_2) = \;\;\quad\quad\;\;\;$; $Im(z_2) = \;\;\;\;\;\;\;$
 	\item $z_3 = \sqrt{2}+6i$ $\to$ $Re(z_3) = \;\;\quad\quad\;\;\;$; $Im(z_3) = \;\;\;\;\;\;\;$
-	\item $z_4 = i^4$ $\to$ $Re(z_4) = \;\;\quad\quad\;\;\;$; $Im(z_4) = \;\;\;\;\;\;\;$
 \end{itemize}
 
 \paragraph{Representación gráfica:} como los vectores en física, sólo que aquí no hay $\vec{i}$ ni $\vec{j}$. El eje $y$ es el eje \textit{imaginario} y el eje $x$ es el eje \textit{real}.
 
-\textbf{Ejemplo:} Representa los números complejos $z_1 = 1-i;\;z_2 = 0;\; z_3 = 2+3i$.
+\begin{example} Representa los números complejos $z_1 = 1-i;\;z_2 = 0;\; z_3 = 2+3i$.
 
 \begin{figure}[hbtp]
 \centering
 \includegraphics[scale=0.5]{../grid.png}
 \end{figure}
+\end{example}
 
-\textbf{Conjugados: } Llamamos conjugado de un número complejo $z = a+bi$ a $\bar{z} = a-bi$.
+\begin{defn}[Complejos\IS Conjugado] Llamamos conjugado de un número complejo $z = a+bi$ a $\bar{z} = a-bi$.
 
 \obs Los conjugados son simétricos respecto del eje $x$.
+\end{defn}
 
 \subsection{Operaciones en forma binómica} 
 
@@ -69,13 +71,33 @@ Al multiplicar arriba y abajo por el conjugado estamos quitando el número compl
 \textbf{Ejemplo: }
 
 
-\paragraph{PRACTICAR CON EL EJERCICIO 8} \hl{Fin de la primera clase}
+\paragraph{Practicar con el ejercicio 8} 
 
 \subsubsection{Forma polar}
 
+
+\begin{example}
+ $z = 1-i$, dibujando el punto y sacando el ángulo que forma. 
+
+$|z| = \sqrt{1^2+1^2} = \sqrt{2}$
+
+$\alpha_z = \frac{-\pi}{4}$
+
+$z = 1-i = \sqrt{2}_{\rfrac{-\pi}{4}}$
+
+\end{example}
+
 En la representación gráfica de números complejos, podemos utilizar otro sistema de referencia: \textit{módulo} $|z|=r$ y \textit{argumento (ángulo)} $\arg{z} = α$. 
 %
-Estas son las \concept[Coordenadas polares complejos]{coordenadas polares} y escribimos $z = r_α$
+Estas son las \concept[Coordenadas polares complejos]{coordenadas polares} de un número complejo y escribimos $z = r_α$
+
+
+Sea $z=a+bi \in\mathbb{C}$, definimos \concept[Complejos\IS Módulo]{módulo} como $|z| = +\sqrt{a^2+b^2}$.
+
+\obs La representación geométrica del módulo es la distancia hasta el origen de coordenadas.
+
+Sea $z=a+bi \in\mathbb{C}$, definimos \concept[Complejos\IS Argumento]{argumento} como $\alpha = \arctg\left(\frac{Im(z)}{Re(z)}\right)$.
+
 
 \textbf{Escribe en forma polar:}
 \begin{itemize}
