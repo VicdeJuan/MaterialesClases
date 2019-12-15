@@ -1,0 +1,141 @@
+
+Los sucesos en probabilidad se escriben entre comillas y se representan con una letra mayúscula.
+
+\begin{itemize}
+    \item[m] $I =$ impar
+    \item[m] $I =$ probabilidad de sacar un número impar
+    \item[m] $I =$ "Probabilidad de sacar un número impar"
+    \item[b] $I =$ "Sacar un número impar"
+\end{itemize}
+
+\textbf{Operaciones con conjuntos (o sucesos)}
+
+$A\cup B = \{x\in A \vee x \in B\}$ (Unión)
+
+$A\cap B = \{x\in A \wedge x \in B\}$ (Intersección - Probabilidad compuesta)
+
+$A^c = \overline{A} = \{x\not\in A$ (Complementario) \textit{No se llama contrario}.
+
+$A - B = \{x\in A \wedge x \not\in B\}$ (Diferencia)
+
+\obs $A - B = A \cap \overline{B}$
+
+\begin{defn}[Leyes\IS de de Morgan]
+\[\overline{A\cap B} = \overline{A}\cup \overline{B}\]
+\[\overline{A\cup B} = \overline{A}\cap \overline{B}\]
+\end{defn}
+
+
+
+\begin{defn}[Compatibilidad]
+Sean $A,B$ dos sucesos.
+
+Son compatibles si $A\cap B \not= \emptyset$. 
+Son incompatibles si $A\cap B =\emptyset$
+\end{defn}
+
+\begin{defn}[Sistema completo de sucesos]
+Sean $A_1,...,A_n$ sucesos de un cierto experimento aleatorio.
+%
+Se dice que forman un sistema completo de sucesos del espacio muestral $E$ cuando:
+
+\begin{itemize}
+    \item $\displaystyle\bigcup_{i=1}^n A_i = A_1\cup A_2 \cup ... \cup A_n =  E$
+    \item $A_i\cap A_j = \emptyset\;\;\; \forall i,j=1...n$
+\end{itemize}
+\end{defn}
+
+\begin{example}
+Sea $E = \{1,2,3,4,5,6\}$. ¿Son sistemas completos de sucesos las siguientes agrupaciones?
+
+\begin{itemize}
+    \item $A_1 = \{1,2,3\}; A_2 = \{4,5\} ; A_3 = \{6\}$
+    \item $A_1 = \{\text{múltiplos de 3}\} ; A_2 = \{\text{números pares}\} ; A_3 = \{1,5\}$
+\end{itemize}
+\end{example}
+
+
+\begin{prop}Sea $A_1,...,A_n$ un sistema completo de sucesos. Entonces \[\displaystyle\sum_{i=1}^n P(A_i) = 1\]
+\end{prop}
+
+
+\begin{defn}[Regla de Laplace]
+Si los socesos elementales de un experimento aleatorio son equiprobables, entonces, $P(A) = \frac{\text{casos favorables}}{\text{casos posibles}}$
+\end{defn}
+\obs ¿Y si no son equiprobables? 
+
+\begin{defn}[Probabilidad\IS Ley de los grandes números]
+Sea $A$ un suceso y $h(A)$ su frecuencia de ocurrencia relativa\footnote{El porcentaje de veces que ese suceso ocurre.} en $n$ repeticiones del experimento. Entonces \[P(A) = \lim_{n\leftrightarrow \infty}h(A)\]
+\end{defn}
+
+
+\begin{defn}[Probabilidad\IS Axiomática de Kolmogorov]
+    Sea $p$ una función que asocia a cada suceso $A$ del espacio de sucesos $S$ un número real designado por $p(A)$.
+    
+    Decimos que $p$ es una probabilidad si cumple las siguientes propiedades:
+    \begin{itemize}
+        \item $0\leq p(A) \leq 1 \;\;\;\forall A\in S$
+        \item $p(E) = 1$
+        \item $A\cap B = \emptyset \implies p(A\cup B) = p(A) + p(B)$
+    \end{itemize}
+\end{defn}
+
+\paragraph{Propiedades de la probabilidad:} Sea $A$ un suceso cualquiera:
+\begin{itemize}
+    \item $P(\overline{A}) = 1 - P(A)$
+    \item $A\subset B \implies P(A) \leq P(B)$
+    \item $0\leq P(A) \leq 1$
+    \item $P(A\cup B) = P(A) + P(B) - P(A\cap B)$
+\end{itemize}
+
+\begin{center}
+\includegraphics[scale=0.3]{MatII/tex/Venn-diagram-visualization-of-a-3-event-probability-space-O.png}
+\includegraphics[scale=0.3]{MatII/tex/Venn-diagram-visualization-of-a-3-event-probability-space-O.png}
+\includegraphics[scale=0.3]{MatII/tex/Venn-diagram-visualization-of-a-3-event-probability-space-O.png}
+\includegraphics[scale=0.3]{MatII/tex/Venn-diagram-visualization-of-a-3-event-probability-space-O.png}
+\end{center}
+
+\begin{defn}[Probabilidad\IS condicionada]
+Sean $A,B$ sucesos de un suceso aleatorio. 
+
+Se define la probabilidad condicionada $p(A/B)$ como la probablidad de que se produzca $A$ si sabemos que se ha producido $B$.
+
+\[P(A/B) = \frac{P(A\cap B)}{P(B)}\]
+\end{defn}
+
+\textit{Este es un buen momento para hacer algún ejercicio. Página 349, ejer 36 por ejemplo. Recordamos que $P(A\cup B) = P(A) + P(B) - P(A\cap B)$}
+
+\begin{defn}[Independencia de sucesos]
+$A,B$ son sucesos independientes si y sólo si \[P(A/B) = P(A/\overline{B}) = P(A)\]
+\end{defn}
+
+\begin{theorem}
+\[A,B \text{ independientes } \dimplies P(A\cap B) = P(A)·P(B)\]
+\end{theorem}
+\begin{proof}
+\[\left.\begin{array}{c}
+P(A/B) = \frac{P(A\cap B)}{P(B)} \dimplies P(A\cap B) = P(B)·P(A/B)\\A,B \text{ independientes } \dimplies P(A/B) = P(A)\end{array}\right\}*\]
+\[(*) \implies P(A\cap B) = P(B)·\underset{P(A/B)}{P(A)} = P(B)·P(A)\]
+\end{proof}
+
+\begin{theorem}[Teorema\IS Probabilidad Total]
+Sea $A_1,A_2,...,A_n$ un sistema completo de sucesos y sea $B$ otro suceso.
+\[  
+    P(B) = P(A_1\cap B) + P(A_2\cap B) + ... + P(A_n\cap B) = 
+\]
+\[
+    P(B/A_1)·P(A_1) + P(B/A_2) · P(A_2) + ... + P(B/A_n)·P(A_n)
+\]
+\end{theorem}
+\begin{theorem}[Teorema\IS de Bayes]
+\[P(B/A) = \frac{P(A/B)·P(B)}{P(A)}\]
+\end{theorem}
+\begin{proof}
+\[
+\left.
+\begin{array}{c}
+    P(A\cap B) = P(A)·P(B/A)\\
+    P(A\cap B) = P(B)·P(A/B)
+\end{array}\right\} \implies P(A)·P(B/A) =  P(B)·P(A/B) \dimplies \]\[\dimplies P(B/A) = \frac{P(A/B)·P(B)}{P(A)} 
+\]
+\end{proof}
