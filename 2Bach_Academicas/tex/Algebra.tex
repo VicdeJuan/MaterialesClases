@@ -1128,7 +1128,33 @@ Las posibilidades son: (ver figura \ref{fig:PosicionesRelativasPlanos})
     \label{fig:PosicionesRelativasPlanos}
 \end{figure}
 
-\hl{Vuelta a Enero: Dudas y corregimos el ejercicio 44 y 48.}
+
+
+
+\subsection{Posiciones relativas entre recta y plano}
+
+\paragraph{Ecuaciones implícitas: } si tanto la recta como el plano están dados en ecuaciones implícitas, estaríamos en la posición relativa de 3 planos, sabiendo que 2 de ellos son secantes en una recta.
+
+\paragraph{Ecuaciones paramétrica: } $\pi: \{P_{\pi},\vec{v_{\pi}}, \vec{w_{\pi}}\}$ 
+
+\begin{center}
+\begin{tabular}{ccc}
+$P_r \in \pi $ & $\vec{v_r}$ LD de $v_{\pi}, \vec{w}_{\pi}$ & Conclusión\\
+No & No & Secantes en un punto\\
+No & Sí & Recta paralela\\
+Sí & No & Secantes en un punto\\
+Sí & Sí & Recta contenida en el plano\\
+\end{tabular}
+\end{center}
+
+\paragraph{Plano implícito, recta paramétrica: } comprobamos si existe algún valor de $\lambda_{r}$ para el que se cumpla la ecuación implícita del plano. 
+\begin{itemize}
+  \item $\exists!\lambda \implies $ secante.
+  \item $\lambda \in \real \implies$ contenida.
+  \item $\not\exists \lambda \implies $ paralela.
+\end{itemize}
+
+Deberes: Hoja resumen de teoría,105ab,107ab
 
 \subsubsection{Posiciones relativas entre 2 rectas:}
 
@@ -1179,33 +1205,6 @@ Página 289, ejercicios 52, calculando puntos de cortes
 \end{problem}
 
 
-\subsection{Posiciones relativas entre recta y plano}
-
-\paragraph{Ecuaciones implícitas: } si tanto la recta como el plano están dados en ecuaciones implícitas, estaríamos en la posición relativa de 3 planos, sabiendo que 2 de ellos son secantes en una recta.
-
-\paragraph{Ecuaciones paramétrica: } $\pi: \{P_{\pi},\vec{v_{\pi}}, \vec{w_{\pi}}\}$ 
-
-\begin{center}
-\begin{tabular}{ccc}
-$P_r \in \pi $ & $\vec{v_r}$ LD de $v_{\pi}, \vec{w}_{\pi}$ & Conclusión\\
-No & No & Secantes en un punto\\
-No & Sí & Recta paralela\\
-Sí & No & Secantes en un punto\\
-Sí & Sí & Recta contenida en el plano\\
-\end{tabular}
-\end{center}
-
-\paragraph{Plano implícito, recta paramétrica: } comprobamos si existe algún valor de $\lambda_{r}$ para el que se cumpla la ecuación implícita del plano. 
-\begin{itemize}
-  \item $\exists!\lambda \implies $ secante.
-  \item $\lambda \in \real \implies$ contenida.
-  \item $\not\exists \lambda \implies $ paralela.
-\end{itemize}
-
-Ejercicios: 105ab,107ab
-
-Deberes: Hoja resumen de teoría. 104a,106,107.
-
 \subsubsection{Haz}
 \paragraph{Haz de rectas paralelas: } cambia el punto, manteniendo fijo el vector. 
 \paragraph{Haz de rectas secantes: } cambia el vector (sin ser nunca nulo), mantiene fijo el punto.
@@ -1226,7 +1225,7 @@ Tema 11:
 
 Tema 11:
 \begin{itemize}
-  \item Básicos: 83,91,92,93a,98,100,101a,103a,104a,105,107d,108
+  \item Básicos: 83,91,92,93a,98,100,101a,103a,104a,105,106,107d,108
   \item Síntesis: 111-119
   \item Completos: 122-124,127,129-133
 \end{itemize}
