@@ -4,14 +4,137 @@
 
 \section{Repaso de 4º}
 
+\subsection{Logaritmos}
+
+\paragraph{Introducción}
+
+Vamos a aprender una nueva manera de multiplicar. En realidad ya sabéis, aunque no seáis conscientes.\footnote{Fuente: \href{https://www.youtube.com/watch?v=FB3\_BeukBBk\&t=99s}{Mark Foskey, youtube.com}}
+
+
+\begin{itemize}
+\item Caso 1: $1000000·10000000 = 10^6·10^7 = 10^{13}$. ¿Y podremos hacer esto con otros números que no sean el 10?
+
+\item Caso 2: $64·128 = 2^6·2^7 = 2^{13} = 8192$
+\item ¿Caso 3?: Me construyo la tabla del 3.
+\begin{center}
+\begin{tabular}{cccccccccccc}
+1& 3& 9& 27& 81& 243& 729& 2187& 6561& 19683& 59049& 177147\\
+\textcolor{red}{0} & \textcolor{red}{1} & \textcolor{red}{2} & \textcolor{red}{3} & \textcolor{red}{4} & \textcolor{red}{5} & \textcolor{red}{6} & \textcolor{red}{7} & \textcolor{red}{8} & \textcolor{red}{9} & \textcolor{red}{10} & \textcolor{red}{11}
+\end{tabular}
+\end{center}
+\item Caso 4: ¿Y para números que no son potencias enteras? Por ejemplo, $64*40$. Pues si $32=2^5$ y $64=2^6$, $40=2^{5,...}$ ¿Tiene sentido?
+
+\item Caso 5: Lo que hicieron, Yost y Napier, fue coger la tabla del 1,0001 en lugar de la tabla del 3 y dividir por mil los números rojos, dando lugar a la tabla de logaritmos:
+
+\begin{center}
+	\begin{tabular}{cl}
+		0.0 & 1.0\\
+		0.001 & 1.001\\
+		0.002 & 1.002\\
+		0.003 & 1.003\\
+		0.004 & 1.00401\\
+		0.005 & 1.00501\\
+		0.006 & 1.00602\\
+		0.007 & 1.00702\\
+		0.008 & 1.00803\\
+		0.009 & 1.00904\\
+		$\vdots$ & \quad\quad$\vdots$\\
+		0.991 & 2.69259\\
+		0.992 & 2.69529\\
+		0.993 & 2.69798\\
+		0.994 & 2.70068\\
+		0.995 & 2.70338\\
+		0.996 & 2.70608\\
+		0.997 & 2.70879\\
+		0.998 & 2.7115\\
+		0.999 & 2.71421\\
+		1.0 & \hl{2.71692} (Una aproximación de $e$)\\
+	\end{tabular}
+\end{center}
+
+\end{itemize}
+
+$40=2^{5...}$. Ese $5...$ es lo que llamamos "logaritmo" en base 2 de 40. ¡Los logaritmos son exponentes! Es el \textit{exponente al que hay que elevar} ...
+
+
+\begin{defn}[Logaritmo]
+Sean $a\in ℝ>0,a≠1$ y $N\in\real$.
+
+Se llama logaritmo en base $a$ de $N$ al exponente $x$ que cumple: $a^x = N$ y se escribe:
+\[
+	\log_aN=x\dimplies a^x=N
+\]
+\end{defn}
+
+\textbf{Conectando con otras operaciones matemáticas:} 
+\[
+	\begin{array}{c}
+		2^3=8\\
+		\sqrt[3]{8}=2\\
+		\text{??? }= 3
+	\end{array}
+\]
+
+La relación $2^3=8$ se puede expresar de otras maneras, dando como resultado el 2 (raíz cúbica) y dando como resultado el 3 (logaritmo).
+
+\nota{De la propia definición se entiende:}
+\begin{enumerate}
+	\item $y\in\real, y<0 \implies ∀a,\nexists\log_a y$
+	\item $\log_a 1 = 0 \dimplies a^0 = 1$
+	\item $\log_a a = 1 \dimplies a^1 = a$
+	\item $\log_a a^q = q \dimplies a^q = a^q$ por definición.
+	\item $a^{\log_a N} = N$
+\end{enumerate}
+
+\paragraph{Propiedades}
+
+Vamos a razonar las propiedades de los logaritmos teniendo en cuenta que son exponentes. De hecho, las propiedades de los logaritmos no son otra cosa que las propiedades de las potencias escritas de otra manera.
+
+\begin{itemize}
+	\item $\log_a(AB) = \log_a(A) + \log_a(B)$
+	\subitem Por ejemplo:
+	\[9·8 = 2^x \dimplies x = \log_2 (9·8) = \log_2 8 + \log_2 9\]
+	\subitem Como los logaritmos son exponentes, esta propiedad se podría leer: \textit{el exponente de un producto es la suma de los exponentes}.
+	\item $\log_a\left(\rfrac{A}{B}\right) = \log_a(A) - \log_a(B)$
+	\item Como los logaritmos son exponentes, ¿cómo se leería esta propiedad?
+	\item $\log_a(A)^n = n·\log_a(A)$ 
+
+	\item $\displaystyle\log_aA = \frac{\log_bA}{\log_ba}$ \textbf{(Cambio de base})
+\end{itemize}
+
+\paragraph{Tomar logaritmos:}
+
+\[
+A = B \overset{A>0; a>0; a\neq 1}{\dimplies} a^{\log_a A} = a^{\log_a B} \dimplies \log_aA=\log_aB
+\]
+
+
+\subsubsection{Ejemplos con logaritmos}
+
+Calcula:
+\begin{itemize}
+	\item $\log \sqrt{0,0001}$
+	\item \textit{[Ejercicio de examen de años anteriores]} Demuestra $\log_a b · \log_b a = 1$ 
+\end{itemize}
+
+
 \subsection{Factorización}
 
 \begin{itemize}
 	\item Alguien sale a la pizarra a factorizar. Utilizando 
 https://www.wolframalpha.com/problem-generator/quiz/?category=Algebra\&topic=FactorPolynomial 
 	\item Diferencia raíz y factor.
+	\item Verdadero o falso.
+	\subitem Un polinomio de grado 2 tiene 2 raíces reales. (Falso: $x^2+1$)
+	\subitem Un polinomio con 2 raíces tiene 2 factores. (Discutible: $(x+1)^2(x-1)$)
+	\subitem Un polinomio con 2 factores tiene 2 raíces.
+	\subitem Un polinomio es irreducible si no tiene raíces reales. (Falso: $P(x) = x^4+2x^2+1$)
+	\subitem 2 polinomios con las mismas raíces son iguales: (Falso: $(x^2+1)(x-2)$ y $(x-2)$)
+	\subitem 2 polinomios con los mismos factores son iguales: (Falso: $2(x-1)$ y $(x-1)$)
+
 	\item Halla “m” para que $2x^3-2x^2+m·x+4$ sea divisible por $(x-2)$
-	\item Deberes: hoja de ejercicios del google drive. Tienes 2 días. Si no puedes acceder o lo que sea, me escribes un correo. Si te atascas me escribes un correo. Bajo ningún concepto vengas el viernes sin haberlo hecho.
+
+	\item Deberes: ejercicios 6-9
 \end{itemize}
 
 
@@ -150,118 +273,6 @@ Sea $P(x) = 3x^3-3x^2-3x+3$ .¡Factoriza! $P(x) = 3(x-1)(x+1)^2$
 \end{enumerate}
 
 
-\subsection{Logaritmos}
-
-\paragraph{Introducción}
-
-Vamos a aprender una nueva manera de multiplicar. En realidad ya sabéis, aunque no seáis conscientes.\footnote{Fuente: \href{https://www.youtube.com/watch?v=FB3\_BeukBBk\&t=99s}{Mark Foskey, youtube.com}}
-
-
-\begin{itemize}
-\item Caso 1: $1000000·10000000 = 10^6·10^7 = 10^{13}$. ¿Y podremos hacer esto con otros números que no sean el 10?
-
-\item Caso 2: $64·128 = 2^6·2^7 = 2^{13} = 8192$
-\item ¿Caso 3?: Me construyo la tabla del 3.
-\begin{center}
-\begin{tabular}{cccccccccccc}
-1& 3& 9& 27& 81& 243& 729& 2187& 6561& 19683& 59049& 177147\\
-\textcolor{red}{0} & \textcolor{red}{1} & \textcolor{red}{2} & \textcolor{red}{3} & \textcolor{red}{4} & \textcolor{red}{5} & \textcolor{red}{6} & \textcolor{red}{7} & \textcolor{red}{8} & \textcolor{red}{9} & \textcolor{red}{10} & \textcolor{red}{11}
-\end{tabular}
-\end{center}
-\item Caso 4: ¿Y para números que no son potencias enteras? Por ejemplo, $64*40$. Pues si $32=2^5$ y $64=2^6$, $40=2^{5,...}$ ¿Tiene sentido?
-
-\item Caso 5: Lo que hicieron, Yost y Napier, fue coger la tabla del 1,0001 en lugar de la tabla del 3 y dividir por mil los números rojos, dando lugar a la tabla de logaritmos:
-
-\begin{center}
-	\begin{tabular}{cl}
-		0.0 & 1.0\\
-		0.001 & 1.001\\
-		0.002 & 1.002\\
-		0.003 & 1.003\\
-		0.004 & 1.00401\\
-		0.005 & 1.00501\\
-		0.006 & 1.00602\\
-		0.007 & 1.00702\\
-		0.008 & 1.00803\\
-		0.009 & 1.00904\\
-		$\vdots$ & \quad\quad$\vdots$\\
-		0.991 & 2.69259\\
-		0.992 & 2.69529\\
-		0.993 & 2.69798\\
-		0.994 & 2.70068\\
-		0.995 & 2.70338\\
-		0.996 & 2.70608\\
-		0.997 & 2.70879\\
-		0.998 & 2.7115\\
-		0.999 & 2.71421\\
-		1.0 & \hl{2.71692} (Una aproximación de $e$)\\
-	\end{tabular}
-\end{center}
-
-\end{itemize}
-
-$40=2^{5...}$. Ese $5...$ es lo que llamamos "logaritmo" en base 2 de 40. ¡Los logaritmos son exponentes! Es el \textit{exponente al que hay que elevar} ...
-
-
-\begin{defn}[Logaritmo]
-Sean $a\in ℝ>0,a≠1$ y $N\in\real$.
-
-Se llama logaritmo en base $a$ de $N$ al exponente $x$ que cumple: $a^x = N$ y se escribe:
-\[
-	\log_aN=x\dimplies a^x=N
-\]
-\end{defn}
-
-\textbf{Conectando con otras operaciones matemáticas:} 
-\[
-	\begin{array}{c}
-		2^3=8\\
-		\sqrt[3]{8}=2\\
-		\text{??? }= 3
-	\end{array}
-\]
-
-La relación $2^3=8$ se puede expresar de otras maneras, dando como resultado el 2 (raíz cúbica) y dando como resultado el 3 (logaritmo).
-
-\nota{De la propia definición se entiende:}
-\begin{enumerate}
-	\item $y\in\real, y<0 \implies ∀a,\nexists\log_a y$
-	\item $\log_a 1 = 0 \dimplies a^0 = 1$
-	\item $\log_a a = 1 \dimplies a^1 = a$
-	\item $\log_a a^q = q \dimplies a^q = a^q$ por definición.
-	\item $a^{\log_a N} = N$
-\end{enumerate}
-
-\paragraph{Propiedades}
-
-Vamos a razonar las propiedades de los logaritmos teniendo en cuenta que son exponentes. De hecho, las propiedades de los logaritmos no son otra cosa que las propiedades de las potencias escritas de otra manera.
-
-\begin{itemize}
-	\item $\log_a(AB) = \log_a(A) + \log_a(B)$
-	\subitem Por ejemplo:
-	\[9·8 = 2^x \dimplies x = \log_2 (9·8) = \log_2 8 + \log_2 9\]
-	\subitem Como los logaritmos son exponentes, esta propiedad se podría leer: \textit{el exponente de un producto es la suma de los exponentes}.
-	\item $\log_a\left(\rfrac{A}{B}\right) = \log_a(A) - \log_a(B)$
-	\item Como los logaritmos son exponentes, ¿cómo se leería esta propiedad?
-	\item $\log_a(A)^n = n·\log_a(A)$ 
-
-	\item $\displaystyle\log_aA = \frac{\log_bA}{\log_ba}$ \textbf{(Cambio de base})
-\end{itemize}
-
-\paragraph{Tomar logaritmos:}
-
-\[
-A = B \overset{A>0; a>0; a\neq 1}{\dimplies} a^{\log_a A} = a^{\log_a B} \dimplies \log_aA=\log_aB
-\]
-
-
-\subsection{Ejemplos con logaritmos}
-
-Calcula:
-\begin{itemize}
-	\item $\log \sqrt{0,0001}$
-	\item \textit{[Ejercicio de examen de años anteriores]} Demuestra $\log_a b · \log_b a = 1$ 
-\end{itemize}
 
 
 \section{Tema 2: Ecuaciones}
