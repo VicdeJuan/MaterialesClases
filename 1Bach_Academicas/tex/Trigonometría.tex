@@ -107,6 +107,56 @@ Fin clase 2.
 
 \subsection{Ecuaciones trigonométricas}
 
+\[\cos(x) = \cos(2x) \overset{?}{\dimplies} x=2x\]
+
+No, ni en un sentido ni en el otro. 
+
+\paragraph{No es $\Rightarrow$} según qué razón trigonométrica y en qué cuerpo estemos trabajando. En $\real\; a = b \implies \cos(a)=\cos(b)$ y $a = b \implies \sen(a)=\sen(b)$ pero 
+
+$a = b \not\implies \tg(a)=\tg(b)$. El ejemplo más claro sería: $x = \rfrac{\pi}{2} \not\implies \tg(x) = \tg(4)$.
+
+\paragraph{No es $\Leftarrow$}
+
+
+\[
+\cos(x) = \cos(2x) \dimplies \cos(x) = \cos^2(x) - \sen^2(x) \dimplies \cos(x) = \cos^2(x) - 1 + \cos^2(x) \dimplies 2\cos^2(x) - \cos(x) -1 = 0
+\]
+
+Cambio de variable: $t = \cos(x)$
+
+\[
+	2t^2-t-1 = 0 \dimplies \left(t+\rfrac{1}{2}\right)(t-1)=0
+\]
+
+Deshacemos el cambio:
+
+
+\[
+\left.
+\begin{array}{l}
+t_1 = 1\\
+t_1 = \cos(x)
+\end{array}
+\right\} \implies \cos(x) = 1\implies \left\{\begin{array}{l}
+x_1 = 0 + 2\pi k\kinz
+\end{array}\right.
+\]
+
+\[
+\left.
+\begin{array}{c}
+t_2 = \rfrac{-1}{2}\\
+t_2 = \cos(x)
+\end{array}
+\right\} \implies \cos(x) = \rfrac{-1}{2} \implies \left\{\begin{array}{c}
+x_2 = \rfrac{2\pi}{3} + 2\pi k\kinz\\
+x_3 = \rfrac{-2\pi}{3} + 2\pi k\kinz
+\end{array}\right.
+\]
+
+Ejercicios 49 y 50.
+
+
 \subsection{Triángulos rectángulos}
 
 \subsection{Teorema del seno y del coseno}
