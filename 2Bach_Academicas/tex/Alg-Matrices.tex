@@ -1,0 +1,594 @@
+\chapter{Álgebra (Matrices y determinantes)}
+
+\section{Matrices}
+
+\paragraph{Definición de matriz}
+
+\paragraph{Operaciones con matrices}
+
+\subparagraph{Traspuesta}
+
+Ejercicio: \textbf{Demuestra que cualquier matriz puede escribirse como suma de una matriz simétrica y otra antisimétrica}
+
+\subparagraph{Producto de matrices}
+
+\subsection{Matriz inversa}
+Se puede calcular de 3 formas. Definición, Gauss-Jordan y matriz adjunta. Vamos a ver ahora los 2 primeros métodos.
+
+\paragraph{Definición y propiedades}
+
+\subsection{Algunas ecuaciones matriciales sencillas}
+
+\paragraph{Gauss-Jordan}
+La base del método de Gauss es que toda transformación lineal de Gauss se puede expresar como una matriz. Simplemente buscamos la matriz que transforma la matriz dada en la identidad. Para ello, ponemos la identidad a la derecha. (Espero que leyendo esta explicación te hayas enterado)
+
+
+\subsection{Utilidades: Grafos}
+
+\section{Determinantes}
+
+\begin{defn}[Determinante]
+$\appl{|\;\;|}{\mathcal{M}_n}{\real}$
+\end{defn}
+
+\subsection{Cálculo de determinantes de orden 3}
+
+\subsection{Propiedades}
+
+\subsection{Cálculo de determinantes de orden 4 o más}
+
+\paragraph{Menores, Gauss}
+
+\subsection{Matriz inversa por determinantes}
+
+\subsection{Ecuaciones matriciales a tope}
+
+\subsection{Rango}
+\paragraph{Gauss}
+
+\paragraph{Determinantes}
+
+Si $|A| \neq 0$, significa que no hay 2 filas (ni 2 columnas) linealmente independientes. Si las hubiera, $|A| = 0$.
+
+Por lo tanto, si $|A|\neq 0 \dimplies rg(A) = \text{ máx}$
+
+¿Qué ocurre si $A\not\in\mathcal{M}_n$?
+
+\begin{example}
+\[
+    A=\begin{pmatrix}2&2&3&4\\4&4&2&1\end{pmatrix}
+\]
+
+En este ejemplo, cogiendo $\left|\begin{matrix}2&2\\4&4\end{matrix}\right| = 0$, pero $\left|\begin{matrix}3&4\\2&1\end{matrix}\right| \neq 0$, por lo que estas 2 filas tienen que ser linealmente independientes, por lo que la matriz tiene rango 2.
+
+También valdría argumentarlo desde $\left|\begin{matrix}2&3\\4&2\end{matrix}\right| \neq 0$
+\end{example}
+
+\begin{prop}[Cálculo del rango por menores]
+Sea $M_p$ un menor de orden $p$ de la matriz $A\in\mathcal{M}_{n\times m}$
+\[\exists M^p \tlq M_p \neq 0 \dimplies rg(A) \geq p\]
+\[\forall M^p \;\; M_p = 0 \dimplies rg(A) < p\]
+\end{prop}
+
+\subsubsection{Matriz de Vandermonde}
+\[
+V=\begin{bmatrix}
+1 & \alpha_1 & \alpha_1^2 & \dots & \alpha_1^{n-1}\\
+1 & \alpha_2 & \alpha_2^2 & \dots & \alpha_2^{n-1}\\
+1 & \alpha_3 & \alpha_3^2 & \dots & \alpha_3^{n-1}\\
+\vdots & \vdots & \vdots & \ddots &\vdots \\
+1 & \alpha_n & \alpha_n^2 & \dots & \alpha_n^{n-1}\\
+\end{bmatrix}\]
+
+\paragraph{Determinante: } El determinante se calcula con la siguiente fórmula:
+
+\[\begin{vmatrix} V \end{vmatrix}=\prod_{1 \le i<j\le n}(\alpha_j-\alpha_i)\]
+
+\begin{example}
+\[
+\begin{vmatrix}
+1&2&4&8\\
+1&3&9&27\\
+1&4&16&64\\
+1&5&25&125
+\end{vmatrix} = \underbrace{\overbrace{(3-2)}^{j=2}\overbrace{(4-2)}^{j=3}\overbrace{(5-2)}^{j=4}}_{i=1}\underbrace{\overbrace{(4-3)}^{j=3}\overbrace{(5-3)}^{j=4}}_{i=2}\underbrace{\overbrace{(5-4)}^{j=4}}_{i=3} = 1·2·3·1·2·1 = 6
+\]
+\end{example}
+
+\begin{proof}[por Inducción]
+
+\paragraph{Base: n=2} Es fácil notar que en el caso de una matriz de 2×2 el resultado es correcto.
+\[\begin{vmatrix} V \end{vmatrix}=v_{1,1}v_{2,2} - v_{1,2}v_{2,1}=\alpha_2-\alpha_1=\prod_{1\le i<j\le 2} (\alpha_j-\alpha_i)\]
+
+\paragraph{Paso}
+Suponiendo cierta la fórmula para el caso $n-1$, procedemos a calcular el determinante de orden $n$. Para ello, basta con realizar la siguiente operación elemental sobre cada columna: $C_{j}\rightarrow C_{j}-(\alpha_1 \times C_{j-1})$. Esta operación no afecta al determinante, por lo que se obtiene lo siguiente:
+
+\[
+\begin{vmatrix} V \end{vmatrix}=\begin{vmatrix}
+1 & \alpha_1 & \alpha_1^2 & \dots & \alpha_1^{n-1}\\
+1 & \alpha_2 & \alpha_2^2 & \dots & \alpha_2^{n-1}\\
+1 & \alpha_3 & \alpha_3^2 & \dots & \alpha_3^{n-1}\\
+\vdots & \vdots & \vdots & \ddots &\vdots \\
+1 & \alpha_n & \alpha_n^2 & \dots & \alpha_n^{n-1}\\
+\end{vmatrix}=\begin{vmatrix}
+1 & 0 & 0 & \dots & 0\\
+1 & \alpha_2-\alpha_1 & \alpha_2(\alpha_2-\alpha_1) & \dots & \alpha_2^{n-2}(\alpha_2-\alpha_1)\\
+1 & \alpha_3-\alpha_1 & \alpha_3(\alpha_3-\alpha_1) & \dots & \alpha_3^{n-2}(\alpha_3-\alpha_1)\\
+\vdots & \vdots & \vdots & \ddots &\vdots \\
+1 & \alpha_n-\alpha_1 & \alpha_n(\alpha_n-\alpha_1) & \dots & \alpha_n^{n-2}(\alpha_n-\alpha_1)\\
+\end{vmatrix}
+\]
+
+Desarrollando por los adjuntos de la primera fila: 
+
+\[\begin{vmatrix} V \end{vmatrix}=\begin{vmatrix}
+\alpha_2-\alpha_1 & \alpha_2(\alpha_2-\alpha_1) & \dots & \alpha_2^{n-2}(\alpha_2-\alpha_1)\\
+\alpha_3-\alpha_1 & \alpha_3(\alpha_3-\alpha_1) & \dots & \alpha_3^{n-2}(\alpha_3-\alpha_1)\\
+\vdots & \vdots & &\vdots \\
+\alpha_n-\alpha_1 & \alpha_n(\alpha_n-\alpha_1) & \dots & \alpha_n^{n-2}(\alpha_n-\alpha_1)\\
+\end{vmatrix}\]
+Extrayendo de cada fila un factor, obtenemos:
+\[\begin{vmatrix} V \end{vmatrix}=
+(\alpha_2-\alpha_1)(\alpha_3-\alpha_1)\dots(\alpha_n-\alpha_1)
+\underbrace{\begin{vmatrix}
+1 & \alpha_2 & \alpha_2^2 & \dots & \alpha_2^{n-2}\\
+1 & \alpha_3 & \alpha_3^2 & \dots & \alpha_3^{n-2}\\
+1 & \alpha_4 & \alpha_4^2 & \dots & \alpha_4^{n-2}\\
+\vdots & \vdots & \vdots & &\vdots \\
+1 & \alpha_n & \alpha_n^2 & \dots & \alpha_n^{n-2}\\
+\end{vmatrix}}_{(1)}\]
+
+(1): es una matriz de Vandermonde de orden $n-1$, por lo que podemos aplicar la fórmula por la hipótesis de inducción, quedando así demostrada la fómrula del determinante de Vandermonde para orden $n$
+\end{proof}
+
+\section{Sistemas de ecuaciones}
+
+Sistemas, expresión matricial de sistemas. 
+ 
+Rouché-Frobenius, corregimos. 
+
+Resolución de sistemas escalonados y método de Gauss Jordan.
+ 
+"Repaso" de Sistema Compatible Indeterminado. 2 sistemas resueltos por mi. El primero con ecuaciones. El segundo con matricial.
+
+
+\begin{problem}
+
+Discute y resuelve el siguiente sistema:
+
+\[
+\left\{\begin{array}{lcccl}
+x&+2y&-2z&=&4\\
+2x&+5y&-2z&=&10\\
+4x&+9y&-6z&=&18
+\end{array}\right\}
+\]
+
+\solution
+
+\[
+\left\{\begin{array}{lcccl}
+x&+2y&-2z&=&4\\
+2x&+5y&-2z&=&10\\
+4x&+9y&-6z&=&18
+\end{array}\right\}
+\overset{(1)}{\dimplies}
+\left\{\begin{array}{lcccl}
+x&+2y&-2z&=&4\\
+ &y&+2z&=&2 \\
+4x&+9y&-6z&=&18
+\end{array}\right\}
+\overset{(2)}{\dimplies}\]
+\[
+\left\{\begin{array}{lcccl}
+x&+2y&-2z&=&4\\
+ &y&+2z&=&2 \\
+ &y&+2z&=&2 \\
+\end{array}\right\}
+\dimplies
+\underbrace{\left\{\begin{array}{lcccl}
+x&+2y&-2z&=&4\\
+ &y&+2z&=&2 
+\end{array}\right\}}_{\text{Discusión: C.I (*)}}
+\]
+
+(*): Es un sistema compatible indeterminado porque es un sistema escalonado con más incógnitas que ecuaciones.
+
+Al ser compatible indeterminado, el sistema tiene infinitas soluciones (que no se calculan en 1º de Bachillerato).
+
+
+\paragraph{Resolución:} Aunque un sistema de ecuaciones Compatible Indeterminado tiene infinitas soluciones, no cualquier trío de números es solución. 
+%
+Por ejemplo, en este caso, la terna $(x,y,z) = (0,0,0)$ no es solución.
+%
+\textbf{Infinitas soluciones no significa que todo sea solución}.
+
+La pregunta lógica sería, ¿cómo podemos escribir \textbf{todas} las soluciones del sistema? Utilizando un parámetro.
+%
+Al dar un valor a una incógnita, ya forzamos los otros 2 valores. 
+%
+Para cada valor inventado de $x$, solo hay un único valor posible de $y$ y de $z$ (normalmente).
+
+En este caso, vamos a dar un valor concreto a $y$, pero en forma de parámetro.
+%
+Tomamos $y=λ$ y sustituimos en $E_2$.
+
+\[y+2z=2 \dimplies λ+2z=2 \dimplies z=\frac{2-λ}{2}\]
+
+Sustituimos $y=λ,z=\frac{2-λ}{2}$ en $E_1$:
+
+\[x+2y-2z = 4 \dimplies x= 4+2z-2y = 4+2\left(\frac{2-λ}{2}\right)-2λ = 4+2-λ-2λ = 6-3λ = 3(2-λ)\]
+
+\textbf{Solución:} $(x,y,z) = \left(3(2-λ),λ,\frac{2-λ}{2}\right)$
+
+\paragraph{1)} $E_2=E_2-2E_1$
+
+\[
+\left\{\begin{array}{lcccl}
+2x&+4y&-4z&=&8\\
+2x&+5y&-2z&=&10\\
+\hline
+&-y&-2z&=&-2 
+\end{array}\right\}
+\]
+
+\paragraph{2)} $E_3=E_2-4E_1$
+
+\[
+\left\{\begin{array}{lcccl}
+4x&+9y&-6z&=&18\\
+4x&+10y&-4z&=&20\\
+\hline
+&-y&-2z&=&-2 
+\end{array}\right\}
+\]
+
+
+\paragraph*{Comprobación:} Sustituimos $(x,y,z) = \left(3(2-λ),λ,\frac{2-λ}{2}\right)$ en el sistema inicial:
+
+
+\[
+\left\{\begin{array}{lcccll}
+x&+2y&-2z&=&4 &\to 6-3λ + 2λ - 2\displaystyle\left(\frac{2-λ}{2}\right) = 6-λ-2+λ = 4\\
+2x&+5y&-2z&=&10 &\to 12-6λ +5λ - 2\displaystyle\left(\frac{2-λ}{2}\right) = 12-λ-2+λ = 10\\
+4x&+9y&-6z&=&18 &\to 24-12λ + 9λ - 6\displaystyle\left(\frac{2-λ}{2}\right) = 24-3λ-6+3λ = 18
+\end{array}\right\}\begin{array}{c}\\\\\\\\\text{cqc}\end{array}
+\]
+
+\end{problem}
+
+\begin{problem}
+
+Discute y resuelve el siguiente sistema:
+
+\[
+\left\{\begin{array}{rcccl}
+3x&-y&+z&=&3\\
+6x&-2y&+2z&=&6\\
+-3x&+y&-z&=&-3
+\end{array}\right\}
+\]
+
+\solution
+
+
+\[
+\left\{\begin{array}{rcccl}
+3x&-y&+z&=&3\\
+6x&-2y&+2z&=&6\\
+-3x&+y&-z&=&-3
+\end{array}\right\} \implies
+\left(\begin{array}{ccc|c}
+3&-1&1&3\\
+6&-2&2&6\\
+-3&1&-1&-3
+\end{array}\right)
+\dimplies\]
+\[
+\text{\hl{Ojo con el cambio de columnas}}
+\left(\begin{array}{ccc|c}
+1&-1&3&3\\
+2&-2&6&6\\
+-1&1&-3&-3
+\end{array}\right)
+\dimplies
+\left(\begin{array}{ccc|c}
+1&-1&3&3\\
+0&0&0&0\\
+0&0&0&0
+\end{array}\right)
+\]
+
+Tiene grado de indeterminación 2, por lo que necesitaremos 2 parámetros.
+
+Llamamos $x=\lambda$ e $y = \mu$ con $\mu,\lambda\in\real$ y sustituimos para hallar $z$.
+
+$$z-y+3x=3 \implies z - \mu + 3\lambda = 3 \dimplies z = 3+\mu-3\lambda$$
+
+Solución: $(x,y,z) = \left(\lambda, \mu, 3+\mu - 3\lambda\right), \forall\lambda,\mu\in\real$
+
+\end{problem}
+
+Ejercicio 59 de deberes.
+
+\textbf{Resolución por inversa de stma}. ¿Funciona siempre? Sólo en sistemas de Cramer, es decir, matriz de coeficientes cuadrada con rango máximo. 
+
+Deberes el 15b,16b.
+
+\subsection{Regla de Cramer}
+
+En todos los sistemas cuya matriz de coeficientes tenga inversa, puede generalizarse el método de la inversa.
+
+Así, $Ax = B \dimplies x = A^{-1}·B$
+
+\[
+    A^{-1} = \frac{1}{|A|} · \left( \text{Adj}(A) \right)^T = \frac{1}{|A|} · \begin{pmatrix} 
+    A_{11} & A_{21} & A_{31} & ... & A_{n1}\\
+    A_{21} & A_{22} & A_{32} & ... & A_{n2}\\
+    \vdots &        &       & \ddots & \vdots\\
+    A_{1n} & A_{2n} & A_{3n} & ... & A_{nn}\end{pmatrix}
+\]
+
+Por lo tanto,
+\[
+    A^{-1}·B = \frac{1}{|A|} · 
+    \begin{pmatrix} 
+        A_{11} & A_{21} & A_{31} & ... & A_{n1}\\
+        A_{12} & A_{22} & A_{32} & ... & A_{n2}\\
+        \vdots &        &       & \ddots & \vdots\\
+        A_{1n} & A_{2n} & A_{3n} & ... & A_{nn}\end{pmatrix}·
+    \begin{pmatrix}
+        b_1\\b_2\\\vdots\\ b_n
+    \end{pmatrix}
+    = 
+    \begin{pmatrix}
+    A_{11}b_1 + A_{21}b_2 + A_{31}b_3 \dots A_{n1}·b_n\\
+    A_{12}b_1 + A_{22}b_2 + A_{32}b_3 \dots A_{n2}·b_n\\
+    \vdots\\
+    A_{1n}b_1 + A_{2n}b_2 + A_{3n}b_3 \dots A_{nn}·b_n\\
+    \end{pmatrix}
+\]
+
+Deberes : 21b, 22b
+
+Corregimos Cramer. 
+
+Inconvenientes: ¿y si es incompatible?
+
+Numéricos: 61a,b;62a,b
+
+Parámetros:64a,c (ojo con eliminar una solución)
+
+
+
+Deberes para el punete: 
+57,60
+
+\chapter{Geometría analítica}
+
+% \paragraph{Espacio vectorial: $\real^3$}
+
+% \begin{defn}[Espacio vectorial]
+% Un espacio vectorial sobre $K$ es una estructura algebraica, $(V,+,·)$, donde $V$ es un conjunto cualquiera y $\appl{+}{V\times V}{V}$ y $\appl{·}{K\times V}{V}$
+
+
+% Las operaciones $+$ y $·$ deben cumplir las siguientes propiedades:
+% \begin{itemize}
+%     \item $\vec{u} + (\vec{v} + \vec{w}) = (\vec{u} + \vec{v}) + \vec{w}, \qquad \forall \vec{u}, \vec{v}, \vec{w} \in V $  (asociativa)
+%     \item $\vec{u} + \vec{v} = \vec{v} + \vec{u}, \qquad \forall \vec{u}, \vec{v} \in V$ (conmutativa)
+% \item $ \exists{}\vec{e} \in{} V : $  $ \vec{u} + \vec{e} = \vec{u} , \forall{} \vec{u} \in{} V
+% $ (elemento neutro)
+
+% \item $
+%    \forall{} \vec{u} \in{} V , \quad
+%    \exists{} \vec{-u} \in{} V : $  $
+%     \vec{u} + (\vec{-u}) = \vec{e}
+% $ (elemento opuesto)
+
+% \item $
+%    \mathit{a} \cdot (\mathit{b} \cdot \vec{u})=(\mathit{a} \cdot \mathit{b}) \cdot \vec{u} ,$  $
+%    \forall{} \mathit{a} ,\mathit{b} \in{}K , $  $
+%    \forall{} \vec{u} \in{} V
+% $
+
+% \item$
+%    \exists{e} \in{K}: $ 
+%    e \cdot \vec{u}   = \vec{u} , 
+%    \forall{} \vec{u} \in{} V
+% $ (elemento neutro del producto)
+% \item $
+%    \mathit{a} \cdot (\vec{u}+ \vec{v}) =
+%    \mathit{a} \cdot \vec{u}+ \mathit{a} \cdot \vec{v} , $  $
+%    \forall{} \mathit{a}\in{}K , $  $
+%    \forall{} \vec{u}, \vec{v} \in{} V
+% $ (propiedad distributiva)
+% \item $
+%    (\mathit{a} + \mathit{b}) \cdot \vec{u} =
+%    \mathit{a} \cdot \vec{u} + \mathit{b} \cdot \vec{u} , $  $
+%    \forall{} \mathit{a}, \mathit{b} \in{} K , $  $
+%    \forall{} \vec{u} \in{} V
+% $ (propiedad distributiva)
+% \end{itemize}
+% \end{defn}
+
+%\section{Introducción}
+
+\begin{defn}[Espacio vectorial]
+Un espacio vectorial es una estructura algebraica, $(\mathcal{V},+,·)$, donde $\mathcal{V}$ es un conjunto cualquiera y $\appl{+}{\mathcal{V}\times \mathcal{V}}{\mathcal{V}}$ y $\appl{·}{\real\times \mathcal{V}}{\mathcal{V}}$
+\end{defn}
+
+En nuestro caso, el espacio vectorial con el que trabajaremos será $\mathcal{V}^3 = (\real^3, + , ·)$ sobre $\real$, siendo la operación $+$ la suma de vectores habitual y $·$ el producto por un escalar real.
+
+Los elementos de $\mathcal{V}^3$ se denominan vectores y son ternas de números (reales) con los que se pueden hacer operaciones. 
+%
+Escribiremos $\vec{u} = (u_1,u_2,u_3)$.
+
+Las operaciones $+$ y $·$ son las habituales. 
+%
+Recordamos:
+
+\begin{example}
+Sean $u_1 = (1,2,3)$ y $u_2 = (0,1,-2)$, tenemos:
+  \begin{itemize}
+      \item $u_1 + u_2 = \hide{(1+0, 2+1, 3-2)}$
+      \item $-u_2 = (0,-1,2)$
+      \item $u_1-u_2 = u_1+ (-u_2) = (1,2,3) + (0,-1,2) = (1,1,1)$
+      \item $2·u_1 + 3·u_2 = \hide{(2,4,6) + (0,3,-6) = (2,7,0)}$
+      \obs \hide{A esta operación la llamamos \concept[Combinación lineal\IS de vectores]{combinación lineal de vectores}}.
+  \end{itemize}
+\end{example}
+
+\obs Las matrices también forman un espacio vectorial. Ver libro página 179.
+
+\obs Todavía no hemos definido nada de producto de vectores. \textit{Explicación de porqué el orden seguido es diferente}
+
+\paragraph{Bases de espacios vectoriales y coordenadas}
+
+\begin{defn}[Subespacio generado] 
+Sean $ G = \{v_1,v_2,...,v_n\}$ un conjunto de vectores de un espacio vectorial.
+
+Llamamos subespacio generado al conjunto de todas las combinaciones lineales de vectores de $G$.
+
+\obs Llamaremos a $G$ \concept[Espacio vectorial\IS Sistema de generadores]{Sistema de generadores}.
+\end{defn}
+
+\begin{example}
+\begin{itemize}
+  \item El subespacio generado por un vector sería una recta.
+  \item El subespacio generado por 2 vectores sería un plano.
+  \item El subespacio generado por 3 vectores sería el espacio.
+\end{itemize}
+\end{example}
+
+Un concepto fundamental a la hora de trabajar con vectores es la "base del espacio vectorial". \hide{(Libro página 257)}
+
+\begin{defn}[Base de un espacio vectorial][Espacio vectorial\IS Base]
+Un conjunto de vectores $\mathcal{B} = \{b_1,b_2,b_3\}$ es una base de $\mathcal{V}^3$ si:
+  \begin{itemize}
+      \item Son linealmente independientes.
+      \item El subespacio que generan es $\mathcal{V}^3$. (Es decir, que cualquier vector de $\mathcal{V}^3$ puede escribirse como combinación lineal de los vectores de la base).
+  \end{itemize}
+\end{defn}
+
+
+\begin{defn}[Dimensión de un espacio vectorial][Espacio vectorial\IS Dimensión]
+Sea $\mathcal{V}$ un espacio vectorial y $\mathcal{B}$ una base del mismo.
+
+Llamamos \textbf{Dimensión} del espacio vectorial al número de vectores de $\mathcal{B}$ (que son linealmente independientes por definición de \textit{base de un espacio vectorial})
+\end{defn}
+
+En este curso, para saber si un conjunto de vectores es base de un espacio vectorial, basta comprobar que son linealmente independientes y que hay tantos vectores linealmente independientes como dimensión tiene el espacio vectorial.
+
+
+\begin{defn}[Coordenadas de un vector]
+Sea $\mathcal{B} = \{\vec{b}_1,\vec{b}_2,\vec{b}_3\}$ es una base de $\mathcal{V}$.
+
+Si $\vec{u} = c_1 · \vec{b_1} +  c_2·\vec{b_2} + c_3\vec{b_3}$, decimos que $(c_1,c_2,c_3)$ son las coordenadas del vector $\vec{u}$ en la base $\mathcal{B}$.
+\end{defn}
+
+\obs "Sea el vector $\vec{u} = (1,2,3)$" deja de tener sentido, ya que necesitamos estar refiriéndonos a una base. 
+%
+Por ello, a partir de ahora, intentaremos escribir los vectores $\vec{u} = \vec{i} + 2\vec{j} + 3\vec{k}$, dejando bien claro en qué base estamos trabajando.
+
+\begin{problem}
+
+  Determina si los siguientes conjuntos son bases de $\mathcal{V}^3$ (que tiene dimensión: \hide{3})
+    
+\ppart $\mathcal{B}_1 = \{(1,0,0), (0,0,1)\}$
+\ppart $\mathcal{B}_2 = \{(1,0,0), (0,1,0),(0,0,1)\}$
+\ppart $\mathcal{B}_3 = \{(1,0,0), (0,1,0),(0,0,1),(1,1,1)\}$
+\ppart $\mathcal{B}_4 = \{(1,0,3),(1,2,-1),(0,1,2)\}$
+\ppart $\mathcal{B}_5 = \{(2,-1,5),(1,-2,-4),(4,-5,-3)\}$
+    \solution
+
+        
+        \spart $\mathcal{B}_1 = \{(1,0,0), (0,0,1)\}$
+        \subitem \hide{No es base porque hay vectores de $\mathcal{V}^3$ que no se pueden expresar como combinación lineal de los vectores de $\mathcal{B}_1$, por ejemplo, $(0,1,0)$}
+        
+        \spart $\mathcal{B}_2 = \{(1,0,0), (0,1,0),(0,0,1)\}$
+        \subitem Sí es una base porque $\mathcal{B}_2$ tiene 3 vectores linealmente independientes: $Rg\displaystyle\begin{pmatrix}1&0&0\\0&1&0\\0&0&1\end{pmatrix} = 3$.
+        
+        \spart $\mathcal{B}_3 = \{(1,0,0), (0,1,0),(0,0,1),(1,1,1)\}$
+        \subitem No es una base porque el vector $(1,1,1)$ se puede expresar como combinación lineal de los 3 primeros. 
+        
+        Así, aunque $\displaystyle Rg\begin{pmatrix}1&0&0\\0&1&0\\0&0&1\\1&1&1\end{pmatrix} = 3$, no podríamos decir que $\mathcal{B}_3$ fuera una base. Solo podríamos decir que \hide{es un \textbf{Sistema de generadores de $\mathcal{V}^3$}}
+        
+        
+        \spart $\mathcal{B}_4 = \{(1,0,3),(1,2,-1),(0,1,2)\}$
+        \subitem Estudiamos $\displaystyle \begin{pmatrix}\vec{u_1}\\\vec{u_2}\\\vec{u_3}\end{pmatrix} = \begin{pmatrix}1&0&3\\1&2&-1\\0&1&2\end{pmatrix}$ 
+        Buscamos si tiene rango máximo. Para ello, $\begin{vmatrix}1&0&3\\1&2&-1\\0&1&2\end{vmatrix} \neq 0 \implies $ por lo que podemos decir que son linealmente independientes\footnote{Si no lo fueran, el determinante sería 0}. Así, tenemos 3 vectores linealmente independientes, por lo que podemos decir que \textbf{sí son una base de $\mathcal{V}^3$.}
+        
+        
+        \spart $\mathcal{B}_5 = \{(2,-1,5),(1,-2,-4),(4,-5,-3)\}$
+        \subitem \hide{Estudiamos $\displaystyle \begin{pmatrix}\vec{u_1}\\\vec{u_2}\\\vec{u_3}\end{pmatrix} = \begin{pmatrix}2&-1&5\\1&-2&-4\\4&-5&-3\end{pmatrix}$ Su determinante es 0, por lo que no tiene rango 3, por lo que no son linealmente independientes.}
+    
+\end{problem}
+
+\paragraph{Cambios de base}
+
+\begin{problem}
+
+Sea 
+$\mathcal{B}_1 = \{ u_1=(1,1,1), u_2(0,1,0), u_3=(0,0,1)\}$
+y
+$\mathcal{B}_2 = \{ w_1=(1,2,3), w_2=(1,1,0), w_3=(3,-1,1)\}$
+
+\ppart Si $\vec{z} = (2,-2,1)$ son las coordenadas en la base $\mathcal{B}_1$, halla las coordenadas de $\vec{z}$ en la base canónica.
+
+
+\ppart Si $\vec{q} = (2,-2,1)$ son las coordenadas en la base $\mathcal{B}_2$, halla las coordenadas de $\vec{q}$ en la base canónica.
+
+
+\ppart Halla las coordenadas de $\vec{z}$ en $\mathcal{B}_2$
+
+\obs El vector $\vec{u_1}$ de la base $\mathcal{B}_1$ son las coordenadas respecto de una base concreta. 
+%
+Si no se dice nada, suponemos la canónica.
+
+\solution
+
+\spart
+\[\vec{z}_1 = 2\vec{u_1} -2\vec{u_2} + \vec{u_3} = 2·(\vec{i} +\vec{j} + \vec{k}) - 2·(\vec{j} + \vec{k}) = (2\vec{i}+3\vec{k})\]
+
+Este $\vec{z}_c = (2,0,3)$ son las coordenadas de $\vec{u}$ en la base canónica.
+
+
+\spart 
+
+\[
+\vec{q}_1 = 2\vec{w_1} -2\vec{w_2} + \vec{w_3} = 
+2·(\vec{i} +2\vec{j} + 3\vec{k}) - 2·(\vec{i}+\vec{j}) + 3(\vec{i} -\vec{j} + \vec{k}) = 
+3\vec{i} -\vec{j} + 9\vec{k}
+\]
+
+Este $\vec{q} = (2,0,3)$ son las coordenadas de $\vec{u}$ en la base canónica.
+
+\spart
+Buscamos 
+$\vec{z} = (2\vec{u_1}-\vec{u_2}+\vec{u_3}) = c_1(1,2,3) + c_2 (1,1,0) + c_3 ( 3,-1,1)$.
+
+\[
+2·(1,1,1) - (0,1,0) + (0,0,1) = c_1(1,2,3) + c_2 (1,1,0) + c_3 ( 3,-1,1)\dimplies \left\{
+  \begin{array}{c}
+    2 = c_1 + c_2 + 3c_3\\
+    1 = 2c_1 + c_2 -c_3\\
+    3 = 3c_1  \quad\quad +c_3 
+  \end{array}
+  \right\}
+\]
+
+Resolvemos el sistema de 3 ecuaciones con 3 incógnitas, obteniendo: $(x,y,z) = \left(\rfrac{6}{13},\rfrac{11}{13},\rfrac{-3}{13}\right)$
+
+Estas son las coordenadas de $\vec{z}$ en la base $\mathcal{B}_2$
+
+\end{problem}
+
+\textbf{Deberes: terminar los ejemplos de clase.}
+
+Hecho 1, hechos todos. Problemas recomendados, especialmente 267.48,49 + 269.60,61: 
+\begin{itemize}
+  \item Página 267.48,49
+  \item Página 269.56-65
+  \item Página 271.102,103
+\end{itemize}
+
