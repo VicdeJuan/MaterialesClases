@@ -220,40 +220,177 @@ a-1 & -2& 0
 \end{problem}
 
 
-\subsection{Perpendicular común}
-
-
-\subsection{Proyecciones y simetrías}
+\subsection{Proyecciones y simetrías (Libro)}
 
 \subsubsection{Proyección}
 
+\paragraph{Proyección de punto sobre plano}
+
+Para calcular la proyección de un punto $P$ sobre un plano $\pi$ (ver \fref{fig::proy::punto-plano}):
+\begin{enumerate}
+  \item $r\perp \pi$ con $P\in r$
+  \item $P' = r\cap \pi$
+\end{enumerate}
+
+\begin{figure}[hbtp]
+\centering
+\tdplotsetmaincoords{60}{110}
+\input{tikz/proy-punto-plano.tex}
+\label{fig::proy::punto-plano}
+\caption{Proyección de punto sobre plano}
+\end{figure}
+
+\paragraph{Proyección de recta sobre plano}
+
+Se reduce a proyectar 2 puntos de la recta sobre el plano. Se puede utilizar el punto de intersección de la recta con el plano.
+
+\obs Buenas prácticas: calcular el punto de intersección para saber si la recta pertenece al plano o es paralela. 
+\begin{itemize}
+  \item Si $r\in\pi$, la proyección de la recta será ella misma.
+  \item Si $r||\pi$, necesitaremos proyectar 2 puntos de la recta.
+  \item En los demás casos, se proyecta un punto sobre la recta y la proyección será la que pasa por el punto proyectado y el punto de intersección. Ver \fref{fig::proy::recta-plano}.
+\end{itemize}
+
+
+\begin{figure}[hbtp]
+\centering
+\tdplotsetmaincoords{60}{110}
+\input{tikz/proy-recta-plano.tex}
+\label{fig::proy::recta-plano}
+\caption{Proyección de recta sobre plano}
+\end{figure}
+
+
+\paragraph{Proyección de punto sobre recta}
+
+
+\begin{figure}[hbtp]
+\centering
+\tdplotsetmaincoords{60}{110}
+\input{tikz/proy-punto-recta.tex}
+\label{fig::proy::punto-recta}
+\caption{Proyección de punto sobre recta}
+\end{figure}
+
+
 \subsubsection{Simetría de un punto respecto de otro punto}
 
-Tirao.
+\begin{figure}[hbtp]
+\centering
+\tdplotsetmaincoords{60}{110}
+\input{tikz/sim-punto-punto.tex}
+\label{fig::sim::punto-punto}
+\caption{Simetría de un punto respecto de otro punto}
+\end{figure}
 
 \subsubsection{Simetría de un punto respecto de una recta}
 
 Plano perpendicular a la recta que contenga al punto, intersección con la recta.
 
+\begin{figure}[hbtp]
+\centering
+\tdplotsetmaincoords{60}{110}
+\input{tikz/sim-punto-recta.tex}
+\label{fig::sim::punto-recta}
+\caption{Simetría de punto respecto de recta}
+\end{figure}
+
+
 \subsubsection{Simetría de un punto respecto de un plano}
 
 Recta perpendicular al plano, que pasa por el punto.
 
+\begin{figure}[hbtp]
+\centering
+\tdplotsetmaincoords{60}{110}
+\input{tikz/sim-punto-plano.tex}
+\label{fig::sim::punto-plano}
+\caption{Simétrico de punto respecto de un plano}
+\end{figure}
+
+
+
+\subsubsection{Simetría de una recta respecto de un plano}
+
+\begin{figure}[hbtp]
+\centering
+\tdplotsetmaincoords{60}{110}
+\input{tikz/sim-recta-plano.tex}
+\label{fig::sim::recta-plano}
+\caption{Simetría de una recta respecto de un plano}
+\end{figure}
+
+
+
 \newpage
 \subsection{Ángulos}
-\subsubsection{Ángulo formado por dos rectas: secantes, se cruzan y paralelas/coincidentes}
+\subsubsection{Ángulo formado por dos rectas}
+
+Llamamos ángulo formado por 2 rectas al menor de los 2 ángulos que forman. Según su posición relativa se distinguen:
+
+\begin{itemize}
+  \item \textbf{Secantes:} el ángulo de las rectas será el ángulo de los vectores directores.
+  \item \textbf{Paralelas/coincidentes:} ángulo 0.
+  \item \textbf{Rectas que se cruzan:} el ángulo que forman es el que forman 2 paralelas a ellas que sean secantes. 
+\end{itemize}
+
+Se calcula el ángulo desde la definición de producto escalar.
+
+\[
+\cos(\alpha) = \cos(\hat{r,x}) = \left| \cos\left(\hat{\vec{u_r},\vec{v_r}}\right)\right| = \frac{|\vec{u_r}·\vec{v_r}|}{|\vec{u_r}|·|\vec{v_r}|} \implies 0\lq \alpha \leq \rfrac{\pi}{2}
+\]
+
 \subsubsection{Ángulo formado por dos planos}
+
+\begin{itemize}
+  \item El ángulo formado por 2 planos es el ángulo formado por sus vectores normales. 
+  \item Podemos considerar que forman 2 ángulos.
+\end{itemize}
+
 \subsubsection{Ángulo formado por recta y plano}
+
+
+\begin{itemize}
+  \item Sería posible calcular el ángulo que forma la recta con su proyección. 
+  \item Otra posibilidad, utilizar el vector normal del plano.
+\end{itemize}
+
+\concept{Paralelismo y perpendicularidad entre recta y plano}
+
+\begin{itemize}
+  \item $r || \pi \dimplies \vec{v_r}·\vec{n_{\pi}} = 0$
+  \item $r\perp \pi \dimplies \vec{v_r}||\vec{n_{\pi}}$
+\end{itemize}
 
 \subsection{Distancias}
 \subsubsection{Entre 2 puntos}
-\subsubsection{Plano mediador}
+Módulo del vector.
+
 \subsubsection{Entre punto y plano}
-\subsubsection{Planos bisectores}
+La distancia entre el punto y su proyección sobre el plano.
+
 \subsubsection{Entre 2 planos}
+
+\begin{itemize}
+  \item Se comprueba si son paralelos (porque sino, distancia 0).
+  \item Entre un punto de un plano y el otro plano.
+\end{itemize}
+
+
 \subsubsection{Entre recta y plano}
 \subsubsection{Entre punto y recta}
 \subsubsection{Entre 2 rectas paralelas}
 \subsubsection{Entre 2 rectas no paralelas}
 
-\subsubsection{Volumen del paralelepípedo}
+\subsection{Lugares geométricos}
+\subsubsection{Perpendicular común}
+\subsubsection{Plano mediador}
+\subsubsection{Planos bisectores}
+
+\subsection{Áreas y volúmenes}
+\begin{itemize}
+  \item Área del paralelogramo: $\left|\vec{a}\times\vec{b}\right|$
+  \item Área del triángulo: $\rfrac{1}{2}·\left|\vec{a}\times\vec{b}\right|$
+  \item Volumen del paralelepípedo: $\left|[\vec{a},\vec{b},\vec{c}]\right|$
+  \item Volumen del tetraedro: $\rfrac{1}{6}[\vec{a},\vec{b},\vec{c}]$
+\end{itemize}
