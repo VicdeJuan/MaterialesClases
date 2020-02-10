@@ -342,10 +342,10 @@ Se calcula el ángulo desde la definición de producto escalar.
 
 \subsubsection{Ángulo formado por dos planos}
 
-\begin{itemize}
-  \item El ángulo formado por 2 planos es el ángulo formado por sus vectores normales. 
-  \item Podemos considerar que forman 2 ángulos.
-\end{itemize}
+Llamamos ángulo formado por 2 planos al menor de los 2 ángulos diedros que forman 2 planos secantes.
+
+\obs Si los planos son paralelos, no forman ningún ángulo.
+
 
 \subsubsection{Ángulo formado por recta y plano}
 
@@ -354,6 +354,62 @@ Se calcula el ángulo desde la definición de producto escalar.
   \item Sería posible calcular el ángulo que forma la recta con su proyección. 
   \item Otra posibilidad, utilizar el vector normal del plano.
 \end{itemize}
+
+\begin{problem}
+
+Calcula el ángulo formado por la recta $r$ y el plano $\pi$.
+
+\[
+r : \begin{cases} 2x-3y+z=0\\x-z=0\end{cases}\;\;\;\pi: x+y-2z=3
+\]
+\solution
+
+Obtenemos las ecuaciones paramétricas de la recta, calculando las soluciones del sistema compatible indeterminado:
+
+\[
+r : \begin{cases} 2x-3y+z=0\\x-z=0\end{cases} \overset{x=\lambda}{\to}
+\begin{cases} 2\lambda-3y+\lambda = 0 \to y=\lambda \\x=z=\lambda\end{cases} \dimplies \begin{cases}x=\lambda\\y=\lambda\\z=\lambda\end{cases}
+\]
+
+\ul{Método 1: Angulo entre vectores}
+
+\[
+\widehat{\pi,\vec{v_r}} = 90 - \widehat{\vec{n_{\pi}},\vec{v_r}}
+\]
+
+\[
+\cos\left(\widehat{\vec{n_{\pi}},\vec{v_r}}\right) = \frac{|\vec{n_{\pi}}·\vec{v_r}|}{|\vec{n_{\pi}}|·|\vec{v_r}|} = \frac{(1,1,1)·(1,1,-2)}{\sqrt{1^2+1^2+1^2}·\sqrt{1^2+1^2+(-2)^2}} = 0 
+\]
+
+\[
+\cos\left(\widehat{\vec{n_{\pi}},\vec{v_r}}\right) = 0\implies \widehat{\vec{n_{\pi}},\vec{v_r}} = 90 \implies \widehat{\pi,\vec{v_r}} = 0 \implies \pi|| r
+\]
+
+
+\ul{Método 2: Ángulo con la proyección}
+
+Para calcular la proyección de una recta sobre un plano:
+\begin{enumerate}
+  \item Comprobamos $r\in \pi: \lambda+\lambda-2\lambda = 3 \nexists\lambda\in\real\implies r||\pi$ con $r\cap\pi=\emptyset$ 
+  
+  \item Varias opciones:
+  \subitem a) Necesitamos proyectar 2 puntos de la recta sobre el plano. Tomamos los puntos $A(0,0,0)\in r$ y $B(1,1,1)\in r$.
+
+  \textbf{$A_{\pi}$:} Calculamos $t\perp\pi (\implies \vec{v_t}||\vec{n_{\pi}})$ con $A\in t\to t\begin{cases}x=\lambda\\y=\lambda\\z=-2\lambda\end{cases}$
+
+  Calculamos $t\cap\pi: \lambda+\lambda+4\lambda=3\dimplies \lambda=\rfrac{1}{2} \implies t\cap\pi =A_{\pi}=\left(\rfrac{1}{2},\rfrac{1}{2},-1\right)$
+
+  \textbf{$B_{\pi}$:} Calculamos $t'\perp\pi (\implies \vec{v_t'}||\vec{n_{\pi}})$ con $B\in t'\to t'\begin{cases}x=1+\mu\\y=1+\mu\\z=1-2\mu\end{cases}$
+
+  Calculamos $t'\cap\pi: (1+\mu)+(1+\mu)-2(1-2\mu)=3\dimplies \mu=\rfrac{1}{2} \implies t\cap\pi =B_{\pi}=\left(\rfrac{3}{2},\rfrac{3}{2},0\right)$
+
+  Calculamos $r_{\pi}:\{A,\vec{AB}\} \dimplies r:\begin{cases}x=\rfrac{1}{2}+\lambda\\y=\rfrac{1}{2}+\lambda\\z=\rfrac{1}{2}+\lambda\end{cases}$
+
+\obs ¿Es casualidad que $\vec{v_r} = \vec{v_{r_{\pi}}}$
+
+\end{enumerate}
+
+\end{problem}
 
 \concept{Paralelismo y perpendicularidad entre recta y plano}
 
