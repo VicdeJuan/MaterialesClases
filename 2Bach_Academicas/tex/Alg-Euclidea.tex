@@ -405,7 +405,7 @@ Para calcular la proyección de una recta sobre un plano:
 
   Calculamos $r_{\pi}:\{A,\vec{AB}\} \dimplies r:\begin{cases}x=\rfrac{1}{2}+\lambda\\y=\rfrac{1}{2}+\lambda\\z=\rfrac{1}{2}+\lambda\end{cases}$
 
-\obs ¿Es casualidad que $\vec{v_r} = \vec{v_{r_{\pi}}}$
+\obs ¿Es casualidad que $\vec{v_r} = \vec{v_{r_{\pi}}}$? No, una recta paralela a un plano y su proyección sobre ese plano son rectas paralelas, por lo que tienen vectores directores proporcionales.
 
 \end{enumerate}
 
@@ -423,20 +423,74 @@ Para calcular la proyección de una recta sobre un plano:
 Módulo del vector.
 
 \subsubsection{Entre punto y plano}
-La distancia entre el punto y su proyección sobre el plano.
 
-\subsubsection{Entre 2 planos}
+La distancia entre el punto y su proyección sobre el plano. 
+
+\begin{itemize}
+  \item $d(P,\pi) = |PP_{\pi}|$, siendo $P_{\pi}$ la proyección del punto sobre el plano.
+  \item Se puede utilizar otro camino más corto para calcular esta distancia. Ver \ref{fig::dist-punto-plano}.
+
+  \subitem Consideramos $Q\in\pi$.
+  \subitem $|\vec{n_{\pi}}·\vec{QP}| = |\vec{n_{\pi}}|·|\vec{QP}|·\cos(\alpha)$, siendo $\alpha$ el ángulo que forman estos vectores.
+  \subitem Aplicando la definición de coseno: $\cos(\alpha) = \rfrac{d(P,\pi)}{|\vec{QP}|}$.
+  \subitem Sustituyendo y despejando: $|\vec{n_{\pi}}·\vec{QP}| = |\vec{n_{\pi}}|·d(P,\pi) \to d(P,\pi) = \frac{|\vec{n_{\pi}}·\vec{QP}|}{|\vec{n_{\pi}}|}$
+  \subitem $|\vec{n_{\pi}}·\vec{QP}| = |A(p_1-q_1) + B(p_2-q_2) + C(p_3-q_3)| = Ap_1+Bp_2+Cp_3+D$
+  \subitem \textbf{Conclusión:}\index{Distancia\IS punto-plano}
+
+  \[
+    d(P,\pi) = \frac{|Aq_1+Bq_2+Cq_3+D|}{|(A,B,C)|}
+  \]
+\end{itemize}
+
+\begin{figure}[hbtp]
+\centering
+\tdplotsetmaincoords{60}{110}
+\input{tikz/dist-punto-plano.tex}
+\label{fig::dist-punto-plano}
+\caption{Distancia de un punto a un plano}
+\end{figure}
+
+\[d(P,\pi) = \frac{|Ap_1+Bp_2+Cp_3+D|}{|(A,B,C)|}\]
+
+\subsubsection{Entre 2 planos o entre una recta y un plano}
 
 \begin{itemize}
   \item Se comprueba si son paralelos (porque sino, distancia 0).
-  \item Entre un punto de un plano y el otro plano.
+  \item Si no lo son, calculamos la distancia entre un punto que pertenezca al plano o a la recta y al otro plano.
 \end{itemize}
 
-
-\subsubsection{Entre recta y plano}
 \subsubsection{Entre punto y recta}
-\subsubsection{Entre 2 rectas paralelas}
-\subsubsection{Entre 2 rectas no paralelas}
+
+\begin{itemize}
+  \item $d(P,r) = |PP_{r}$, siendo $P_r$ la proyección de $P$ sobre $r$.
+  \item Otra manera de calcular sería considerar un punto $Q\in r$. Ver \ref{fig::dist-punto-recta}.
+  \subitem Considerando $\vec{QP}$ y $\vec{v_r}$ (ambos fáciles de calcular), $d(P,r)$ se podría calcular utilizando la definición de seno. Así,
+  
+  \[\sen\left(\widehat{\vec{v_r},\vec{QP}}\right) = \displaystyle\frac{|d(P,r)|}{|\vec{QP}|}\]
+
+  \subitem Utilizando $|\vec{QP}\times\vec{v_r}| = |\vec{QP}|·|\vec{v_r}|\sen(\alpha)$, despejamos:
+  \[
+    |\vec{QP}\times\vec{v_r}| = |\vec{QP}|·|\vec{v_r}|·\frac{|d(P,r)|}{|\vec{QP}|} \dimplies d(P,r) = \frac{|\vec{QP}\times\vec{v_r}|}{|\vec{v_r}|}
+  \]
+\end{itemize}
+
+\begin{figure}[hbtp]
+\centering
+\tdplotsetmaincoords{60}{110}
+\input{tikz/dist-punto-recta.tex}
+\label{fig::dist-punto-recta}
+\caption{Distancia de un punto a una recta}
+\end{figure}
+
+
+
+\subsubsection{Entre 2 rectas}
+\begin{itemize}
+  \item Comprobamos si $r||s$. 
+  \subitem Si $r||s \implies d(r,s) = d(P_r,s) = d(P_s,r)$
+  \subitem Si $r\not|| s \implies d(r,s) = d(r,\pi)$, con $\pi:\{v_r,v_s,P_s\}$
+\end{itemize}
+
 
 \subsection{Lugares geométricos}
 \subsubsection{Perpendicular común}
