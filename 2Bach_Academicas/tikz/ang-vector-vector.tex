@@ -1,0 +1,11 @@
+\begin{tikzpicture}[scale=0.8]
+    % draw axes
+\coordinate (a) at (1,4);
+\coordinate (b) at (3,5);
+\coordinate (c) at (5,4);
+
+\draw pic[draw,fill=green!30,angle radius=1cm,"$\alpha$" shift={(6mm,1mm)}] {angle=c--a--b};
+
+\draw[thick,red, ->]  (a) -- node[above] {\Large $\vec{c}$} (b);
+\draw[thick,blue,->]  (a) -- node[below left] {\Large $\vec{d}$} (c);
+\end{tikzpicture}

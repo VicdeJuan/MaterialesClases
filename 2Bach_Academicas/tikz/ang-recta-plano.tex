@@ -1,17 +1,25 @@
 \begin{tikzpicture}[tdplot_main_coords,scale=0.8]
     % draw axes
-    \fill[blue!20!white] (-2,-2,0) to (6,-2,0) to (6,6,0) node[anchor=south,color=black]{$\pi$} to (-2,6,0)to cycle;
-    \draw[->] (0,0,0) -- (2,4,4) node[anchor=south east]{$\overset{\to}{PQ}$};
     \coordinate (P) at (2,4,4);
     \coordinate (O) at (0,0,0);
     \coordinate (Q) at (2,4,0);
+
+    % draw axes
+    \fill[blue!20!white] (-2,-2,0) to (6,-2,0) to (6,6,0) node[anchor=south,color=black]{$\pi$} to (-2,6,0)to cycle;
+    \draw (0,0,0) -- (2.5,5,5) node[anchor=east]{$r$};
+    \draw[dashed] (-1,-2,-2) -- (0,0,0);
     \draw[fill] (0,0,0)circle(2pt) node[anchor=south]{$Q$};
     \draw[fill] (2,4,4)circle(2pt) node[anchor=north west]{$P$};
     \draw[fill] (2,4,0) circle(2pt) node[anchor=north]{$P_{\pi}$};
-    \draw[->] (0,0,0) -- (2,4,0);
-    \draw (1,2,0) node[anchor=north east]{$\overset{\to}{QP_{\pi}}$};
+    
     \draw[dashed] (2,4,4) -- (2,4,0);
-    \draw[->,color=red!50!black] (2,4,0) -- (2,4,2) node[anchor=west]{$n_{\pi}$};
+
+
+    \draw[color=red,dashed] (-1,-2,0) -- (0,0,0);  
+    \draw[color=red,dashed] (0,0,0) -- (1.4,2.8,0) node[anchor=north east]{$r_{\pi}$};  
+    \draw[color=red,dashed] (1.4,2.8,0) -- (2.5,5,0); 
+
+
     \pic [color=green!30!black,fill=green!30!black,draw, ->, "$\alpha$", angle eccentricity=1.5] {angle = Q--O--P};
     %\fill[color=green!30!black] (0,0,0) -- (-0.5,0,0) -- (-0.635,0.35,0) -- cycle;
 \end{tikzpicture}

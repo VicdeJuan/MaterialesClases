@@ -1,0 +1,202 @@
+
+\chapter{Análisis}
+
+\begin{defn}[Función real de variable real]
+Una función real de una variable real es una aplicación definida entre dos conjuntos de números reales tal que a cada elemento del primer conjunto le corresponde un único elemento del segundo conjunto.
+
+$\appl{f}{D}{\real}$
+
+\begin{itemize}
+	\item $f$: símbolo de la función.
+	\item $D(f) = \{x\in\real \tq \exists f(x)\}$
+	\item $Rec(f) = \{y\in\real \tq \exists x \in\real f(x)=y\}$
+\end{itemize}
+\end{defn}
+
+\paragraph{Ejemplos de dominios de funciones:} hojita impresa de repaso, incluyendo funciones trigonométricas y de las trigonométricas inversas.
+
+\section{Límites y continuidad}
+
+\begin{theorem}[Teorema de existencia del límite]
+\[\exists \lim_{x\to a}f(x) \dimplies \lim_{x\to a^+} f(x) = \lim_{x\to a^-}f(x)\]
+\end{theorem}
+
+\subsection{Indeterminaciones}
+
+\begin{itemize}
+	\item Racionales: $\rfrac{0}{0},\rfrac{\infty}{\infty},\infty-\infty,0·\infty, \rfrac{k}{0}$
+	\item Exponenciales $1^{\infty}; 0^0; \infty^0$
+\end{itemize}
+
+
+\begin{prop}
+\index{Indeterminación\IS $1^{\infty}$}
+\[
+\lim_{x\to a}f(x)^{g(x)} \to 1^{\infty} \implies \lim_{x\to a}f(x)^{g(x)} = e^\lambda, \lambda = \lim_{x\to a} \left(g(x)·[f(x)-1]\right)
+\]
+\end{prop}
+
+\begin{example}
+
+\end{example}
+
+\paragraph{Infinitésimos equivalentes}
+
+\subsection{Continuidad}
+
+\begin{defn}[Continuidad\IS en un punto]
+Sea $\appl{f}{D\subset\real}{\real}$.
+
+Se dice que $f(x)$ es continua en $x=a$ sí y solo si se cumplen las 3 condiciones siguientes:
+\begin{itemize}
+	\item $\exists \lim_{x\to a} f(x)$
+	\item $\exists f(a)$
+	\item $\lim_{x\to a}f(x) = f(a)$
+\end{itemize}
+
+\textit{También se puede decir de manera abreviada: \[f(x) \text{ continua en } x=a\dimplies \text{ existen y son iguales } \lim_{x\to a}f(x) \text{ y } f(a)\]}
+\end{defn}
+
+\begin{example}
+\[f(x) = 
+	\begin{cases}
+		2x-5 & \text{ si }x\leq 0\\ 
+		\frac{x+2}{x+1} & \text{ si } x>0
+	\end{cases}\]
+\end{example}
+
+\paragraph{Tipos de discontinuidad}
+
+\begin{itemize}
+	\item Evitables: $\exists \lim_{x\to a}f(x)$ pero $\begin{cases}\lim_{x\to a}f(x) \neq f(a)\\\nexists f(a)\end{cases}$
+	\item Esenciales (o inevitables): 
+	\begin{itemize}
+		\item De primera especie:
+		\subitem De salto finito: ambos límites laterales son finitos pero distinto
+		\subitem De salto infinito: al menos un límite lateral es infinito.
+	\end{itemize}
+	\item De 2ª especie: al menos un límite lateral no existe.
+\end{itemize}
+
+\begin{figure}
+\centering
+\label{fig::fun-tipos-discontinuidad}
+\caption{Tipos de distontinuidades}
+\end{figure}
+
+\begin{defn}[Continuidad\IS en un intervalo abierto]
+$f(x)$ es continua en $(a,b) \dimplies \forall x\in(a,b), f(x)$ es continua.
+\end{defn}
+
+\begin{defn}[Continuidad\IS en un punto]
+$f(x)$ es continua en $(a,b) \dimplies \begin{cases} f(x) \text{ continua en } (a,b)\\
+\lim_{x\to a^+}f(x) = f(a)\\
+\lim_{x\to a^-}f(x) = f(a)\\
+ \end{cases}$
+\end{defn}
+
+\begin{example}
+
+Dada $f(x) = +\sqrt{x}$.
+
+$f(x)$ no es continua en $x=0$, pero sí es continua en $[0,\infty)$.
+
+\end{example}
+
+\begin{theorem}[Teorema\IS de Bolzano]
+Sea $\appl{f}{D}{\real}$.
+
+\[
+\left.\begin{array}{c}f(x) \text{ continua en } [a,b]\\\text{Signo}(f(a))\neq \text{Signo}(f(b))\end{array}\right\}\implies \exists c\in(a,b) \tq f(c) = 0
+\]
+
+\obs Es una condición suficiente, no necesaria. Es decir, es $\implies $
+\end{theorem}
+
+\begin{problem} Demuestra que la ecuación $x^3-7x^2-1$ tiene al menos una solución real en el intervalo $[0,10]$.
+\solution
+
+Sea $f(x) = x^2-7x^2-1$. Se trata de demostrar que $\exists c\in[0,10]\tq f(c) = 0$. Comprobamos que cumple el teorema de Bolzano.
+
+\[
+\left\{
+	\begin{array}{c}
+		f(x) \text{ es continua en } [0,10] \text{ por ser polinómica}\\
+		\left.\begin{array}
+		f(x) = -1 \\
+		f(10) = 299\end{array}
+		\right\}\implies Signo(f(0))\neq Signo(f(10))
+	\end{array}
+\right\}\implies \exists c\in(0,10)\tq f(c)=0 
+\]
+\end{problem}
+
+\begin{theorem}[Teorema\IS del valor intermedio]
+Sea $\appl{f}{D}{\real}$.
+\[
+\left.\begin{array}{c}f(x) \text{ continua en } [a,b]\\
+\exists k\in\real \begin{cases}f(a)\leq k\leq f(b)\\f(b)\leq K \leq f(a)\end{cases}\end{array}\right\}\implies \exists c\in(a,b) \tq f(c) = k
+\]
+\end{theorem}
+
+\obs Para $k=0$, el teorema del valor intermedio se convierte en teorema de Bolzano.
+
+\begin{theorem}[Teorema de Weierstrass]
+
+\end{theorem}
+
+\begin{problem}
+Varios
+\solution
+\end{problem}
+
+
+\section{Derivabilidad}
+
+\begin{defn}[Derivabilidad en un punto]
+
+\end{defn}
+
+
+\begin{defn}[Derivabilidad en un intervalo abierto]
+
+\end{defn}
+
+\begin{defn}[Dominio de derivabilidad]
+
+\end{defn}
+
+\subsection{Interpretación geométrica de la derivada}
+
+\paragraph{Ecuación de la recta tangente}
+
+\paragraph{Ecuación de la recta normal}
+
+\begin{defn}[Función derivada]
+
+\end{defn}
+
+\begin{theorem}[Teorema\IS de Rolle]
+
+\end{theorem}
+
+
+\begin{theorem}[Teorema\IS del valor medio]
+\end{theorem}
+
+\subsection{Regla de L'Hôpital}
+
+\subsection{Monotonía}
+
+\begin{theorem}[Teorema\IS de monotonía]
+\end{theorem}
+\begin{theorem}[Teorema\IS de extremos relativos]
+\end{theorem}
+
+\subsection{Optimización}
+
+\section{Análisis sistemático de una función}
+
+\section{Integrales}
+
+\subsection{Cálculo de áreas de recintos cerrados}
