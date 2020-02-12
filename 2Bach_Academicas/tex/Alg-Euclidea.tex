@@ -225,6 +225,7 @@ a-1 & -2& 0
 \subsubsection{Proyección}
 
 \paragraph{Proyección de punto sobre plano}
+\index{Proyección!punto sobre plano}
 
 Para calcular la proyección de un punto $P$ sobre un plano $\pi$ (ver \fref{fig::proy::punto-plano}):
 \begin{enumerate}
@@ -241,6 +242,7 @@ Para calcular la proyección de un punto $P$ sobre un plano $\pi$ (ver \fref{fig
 \end{figure}
 
 \paragraph{Proyección de recta sobre plano}
+\index{Proyección!recta sobre plano}
 
 Se reduce a proyectar 2 puntos de la recta sobre el plano. Se puede utilizar el punto de intersección de la recta con el plano.
 
@@ -262,7 +264,7 @@ Se reduce a proyectar 2 puntos de la recta sobre el plano. Se puede utilizar el 
 
 
 \paragraph{Proyección de punto sobre recta}
-
+\index{Proyección!punto sobre recta}
 
 \begin{figure}[hbtp]
 \centering
@@ -275,6 +277,8 @@ Se reduce a proyectar 2 puntos de la recta sobre el plano. Se puede utilizar el 
 
 \subsubsection{Simetría de un punto respecto de otro punto}
 
+\index{Simetría!punto respecto de punto}
+
 \begin{figure}[hbtp]
 \centering
 \tdplotsetmaincoords{60}{110}
@@ -284,6 +288,7 @@ Se reduce a proyectar 2 puntos de la recta sobre el plano. Se puede utilizar el 
 \end{figure}
 
 \subsubsection{Simetría de un punto respecto de una recta}
+\index{Simetría!punto respecto de recta}
 
 Plano perpendicular a la recta que contenga al punto, intersección con la recta.
 
@@ -297,6 +302,7 @@ Plano perpendicular a la recta que contenga al punto, intersección con la recta
 
 
 \subsubsection{Simetría de un punto respecto de un plano}
+\index{Simetría!punto respecto de un plano}
 
 Recta perpendicular al plano, que pasa por el punto.
 
@@ -311,6 +317,7 @@ Recta perpendicular al plano, que pasa por el punto.
 
 
 \subsubsection{Simetría de una recta respecto de un plano}
+\index{Simetría!recta respecto de plano}
 
 \begin{figure}[hbtp]
 \centering
@@ -325,6 +332,7 @@ Recta perpendicular al plano, que pasa por el punto.
 \newpage
 \subsection{Ángulos}
 \subsubsection{Ángulo formado por dos rectas}
+\index{Ángulo!formado por dos rectas}
 
 Llamamos ángulo formado por 2 rectas al menor de los 2 ángulos que forman (en la \fref{fig::ang-recta-recta}, llamaríamos $\widehat{r,s} = \alpha$). Según su posición relativa se distinguen:
 
@@ -351,14 +359,22 @@ Se calcula el ángulo desde la definición de producto escalar.
 
 
 \subsubsection{Ángulo formado por dos planos}
+\index{Ángulo!formado por dos planos}
 
 Llamamos ángulo formado por 2 planos al menor de los 2 ángulos diedros que forman 2 planos secantes.
 
 \obs Si los planos son paralelos, no forman ningún ángulo.
 
+\begin{figure}[hbtp]
+\centering
+\tdplotsetmaincoords{60}{110}
+%\input{tikz/ang-plano-plano.tex}
+\label{fig::ang-plano-plano}
+\caption{Ángulo formado por 2 planos}
+\end{figure}
 
 \subsubsection{Ángulo formado por recta y plano}
-
+\index{Ángulo!formado por recta y un plano}
 
 \begin{itemize}
   \item Sería posible calcular el ángulo que forma la recta con su proyección. Ver \fref{fig::ang-recta-plano}.
@@ -444,7 +460,7 @@ Módulo del vector.
 \subsubsection{Entre punto y plano}
 
 La distancia entre el punto y su proyección sobre el plano. Ver \fref{fig::dist-punto-plano}.
-
+\index{Distancia!punto-plano}
 
 
 \begin{itemize}
@@ -456,7 +472,7 @@ La distancia entre el punto y su proyección sobre el plano. Ver \fref{fig::dist
   \subitem Aplicando la definición de coseno: $\cos(\alpha) = \rfrac{d(P,\pi)}{|\vec{QP}|}$.
   \subitem Sustituyendo y despejando: $|\vec{n_{\pi}}·\vec{QP}| = |\vec{n_{\pi}}|·d(P,\pi) \to d(P,\pi) = \frac{|\vec{n_{\pi}}·\vec{QP}|}{|\vec{n_{\pi}}|}$
   \subitem $|\vec{n_{\pi}}·\vec{QP}| = |A(p_1-q_1) + B(p_2-q_2) + C(p_3-q_3)| = Ap_1+Bp_2+Cp_3+D$
-  \subitem \textbf{Conclusión:}\index{Distancia\IS punto-plano}
+  \subitem \textbf{Conclusión:}\index{Distancia! punto-plano}
 
   \[
     d(P,\pi) = \frac{|Aq_1+Bq_2+Cq_3+D|}{|(A,B,C)|}
@@ -474,6 +490,8 @@ La distancia entre el punto y su proyección sobre el plano. Ver \fref{fig::dist
 \[d(P,\pi) = \frac{|Ap_1+Bp_2+Cp_3+D|}{|(A,B,C)|}\]
 
 \subsubsection{Entre 2 planos o entre una recta y un plano}
+\index{Distancia!plano-plano}
+\index{Distancia!recta-plano}
 
 \begin{itemize}
   \item Se comprueba si son paralelos (porque sino, distancia 0).
@@ -481,6 +499,7 @@ La distancia entre el punto y su proyección sobre el plano. Ver \fref{fig::dist
 \end{itemize}
 
 \subsubsection{Entre punto y recta}
+\index{Distancia!punto-recta}
 
 \begin{itemize}
   \item $d(P,r) = |PP_{r}|$, siendo $P_r$ la proyección de $P$ sobre $r$.
@@ -506,6 +525,7 @@ La distancia entre el punto y su proyección sobre el plano. Ver \fref{fig::dist
 
 
 \subsubsection{Entre 2 rectas}
+\index{Distancia!recta-recta}
 \begin{itemize}
   \item Comprobamos si $r||s$. 
   \subitem Si $r||s \implies d(r,s) = d(P_r,s) = d(P_s,r)$
