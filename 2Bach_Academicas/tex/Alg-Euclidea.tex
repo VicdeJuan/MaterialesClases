@@ -88,11 +88,15 @@ $Im(z_1\bar{z_2}) = f(\quat{i},\quat{j},\quat{k})$, cuya expresión analítica e
 \begin{figure}[hbtp]
 \centering
 \includegraphics{img/directorrectaimplicitas.jpg}
+\caption{Vector director de una recta dada por sus ecuaciones implícitas.}
+\label{fig::vectordirectorrectaimplicitas}
 \end{figure}
 
-Dada una recta $r$ que pertenece a ambos planos, $\pi_1$ y $\pi_2$, $\vec{V_r}\perp n_{\pi_1} \wedge \vec{V_r}\perp n_{\pi_2}$. Por eso, para buscar un vector perpendicular a la vez a 2 vectores dados, el camino más corto es el producto vectorial.
+Dada una recta $r$ que pertenece a ambos planos, $\pi_1$ y $\pi_2$, $\vec{v_r}\perp n_{\pi_1} \wedge \vec{v_r}\perp n_{\pi_2}$ (Ver \fref{fig::vectordirectorrectaimplicitas}).
+%
+Por eso, para buscar un vector perpendicular a la vez a 2 vectores dados, el camino más corto es el producto vectorial.
 
-$\vec{V_r} = n_{\pi_1}\times n_{\pi_2}$
+\[\vec{v_r} = n_{\pi_1}\times n_{\pi_2}\]
 
 \begin{problem}
 
@@ -104,7 +108,7 @@ La recta pedida es $t:\left\{\begin{array}{c}P\in t\\t\perp r\\\end{array}\right
 
 Todas las rectas perpendiculares a una recta forman un plano. Llamamos $\pi$ a ese plano. Así, $ t \in \pi, \text{ con } \pi:\left\{\begin{array}{c}P\in\pi\\\pi\perp r\end{array}\right.$. Así, $t$ será la recta determinada por $A = t\cap\pi, P(1,-2,0)$
 
-$\pi\perp r\implies n_{\pi} || \vec{V_r}$. Tomamos $n_{\pi}  = \left(2,3,\rfrac{3}{2}\right)$
+$\pi\perp r\implies n_{\pi} || \vec{v_r}$. Tomamos $n_{\pi}  = \left(2,3,\rfrac{3}{2}\right)$
 
 Como $P\in\pi\implies 2P_1 + 3P_2 +\rfrac{3}{2}P_3 + D = 0 \dimplies 2-6+D = 0 \dimplies D=4$
 
@@ -138,7 +142,7 @@ $\left\{\begin{array}{c}
 
 $\vec{AP} = \left(\frac{64}{3}-1,\frac{57}{2}+2,\frac{57}{4}\right) =  \left(\frac{61}{3},\frac{61}{2},\frac{57}{4}\right)$
 
-\[r : \{A,\vec{V_r}\} = \left\{\begin{array}{c}
+\[r : \{A,\vec{v_r}\} = \left\{\begin{array}{c}
     x = \rfrac{64}{3} + 2\lambda\\
     y = \rfrac{57}{2} + 3\lambda\\
     z = \rfrac{57}{4} + \rfrac{3}{2}\lambda
@@ -192,7 +196,7 @@ $\vec{AD} = (1,0,1)$
 El volumen del tetraedro será $\rfrac{1}{6}$ del voluen del paralelepípedo:
 
 \[
-||\vec{AB}\quad\vec{AC}\quad\vec{AD}|| = 
+\left|\left|\vec{AB}\quad\vec{AC}\quad\vec{AD}\right|\right| = 
 \left|\left|\begin{array}{ccc}
 1 & 0 & -4\\
 1 & 2 & -2\\
@@ -463,6 +467,40 @@ Para calcular la proyección de una recta sobre un plano:
   \item $r\perp \pi \dimplies \vec{v_r}||\vec{n_{\pi}}$
 \end{itemize}
 
+
+\subsubsection{Perpendicular común}
+
+Ver \fref{fig::Perpendicularcomun}. Buscamos la recta $t$, perpendicular a la vez a $s$ y a $r$, que las corte. 
+
+Para ello:
+\begin{itemize}
+  \item $\vec{v_t} = \vec{v_r}\times\vec{v_s}$
+  \item Dado que encontrar los puntos de intersección es muy complejo, podemos recurrir a construir 2 planos.
+  \begin{itemize}
+    \item $\pi_1: \{\vec{v_t},\vec{v_r},P_r\}$
+    \item $\pi_2: \{\vec{v_t},\vec{v_s},P_s\}$
+  \end{itemize}
+  Así, $t:\{\pi_1,\pi_2\}$
+\end{itemize}
+
+\begin{problem}
+Video de unicoos.
+\solution
+
+\end{problem}
+
+
+\begin{figure}
+\centering
+\includegraphics[scale=0.7]{img/PerpendicularComun.jpg}
+\caption{Perpendicular común}
+\label{fig::Perpendicularcomun}
+\end{figure}
+
+\subsubsection{Recta que corta a 2 rectas y pasa por un punto.}
+Vídeo de unicoos para ver en casa (si funciona el anterior).
+
+
 \subsection{Distancias}
 \subsubsection{Entre 2 puntos}
 Módulo del vector.
@@ -544,9 +582,136 @@ La distancia entre el punto y su proyección sobre el plano. Ver \fref{fig::dist
 
 
 \subsection{Lugares geométricos}
-\subsubsection{Perpendicular común}
+
+
 \subsubsection{Plano mediador}
+
+Es el \lgdlp dos puntos $A$ y $B$. Utilizando la definición, consideramos un punto genérico $P(x,y,z)$ al que obligamos a cumplir que 
+\[\pi: d(P,A) = d(P,B) \dimplies\]
+\[\pi: +\sqrt{(x-a_1)^2+(y-a_2)^2+(z-a_3)^2} = +\sqrt{(x-a_1)^2+(y-a_2)^2+(z-a_3)^2} \dimplies\]
+\[\pi: (x-a_1)^2+(y-a_2)^2+(z-a_3)^2 = (x-a_1)^2+(y-a_2)^2+(z-a_3)^2\dimplies ...\]
+
+\paragraph{Otra opción: } Podemos considerar $\pi:\{\vec{AB} = n_{\pi}, M_{AB}\}$ 
+
+\begin{figure}[hbtp]
+\centering
+\tdplotsetmaincoords{60}{110}
+\input{tikz/plano-mediador.tex}
+\label{fig::plano-mediador}
+\caption{Plano mediador de un segmento.}
+\end{figure}
+
+
+
 \subsubsection{Planos bisectores}
+
+Es el \lgdlp 2 planos $\pi$ y $\tau$. 
+%
+Utilizando la definición, consideramos un punto genérico $P(x,y,z)$ al que obligamos a cumplir que 
+
+\[d(P,\pi) = d(P,\tau) \dimplies \frac{|A_{\pi}x + B_{\pi}y+C_{\pi}z+D|}{\sqrt{A_{\pi}^2+B_{\pi}^2+C_{\pi}^2}} =  \frac{|A_{\tau}x + B_{\tau}y+C_{\tau}z+D|}{\sqrt{A_{\tau}^2+B_{\tau}^2+C_{\tau}^2}}\]
+
+Dado que $|A| = |B| \dimplies \left\{\begin{array}{c}A=B\\A=-B\end{array}\right\}$, tenemos:
+
+\[
+\begin{cases}
+\displaystyle\frac{A_{\pi}x + B_{\pi}y+C_{\pi}z+D}{\sqrt{A_{\pi}^2+B_{\pi}^2+C_{\pi}^2}} =  +\frac{A_{\tau}x + B_{\tau}y+C_{\tau}z+D}{\sqrt{A_{\tau}^2+B_{\tau}^2+C_{\tau}^2}}
+\\
+\displaystyle\frac{A_{\pi}x + B_{\pi}y+C_{\pi}z+D}{\sqrt{A_{\pi}^2+B_{\pi}^2+C_{\pi}^2}} = - \frac{A_{\tau}x + B_{\tau}y+C_{\tau}z+D}{\sqrt{A_{\tau}^2+B_{\tau}^2+C_{\tau}^2}}
+\end{cases}
+\]
+
+Hay 2 soluciones.
+
+\begin{figure}[hbtp]
+\centering
+\tdplotsetmaincoords{60}{110}
+\input{tikz/planos-bisectores.tex}
+\label{fig::planos-bisectores}
+\caption{En azul, olos planos bisectores de un diedro.}
+\end{figure}
+
+\begin{problem}
+Calcula la ecuación de los planos que dividen a los diedros determinados por los planos $\pi:2x+y-2z=1$ y $\pi': 2x+2y+z=5$ en dos partes iguales.
+\solution
+Sea $P(x,y,z)$
+
+\[d(P,\pi) = d(P,\pi') \dimplies \frac{|2x+y-2z-1|}{\sqrt{4+1+4}} = \frac{|2x+2y+z-5|}{\sqrt{4+4+1}} \dimplies |2x+y-2z-1| = |2x+2y+z-5|\]
+
+\[
+\begin{cases}
+2x+y-2z-1 = 2x+2y+z-5\\
+2x+y-2z-1 =-\left(2x+2y+z-5\right)
+\end{cases}\implies 
+\begin{cases}
+\tau_1: y+3z-4 = 0\\
+\tau_2: 4x+3y-z-6=0
+\end{cases}
+\]
+
+
+\obs ¿Qué ángulo forman los 2 planos bisectores? La intuición dice que deberían ser perpendiculares, igual que, en 2 dimensiones, las bisectrices de 2 rectas son perpendiculares. 
+%
+Vamos a demostrarlo.
+
+\[
+\tau_1 \perp\tau_2 \dimplies \vec{n_{\tau_1}} \perp \vec{n_{\tau_2}} \dimplies \vec{n_{\tau_1}}·\vec{n_{\tau_2}} = 0
+\]
+
+Comprobamos $\vec{n_{\tau_1}}·\vec{n_{\tau_2}} = (0,1,3)·(4,3,-1) = 3-3=0\implies \tau_1 \perp\tau_2 $
+
+¿Qué ocurre si los planos iniciales, $\pi,\pi'$, son paralelos? En ese caso solo existe un único plano bisector. Vamos a verlo en otro problema diferente.
+\end{problem}
+
+\begin{problem}
+
+Determina el lugar geométrico de los puntos del espacio que equidistan de los planos $\pi: x+y+z+4=0$ y $\pi':2x+2x+2z+4=0$.
+
+\solution
+
+Sea $P(x,y,z)$
+
+\[
+  d(P,\pi) = d(P,\pi') \dimplies \frac{|x+y+z+4|}{\sqrt{1+1+1}} = \frac{|2x+2y+2z+4|}{\sqrt{4+4+4}} \dimplies 
+\]
+\[
+  \frac{|x+y+z+4|}{\sqrt{3}} = \frac{|2x+2y+2z+4|}{2\sqrt{3}} \dimplies 2·|x+y+z+4| = |2x+2y+2z+4|\dimplies 
+\]
+\[
+\begin{cases}
+  2x+2y+2z+8=2x+2y+2z+4 \to \nexists \tau_1\\
+  2x+2y+2z+8=-2x-2y-2z-4 \to 4x+4y+4z+12 = 0 \dimplies \tau_2: x+y+z+3=0
+\end{cases}
+\]
+
+Solo se ha obtenido una solución, debido a que $\pi||\pi'$.
+\end{problem}
+
+
+\begin{table}[hbtp]
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+\textbf{Definición} & \textbf{Solución} & \textbf{Este curso}\\\hline
+2 puntos & Plano mediador & Sí\\\hline
+2 plano & Plano bisector & Sí\\\hline
+2 rectas paralelas & Plano ¿mediador? & Sí\\\hline
+2 rectas que se cruzan & Ver \fref{fig::lgdlp-rectas-cruzan} & No \\\hline
+1 puntos & Superficie esférica & Sí, pero no\\\hline
+1 recta & Superficie cilíndrica & No\\\hline
+1 plano & No tiene solución & \\\hline
+\end{tabular}
+\label{tbl::lugaresgeometricos}
+\caption{\lgdlp...}
+\end{table}
+
+\begin{figure}[hbtp]
+\centering
+\includegraphics[scale=0.6]{img/lgdlprectascruzan.png}
+\label{fig::lgdlp-rectas-cruzan}
+\caption{Representación geométrica del lugar geométrico de los puntos del epacio que equidistan. Para ver en 3 dimensiones, consultar: https://www.geogebra.org/m/rabpxx8t}
+\end{figure}
+
 
 \subsection{Áreas y volúmenes}
 \begin{itemize}
@@ -555,3 +720,15 @@ La distancia entre el punto y su proyección sobre el plano. Ver \fref{fig::dist
   \item Volumen del paralelepípedo: $\left|[\vec{a},\vec{b},\vec{c}]\right|$
   \item Volumen del tetraedro: $\rfrac{1}{6}[\vec{a},\vec{b},\vec{c}]$
 \end{itemize}
+
+
+\begin{problem}
+Halla la ecuación de la recta que pasa por el punto $P(2,0,-1)$ y corta a las rectas $r$ y $s$, siendo:
+
+\[r:\frac{x-2}{2} = \frac{y-2}{-1} = \frac{z+1}{1}\]
+\[s:\begin{cases}x+y+4=0\\y-3z+3=0\end{cases}\]
+\solution
+Vídeo de unicoos.
+
+\ul{Plan b:} Método alternativo: mates con Andrés.
+\end{problem}

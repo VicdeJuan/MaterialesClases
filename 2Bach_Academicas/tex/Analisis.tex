@@ -4,7 +4,7 @@
 \begin{defn}[Función real de variable real]
 Una función real de una variable real es una aplicación definida entre dos conjuntos de números reales tal que a cada elemento del primer conjunto le corresponde un único elemento del segundo conjunto.
 
-$\appl{f}{D}{\real}$
+$\appl{f}{D\subset\real}{\real}$
 
 \begin{itemize}
 	\item $f$: símbolo de la función.
@@ -15,93 +15,233 @@ $\appl{f}{D}{\real}$
 
 \paragraph{Ejemplos de dominios de funciones:} hojita impresa de repaso, incluyendo funciones trigonométricas y de las trigonométricas inversas.
 
+\begin{problem}
+Halla el dominio de las siguientes funciones:
+\ppart $f(x) = \sqrt{\displaystyle\frac{x^2+5x+4}{x+4}}$ \obs Ojo con simplificar.
+
+\ppart  $f(x) = \log\left(x^2+1\right)$
+
+\ppart $f(x) = \arcsen\left(x^2-9\right)$
+
+\solution
+
+\end{problem}
+
 \section{Límites y continuidad}
 
 \begin{theorem}[Teorema\IS de existencia del límite]
 \[\exists \lim_{x\to a}f(x) \dimplies \lim_{x\to a^+} f(x) = \lim_{x\to a^-}f(x)\]
 \end{theorem}
 
+\begin{problem}
+Página 13, ejercicios 11-14. 
+\solution
+\end{problem}
+
 \subsection{Indeterminaciones}
 
 \begin{itemize}
-	\item Racionales: $\rfrac{0}{0},\rfrac{\infty}{\infty},\infty-\infty,0·\infty, \rfrac{k}{0}$
+	\item Racionales: $\rfrac{0}{0},\rfrac{\infty}{\infty},\infty-\infty,0·\infty, \rfrac{k}{0}$ (Ver por el libro, se dan por supuestas)
 	\item Exponenciales $1^{\infty}; 0^0; \infty^0$
 \end{itemize}
 
 
-\begin{prop}
+\begin{problem}
+\textit{Para repasar en sus casas:}
+\ppart 19b,d
+\ppart 23g,h
+\ppart 25ac
+\solution
+\end{problem}
+
+
+\begin{prop}[Indeterminación\IS $1^{\infty}$]
 \index{Indeterminación\IS $1^{\infty}$}
 \[
 \lim_{x\to a}f(x)^{g(x)} \to 1^{\infty} \implies \lim_{x\to a}f(x)^{g(x)} = e^\lambda, \lambda = \lim_{x\to a} \left(g(x)·[f(x)-1]\right)
 \]
 \end{prop}
 
-\begin{example}
+\begin{proof}
+\begin{align*}
+\lim_{x\to a}f(x)^{g(x)} &= \lim_{x\to a}(1+f(x)-1)^{g(x)}
+\\
+&= \lim_{x\to a}\left(1+\frac{1}{\left(\frac{1}{f(x)-1}\right)}\right)^{g(x)}
+= \lim_{x\to a}\left(1+\frac{1}{\left(\frac{1}{f(x)-1}\right)}\right)^{g(x)\frac{f(x)-1}{f(x)-1}}
+\\
+&= \lim_{x\to a}\left[\left(1+\frac{1}{\left(\frac{1}{f(x)-1}\right)}\right)^{\frac{1}{f(x)-1}}\right]^{g(x)(f(x)-1)}
+\\
+&= \lim_{x\to a}\left[\left(1+\frac{1}{\left(\frac{1}{f(x)-1}\right)}\right)^{\frac{1}{f(x)-1}}\right]^{\displaystyle\lim_{x\to a}g(x)(f(x)-1)} 
+\\
+&= e^{\displaystyle\lim_{x\to a}g(x)(f(x)-1)}
+\end{align*}
+\end{proof}
 
-\end{example}
+\subsubsection{Infinitésimos equivalentes}
 
-\paragraph{Infinitésimos equivalentes}
+Libro página 19. Ver tabla y hacer ejercicio 30.
 
-\subsection{Continuidad}
+\begin{defn}[Infinitésimos equivalentes]
+Dadas $f(x)$, $g(x)$, $a\in\real$ decimos que $f(x)$ y $g(x)$ son infinitésimos equivalentes \textbf{en $x=a$} si y sólo si $\displaystyle\lim_{x\to a}{f(x)}{g(x)} = 1$
+\end{defn}
+
+\begin{problem}
+Ejercicio 30
+\solution
+\end{problem}
+
+\subsection{Continuidad (¡Tiene resumen para entregar!)}
 
 \begin{defn}[Continuidad\IS en un punto]
 Sea $\appl{f}{D\subset\real}{\real}$.
 
 Se dice que $f(x)$ es continua en $x=a$ sí y solo si se cumplen las 3 condiciones siguientes:
 \begin{itemize}
-	\item $\exists \lim_{x\to a} f(x)$
+	\item $\exists \displaystyle\lim_{x\to a} f(x)$
 	\item $\exists f(a)$
-	\item $\lim_{x\to a}f(x) = f(a)$
+	\item $\displaystyle\lim_{x\to a}f(x) = f(a)$
 \end{itemize}
 
 \textit{También se puede decir de manera abreviada: \[f(x) \text{ continua en } x=a\dimplies \text{ existen y son iguales } \lim_{x\to a}f(x) \text{ y } f(a)\]}
 \end{defn}
 
-\begin{example}
+\begin{problem}
+Halla el valor de $m$ para que la función sea continua en $x=0$.
 \[f(x) = 
 	\begin{cases}
 		2x-5 & \text{ si }x\leq 0\\ 
-		\frac{x+2}{x+1} & \text{ si } x>0
+		\frac{2x+m}{x+1} & \text{ si } x>0
 	\end{cases}\]
-\end{example}
+\solution
+
+Aplicamos: "$f(x)$ continua en $x=0$ si existen y son iguales $\displaystyle\lim_{x\to 0}$ y $f(0)$".
+
+\begin{itemize}
+	\item $f(0) =  2·0-5 = -5$
+	\item $\displaystyle\lim_{x\to0} f(x)$. Para calcularlo necesitamos los límites laterales:
+	\subitem $\displaystyle\lim_{x\to0^+} f(x) = \lim_{x\to0^+} \frac{2x+m}{x+1} = \frac{2·0+m}{0+1} = m$
+	\subitem $\displaystyle\lim_{x\to0^-} f(x) = \lim_{x\to0^-} 2·x-5 = -5$
+
+	\[\lim_{x\to 0} f(x) = -5 \dimplies m=-5 \text{ porque } \begin{cases}\displaystyle\lim_{x\to0^+}f(x) = m\\ \displaystyle\lim_{x\to0^-}f(x) = -5\end{cases}\]
+	\item Si $m=-5$, $f(x)$ es continua en $x=0$.
+\end{itemize}
+
+\end{problem}
 
 \paragraph{Tipos de discontinuidad}
 
+\[
+\begin{cases} 
+	\text{Continua}\\
+	\text{ Discontinua }
+		\begin{cases}
+			\text{Evitable}\\
+			\text{Esencial}
+				\begin{cases}
+					\text{1ª especie}
+						\begin{cases}
+							\text{Salto finito}\\
+							\text{Salto infinito}
+						\end{cases}\\
+					\text{2ª especie}
+				\end{cases}
+		\end{cases}
+\end{cases}
+\]
+
+\textbf{Descripción: } Libro página 22. 
 \begin{itemize}
-	\item Evitables: $\exists \lim_{x\to a}f(x)$ pero $\begin{cases}\lim_{x\to a}f(x) \neq f(a)\\\nexists f(a)\end{cases}$
+	\item Evitables: $\exists \displaystyle\lim_{x\to a}f(x)$ pero $\begin{cases}\displaystyle\lim_{x\to a}f(x) \neq f(a)\\\text{o}\\\nexists f(a)\end{cases}$
+	\subitem Para evitarlas, se define una nueva función: $f(x) = \begin{cases}f(x) & x\neq a\\ b & x=a \end{cases}$
 	\item Esenciales (o inevitables): 
 	\begin{itemize}
 		\item De primera especie:
-		\subitem De salto finito: ambos límites laterales son finitos pero distinto
+		\subitem De salto finito: ambos límites laterales son finitos pero distinto.
 		\subitem De salto infinito: al menos un límite lateral es infinito.
+		\item De 2ª especie: al menos un límite lateral no existe. $f(x) = \sqrt{x}$ y $f(x) = \log(x)$ en $x=0$.
 	\end{itemize}
-	\item De 2ª especie: al menos un límite lateral no existe.
+\obs Ver \fref{fig::fun-tipos-discontinuidad}.
 \end{itemize}
+
 
 \begin{figure}
 \centering
+\includegraphics[scale=0.25]{img/Funs/funcion_xy_discontin_4hStg}
+\caption{Ejemplo de discontinuidad evitable}
 \label{fig::fun-tipos-discontinuidad}
-\caption{Tipos de distontinuidades}
+\includegraphics[scale=0.25]{img/Funs/funcion_xy_discontin_4jSGg}
+\caption{Ejemplo de discontinuidad de 2ª especie}
+\includegraphics[scale=0.25]{img/Funs/funcion_xy_discontin_6ueR5}
+\caption{Ejemplo de discontinuidad de salto infinito}
+\includegraphics[scale=0.25]{img/Funs/funcion_xy_discontin_U72G2}
+\caption{Ejemplo de discontinuidad de salto finito}
 \end{figure}
 
+
+
 \begin{defn}[Continuidad\IS en un intervalo abierto]
-$f(x)$ es continua en $(a,b) \dimplies \forall x\in(a,b), f(x)$ es continua.
+	$f(x)$ es continua en $(a,b) \dimplies \forall x\in(a,b), f(x)$ es continua.
 \end{defn}
 
-\begin{defn}[Continuidad\IS en un punto]
-$f(x)$ es continua en $(a,b) \dimplies \begin{cases} f(x) \text{ continua en } (a,b)\\
-\lim_{x\to a^+}f(x) = f(a)\\
-\lim_{x\to a^-}f(x) = f(a)\\
- \end{cases}$
+
+\begin{defn}[Continuidad\IS por la izquierda y/o por la derecha]
+	\begin{itemize}
+		\item Una función $(x)$ es continua por la derecha de $a$ si $\displaystyle\lim_{x\to a^+}f(x) = f(x)$
+		\item Una función $(x)$ es continua por la izquierda de $a$ si $\displaystyle\lim_{x\to a^-}f(x) = f(x)$
+	\end{itemize}
 \end{defn}
+
+\begin{defn}[Continuidad\IS en un intervalo cerrado]
+$f(x)$ es continua en $[a,b] \dimplies \forall x\in[a,b],\begin{cases} f(x) \text{ es continua en } (a,b)\\
+\text{Continua por la derecha de } a\\
+\text{Continua por la izquierda de } b\\\end{cases}$
+\end{defn}
+
 
 \begin{example}
-
 Dada $f(x) = +\sqrt{x}$.
 
-$f(x)$ no es continua en $x=0$, pero sí es continua en $[0,\infty)$.
+$f(x)$ es continua en su dominio, por ser funcion radical. $f(x)$ continua en $(0,\infty)$.
 
+$f(x)$ no es continua en $x=0$, pero sí es continua \textit{por la derecha} en $x=0$, ya que $\displaystyle\lim_{x\to 0^+} f(x) = 0$ en $[0,\infty)$.
 \end{example}
+
+
+\begin{table}[hbtp]
+\begin{tabular}{|l|l|}
+\hline
+Funciones polinómicas & Continuas en $\real$\\\hline\hline
+$f(x) = \frac{P(x)}{Q(x)}$ con $P(x),Q(x)$ polinomios& Continuas en $\real-\{x \tq Q(x)=0\}$\\\hline
+$f(x) = \sqrt[n]{P(x)}$ & $\begin{cases}
+n\text{ impar: continua en } \real\\\hline
+n\text{ par: continua en } \{x\in\real\tq P(x) \geq 0\}\end{cases}$\\\hline
+$f(x) = a^x$ con $a>0$ & Continua en $\real$\\\hline
+$f(x) = \log_ax$ (con $a>0, a\neq 1$) & Continua en $\real$\\\hline
+$f(x) = \cos(x)$ y $f(x) = \sen(x)$  & Continua en $\real$\\\hline
+$f(x) = \tg(x)$ y $f(x) = \sen(x)$  & Continua en $\real-\left\{x=\rfrac{\pi}{2}k, k\in\mathbb{Z}\right\}$\\\hline
+$f(x) = \arcsen(x)$ & Continua en su dominio.\\
+$f(x) = \arccos(x)$ & Continua en su dominio.\\
+$f(x) = \arctg(x)$ & Continua en su dominio.\\\hline
+\end{tabular}
+\label{tbl::ContinuidadFunElementales}
+\caption{Continuidad de las funciones elementales}
+\end{table}
+
+\begin{problem}
+Ejercicios 23.41 y 23.42.
+\solution
+\end{problem}
+
+\begin{problem}Estudia la continuidad de las siguientes funciones y clasifica sus discontinuidades
+
+\begin{itemize}
+	\item $f_1(x) = \displaystyle\frac{x^2+5x+6}{x^2+2x}$
+	\item $f_2(x) = \begin{cases}\log{x+1} & x\leq -1\\x & x>1\end{cases}$
+\end{itemize}
+\solution
+\end{problem}
+
+
 
 \begin{theorem}[Teorema\IS de Bolzano]
 Sea $\appl{f}{D}{\real}$.
@@ -110,13 +250,13 @@ Sea $\appl{f}{D}{\real}$.
 \left.\begin{array}{c}f(x) \text{ continua en } [a,b]\\\text{Signo}(f(a))\neq \text{Signo}(f(b))\end{array}\right\}\implies \exists c\in(a,b) \tq f(c) = 0
 \]
 
-\obs Es una condición suficiente, no necesaria. Es decir, es $\implies $
+\obs Es una condición suficiente, no necesaria. Es decir, es $\implies $. Por ejemplo, $f(x) = (x-1)^2$ corta en $x=1$, pero no cumple las condiciones.
 \end{theorem}
 
 \begin{problem} Demuestra que la ecuación $x^3-7x^2-1$ tiene al menos una solución real en el intervalo $[0,10]$.
 \solution
 
-Sea $f(x) = x^2-7x^2-1$. Se trata de demostrar que $\exists c\in[0,10]\tq f(c) = 0$. Comprobamos que cumple el teorema de Bolzano.
+Sea $f(x) = x^3-7x^2-1$. Se trata de demostrar que $\exists c\in[0,10]\tq f(c) = 0$. Comprobamos que cumple el teorema de Bolzano.
 
 \[
 \left\{
@@ -135,46 +275,254 @@ Sea $f(x) = x^2-7x^2-1$. Se trata de demostrar que $\exists c\in[0,10]\tq f(c) =
 Sea $\appl{f}{D}{\real}$.
 \[
 \left.\begin{array}{c}f(x) \text{ continua en } [a,b]\\
-\exists k\in\real \begin{cases}f(a)\leq k\leq f(b)\\f(b)\leq K \leq f(a)\end{cases}\end{array}\right\}\implies \exists c\in(a,b) \tq f(c) = k
+\exists k\in\real \begin{cases}f(a)\leq k\leq f(b)\\f(b)\leq k \leq f(a)\end{cases}\end{array}\right\}\implies \exists c\in(a,b) \tq f(c) = k
 \]
 \end{theorem}
 
 \obs Para $k=0$, el teorema del valor intermedio se convierte en teorema de Bolzano.
 
-\begin{theorem}[Teorema\IS de Weierstrass]
-
-\end{theorem}
 
 \begin{problem}
-Varios
+Demuestra que las funciones $f(x) = \cos(x)$ y $g(x) = x$ se cortan en algún punto.
+\solution
+
+Basta considerar la función $h(x) = f(x) - g(x) = \cos(x)-x$. Así, demostrar que las funciones se cortan será equivalente a demostrar que $\exists c\in\real\tq h(x)=0$. 
+
+Esta función es continua en $\real$, por ser resta de funciones continuas en $\real$.
+
+Buscamos $c\in\real\tq h(c)=0$. Consideramos $h(0) = -1$ y $h\left(\rfrac{\pi}{2}\right) = \rfrac{\pi}{2}>0$.
+
+Por el teorema de Bolzano, $\exists c\in\left(0,\rfrac{\pi}{2}\right)\tq h(c) = 0$, por lo que podemos concluir que las funciones se cortan.
+\end{problem}
+
+\begin{problem}
+\begin{itemize}
+	\item 35.108 (continuidad)
+	\item 36.113 (continuidad)
+	\item 36.117 (problema - continuidad)
+	\item 36.119,120 (límites)
+	\item Página 37.autoevaluación.
+\end{itemize}
 \solution
 \end{problem}
 
+\begin{theorem}[Teorema\IS de Weierstrass]
+Si $f(x)$ es continua en $[a,b]$, entonces tiene un máximo y un mínimo absolutos en $[a,b]$.
+\end{theorem}
 
-\section{Derivabilidad}
+\obs Este teorema se utilizará en el siguiente tema.
 
-\begin{defn}[Derivabilidad\IS en un punto]
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%                                    %%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%                                    %%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%                                    %%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%                                    %%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%            DERIVABILIDAD           %%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%                                    %%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%                                    %%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%                                    %%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%                                    %%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Derivadas y derivabilidad}
+
+\subsection{Introducción y repaso}
+\begin{defn}[Pendiente de una recta]
+Sea la recta $y=mx+n$.
+
+Se define \textbf{pendiente de la recta}, $m=\frac{\Delta y}{\Delta x}$
 \end{defn}
 
+\begin{defn}[Derivada\IS en un punto]
+Se define $f'(a)$ como la derivadad de $f(x)$ en el punto $x=a$.
+
+\[f'(a) = \lim_{x\to a}\frac{f(x)-f(a)}{x-a} = \lim_{h\to 0}\frac{f(x+h)-f(x)}{h}\]
+
+\textit{Ver \fref{img::funinterpretacionderivadapunto}}
+\end{defn}
+
+\subsubsection{Interpretación geométrica de la derivada}
+
+Ver \fref{img::funinterpretacionderivadapunto}.
+
+\begin{figure}[hbp]
+\centering
+\includegraphics[scale=0.5]{img/DerivadaInterGeometrica}
+\label{img::funinterpretacionderivadapunto}
+\caption{Interpretación geométrica de la derivada} Cuando $h\to0$, el punto $B$ se acercará cada vez más al punto $A$, dando lugar a la recta tangente. 
+%
+Para una mejor comprensión consultar la versión de geogebra: https://www.geogebra.org/m/jwtw6mdt#material/f52nQ7T5
+
+\end{figure} 
+
+\subsubsection{Función derivada}
+
+\begin{defn}[Función derivada]
+Dada $\appl{f}{D(f)\subset\real}{\real}$. Sea $Dv(f)$ el dominio de derivabilidad de $f$.
+
+La función derivada denotada por $\appl{f'(x)}{Dv(f)\subset\real}{\real}$ hace corresponder a cada $a\in Dv(F)$ el valor $f'(a)$.
+\end{defn}
+
+\begin{table}[hbp]
+\centering
+\begin{tabular}{|c|c|}\hline
+Función & Derivada\\
+\hline
+a&b\\\hline
+\end{tabular}
+\caption{Tabla de derivadas}
+\label{tbl::Derivadas}
+\end{table}
+
+\begin{problem}
+
+\begin{itemize}
+	\item 51.58
+	\item 59.113
+	\item 57.79-81
+\end{itemize}
+
+\solution
+\end{problem}
+
+\subsubsection{Derivabilidad}
+\begin{defn}[Derivabilidad\IS en un punto]
+\[f(x) \text{ derivable en } x=a\dimplies \exists f'(a)\]
+\end{defn}
+
+\begin{prop}
+$f(x)$ derivable en $x=a \implies f(x)$ continua en $x=a$
+\obs El recíproco no es cierto.
+\end{prop}
 
 \begin{defn}[Derivabilidad\IS en un intervalo abierto]
-
+\[f(x) \text{ derivable en } x\in(a,b) \dimplies \forall c\in(a,b) \exists f'(c) \]
 \end{defn}
 
 \begin{defn}[Dominio de derivabilidad]
-
+El dominio de derivabilidad de una función $f(x)$ es el mayor conjunto en el que la función es derivable.
 \end{defn}
 
-\subsection{Interpretación geométrica de la derivada}
+De la misma manera que existía la \textit{continuidad lateral}, también podemos hablar de \concept[Derivabilidad\IS lateral]{derivabilidad lateral}. 
 
-\paragraph{Ecuación de la recta tangente}
+\begin{defn}[Derivada lateral]
+La derivada lateral de $f$ en $x=a$ por la izquierda, escrita $f'(a^+)$, si existe:
 
-\paragraph{Ecuación de la recta normal}
+\[f'(a^+) = \lim_{h\to 0^+} \frac{f(x+h)-f(x)}{h}\]
 
-\begin{defn}[Función derivada]
+La derivada lateral de $f$ en $x=a$ por la derecha, escrita $f'(a^-)$, si existe:
 
+\[f'(a^-) = \lim_{h\to 0^-} \frac{f(x+h)-f(x)}{h} =  \lim_{h\to 0^+} \frac{f(x-h)-f(x)}{-h}\]
+
+\obs Esta última igualdad se debe a que $h\to 0^-\implies h<0$. Si resulta menos confuso, puede elegirse trabajar siempre con $h>0$ y así los signos quedan explicitados.
 \end{defn}
+
+\begin{problem} Estudia la derivabilidad en $x=0$ de la función 
+\label{prb::derivab1}
+\[f(x) = \begin{cases} x^2+3x & \text{ si } x\leq 0\\ 3·\left(\frac{x^2-1}{x+1}\right)&\text{ si } x>0\end{cases}\]
+\solution
+
+$f(x)$ será derivable en $x=0$ si $\exists f'(0)$. Dado que $f(x)$ está definida a trozos, calculamos la derivadas laterales.
+
+\[f'(0^-) = \lim_{h\to 0^+} \frac{f(0-h)-f(0)}{-h} = \lim_{h\to 0^-} \frac{(0-h)^2+3·(0-h)-(0^2+3·0)}{-h} = \lim_{h\to 0^-} \frac{h(h-3)}{-h} = +3\]
+\[f'(0^+) = \lim_{h\to 0^+} \frac{f(0+h)-f(0)}{h} = \lim_{h\to 0^+} \frac{3·\frac{(0+h)^2-1}{0+h+1} - (0^2-3·0)}{h} = \lim_{h\to 0^+} \frac{3·\frac{h^2-1}{h+1}}{h} = \]
+\[=\lim_{h\to 0^+} \frac{3·(h+1)(h-1)}{h(h+1)} = \lim_{h\to 0^+} \frac{3h-3}{h} = -\infty \]
+
+\textbf{Conclusión:} Dado que  $f'(0^-) \neq f'(0^+)$, la función no es derivable en $x=0$.
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.5]{img/DerivabilidadEjer1}
+\label{fig::DerivabEjer1}
+\caption{Representación gráfica del problema \ref{prb::derivab1}.}
+Claramente la derivada en $x=0$ no puede existir, dado que la función no es continua.
+\end{figure}
+
+\obs También podríamos haber calculado la derivada laterlal por la izquierda de la siguiente manera:
+
+\[f'(0^-) = \lim_{h\to 0^-} \frac{f(0+h)-f(0)}{h} = \lim_{h\to 0^-} \frac{h^2+3·h-(0^2+3·0)}{h} = \lim_{h\to 0^-} \frac{h(h+3)}{h} = +3\]
+
+\end{problem}
+
+\begin{problem}
+Página 43, ejercicios 13 y 14.
+\solution
+\end{problem}
+
+\begin{problem}
+Página 56, ejercicio 78.
+\solution
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=1.1]{img/DerivabilidadEjerp56-78}
+\label{ejercicioDerivabilidad}
+\caption{Ejercicio sacado del libro de SM}
+\end{figure}
+\end{problem}
+
+
+\subsection{Aplicaciones de la derivada}
+
+\subsubsection{Recta tangente y recta normal}
+
+\paragraph{Ecuación de la recta tangente:} Utilizando la ecuación de la recta punto-pendiente y la interpretación gráfica de la derivada (ver \ref{img::funinterpretacionderivadapunto}), se obtiene fácilmente la siguiente ecuación:
+
+\begin{mdframed}
+	\begin{equation}
+		\label{eq::rectatangente}
+		\text{Recta tangente a }f(x)\text{ en }x_0 \to y-f(x_0) = f'(x_0)·(x-x_0)
+	\end{equation}
+\end{mdframed}
+
+\begin{problem}
+Demuestra que la recta $y=-x$ es tangente a la curva dada por la ecuación: $y=x^3+6x^2+8x$
+\solution
+
+Consideramos $f(x) = x^3-6x^2+8x \to f'(x) = 3x^2-12x+8$.
+
+Buscamos $c\in\real\tq f'(c) = -1$.
+
+\[
+	3c^2+12c+8=-1 \dimplies \begin{cases}c_1 = 1\\c_2=3\end{cases}
+\]
+
+Los posibles puntos de tangencia son $P_1(c_1,f(c_1)) = (1,3)$ y $P_2(c_2,f(c_2)) = (3,-3)$.
+
+Es necesario comprobar que dichos puntos son realmente de tangencia, es decir, que pertenecen a la recta y a la gráfica.
+
+\[P_1: 3\neq -1 \implies \text{ no pertenece a la recta}\]
+\[P_2: -3\eq -3 \implies \text{ sí pertenece a la recta}\]
+
+\textbf{Conclusión: } El punto de tangencia de la recta $y=-x$ a la gráfica $f(x) = x^3-6x^2+8x$ es $P_2(3,-3)$
+\end{problem}
+
+\paragraph{Ecuación de la recta normal:} Dos rectas dadas, en 2 dimensiones, $r: y=m_rx+n_r\quad;\quad s:y=m_sx+n_s$ son perpendiculares si y sólo si $m_r·m_s = -1 \dimplies m_s = \rfrac{-1}{m_r}$.
+%
+Aplicando este resultado a la fórmula de la recta tangente anterior, tenemos:
+
+
+\begin{mdframed}
+	\begin{equation}
+		\label{eq::rectatangente}
+		\text{Recta normal a }f(x)\text{ en }x_0 \to y-f(x_0) = \rfrac{-1}{f'(x_0)}·(x-x_0)
+	\end{equation}
+\end{mdframed}
+
+
+\subsubsection{Teoremas de derivabilidad}
 
 \begin{theorem}[Teorema\IS de Rolle]
 
@@ -184,16 +532,22 @@ Varios
 \begin{theorem}[Teorema\IS del valor medio]
 \end{theorem}
 
-\subsection{Regla de L'Hôpital}
+\subsubsection{Regla de L'Hôpital}
 
-\subsection{Monotonía}
+\subsubsection{Monotonía}
 
 \begin{theorem}[Teorema\IS de monotonía]
 \end{theorem}
 \begin{theorem}[Teorema\IS de extremos relativos]
 \end{theorem}
 
-\subsection{Optimización}
+\subsubsection{Optimización}
+
+
+\begin{theorem}[Teorema\IS de Weierstrass]
+Si $f(x)$ es continua en $[a,b]$, entonces tiene un máximo y un mínimo absolutos en $[a,b]$.
+\end{theorem}
+
 
 \section{Análisis sistemático de una función}
 

@@ -8,11 +8,15 @@
 \usepackage{tikz}
 \usepackage{tikz-3dplot}
 \usepackage{fancysprefs}
+\usepackage{svg}
+
 
 \usetikzlibrary{calc,patterns,angles,quotes}
 
 \renewcommand{\ve}[1]{\ensuremath{\mathbf{#1}}}
 \newcommand{\ud}[0]{\mathrm{d}}
+\newcommand{\lgdlp}{Lugar geométrico de los puntos del espacio que equidistan de}
+
 
 \tikzset{
     vector/.style = {
@@ -52,12 +56,14 @@
 \end{itemize}
 
 %\input{tex/Probabilidad.tex}
-\input{tex/Alg-Matrices.tex}
-\input{tex/Alg-Afin.tex}
-\input{tex/Alg-Euclidea.tex}
+%\input{tex/Alg-Matrices.tex}
+%\input{tex/Alg-Afin.tex}
+%\input{tex/Alg-Euclidea.tex}
 \input{tex/Analisis.tex}
 
 \newpage
 \printindex
+\listoffigures
+\listoftables
 
 \end{document}
