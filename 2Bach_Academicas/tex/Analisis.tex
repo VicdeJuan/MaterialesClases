@@ -201,7 +201,7 @@ $f(x)$ es continua en $[a,b] \dimplies \forall x\in[a,b],\begin{cases} f(x) \tex
 \begin{example}
 Dada $f(x) = +\sqrt{x}$.
 
-$f(x)$ es continua en su dominio, por ser funcion radical. $f(x)$ continua en $(0,\infty)$.
+$f(x)$ es continua en su dominio, por ser función radical. $f(x)$ continua en $(0,\infty)$.
 
 $f(x)$ no es continua en $x=0$, pero sí es continua \textit{por la derecha} en $x=0$, ya que $\displaystyle\lim_{x\to 0^+} f(x) = 0$ en $[0,\infty)$.
 \end{example}
@@ -218,7 +218,7 @@ n\text{ par: continua en } \{x\in\real\tq P(x) \geq 0\}\end{cases}$\\\hline
 $f(x) = a^x$ con $a>0$ & Continua en $\real$\\\hline
 $f(x) = \log_ax$ (con $a>0, a\neq 1$) & Continua en $\real$\\\hline
 $f(x) = \cos(x)$ y $f(x) = \sen(x)$  & Continua en $\real$\\\hline
-$f(x) = \tg(x)$ y $f(x) = \sen(x)$  & Continua en $\real-\left\{x=\rfrac{\pi}{2}k, k\in\mathbb{Z}\right\}$\\\hline
+$f(x) = \tg(x)$   & Continua en $\real-\left\{x=\rfrac{\pi}{2}k, k\in\mathbb{Z}\right\}$\\\hline
 $f(x) = \arcsen(x)$ & Continua en su dominio.\\
 $f(x) = \arccos(x)$ & Continua en su dominio.\\
 $f(x) = \arctg(x)$ & Continua en su dominio.\\\hline
@@ -250,8 +250,8 @@ Sea $\appl{f}{D}{\real}$.
 \left.\begin{array}{c}f(x) \text{ continua en } [a,b]\\\text{Signo}(f(a))\neq \text{Signo}(f(b))\end{array}\right\}\implies \exists c\in(a,b) \tq f(c) = 0
 \]
 
-\obs Es una condición suficiente, no necesaria. Es decir, es $\implies $. Por ejemplo, $f(x) = (x-1)^2$ corta en $x=1$, pero no cumple las condiciones.
 \end{theorem}
+\obs Es una condición suficiente, no necesaria. Es decir, es $\implies $. Por ejemplo, $f(x) = (x-1)^2$ corta en $x=1$, pero no cumple las condiciones.
 
 \begin{problem} Demuestra que la ecuación $x^3-7x^2-1$ tiene al menos una solución real en el intervalo $[0,10]$.
 \solution
@@ -290,7 +290,7 @@ Basta considerar la función $h(x) = f(x) - g(x) = \cos(x)-x$. Así, demostrar q
 
 Esta función es continua en $\real$, por ser resta de funciones continuas en $\real$.
 
-Buscamos $c\in\real\tq h(c)=0$. Consideramos $h(0) = -1$ y $h\left(\rfrac{\pi}{2}\right) = \rfrac{\pi}{2}>0$.
+Buscamos $c\in\real\tq h(c)=0$. Consideramos $h(0) = 1$ y $h\left(\rfrac{\pi}{2}\right) = \rfrac{-\pi}{2}<0$.
 
 Por el teorema de Bolzano, $\exists c\in\left(0,\rfrac{\pi}{2}\right)\tq h(c) = 0$, por lo que podemos concluir que las funciones se cortan.
 \end{problem}
@@ -337,7 +337,7 @@ Si $f(x)$ es continua en $[a,b]$, entonces tiene un máximo y un mínimo absolut
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Derivadas y derivabilidad}
+\newpage\section{Derivadas y derivabilidad}
 
 \subsection{Introducción y repaso}
 \begin{defn}[Pendiente de una recta]
@@ -347,56 +347,53 @@ Se define \textbf{pendiente de la recta}, $m=\frac{\Delta y}{\Delta x}$
 \end{defn}
 
 \begin{defn}[Derivada\IS en un punto]
-Se define $f'(a)$ como la derivadad de $f(x)$ en el punto $x=a$.
+Se define $f'(a)$ como la derivada de $f(x)$ en el punto $x=a$.
 
-\[f'(a) = \lim_{x\to a}\frac{f(x)-f(a)}{x-a} = \lim_{h\to 0}\frac{f(x+h)-f(x)}{h}\]
+\[f'(a) = \lim_{x\to a}\frac{f(x)-f(a)}{x-a} \overset{(1)}{=} \lim_{h\to 0}\frac{f(a+h)-f(a)}{h}\]
 
-\textit{Ver \fref{img::funinterpretacionderivadapunto}}
+$(1): h=x-a \dimplies x=a+h$
+
+\textit{Ver \fref{fig::funinterpretacionderivadapunto}}.
 \end{defn}
+
+\begin{example}
+Dada $f(x) = |x|$, calcula $f'(0)$.
+
+\[
+f(x) = \begin{cases}x&\text{ si } x>0 \\ -x & \text{ si }x\leq 0\end{cases}
+\]
+
+Calculamos:
+
+\[
+\lim_{x\to 0}\frac{f(x)-f(0)}{x-0} = \begin{cases}
+\displaystyle\lim_{x\to 0^+} \frac{f(x)}{x} = \displaystyle\lim_{x\to 0^+} \frac{x}{x} = 1\\\\
+\displaystyle\lim_{x\to 0^-} \frac{f(x)}{x} = \displaystyle\lim_{x\to 0^-} \frac{-x}{x} = -1
+\end{cases}
+\]
+
+\label{derivEjemplo}
+
+Los límites laterales no coinciden, por lo tanto, $\nexists \displaystyle\lim_{x\to 0}\frac{f(x)-f(a)}{x-a} \dimplies \nexists f'(a)$
+\end{example}
+
+
+
 
 \subsubsection{Interpretación geométrica de la derivada}
 
-Ver \fref{img::funinterpretacionderivadapunto}.
+Ver \fref{fig::funinterpretacionderivadapunto}.
 
 \begin{figure}[hbp]
 \centering
 \includegraphics[scale=0.5]{img/DerivadaInterGeometrica}
-\label{img::funinterpretacionderivadapunto}
+\label{fig::funinterpretacionderivadapunto}
 \caption{Interpretación geométrica de la derivada} Cuando $h\to0$, el punto $B$ se acercará cada vez más al punto $A$, dando lugar a la recta tangente. 
 %
-Para una mejor comprensión consultar la versión de geogebra: https://www.geogebra.org/m/jwtw6mdt#material/f52nQ7T5
+Para una mejor comprensión consultar la versión de Geogebra: https://www.geogebra.org/m/jwtw6mdt\#material/f52nQ7T5
 
 \end{figure} 
 
-\subsubsection{Función derivada}
-
-\begin{defn}[Función derivada]
-Dada $\appl{f}{D(f)\subset\real}{\real}$. Sea $Dv(f)$ el dominio de derivabilidad de $f$.
-
-La función derivada denotada por $\appl{f'(x)}{Dv(f)\subset\real}{\real}$ hace corresponder a cada $a\in Dv(F)$ el valor $f'(a)$.
-\end{defn}
-
-\begin{table}[hbp]
-\centering
-\begin{tabular}{|c|c|}\hline
-Función & Derivada\\
-\hline
-a&b\\\hline
-\end{tabular}
-\caption{Tabla de derivadas}
-\label{tbl::Derivadas}
-\end{table}
-
-\begin{problem}
-
-\begin{itemize}
-	\item 51.58
-	\item 59.113
-	\item 57.79-81
-\end{itemize}
-
-\solution
-\end{problem}
 
 \subsubsection{Derivabilidad}
 \begin{defn}[Derivabilidad\IS en un punto]
@@ -405,7 +402,7 @@ a&b\\\hline
 
 \begin{prop}
 $f(x)$ derivable en $x=a \implies f(x)$ continua en $x=a$
-\obs El recíproco no es cierto.
+\obs El recíproco no es cierto. Basta comprobar el ejemplo \ref{derivEjemplo} ($f(x) = |x|$ es continua en $x=0$, pero no derivable en $x=0$).
 \end{prop}
 
 \begin{defn}[Derivabilidad\IS en un intervalo abierto]
@@ -416,14 +413,21 @@ $f(x)$ derivable en $x=a \implies f(x)$ continua en $x=a$
 El dominio de derivabilidad de una función $f(x)$ es el mayor conjunto en el que la función es derivable.
 \end{defn}
 
-De la misma manera que existía la \textit{continuidad lateral}, también podemos hablar de \concept[Derivabilidad\IS lateral]{derivabilidad lateral}. 
+\begin{example}
+$f(x) = |x|$ no es derivable en $x=0$.
+
+El dominio de derivabilidad de $f(x)$ es $\real-\{0\}$
+\end{example}
+
+
+\paragraph{Derivabilidad lateral:} De la misma manera que existía la \textit{continuidad lateral}, también podemos hablar de \textit{derivabilidad lateral}. 
 
 \begin{defn}[Derivada lateral]
-La derivada lateral de $f$ en $x=a$ por la izquierda, escrita $f'(a^+)$, si existe:
+La derivada lateral de $f$ en $x=a$ por la derecha, escrita $f'(a^+)$, si existe:
 
 \[f'(a^+) = \lim_{h\to 0^+} \frac{f(x+h)-f(x)}{h}\]
 
-La derivada lateral de $f$ en $x=a$ por la derecha, escrita $f'(a^-)$, si existe:
+La derivada lateral de $f$ en $x=a$ por la izquierda, escrita $f'(a^-)$, si existe:
 
 \[f'(a^-) = \lim_{h\to 0^-} \frac{f(x+h)-f(x)}{h} =  \lim_{h\to 0^+} \frac{f(x-h)-f(x)}{-h}\]
 
@@ -432,16 +436,16 @@ La derivada lateral de $f$ en $x=a$ por la derecha, escrita $f'(a^-)$, si existe
 
 \begin{problem} Estudia la derivabilidad en $x=0$ de la función 
 \label{prb::derivab1}
-\[f(x) = \begin{cases} x^2+3x & \text{ si } x\leq 0\\ 3·\left(\frac{x^2-1}{x+1}\right)&\text{ si } x>0\end{cases}\]
+\[f(x) = \begin{cases} x^2+3x & \text{ si } x\leq 0\\ 3·\left(\frac{x^2+x}{x+1}\right)&\text{ si } x>0\end{cases}\]
 \solution
 
 $f(x)$ será derivable en $x=0$ si $\exists f'(0)$. Dado que $f(x)$ está definida a trozos, calculamos la derivadas laterales.
 
 \[f'(0^-) = \lim_{h\to 0^+} \frac{f(0-h)-f(0)}{-h} = \lim_{h\to 0^-} \frac{(0-h)^2+3·(0-h)-(0^2+3·0)}{-h} = \lim_{h\to 0^-} \frac{h(h-3)}{-h} = +3\]
-\[f'(0^+) = \lim_{h\to 0^+} \frac{f(0+h)-f(0)}{h} = \lim_{h\to 0^+} \frac{3·\frac{(0+h)^2-1}{0+h+1} - (0^2-3·0)}{h} = \lim_{h\to 0^+} \frac{3·\frac{h^2-1}{h+1}}{h} = \]
-\[=\lim_{h\to 0^+} \frac{3·(h+1)(h-1)}{h(h+1)} = \lim_{h\to 0^+} \frac{3h-3}{h} = -\infty \]
+\[f'(0^+) = \lim_{h\to 0^+} \frac{f(0+h)-f(0)}{h} = \lim_{h\to 0^+} \frac{3·\frac{(0+h)^2+(0+h)}{0+h+1} - (0^2-3·0)}{h} = \lim_{h\to 0^+} \frac{3·\frac{h^2+h}{h+1}}{h} = \]
+\[=\lim_{h\to 0^+} \frac{3·h·(h+1)}{h(h+1)} = 3 \]
 
-\textbf{Conclusión:} Dado que  $f'(0^-) \neq f'(0^+)$, la función no es derivable en $x=0$.
+\textbf{Conclusión:} Dado que  $f'(0^-) \eq f'(0^+) \implies f'(0) = 3$, por lo que la función es derivable en $x=0$.
 
 \begin{figure}[h!]
 \centering
@@ -451,26 +455,68 @@ $f(x)$ será derivable en $x=0$ si $\exists f'(0)$. Dado que $f(x)$ está defini
 Claramente la derivada en $x=0$ no puede existir, dado que la función no es continua.
 \end{figure}
 
-\obs También podríamos haber calculado la derivada laterlal por la izquierda de la siguiente manera:
+\obs También podríamos haber calculado la derivada lateral por la izquierda de la siguiente manera:
 
 \[f'(0^-) = \lim_{h\to 0^-} \frac{f(0+h)-f(0)}{h} = \lim_{h\to 0^-} \frac{h^2+3·h-(0^2+3·0)}{h} = \lim_{h\to 0^-} \frac{h(h+3)}{h} = +3\]
 
 \end{problem}
 
-\begin{problem}
-Página 43, ejercicios 13 y 14.
+\begin{problem}[Página 43, 14.]
+¿Es la siguiente función derivable en $x=-2,x=0,x=2$?
+
+\[f(x) = \begin{cases}
+x^2 & \text{ si } x<-2\\
+-4(x+1) & \text{ si } -2<x\leq0\\
+3x^2-4 & \text{ si } 0<x\leq2\\
+12x+1 & \text{ si } x>2
+\end{cases}\]
 \solution
 \end{problem}
 
-\begin{problem}
-Página 56, ejercicio 78.
+\begin{problem}[Página 56, ejercicio 78.]
+Dada la función $f(x)$, calcula $a,b,c\in\real$ para que la función sea derivable en $x=1$, sabiendo que $f(0) = f(4)$.
 \solution
+
+Solución: $a=-\rfrac{7}{4}; b=1; c=\rfrac{1}{4}$
+
 \begin{figure}[h!]
 \centering
-\includegraphics[scale=1.1]{img/DerivabilidadEjerp56-78}
+\includegraphics[scale=1.1]{img/DerivabilidadEjer5678}
 \label{ejercicioDerivabilidad}
 \caption{Ejercicio sacado del libro de SM}
 \end{figure}
+
+\end{problem}
+
+
+\subsubsection{Función derivada}
+
+\begin{defn}[Función derivada]
+Dada $\appl{f}{D(f)\subset\real}{\real}$. Sea $Dv(f)$ el dominio de derivabilidad de $f$.
+
+La función derivada denotada por $\appl{f'(x)}{Dv(f)\subset\real}{\real}$ hace corresponder a cada $a\in Dv(F)$ el valor $f'(a)$.
+\end{defn}
+
+% \begin{table}[hbp]
+% \centering
+% \begin{tabular}{|c|c|}\hline
+% Función & Derivada\\
+% \hline
+% a&b\\\hline
+% \end{tabular}
+% \caption{Tabla de derivadas}
+% \label{tbl::Derivadas}
+% \end{table}
+
+\begin{problem}
+
+\begin{itemize}
+	\item 51.58 (2 trigonométricas inversas)
+	\item 59.113 (8 variadas. Solo la h tiene una trigonométrica inversa.)
+	\item 57.79-81 (Ejercicios resueltos)
+\end{itemize}
+
+\solution
 \end{problem}
 
 
@@ -478,7 +524,7 @@ Página 56, ejercicio 78.
 
 \subsubsection{Recta tangente y recta normal}
 
-\paragraph{Ecuación de la recta tangente:} Utilizando la ecuación de la recta punto-pendiente y la interpretación gráfica de la derivada (ver \ref{img::funinterpretacionderivadapunto}), se obtiene fácilmente la siguiente ecuación:
+\paragraph{Ecuación de la recta tangente:} Utilizando la ecuación de la recta punto-pendiente y la interpretación gráfica de la derivada (ver \ref{fig::funinterpretacionderivadapunto}), se obtiene fácilmente la siguiente ecuación:
 
 \begin{mdframed}
 	\begin{equation}
@@ -525,12 +571,84 @@ Aplicando este resultado a la fórmula de la recta tangente anterior, tenemos:
 \subsubsection{Teoremas de derivabilidad}
 
 \begin{theorem}[Teorema\IS de Rolle]
-
+\[
+\left.
+	\begin{array}{c}
+		f(x)\text{ continua en } [a,b]\\
+		f(x)\text{ derivable en } (a,b)\\
+		f(a)=f(b)
+	\end{array}
+\right\}\implies \exists c\in(a,b)\tq f'(c)=0
+\]
 \end{theorem}
+\obs ¿Puede haber más de un punto? ¡Claro que sí! Basta pensar en una función horizontal.
 
+\begin{problem}
+% Página 66.1
+Sea $f(x) = 2x^5+x+a$.  Demuestra que $\exists!c\in\real\tq f(c)=0$
+\solution
+Por el teorema de Bolzano, hay al menos una raíz real.
+
+\ul{Veamos que es única.} Si hubiera otra raíz real, $d$, tendríamos $f(c) = f(d)$ en una función continua en $[c,d]\subset\real$ y derivable en $(c,d)\subset\real$ por ser una función polinómica.
+%
+Así, se puede aplicar el teorema de Rolle, argumentando que $\exists c\in\real\tq f'(c) = 0$, pero $f'(x) = 10x^4+1 \neq 0 \;\forall x\in\real$.
+
+\textbf{Conclusión: } dado que $f(x)$ cumple todas las hipótesis del teorema de Rolle, debemos concluir necesariamente que no hay otra raíz real $d$\footnote{Sino, el teorema fallaría y eso no es posible.}. 
+\end{problem}
+
+\begin{problem}
+67.8
+\solution
+\end{problem}
 
 \begin{theorem}[Teorema\IS del valor medio]
+\[
+\left.
+	\begin{array}{c}
+		f(x)\text{ continua en } [a,b]\\
+		f(x)\text{ derivable en } (a,b)\\
+	\end{array}
+\right\}\implies \exists c\in(a,b)\tq f'(c)=\frac{f(b)-f(a)}{x-a}
+\]
+
+\obs El teorema de Rolle es un caso particular de este teorema que se da cuando $f(a) = f(b)$
 \end{theorem}
+\obs ¿Puede haber más de un punto? ¡Claro que sí!
+
+\begin{problem}
+Considera la función $f(x) = x·e^{-x^2}$.
+
+Calcula el valor del parámetro real $a$ para el que se puede aplicar el teorema de Rolle en el intervalo $[0,1]$ a la función $g(x) = f(x) + ax$
+\solution
+
+\[g(x) = x·e^{-x^2} + ax = x·\left(a+e^{-x^2}\right)\]
+
+Las hipótesis del teorema de Rolle son:
+
+\[
+\left.
+	\begin{array}{l}
+		g(x)\text{ continua en } [0,1] \to \text{ En este caso se cumple por ser suma de función polinómica y exponencial}\\
+		g(x)\text{ derivable en } (0,1) \to \text{ En este caso se cumple por ser suma de función polinómica y exponencial}\\
+		g(a)=g(b) 
+	\end{array}
+\right\}
+\]
+
+Necesitamos que $g(0) = g(1)$. 
+
+\[0·\left(a+e^{-0^2}\right) = 1·\left(a+e^{-1^2}\right) \dimplies 0 = a+e^{-1} \dimplies a=-e^{-1}\]
+
+\obs Este problema salió en las noticias de 2019 porque se preguntó en la EVAU de valencia y los alumnos se enfadaron mucho.
+\end{problem}
+
+\begin{problem}
+
+\ppart[17.2-MadA] Estudia la derivabilidad en $x=0$ de $f(x) = \begin{cases}\displaystyle x·e^{2x} &\mbox{ si } x<0\\ \displaystyle\frac{\ln(x+1)}{x+1}&\mbox{ si } x\geq 0\end{cases}$ en $x=0$. 
+\ppart[16.1-MadB] Determina el polinomio $f(x)$, sabiendo que $\forall x\in\real f'''(x) = 12$ y además verifica $f(1) = 3; f'(1) = 1; f''(1) = 4$.
+\ppart[16.1-MadB] Estudie la continuidad y la derivabilidad en $x=0$ y en $x=1$ de $f(x) = \begin{cases} 0& \text{ si } x\leq 0\\|x\ln(x)&\text{ si} x>0\end{cases}$
+\solution
+\end{problem}
 
 \subsubsection{Regla de L'Hôpital}
 

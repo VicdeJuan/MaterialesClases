@@ -1,0 +1,39 @@
+\documentclass[nobuilddate,nochap]{Docencia}
+
+\title{Matemáticas II - Apuntes de clase}
+\author{Departamento de Matemáticas}
+\date{2019-2020}
+
+
+\usepackage{tikz}
+\usepackage{tikz-3dplot}
+\usepackage{fancysprefs}
+\usepackage{svg}
+
+
+\usetikzlibrary{calc,patterns,angles,quotes}
+
+\renewcommand{\ve}[1]{\ensuremath{\mathbf{#1}}}
+\newcommand{\ud}[0]{\mathrm{d}}
+\newcommand{\lgdlp}{Lugar geométrico de los puntos del espacio que equidistan de}
+
+
+\tikzset{
+    vector/.style = {
+        thick,
+        > = stealth',
+    },
+    axis/.style = {
+        very thin,
+        > = stealth',
+    },
+}
+
+
+\begin{document}
+
+\pagestyle{plain}
+
+\input{tex/_ResumenDerivabilidad.tex}
+
+\end{document}
