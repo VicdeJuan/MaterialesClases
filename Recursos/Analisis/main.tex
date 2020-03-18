@@ -20,15 +20,15 @@ Este documento trata el estudio sistemático de las siguientes funciones:
 
 \begin{enumerate}
 	\item \inputfun{tex/function}$f(x) = \displaystyle\sagestr{latex(f(x))}$
-	% \item \inputfun{tex/function2}$f(x) = \displaystyle\sagestr{latex(f(x))}$
-	% \item \inputfun{tex/fun1}$f(x) = \displaystyle\sagestr{latex(f(x))}$
-	% \item \inputfun{tex/function3}$f(x) = \displaystyle\sagestr{latex(f(x))}$
-	% \item \inputfun{tex/function5}$f(x) = \displaystyle\sagestr{latex(f(x))}$
-	% \item \inputfun{tex/fun4}$f(x) = \displaystyle\sagestr{latex(f(x))}$
-	% \item \inputfun{tex/fun5}$f(x) = \displaystyle\sagestr{latex(f(x))}$
-	% \item \inputfun{tex/fun2}$f(x) = \displaystyle\sagestr{latex(f(x))}$
-	% \item \inputfun{tex/fun6}$f(x) = \displaystyle\sagestr{latex(f(x))}$
-	% \item \inputfun{tex/function}$f(x) = \displaystyle\sagestr{latex(f(x))}$
+	\item \inputfun{tex/function2}$f(x) = \displaystyle\sagestr{latex(f(x))}$
+	\item \inputfun{tex/fun1}$f(x) = \displaystyle\sagestr{latex(f(x))}$
+	\item \inputfun{tex/function3}$f(x) = \displaystyle\sagestr{latex(f(x))}$
+	 \item \inputfun{tex/function5}$f(x) = \displaystyle\sagestr{latex(f(x))}$
+	 \item \inputfun{tex/fun4}$f(x) = \displaystyle\sagestr{latex(f(x))}$
+	 \item \inputfun{tex/fun5}$f(x) = \displaystyle\sagestr{latex(f(x))}$
+	 \item \inputfun{tex/fun2}$f(x) = \displaystyle\sagestr{latex(f(x))}$
+	 \item \inputfun{tex/fun6}$f(x) = \displaystyle\sagestr{latex(f(x))}$
+	 \item \inputfun{tex/function}$f(x) = \displaystyle\sagestr{latex(f(x))}$
 
 %\item \inputfun{tex/fun5} $f(x) = \sage{f(x)}$
 \end{enumerate}
@@ -38,14 +38,17 @@ Este documento trata el estudio sistemático de las siguientes funciones:
 \end{abstract}
 
 \newcommand{\newexample}[1]{
-	\section{Análisis sistemático de una función}
-	Analiza sistemáticamente la siguiente función:
-	\input{#1}
-	\begin{mdframed}
-	\[f(x) = \sagestr{latex(f(x))}\]
-	\end{mdframed}
-	\input{tex/Solution_Template_full}
-	\newpage
+	\clearpage
+	\begin{problem}Estudia sistemáticamente la siguiente función
+	\inputfun{#1}
+	
+	\[f(x) = \sage{latex(f)}\]
+	\solution
+	\textit{Esta solución ha sido generada automáticamente. Puede contener errores.}
+	
+	\fullAnalisisBach{#1}
+	\end{problem}
+	
 }
 
 \newcommand{\inputfun}[1]{
@@ -71,131 +74,28 @@ Este documento trata el estudio sistemático de las siguientes funciones:
 \maketitle
 
 
+\newexample{tex/function}
+\newexample{tex/function2}
+\newexample{tex/fun1}
+\newexample{tex/function3}
+\newexample{tex/fun4}
+\newexample{tex/fun5}
+\newexample{tex/fun2}
+\newexample{tex/fun6}
+% \newexample{tex/function5}
 
-
-\begin{problem} Estudia sistemáticamente la función
-	\[
-		f(x)=\frac{x^2}{x+1}
-	\]
-\solution
-
-\textit{Esta solución ha sido generada automáticamente. Puede contener errores.}
-
-\fullAnalisisBach{tex/function}
-
-\end{problem}
-
-% I
-
-% \begin{problem} Estudia sistemáticamente la función
-% 	\[
-% 		f(x)=\frac{x^2-5x+6}{x-4}
-% 	\]
-% \solution
-
-% \textit{Esta solución ha sido generada automáticamente. Puede contener errores.}
-
-% \fullAnalisisBach{tex/function}
-
-% \end{problem}
 
 
 % \begin{problem} Estudia sistemáticamente la función
+%  \inputfun{tex/function5}
 % 	\[
-% 		f(x)=\frac{x^2-5x}{x^2+25}
-% 	\]
-% \solution
-
-% \textit{Esta solución ha sido generada automáticamente. Puede contener errores.}
-
-% \fullAnalisisBach{tex/function2}
-
-% \end{problem}
-
-% \begin{problem} Estudia sistemáticamente la función
-% 	\[
-% 		f(x)=\frac{x^2-5x}{x^2-25}
-% 	\]
-% \solution
-
-% \textit{Esta solución ha sido generada automáticamente. Puede contener errores.}
-
-% \fullAnalisisBach{tex/fun1}
-
-% \end{problem}
-
-
-% \begin{problem} Estudia sistemáticamente la función
-% 	\[
-% 		f(x)=\frac{x+6}{x-1}
-% 	\]
-% \solution
-
-% \textit{Esta solución ha sido generada automáticamente. Puede contener errores.}
-
-% \fullAnalisisBach{tex/function3}
-
-% \end{problem}
-
-% \begin{problem} Estudia sistemáticamente la función
-% 	\[
-% 		f(x)=\frac{1}{x^2}
+% 		f(x)=\sagestr{latex(f)}
 % 	\]
 % \solution
 
 % \textit{Esta solución ha sido generada automáticamente. Puede contener errores.}
 
 % \fullAnalisisBach{tex/function5}
-
-% \end{problem}
-
-
-% \begin{problem} Estudia sistemáticamente la función
-% 	\[
-% 		f(x)=\frac{x+2}{x-2}
-% 	\]
-% \solution
-
-% \textit{Esta solución ha sido generada automáticamente. Puede contener errores.}
-
-% \fullAnalisisBach{tex/fun4}
-
-% \end{problem}
-
-
-% \begin{problem} Estudia sistemáticamente la función
-% 	\[
-% 		f(x)=\frac{e^x}{x}
-% 	\]
-% \solution
-
-% \textit{Esta solución ha sido generada automáticamente. Puede contener errores.}
-
-% \fullAnalisisBach{tex/fun5}
-
-% \end{problem}
-
-% \begin{problem} Estudia sistemáticamente la función
-% 	\[
-% 		f(x)=\log(x^2+6)
-% 	\]
-% \solution
-
-% \textit{Esta solución ha sido generada automáticamente. Puede contener errores.}
-
-% \fullAnalisisBach{tex/fun2}
-
-% \end{problem}
-
-% \begin{problem} Estudia sistemáticamente la función
-% 	\[
-% 		f(x)=x(e^x-1)
-% 	\]
-% \solution
-
-% \textit{Esta solución ha sido generada automáticamente. Puede contener errores.}
-
-% \fullAnalisisBach{tex/fun6}
 
 % \end{problem}
 
