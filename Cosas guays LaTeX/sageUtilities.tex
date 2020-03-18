@@ -12,10 +12,11 @@
 
 \newcommand{\fullAnalisisBach}[1]{
 \input{#1}
+\mycontinuidadyderivabilidad
 \mydominio
-\mysimetria
-\myptscorte
 \myasintotas
+\myptscorte
+\mysimetria
 \mymonotonia
 \mycurvatura
 \mygrafo
@@ -35,7 +36,9 @@
 }
 
 
-
+\newcommand{\mycontinuidadyderivabilidad}{
+    Es una función \sagestr{Tipo} y, por tanto, continua y derivable en todo su dominio.
+}
 
 \newcommand{\mydominio}{
 \paragraph{Dominio}
@@ -173,9 +176,12 @@ Dividimos la recta real con los puntos de corte con el eje $X$ y aquellos puntos
 \ifverbose
 En azul se marcan las asíntotas verticales, en rojo las horizontales y en morado las oblícuas.
 \fi
-\begin{center}
-\sageplot{_myplot(f,AH=uniq(AH),AV=uniq(AV),AO=AO)}
-\end{center}
+\begin{figure}
+    \begin{center}
+        \sageplot{_myplot(f,AH=uniq(AH),AV=uniq(AV),AO=AO)}
+    \end{center}
+\caption{Gráfica de la función.}
+\end{figure}
 }
 
 
@@ -631,7 +637,7 @@ def _f_sign_monot_tabla(recta,f,min,max,curvatura):
  actual=0
  
  # Construimos la tabla, con tantas columnas como intervalos+1, para poner la función
- retval +="\\newline\\begin{table}[hbp]\\centering\\begin{tabular}{"+"c|"*(len(recta))+"}"
+ retval +="\\newline\\begin{table}[h!]\\centering\\begin{tabular}{"+"c|"*(len(recta))+"}"
  # Construimos la primera fila de la tabla
  
  
@@ -698,16 +704,16 @@ def _f_sign_monot_tabla(recta,f,min,max,curvatura):
  return retval 
 
 def estudiarSignoDiff(f):
- if Verbose == 1:
-    _retval = _f_sign_monot(recta,f,min,max,false)
+ if Verbose == 1: #BUG
+    _retval = _f_sign_monot_tabla(recta,f,min,max,false)
  else:   
     _retval = _f_sign_monot_tabla(recta,f,min,max,false)
  
  return _retval
 
 def estudiarSignoSegundaDerivada(f):
- if Verbose == 1:
-    _retval = _f_sign_monot(recta,f,min,max,true)
+ if Verbose == 1:#BUG
+    _retval = _f_sign_monot_tabla(recta,f,min,max,true)
  else:   
     _retval = _f_sign_monot_tabla(recta,f,min,max,true)
  
