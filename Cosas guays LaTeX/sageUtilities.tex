@@ -129,9 +129,9 @@ Calculamos los puntos críticos, aquellos en los que $f'(x) = 0$
 \sagestr{solveDerivadaNula(f=f,sols=ptsCrit,onlyReal=True)}
 
 
-Añadimos a estos puntos aquellos en los que la función primitiva no exista, si hay alguno.
+Añadimos a estos puntos aquellos en los que la función primitiva no exista y aquellos puntos en los que la función derivada no exista, si hay alguno. En este caso, 
 %
-\sagestr{ptsFrontera(f=f,ptscrit=ptsCrit,recta=recta)}
+\sagestr{ptsFrontera(f=f,ptscrit=ptsCrit,recta=recta,derivada_too=true)}
 
 \sagestr{estudiarSignoDiff(f)}
 }
@@ -148,9 +148,9 @@ Calculamos los puntos críticos, aquellos en los que $f''(x) = 0$
 \sagestr{solveDerivadaNula(f=diff(f(x),x,1),sols=ptsCrit,onlyReal=True)}
 
 
-Añadimos a estos puntos aquellos en los que la función primitiva o la primera derivada no existan, si hay alguno.
+Añadimos a estos puntos aquellos en los que la función primitiva o la primera derivada no existan, si hay alguno. En este caso, 
 %
-\sagestr{ptsFrontera(f=f,ptscrit=ptsCrit,recta=recta)}
+\sagestr{ptsFrontera(f=f,ptscrit=ptsCrit,recta=recta,derivada_too=true)}
 
 \sagestr{estudiarSignoSegundaDerivada(f)}
 }
@@ -416,8 +416,13 @@ def solveDerivadaNula(f,sols,onlyReal):
     return retval
 
 
-def ptsFrontera(f,ptscrit,recta):
+def ptsFrontera(f,ptscrit,recta,derivada_too):
     puntosFrontera = flatten([ptsDiscontinuidad(f=f),ptscrit])
+    if derivada_too:
+        ___pts = ptsDiscontinuidad(f=diff(f(x),x,1))
+        if ___pts != []:
+            puntosFrontera.append(___pts)
+
     recta=[-Infinity]
 
     i=0
@@ -599,21 +604,14 @@ def _f_sign_monot_tabla(recta,f,min,max,curvatura):
         recta.append(a)
     recta=sorted(recta) 
  else:
-    
     for a in _getRealroots(df):
         recta.append(a)
     
     for a in ptsDiscontinuidad(f=f):
-        print("\t"+str(a))
         recta.append(a)
-    
-    
     recta=sorted(recta) 
     
  lista_intervalos = intervalos(recta)
-
- retval = "Los intervalos a estudiar son: "+latex(lista_intervalos)
- 
 
  if curvatura:
     fun = "f''"
@@ -621,6 +619,13 @@ def _f_sign_monot_tabla(recta,f,min,max,curvatura):
  else:
     fun = "f'"
     g = df # La función a estudiar es la derivada.
+
+ retval = "Los intervalos a estudiar son: "+latex(lista_intervalos)
+ 
+
+ __label = "estudio" + str(random_between(1,1000000)) + str(random_between(1,1000000)) + str(random_between(1,1000000))
+ retval += "Ver tabla \\ref{"+__label+"}, con el estudio de "+fun+"(x)"
+
 
  prev=0
  actual=0
@@ -670,7 +675,8 @@ def _f_sign_monot_tabla(recta,f,min,max,curvatura):
 
  #Fin del bucle
  
- retval += "\\end{tabular}\\caption{Estudio del signo de $" + fun + "(x)=" + latex(g) + "$}\\end{table}"
+
+ retval += "\\end{tabular}\\caption{Estudio del signo de $" + fun + "(x)=" + latex(g) + "$}\\label{"+__label+"}\\end{table}"
  
  if not curvatura:
 

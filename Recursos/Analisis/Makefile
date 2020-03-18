@@ -6,8 +6,11 @@ SAGEUTILSDIR="../../Cosas guays LaTeX/"
 
 
 
+fast: copy sage
+	$(LATEX) $(TARGET)
 
-all: copy sage
+all: fast
+	$(LATEX) $(TARGET)
 	$(LATEX) $(TARGET)
 
 updatePy:
