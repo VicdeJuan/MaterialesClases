@@ -13,10 +13,11 @@
 \newcommand{\fullAnalisisBach}[1]{
 \input{#1}
 \mydominio
-%\mysimetria
+\mysimetria
 \myptscorte
 \myasintotas
 \mymonotonia
+\mycurvatura
 \mygrafo
 \newpage
 }
@@ -128,12 +129,32 @@ Calculamos los puntos críticos, aquellos en los que $f'(x) = 0$
 \sagestr{solveDerivadaNula(f=f,sols=ptsCrit,onlyReal=True)}
 
 
-Incluimos a estos puntos aquellos en los que la función primitiva no exista, si hay alguno.
+Añadimos a estos puntos aquellos en los que la función primitiva no exista, si hay alguno.
 %
 \sagestr{ptsFrontera(f=f,ptscrit=ptsCrit,recta=recta)}
 
 \sagestr{estudiarSignoDiff(f)}
 }
+
+\newcommand{\mycurvatura}{
+\paragraph{Curvatura}
+    
+
+
+$f''(x) = \sagestr{latex(diff(diff(f(x),x,1),x,1).full_simplify())}$
+
+Calculamos los puntos críticos, aquellos en los que $f''(x) = 0$
+
+\sagestr{solveDerivadaNula(f=diff(f(x),x,1),sols=ptsCrit,onlyReal=True)}
+
+
+Añadimos a estos puntos aquellos en los que la función primitiva o la primera derivada no existan, si hay alguno.
+%
+\sagestr{ptsFrontera(f=f,ptscrit=ptsCrit,recta=recta)}
+
+\sagestr{estudiarSignoSegundaDerivada(f)}
+}
+
 
 \newcommand{\mysigno}{
 \paragraph{Signo de la función}
@@ -371,11 +392,13 @@ def puntosEjeY(func):
 
 ############### Monotonía
 
-
-# Función para calcular los puntos que anulan la derivada.
+# Funcion para calcular los puntos que anulan la derivada.
+# Devuelve: cadena de texto con el codigo LaTeX.
 # Recibe:
-# f: función
-# boolean onlyReal: para calcular sólo soluciones reales.
+#   f: funcion
+#   list sols: lista en la que escribir las soluciones (sobreescribe lo que tenga. Se recomienda pasar una lista vacia) 
+#   boolean onlyReal: para calcular solo soluciones reales.
+
 def solveDerivadaNula(f,sols,onlyReal):
     _sols = solve(diff(f(x))==0,x,solution_dict=True)
     if onlyReal:
@@ -416,40 +439,6 @@ def intervalos(recta):
         r += "$\\left("+latex(recta[i])+","+latex(recta[i+1])+"\\right)$;\\quad"  
     return r
 
-# Estudia el signo de la función dada la función y los puntos frontera.
-def diffsign(f,recta,min,max):
-    _emptylist(min)
-    _emptylist(max)
-    g=diff(f,x,1)
-    prev=0
-    actual=0
-    retval = "\\begin{itemize}"
-    for i in xrange(len(recta)-1):
-        rval=random_between(recta[i],recta[i+1])
-        retval += "\\item $\\left("+latex(recta[i])+","+latex(recta[i+1])+"\\right)$:"
-        if (Verbose == 1):
-            retval += " Tomamos, por ejemplo, $f'("+latex(rval)+") = "+latex(round(g(rval),3))+"...$  y miramos su signo:" 
-        else:
-            retval += "$f'("+latex(rval)+") = "+latex(round(g(rval),3)) +"$"
-        prev=actual
-        actual=sign(g(rval))
-        if actual==1: 
-            if (Verbose == 1):
-                retval += "Positivo, por lo que la función \\textbf{crece} en este intervalo"  
-            else:
-                retval += "Positivo $\\Rightarrow$ crece"
-        else:
-            if (Verbose == 1):
-                retval += "Negativo, por lo que la función \\textbf{decrece} en este intervalo"
-            else:
-                retval += "Negativo $\\Rightarrow$ decrece"
-
-        if (prev == -1 and actual == 1):
-            min.append(recta[i])
-        if (prev == 1 and actual == -1):
-            max.append(recta[i])
-    retval += "\\end{itemize}"
-    return retval
 
 # Estudia el signo de la función dada la función y los puntos frontera.
 def estudiarSigno(f):
@@ -499,47 +488,223 @@ def _getRealroots(f):
 
 
 
-def _f_sign_monot(recta,f,min,max):
+### Estudia el signo de la función derivada, tanto para la curvatura, como para la monotonía.
+# Devuelve codigo LaTeX
+# Recibe:
+# f: función
+# min: lista
+# max: lista
+# boolean curvatura: false si buscamos estudiar la monotnía. True para estudiar curvatura.
+def _f_sign_monot(recta,f,min,max,curvatura):
  _emptylist(min)
  _emptylist(max)
- g=diff(f,x,1)
+ df=diff(f,x,1)
+ ddf = diff(df,x,1)
  recta=[-Infinity,Infinity]
- for a in _getRealroots(g):
-  recta.append(a)
- for a in ptsDiscontinuidad(f=f):
-  recta.append(a)
- recta=sorted(recta) 
+ 
+ if curvatura:
+    # Los puntos que marcan extremos de intervalos son:
+    #       los valores que anulan la segunda derivada, 
+    #       los puntos de discontinuidad de la derivada 
+    #       los puntos de discontinuidad de la función.
+    for a in _getRealroots(ddf):
+        recta.append(a)
+    for a in ptsDiscontinuidad(f=df):
+        recta.append(a)
+    for a in ptsDiscontinuidad(f=f):
+        recta.append(a)
+    recta=sorted(recta) 
+ else:
+    for a in _getRealroots(df):
+        recta.append(a)
+    for a in ptsDiscontinuidad(f=f):
+        recta.append(a)
+    recta=sorted(recta) 
+ 
  retval = "Los intervalos a estudiar son: "+latex(intervalos(recta))
  
  prev=0
  actual=0
+ if curvatura:
+    fun = "f''"
+    g = ddf # La función a utilizar es la segunda derivada.
+ else:
+    fun = "f"
+    g = df # La función a estudiar es la derivada.
  retval += "\\begin{itemize}"
  for i in xrange(len(recta)-1):
   rval=random_between(recta[i],recta[i+1])
   retval += "\\item $\\left("+latex(recta[i])+","+latex(recta[i+1])+"\\right)$:"
   if (Verbose == 1):
-   retval += " Tomamos, por ejemplo, f'($"+latex(rval)+") = "+latex(round(g(rval),3))+"...$  y miramos su signo:" 
+   retval += " Tomamos, por ejemplo, "+fun+"($"+latex(rval)+") = "+latex(round(g(rval),3))+"...$  y miramos su signo:" 
   else:
-   retval += "f'($"+latex(rval)+") = "+latex(round(g(rval),3)) +"$"
+   retval += fun + "($"+latex(rval)+") = "+latex(round(g(rval),3)) +"$"
   prev=actual
   actual=sign(g(rval))
   if actual==1: 
    if (Verbose == 1):
-    retval += "Positivo, por lo que la función \\textbf{crece} en este intervalo."  
+    if curvatura:
+        retval += "Positivo, por lo que la función es \\textbf{convexa} en este intervalo."
+    else:
+        retval += "Positivo, por lo que la función \\textbf{crece} en este intervalo."  
    else:
-    retval += "Positivo $\\Rightarrow$ crece."
+    if curvatura:
+        retval += "Positivo, $\\Rightarrow$ \\textbf{convexa}."
+    else:  
+        retval += "Positivo $\\Rightarrow$ crece."
   else:
    if (Verbose == 1):
-    retval += "Negativo, por lo que la función \\textbf{decrece} en este intervalo."
+    if curvatura:
+        retval += "Negativo, por lo que la función es \\textbf{cóncava} en este intervalo."
+    else:
+        retval += "Negativo, por lo que la función \\textbf{decrece} en este intervalo."
    else:
-    retval += "Negativo $\\Rightarrow$ decrece."
+
+    if curvatura:
+        retval += "Negativo, \\textbf{cóncava}."
+    else:
+        retval += "Negativo $\\Rightarrow$ decrece."
 
 
+ 
  return retval+"\\end{itemize}"
 
+### Estudia el signo de la función derivada, tanto para la curvatura, como para la monotonía.
+# Devuelve codigo LaTeX en modo tabla
+# Recibe:
+# f: función
+# min: lista
+# max: lista
+# boolean curvatura: false si buscamos estudiar la monotnía. True para estudiar curvatura.
+def _f_sign_monot_tabla(recta,f,min,max,curvatura):
+
+## IDEAS PARA MEJORAR. Poner los "&" al final, para poder poner \\hline entre las filas de las tablas.
+ _emptylist(min)
+ _emptylist(max)
+ df=diff(f,x,1)
+ ddf = diff(df,x,1)
+ recta=[-Infinity,Infinity]
+ 
+ 
+ if curvatura:
+    # Los puntos que marcan extremos de intervalos son:
+    #       los valores que anulan la segunda derivada, 
+    #       los puntos de discontinuidad de la derivada 
+    #       los puntos de discontinuidad de la función.
+    for a in _getRealroots(ddf):
+        recta.append(a)
+    for a in ptsDiscontinuidad(f=df):
+        recta.append(a)
+    for a in ptsDiscontinuidad(f=f):
+        recta.append(a)
+    recta=sorted(recta) 
+ else:
+    
+    for a in _getRealroots(df):
+        recta.append(a)
+    
+    for a in ptsDiscontinuidad(f=f):
+        print("\t"+str(a))
+        recta.append(a)
+    
+    
+    recta=sorted(recta) 
+    
+ lista_intervalos = intervalos(recta)
+
+ retval = "Los intervalos a estudiar son: "+latex(lista_intervalos)
+ 
+
+ if curvatura:
+    fun = "f''"
+    g = ddf # La función a utilizar es la segunda derivada.
+ else:
+    fun = "f'"
+    g = df # La función a estudiar es la derivada.
+
+ prev=0
+ actual=0
+ 
+ # Construimos la tabla, con tantas columnas como intervalos+1, para poner la función
+ retval +="\\newline\\begin{table}[hbp]\\centering\\begin{tabular}{"+"c|"*(len(recta))+"}"
+ # Construimos la primera fila de la tabla
+ 
+ 
+ for i in xrange(len(recta)-1):
+  retval += "& $\\left("+latex(recta[i])+","+latex(recta[i+1])+"\\right)$"
+
+ retval += "\\\\ "
+ 
+ conclusiones=[]
+ # Construimos la segunda fila de la tabla:
+ for i in xrange(len(recta)-1):
+  rval=random_between(recta[i],recta[i+1])
+  retval += "&"+fun + "($"+latex(rval)+") = "+latex(round(g(rval),3)) +"$"
+  if sign(g(rval)) == 1:
+    if curvatura:
+        conclusiones.append("Convexa")
+    else: 
+        conclusiones.append("Creciente")
+    retval += "$>0$"
+  else:
+    if curvatura:
+        conclusiones.append("Cóncava")
+    else:
+        conclusiones.append("Decreciente")
+    retval += "$<0$"
+  
+
+  # Guardar en la lista los mínimos.
+  prev=actual
+  actual=sign(g(rval))
+  if prev!=actual and actual == 1:
+    max.append(rval)
+  if prev!=actual and actual == 0:
+    min.append(rval)
+
+ retval += "\\\\"
+
+ # Incluimos última fila de la tabla:
+ for c in conclusiones:
+    retval += "&" + c
+
+ #Fin del bucle
+ 
+ retval += "\\end{tabular}\\caption{Estudio del signo de $" + fun + "(x)=" + latex(g) + "$}\\end{table}"
+ 
+ if not curvatura:
+
+    if max == []:
+        retval += "La función no tiene ningún máximo."
+    else:
+        retval += "Los puntos $" 
+        # Hay una función que lo hace
+        retval += latex(max)
+        retval += "$ son máximos de la función\\\\"
+    if min == []:
+        retval += "La función no tiene ningún mínimo."
+    else:
+        retval += "Los puntos $" 
+        # Hay una función que lo hace
+        retval += latex(min)
+        retval += "$ son mínimos de la función."
+      
+ return retval 
 
 def estudiarSignoDiff(f):
- _retval = _f_sign_monot(recta,f,min,max)
+ if Verbose == 1:
+    _retval = _f_sign_monot(recta,f,min,max,false)
+ else:   
+    _retval = _f_sign_monot_tabla(recta,f,min,max,false)
+ 
+ return _retval
+
+def estudiarSignoSegundaDerivada(f):
+ if Verbose == 1:
+    _retval = _f_sign_monot(recta,f,min,max,true)
+ else:   
+    _retval = _f_sign_monot_tabla(recta,f,min,max,true)
+ 
  return _retval
 
 
