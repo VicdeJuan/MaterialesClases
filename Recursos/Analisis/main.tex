@@ -7,6 +7,9 @@
 \usepackage[author={Víctor de Juan, 2019}]{pdfcomment}
 \subtitle{Algunos ejemplos resueltos para 1º Bachillerato}
 
+\usepackage{amsmath}
+\usepackage{breqn}
+
 \usepackage{sagetex}
 \usepackage{float}
 
@@ -19,16 +22,20 @@
 Este documento trata el estudio sistemático de las siguientes funciones:
 
 \begin{enumerate}
-	\item \inputfun{tex/function}$f(x) = \displaystyle\sagestr{latex(f(x))}$
-	\item \inputfun{tex/function2}$f(x) = \displaystyle\sagestr{latex(f(x))}$
-	\item \inputfun{tex/fun1}$f(x) = \displaystyle\sagestr{latex(f(x))}$
-	\item \inputfun{tex/function3}$f(x) = \displaystyle\sagestr{latex(f(x))}$
-	 \item \inputfun{tex/function5}$f(x) = \displaystyle\sagestr{latex(f(x))}$
-	 \item \inputfun{tex/fun4}$f(x) = \displaystyle\sagestr{latex(f(x))}$
-	 \item \inputfun{tex/fun5}$f(x) = \displaystyle\sagestr{latex(f(x))}$
-	 \item \inputfun{tex/fun2}$f(x) = \displaystyle\sagestr{latex(f(x))}$
-	 \item \inputfun{tex/fun6}$f(x) = \displaystyle\sagestr{latex(f(x))}$
-	 \item \inputfun{tex/function}$f(x) = \displaystyle\sagestr{latex(f(x))}$
+	% \item \inputfun{tex/function}$f(x) = \displaystyle\sagestr{latex(f(x))}$
+	% \item \inputfun{tex/function2}$f(x) = \displaystyle\sagestr{latex(f(x))}$
+	% \item \inputfun{tex/fun1}$f(x) = \displaystyle\sagestr{latex(f(x))}$
+	% \item \inputfun{tex/function3}$f(x) = \displaystyle\sagestr{latex(f(x))}$
+	%  \item \inputfun{tex/function5}$f(x) = \displaystyle\sagestr{latex(f(x))}$
+	%  \item \inputfun{tex/fun4}$f(x) = \displaystyle\sagestr{latex(f(x))}$
+	%  \item \inputfun{tex/fun5}$f(x) = \displaystyle\sagestr{latex(f(x))}$
+	%  \item \inputfun{tex/fun2}$f(x) = \displaystyle\sagestr{latex(f(x))}$
+	%  \item \inputfun{tex/fun6}$f(x) = \displaystyle\sagestr{latex(f(x))}$
+	%  \item \inputfun{tex/function}$f(x) = \displaystyle\sagestr{latex(f(x))}$
+
+
+\item \inputfun{tex/MNFun}$f(x) = \displaystyle\sagestr{latex(f(x))}$
+
 
 %\item \inputfun{tex/fun5} $f(x) = \sage{f(x)}$
 \end{enumerate}
@@ -40,6 +47,8 @@ Este documento trata el estudio sistemático de las siguientes funciones:
 \newcommand{\newexample}[1]{
 	\clearpage
 	\begin{problem}Estudia sistemáticamente la siguiente función
+
+
 	\inputfun{#1}
 	
 	\[f(x) = \sage{latex(f)}\]
@@ -60,6 +69,7 @@ Este documento trata el estudio sistemático de las siguientes funciones:
 \begin{document}
 
 \input{sageUtilities.notvalid}
+
 \ifverbose
 	\begin{sagesilent}
 		Verbose=1
@@ -74,14 +84,17 @@ Este documento trata el estudio sistemático de las siguientes funciones:
 \maketitle
 
 
-\newexample{tex/function}
-\newexample{tex/function2}
-\newexample{tex/fun1}
-\newexample{tex/function3}
-\newexample{tex/fun4}
-\newexample{tex/fun5}
-\newexample{tex/fun2}
-\newexample{tex/fun6}
+% \newexample{tex/function}
+% \newexample{tex/function2}
+% \newexample{tex/fun1}
+% \newexample{tex/function3}
+% \newexample{tex/fun4}
+% \newexample{tex/fun5}
+% \newexample{tex/fun2}
+% \newexample{tex/fun6}
+
+\newexample{tex/MNFun}
+
 % \newexample{tex/function5}
 
 

@@ -15,10 +15,10 @@
 \mycontinuidadyderivabilidad
 \mydominio
 \myasintotas
-\myptscorte
-\mysimetria
-\mymonotonia
-\mycurvatura
+% \myptscorte
+% \mysimetria
+% \mymonotonia
+% \mycurvatura
 \mygrafo
 \newpage
 }
@@ -45,9 +45,10 @@
 %
 %\[ D(f) = \{x\in\real \tq \sage{f.denominator()(x)} \neq 0\} = \sagestr{dominion(f=f,hasDen=True,hasLog=false,hasRt=false)}\]
 %
-\[
-\sagestr{dominion(f=f)}
-\]
+
+\begin{dmath*}
+    \sagestr{dominion(f=f,intervalos_dominio = DOM_INTERVALS)}
+\end{dmath*}
 }
 
 \newcommand{\mysimetria}{
@@ -197,6 +198,9 @@ ptsCrit=[]
 recta=[]
 min=[]
 max=[]
+DOM_INTERVALS = []
+
+
 
 # Definición de las funciones
 
@@ -429,7 +433,9 @@ def ptsFrontera(f,ptscrit,recta,derivada_too):
         if ___pts != []:
             puntosFrontera.append(___pts)
 
-    recta=[-Infinity]
+    # En lugar de -infinity, hay que poner el extremo mínimo del dominio.
+    #recta=[-Infinity]
+
 
     i=0
     r=""
@@ -649,6 +655,7 @@ def _f_sign_monot_tabla(recta,f,min,max,curvatura):
  conclusiones=[]
  # Construimos la segunda fila de la tabla:
  for i in xrange(len(recta)-1):
+  
   rval=random_between(recta[i],recta[i+1])
   retval += "&"+fun + "($"+latex(rval)+") = "+latex(round(g(rval),3)) +"$"
   if sign(g(rval)) == 1:
@@ -736,18 +743,90 @@ def ismin(f,x0):
  return retval
  
 
-## Devuelve los intervalos solución de una inecuación.
+###### Devuelve los intervalos solución de una inecuación.
+# Función auxiliar:
+
+def __simpleInecToInterval(s):
+    ineqOperators = {
+        (x<3).operator():"<",
+        (x>3).operator():">",
+        (x<=3).operator():"<=",
+        (x>=3).operator():">="
+    }    
+    left = s.lhs()
+    right = s.rhs()
+    operator = ineqOperators[s.operator()]
+
+
+    if left.is_numeric():
+        num = left
+    elif right.is_numeric():
+        num = right
+    else:
+        num = "Error grave"
+        
+
+    if operator == "<":
+        return "(-\\infty,"+str(num)+")"
+    elif operator == "<=":
+        return "(-\\infty,"+str(num)+"]"
+    elif operator == ">":
+        return "("+str(num)+",\\infty)"
+    elif operator == ">=":
+        return "["+str(num)+",\\infty)"
+    else:
+        return "Error grave"        
+
 # tosolve: inecuación a pasarle a solve direcamente. 
 #   Ejemplo: x^2-9 >= 0
-def __getIntervalsFromIneq(tosolve):
-    return str(tosolve)
+def __getIntervalsFromIneq(tosolve,intervals):
+    
+    solutions = tosolve.solve(x)
+    intervals.append(reduce(RealSet.union,[RealSet(i[0]) for i in solutions]))
+
+    if len(solutions) > 1:
+        openpar = "\\left"
+        closepar = "\\right"
+    else:
+        openpar = ""
+        closepar = ""
+
+    __intervals__ = " \\cup ".join([__simpleInecToInterval(s[0]) for s in solutions])
+    return openpar + "("+ __intervals__ + closepar + ")"
+
+
+
+## Función auxiliar recursiva para obtener todos los radicandos que tiene una función:
+# f: función
+# num: contador
+def __hasRt_aux(f,num):
+    retval = []
+    if len(f.operands()) == 2 and (sage.symbolic.expression.is_Expression(f.operands()) == false ):
+        if not f.operands()[1].is_integer() and f.operands()[1].is_numeric():
+            retval.append(f.operands()[0])
+            
+    for _op in f.operands():
+        l = __hasRt_aux(_op,num+1)
+        if not l == []:
+            retval.append(l)
+    return retval
+
+def getRadicandos(f):
+    return flatten(__hasRt_aux(f,0))
+
 
 ## Devuelve en texto el dominio de la función. 
 # f: función
+# intervalos_dominio: lista vacía en la que rellenar los valores del intervalo.
+
+def dominion(f,intervalos_dominio):
+    intervalos_dominio = []
+    hasLog = f(x).operator() == (log(x).operator())
+    ## Rutina para conocer si la función tiene alguna raíz:
+    radicandos = getRadicandos(f)
+    hasRt = len(radicandos)
+
     
-def dominion(f):
-    hasLog=f(x).operator() == (log(x).operator())
-    hasRt = f(x).operator() == (sqrt(x).operator())
     hasDen = f.denominator(normalize=False) == 1
 
     doms = ""
@@ -755,10 +834,15 @@ def dominion(f):
     intersect = 0
     if denominator != 1:
         s0=latex(denominator)
-        s1=",".join(str(a[x]) for a in solve(f.denominator(normalize=False) == 0,x,solution_dict=True))
+        __solutions = [a[x] for a in solve(f.denominator(normalize=False) == 0,x,solution_dict=True)]   
+        s1=",".join([str(a) for a in __solutions ])
         doms += "\\{x\\in\\real \\tq "+s0+" \\neq 0 \\} = \\real - \{"+ s1 + "\}\n"
+        
+        for _s in __solutions:
+            intervalos_dominio.append(_s)
         intersect+=1
         
+    intervals=[]
     if hasLog:
         if hasLog==1:
             base=e
@@ -769,32 +853,38 @@ def dominion(f):
         s0=latex(argument)
         print(argument)
         #s1=",".join(str(a[x]) for a in solve(argument>0,x,solution_dict=True))
-        s1=__getIntervalsFromIneq(argument>0)
+        s1=__getIntervalsFromIneq(argument>0,intervals)
         if intersect > 0:
             doms += "\\cap"
         intersect+=1
-        doms += "\\{x\\in\\real \\tq "+s0+" > 0 \\} = "+ s1 + "\n"
+        doms += "\\{x\\in\\real \\tq "+s0+" > 0 \\} "+ s1 + "\n"
 
 
         
     if hasRt:
         #Gnapa para arreglar
-        argument = f(x)^2
-        s0=latex(argument)
-        print(argument)
-        #s1=",".join(str(a[x]) for a in solve(argument>=0,x,solution_dict=True))
-        s1=__getIntervalsFromIneq(argument>=0)
-        if intersect > 0:
-            doms += "\\cap"
-        intersect+=1
+        for argument in radicandos: 
+            s0=latex(argument)
+            print(argument)
+            #s1=",".join(str(a[x]) for a in solve(argument>=0,x,solution_dict=True))
+            
+            if intersect > 0:
+                doms += "\\cap"
+            intersect+=1
 
-        doms += "\\{x\\in\\real \\tq "+s0+" > 0 \\} = "+ s1 + "\n"
-        doms+=""  
+            doms += "\\{x\\in\\real \\tq "+s0+" > 0 \\} "
+            doms+=""  
+        # Resolvemos inecuaciones
+        doms+="} = {"
+
+        doms += "\\cap".join([__getIntervalsFromIneq(argument>=0,intervals) for argument in radicandos])
+        
               
     if doms == "":
         doms = "\\real"
         
-    return "D(f) = " + doms
+    
+    return "D(f) = {"+doms + "} = {" + str(reduce(RealSet.intersection,intervals)).replace("oo","\\infty") + "}"
 
 ### Función para pintar las gráficas.
 # f: función

@@ -7,6 +7,9 @@ ptsCrit=[]
 recta=[]
 min=[]
 max=[]
+DOM_INTERVALS = []
+
+
 
 # Definicion de las funciones
 
@@ -232,9 +235,16 @@ def solveDerivadaNula(f,sols,onlyReal):
     return retval
 
 
-def ptsFrontera(f,ptscrit,recta):
+def ptsFrontera(f,ptscrit,recta,derivada_too):
     puntosFrontera = flatten([ptsDiscontinuidad(f=f),ptscrit])
-    recta=[-Infinity]
+    if derivada_too:
+        ___pts = ptsDiscontinuidad(f=diff(f(x),x,1))
+        if ___pts != []:
+            puntosFrontera.append(___pts)
+
+    # En lugar de -infinity, hay que poner el extremo minimo del dominio.
+    #recta=[-Infinity]
+
 
     i=0
     r=""
@@ -393,6 +403,8 @@ def _f_sign_monot(recta,f,min,max,curvatura):
 # max: lista
 # boolean curvatura: false si buscamos estudiar la monotnia. True para estudiar curvatura.
 def _f_sign_monot_tabla(recta,f,min,max,curvatura):
+
+## IDEAS PARA MEJORAR. Poner los "&" al final, para poder poner \\hline entre las filas de las tablas.
  _emptylist(min)
  _emptylist(max)
  df=diff(f,x,1)
@@ -413,48 +425,60 @@ def _f_sign_monot_tabla(recta,f,min,max,curvatura):
         recta.append(a)
     recta=sorted(recta) 
  else:
-    
     for a in _getRealroots(df):
         recta.append(a)
     
     for a in ptsDiscontinuidad(f=f):
-        print("\t"+str(a))
         recta.append(a)
-    
-    
     recta=sorted(recta) 
     
  lista_intervalos = intervalos(recta)
-
- retval = "Los intervalos a estudiar son: "+latex(lista_intervalos)
- 
 
  if curvatura:
     fun = "f''"
     g = ddf # La funcion a utilizar es la segunda derivada.
  else:
-    fun = "f"
+    fun = "f'"
     g = df # La funcion a estudiar es la derivada.
+
+ retval = "Los intervalos a estudiar son: "+latex(lista_intervalos)
+ 
+
+ __label = "estudio" + str(random_between(1,1000000)) + str(random_between(1,1000000)) + str(random_between(1,1000000))
+ retval += "Ver tabla \\ref{"+__label+"}, con el estudio de "+fun+"(x)"
+
 
  prev=0
  actual=0
  
  # Construimos la tabla, con tantas columnas como intervalos+1, para poner la funcion
- retval +="\\begin{table}\\centering\\begin{tabular}{"+"c"*(len(recta))+"}"
+ retval +="\\newline\\begin{table}[h!]\\centering\\begin{tabular}{"+"c|"*(len(recta))+"}"
  # Construimos la primera fila de la tabla
- retval += latex(g)
- for interval in lista_intervalos:
-    retval += "\& "+latex(interval)
- retval += "\\\\"
  
+ 
+ for i in xrange(len(recta)-1):
+  retval += "& $\\left("+latex(recta[i])+","+latex(recta[i+1])+"\\right)$"
+
+ retval += "\\\\ "
+ 
+ conclusiones=[]
  # Construimos la segunda fila de la tabla:
  for i in xrange(len(recta)-1):
+  
   rval=random_between(recta[i],recta[i+1])
-  retval += "\&"+fun + "($"+latex(rval)+") = "+latex(round(g(rval),3)) +"$"
+  retval += "&"+fun + "($"+latex(rval)+") = "+latex(round(g(rval),3)) +"$"
   if sign(g(rval)) == 1:
-    retval += ">0\\rightarrow \\text{Convexa}"
+    if curvatura:
+        conclusiones.append("Convexa")
+    else: 
+        conclusiones.append("Creciente")
+    retval += "$>0$"
   else:
-    retval += "<0\\rightarrow \\text{Concava}"
+    if curvatura:
+        conclusiones.append("Concava")
+    else:
+        conclusiones.append("Decreciente")
+    retval += "$<0$"
   
 
   # Guardar en la lista los minimos.
@@ -464,27 +488,51 @@ def _f_sign_monot_tabla(recta,f,min,max,curvatura):
     max.append(rval)
   if prev!=actual and actual == 0:
     min.append(rval)
- retval += "\\end{tabular}\\caption{Hola}\\end{table}"
+
+ retval += "\\\\"
+
+ # Incluimos ultima fila de la tabla:
+ for c in conclusiones:
+    retval += "&" + c
+
+ #Fin del bucle
+ 
+
+ retval += "\\end{tabular}\\caption{Estudio del signo de $" + fun + "(x)=" + latex(g) + "$}\\label{"+__label+"}\\end{table}"
  
  if not curvatura:
 
-    retval += "Los puntos " 
-    # Hay una funcion que lo hace
-    retval += latex(max)
-    retval += "son maximos de la funcion\\\\"
-    retval += "Los puntos " 
-    # Hay una funcion que lo hace
-    retval += latex(min)
-    retval += "son minimos de la funcion"
-  
+    if max == []:
+        retval += "La funcion no tiene ningun maximo."
+    else:
+        retval += "Los puntos $" 
+        # Hay una funcion que lo hace
+        retval += latex(max)
+        retval += "$ son maximos de la funcion\\\\"
+    if min == []:
+        retval += "La funcion no tiene ningun minimo."
+    else:
+        retval += "Los puntos $" 
+        # Hay una funcion que lo hace
+        retval += latex(min)
+        retval += "$ son minimos de la funcion."
+      
  return retval 
 
 def estudiarSignoDiff(f):
- _retval = _f_sign_monot_tabla(recta,f,min,max,false)
+ if Verbose == 1: #BUG
+    _retval = _f_sign_monot_tabla(recta,f,min,max,false)
+ else:   
+    _retval = _f_sign_monot_tabla(recta,f,min,max,false)
+ 
  return _retval
 
 def estudiarSignoSegundaDerivada(f):
- _retval = _f_sign_monot(recta,f,min,max,true)
+ if Verbose == 1:#BUG
+    _retval = _f_sign_monot_tabla(recta,f,min,max,true)
+ else:   
+    _retval = _f_sign_monot_tabla(recta,f,min,max,true)
+ 
  return _retval
 
 
@@ -504,18 +552,90 @@ def ismin(f,x0):
  return retval
  
 
-## Devuelve los intervalos solucion de una inecuacion.
+###### Devuelve los intervalos solucion de una inecuacion.
+# Funcion auxiliar:
+
+def __simpleInecToInterval(s):
+    ineqOperators = {
+        (x<3).operator():"<",
+        (x>3).operator():">",
+        (x<=3).operator():"<=",
+        (x>=3).operator():">="
+    }    
+    left = s.lhs()
+    right = s.rhs()
+    operator = ineqOperators[s.operator()]
+
+
+    if left.is_numeric():
+        num = left
+    elif right.is_numeric():
+        num = right
+    else:
+        num = "Error grave"
+        
+
+    if operator == "<":
+        return "(-\\infty,"+str(num)+")"
+    elif operator == "<=":
+        return "(-\\infty,"+str(num)+"]"
+    elif operator == ">":
+        return "("+str(num)+",\\infty)"
+    elif operator == ">=":
+        return "["+str(num)+",\\infty)"
+    else:
+        return "Error grave"        
+
 # tosolve: inecuacion a pasarle a solve direcamente. 
 #   Ejemplo: x^2-9 >= 0
-def __getIntervalsFromIneq(tosolve):
-    return str(tosolve)
+def __getIntervalsFromIneq(tosolve,intervals):
+    
+    solutions = tosolve.solve(x)
+    intervals = reduce(RealSet.union,[RealSet(i) for i in solutions])
+
+    if len(solutions) > 1:
+        openpar = "\\left"
+        closepar = "\\right"
+    else:
+        openpar = ""
+        closepar = ""
+
+    __intervals__ = " \\cup ".join([__simpleInecToInterval(s[0]) for s in solutions])
+    return openpar + "("+ __intervals__ + closepar + ")"
+
+
+
+## Funcion auxiliar recursiva para obtener todos los radicandos que tiene una funcion:
+# f: funcion
+# num: contador
+def __hasRt_aux(f,num):
+    retval = []
+    if len(f.operands()) == 2 and (sage.symbolic.expression.is_Expression(f.operands()) == false ):
+        if not f.operands()[1].is_integer() and f.operands()[1].is_numeric():
+            retval.append(f.operands()[0])
+            
+    for _op in f.operands():
+        l = __hasRt_aux(_op,num+1)
+        if not l == []:
+            retval.append(l)
+    return retval
+
+def getRadicandos(f):
+    return flatten(__hasRt_aux(f,0))
+
 
 ## Devuelve en texto el dominio de la funcion. 
 # f: funcion
+# intervalos_dominio: lista vacia en la que rellenar los valores del intervalo.
+
+def dominion(f,intervalos_dominio):
+    intervalos_dominio = []
+    hasLog = f(x).operator() == (log(x).operator())
+    ## Rutina para conocer si la funcion tiene alguna raiz:
+    radicandos = getRadicandos(f)
+    hasRt = len(radicandos)
+
     
-def dominion(f):
-    hasLog=f(x).operator() == (log(x).operator())
-    hasRt = f(x).operator() == (sqrt(x).operator())
     hasDen = f.denominator(normalize=False) == 1
 
     doms = ""
@@ -523,10 +643,15 @@ def dominion(f):
     intersect = 0
     if denominator != 1:
         s0=latex(denominator)
-        s1=",".join(str(a[x]) for a in solve(f.denominator(normalize=False) == 0,x,solution_dict=True))
-        doms += "\\{x\\in\\real \\tq "+s0+" \\neq 0 \\} = \\real \\setminus \{"+ s1 + "\}\n"
+        __solutions = [a[x] for a in solve(f.denominator(normalize=False) == 0,x,solution_dict=True)]   
+        s1=",".join([str(a) for a in __solutions ])
+        doms += "\\{x\\in\\real \\tq "+s0+" \\neq 0 \\} = \\real - \{"+ s1 + "\}\n"
+        
+        for _s in __solutions:
+            intervalos_dominio.append(_s)
         intersect+=1
         
+    intervals=[]
     if hasLog:
         if hasLog==1:
             base=e
@@ -537,32 +662,38 @@ def dominion(f):
         s0=latex(argument)
         print(argument)
         #s1=",".join(str(a[x]) for a in solve(argument>0,x,solution_dict=True))
-        s1=__getIntervalsFromIneq(argument>0)
+        s1=__getIntervalsFromIneq(argument>0,intervals)
         if intersect > 0:
             doms += "\\cap"
         intersect+=1
-        doms += "\\{x\\in\\real \\tq "+s0+" > 0 \\} = "+ s1 + "\n"
+        doms += "\\{x\\in\\real \\tq "+s0+" > 0 \\} "+ s1 + "\n"
 
 
         
     if hasRt:
         #Gnapa para arreglar
-        argument = f(x)^2
-        s0=latex(argument)
-        print(argument)
-        #s1=",".join(str(a[x]) for a in solve(argument>=0,x,solution_dict=True))
-        s1=__getIntervalsFromIneq(argument>=0)
-        if intersect > 0:
-            doms += "\\cap"
-        intersect+=1
+        for argument in radicandos: 
+            s0=latex(argument)
+            print(argument)
+            #s1=",".join(str(a[x]) for a in solve(argument>=0,x,solution_dict=True))
+            
+            if intersect > 0:
+                doms += "\\cap"
+            intersect+=1
 
-        doms += "\\{x\\in\\real \\tq "+s0+" > 0 \\} = "+ s1 + "\n"
-        doms+=""  
+            doms += "\\{x\\in\\real \\tq "+s0+" > 0 \\} "
+            doms+=""  
+        # Resolvemos inecuaciones
+        doms+=" = "
+
+        doms += "\\cap".join([__getIntervalsFromIneq(argument>=0,intervals) for argument in radicandos])
+        
               
     if doms == "":
         doms = "\\real"
         
-    return "D(f) = " + doms
+    oo
+    return "D(f) = " + reduce(RealSet.intersection,intervals)
 
 ### Funcion para pintar las graficas.
 # f: funcion
