@@ -815,13 +815,35 @@ def getRadicandos(f):
     return flatten(__hasRt_aux(f,0))
 
 
+## Función auxiliar recursiva para obtener todos los argumentos de los logaritmos que tenga la función
+# f: función
+# num: contador
+def __hasLog_aux(f,num):
+    retval = []
+    if len(f.operands()) == 1 and f.operator() == (log(x).operator()):
+        retval.append(f.operands()[0])
+            
+    for _op in f.operands():
+        l = __hasLog_aux(_op,num+1)
+        if not l == []:
+            retval.append(l)
+    return retval
+
+def getArgsLog(f):
+    return flatten(__hasLog_aux(f,0))
+
+
 ## Devuelve en texto el dominio de la función. 
 # f: función
 # intervalos_dominio: lista vacía en la que rellenar los valores del intervalo.
 
 def dominion(f,intervalos_dominio):
     intervalos_dominio = []
-    hasLog = f(x).operator() == (log(x).operator())
+    
+    
+    argsLog = getArgsLog(f)
+    hasLog = len(argsLog)
+
     ## Rutina para conocer si la función tiene alguna raíz:
     radicandos = getRadicandos(f)
     hasRt = len(radicandos)
@@ -849,15 +871,22 @@ def dominion(f,intervalos_dominio):
         else:
             base=hasLog
         #Gnapa para arreglar
-        argument=base^f(x)
-        s0=latex(argument)
-        print(argument)
-        #s1=",".join(str(a[x]) for a in solve(argument>0,x,solution_dict=True))
-        s1=__getIntervalsFromIneq(argument>0,intervals)
-        if intersect > 0:
-            doms += "\\cap"
-        intersect+=1
-        doms += "\\{x\\in\\real \\tq "+s0+" > 0 \\} "+ s1 + "\n"
+
+        for argument in argsLog: 
+            s0=latex(argument)
+            print(argument)
+            #s1=",".join(str(a[x]) for a in solve(argument>0,x,solution_dict=True))
+            
+            if intersect > 0:
+                doms += "\\cap"
+            intersect+=1
+
+            doms += "\\{x\\in\\real \\tq "+s0+" > 0 \\} "
+            doms+=""  
+        # Resolvemos inecuaciones
+        doms+="} = {"
+
+        doms += "\\cap".join([__getIntervalsFromIneq(argument>0,intervals) for argument in argsLog])
 
 
         
