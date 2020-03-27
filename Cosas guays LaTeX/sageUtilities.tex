@@ -15,11 +15,11 @@
 \mycontinuidadyderivabilidad
 \mydominio
 \myasintotas
-% \myptscorte
-% \mysimetria
-% \mymonotonia
-% \mycurvatura
-%\mygrafo
+\myptscorte
+\mysimetria
+\mymonotonia
+\mycurvatura
+\mygrafo
 \newpage
 }
 
@@ -330,9 +330,9 @@ def asintotesV(f,den,AV):
         if (log0 == []):
             r+= "No tiene soluciones reales"
         elif len(NoCandidates) > 0:
-            r+= "De estas soluciones, "
+            r+= "\\\\De estas soluciones, "
             for a in NoCandidates:
-                r+="$x_"+str(a[0])+"="+latex(a[1])+" $;\\quad"
+                r+="$x_"+str(a[0])+"="+latex(i)+" $;\\quad"                
             r+= "no son candidatos a asíntota, puesto que ninguno de los 2 límites laterales existe."
             
 
@@ -389,7 +389,24 @@ def asintotesHO(f,AH,AO):
     _emptylist(AH)
     _emptylist(AO)
     r=""
-    for infty in [Infinity, -Infinity]:
+    ###Gnapa, que deberíamos arreglar:
+
+    infsToCalcAsintotes = []
+    if 9999999999 in DOM_INTERVALS:
+        infsToCalcAsintotes.append(Infinity)
+    else:
+        r+= "\\paragraph{No existe el límite de la función en $\\infty$:}"
+
+    if -9999999999 in DOM_INTERVALS:
+        infsToCalcAsintotes.append(-Infinity)
+    else:
+        r+= "\\paragraph{No existe el límite de la función en $-\\infty$:}"
+
+        
+    if len(infsToCalcAsintotes) == 0:
+        r+= "La función no puede tener asíntotas horizontal por no estar definida en $\\pm\\infty$"
+    
+    for infty in infsToCalcAsintotes:
         if (Verbose == 1):
             r+= "\\paragraph{Límite de la función en $"+latex(infty)+"$:}"
         else:
@@ -452,7 +469,7 @@ def simetria(f):
 ###### Estudio de los puntos de corte
 def puntosEjeX(func):
     r=""
-    __roots = solve(func(x)==0,x,solution_dict=True)
+    __roots = solve(func(x)==0,x,solution_dict=True,explicit_solutions=True)
     _roots = [a[x] for a in __roots if imag(a[x])==0]
     for i in xrange(len(_roots)):
         r+="$x_"+str(i)+" = "+latex(_roots[i])+"\\to \\left("+latex(_roots[i])+",0\\right)$;\\quad"
@@ -463,15 +480,11 @@ def puntosEjeX(func):
     return r
 
 def puntosEjeY(func):
-    r=""
-    if (func.denominator() in ZZ):
-        r += "$" + latex(func(0)) +"$"
+    if 0 in DOM_INTERVALS:
+        return "$f(0) = " + latex(func(0)) + "$, con lo que la gráfica corta en $\\left(0,"+latex(func(0)) + "\\right)$ al eje Y."   
     else:
-        if (func.denominator()(0) != 0):
-            r += "$f(0) = " + latex(func(0)) + "$, con lo que la gráfica corta en $\\left(0,"+latex(func(0)) + "\\right)$ al eje Y."   
-        else:
-            r +=  "No existe f(0)."    
-    return r
+        return  "No existe f(0)."    
+    
 
 
 ############### Monotonía
@@ -484,19 +497,36 @@ def puntosEjeY(func):
 #   boolean onlyReal: para calcular solo soluciones reales.
 
 def solveDerivadaNula(f,sols,onlyReal):
-    _sols = solve(diff(f(x))==0,x,solution_dict=True)
+    _sols = solve(diff(f(x))==0,x,solution_dict=True,explicit_solutions=True)
     if onlyReal:
         sols = [a[x] for a in _sols if imag(a[x])==0]
     else: 
         sols=_sols
 
+
+
+
     i=0
     retval=""
+    NoCandidates = []
     for r in sols:
         retval += "$x_"+str(i)+" = "+latex(r.full_simplify())+"$;\\quad"
+        if not i in DOM_INTERVALS:
+            NoCandidates.append([i,r])
         i+=1
+    
+    if len(NoCandidates) > 0:
+        retval += "\\\\De estas soluciones, "
+        for a in NoCandidates:
+            retval +="$x_"+str(a[0])+"="+latex(a[1].full_simplify())+" $;\\quad"
+            #retval +="$x_"+str(a[0])+" $;\\quad"
+        retval += "no son válidas porque no pertenecen al dominio."
+    
+
     if (sols == []):
         retval += "No tiene soluciones reales."
+
+
     return retval
 
 
@@ -517,6 +547,9 @@ def ptsFrontera(f,ptscrit,recta,derivada_too):
         r+= "$x_"+str(i)+"="+latex(p)+"$;\\quad"
         i+=1
 
+    if len(puntosFrontera) == 0:
+        r += " no hay."
+
     for p in puntosFrontera:
         recta.append(p)
     recta.append(+Infinity)
@@ -533,7 +566,7 @@ def intervalos(recta):
 
 # Estudia el signo de la función dada la función y los puntos frontera.
 def estudiarSigno(f):
-    recta=[-Infinity,Infinity]
+    recta= [DOM_INTERVALS[0].lower(),DOM_INTERVALS[0].upper()]
     for a in _getRealroots(f):
         recta.append(a)
     for a in ptsDiscontinuidad(f=f):
@@ -674,7 +707,8 @@ def _f_sign_monot_tabla(recta,f,min,max,curvatura):
  _emptylist(max)
  df=diff(f,x,1)
  ddf = diff(df,x,1)
- recta=[-Infinity,Infinity]
+ global DOM_INTERVALS
+ recta= [DOM_INTERVALS[0].lower(),DOM_INTERVALS[0].upper()]
  
  
  if curvatura:
@@ -683,7 +717,8 @@ def _f_sign_monot_tabla(recta,f,min,max,curvatura):
     #       los puntos de discontinuidad de la derivada 
     #       los puntos de discontinuidad de la función.
     for a in _getRealroots(ddf):
-        recta.append(a)
+        if a in DOM_INTERVALS:
+            recta.append(a)
     for a in ptsDiscontinuidad(f=df):
         recta.append(a)
     for a in ptsDiscontinuidad(f=f):
@@ -691,8 +726,8 @@ def _f_sign_monot_tabla(recta,f,min,max,curvatura):
     recta=sorted(recta) 
  else:
     for a in _getRealroots(df):
-        recta.append(a)
-    
+        if a in DOM_INTERVALS:
+            recta.append(a)
     for a in ptsDiscontinuidad(f=f):
         recta.append(a)
     recta=sorted(recta) 
