@@ -19,7 +19,7 @@
 % \mysimetria
 % \mymonotonia
 % \mycurvatura
-\mygrafo
+%\mygrafo
 \newpage
 }
 
@@ -103,7 +103,7 @@ Por ello calculamos:
 \[\sagestr{latex(f.denominator(normalize=False))} = 0 \]
 \fi
 
-\sagestr{asintotesV(f = f,den = f.denominator(normalize=False), isLog = TieneLog,AV = AV)}
+\sagestr{asintotesV(f = f,den = f.denominator(normalize=False),AV = AV)}
 
 
 
@@ -198,7 +198,8 @@ ptsCrit=[]
 recta=[]
 min=[]
 max=[]
-DOM_INTERVALS = []
+DOM_INTERVALS = RealSet(0,0)
+epsilon = 0.0000001
 
 
 
@@ -238,13 +239,37 @@ def ptsDiscontinuidad(f):
 def _emptylist(aux):
     [aux.pop() for a in xrange(len(aux))]
     
+#### Sage dice que limit(log(x),x=0,dir="minus") = Infinity. Esta función corrige esto:
+# funcion: la funcion
+# v: valor
+# lado: "+" o "-"
+
+def limit_lateral(funcion,v,lado):
+
+
+    if lado == "+":
+        _dir="plus"
+        _test_val = v+epsilon
+    elif lado == "-":
+        _dir="minus"
+        _test_val = v-epsilon
+    else:
+        print("Error grave")
+        _dir="whaaaat"
+    
+
+    if imag(funcion(_test_val)) != 0:
+        return None
+    else:
+        return limit(funcion(x),x=v,dir=_dir)
+
 ## Función para calcular las asíntotas verticales de la función.
 #Input:
 # f: función
 # den: denominador de la función en caso de haberlo.
 # boolean log: tieneLog 
 # AV: array vacío para rellenar
-def asintotesV(f,den,isLog,AV):
+def asintotesV(f,den,AV):
     _emptylist(AV)
     _den0=solve(f.denominator(normalize=False) == 0,x,solution_dict=True)
     den0 = [a[x] for a in _den0 if imag(a[x])==0]
@@ -260,8 +285,21 @@ def asintotesV(f,den,isLog,AV):
         if (den0 == []):
             r+= "No tiene soluciones reales"
 
-    if (isLog == 1):
-        _log0 = solve(exp(f)==0,x,solution_dict=True)
+
+    argsLog = getArgsLog(f)
+    hasLog = len(argsLog)
+
+
+    if (hasLog > 0):
+        _log0 = []
+        
+        for arg in argsLog:
+            __s__ = solve(arg == 0 , x , solution_dict=True)
+            for ____s in __s__:
+                _log0.append(____s)
+        
+        
+        print(_log0)
         log0 = [a[x] for a in _log0 if imag(a[x])==0]  
 
         if (Verbose == 1):
@@ -271,15 +309,33 @@ def asintotesV(f,den,isLog,AV):
 
         
             r+= "En este caso:"
-        r+= "\\[ "+latex(exp(f))+"= 0 \\]"
+
+        for arg in argsLog:
+            r+= "\\[ "+latex(arg)+"= 0 \\]"
 
         r+= "Soluciones: "
+        print("EEEI: " + str(DOM_INTERVALS))
+        NoCandidates=[]
         for i in log0:
-            r+="$x_"+str(k)+"="+latex(i)+" $;\\quad"
-            k+=1
-            den0.append(i)
+            if (i+epsilon in DOM_INTERVALS) or (i-epsilon in DOM_INTERVALS):
+                r+="$x_"+str(k)+"="+latex(i)+" $;\\quad"
+                k+=1
+            
+                if not i in den0:
+                    den0.append(i)
+            else:   
+                NoCandidates.append([k,i])
+                r+="$x_"+str(k)+"="+latex(i)+" $;\\quad"                
+            
         if (log0 == []):
             r+= "No tiene soluciones reales"
+        elif len(NoCandidates) > 0:
+            r+= "De estas soluciones, "
+            for a in NoCandidates:
+                r+="$x_"+str(a[0])+"="+latex(a[1])+" $;\\quad"
+            r+= "no son candidatos a asíntota, puesto que ninguno de los 2 límites laterales existe."
+            
+
 
     if (den0 == []):
         r+= "\\paragraph{La función no tiene A.V.}"
@@ -287,25 +343,43 @@ def asintotesV(f,den,isLog,AV):
     for x0 in den0:
         r+= "\\paragraph{Asintota en $x ="
         r+= latex(x0)+"$}"
-        ld=limit(f(x),x=x0,dir="plus")
-        li=limit(f(x),x=x0,dir="minus")
+
+        ld = limit_lateral(f(x),x0,"+")
+        li = limit_lateral(f(x),x0,"-")
+        
+
         if (Verbose==1): 
             r+="Calculamos"
-        r+= "\[\\lim_{x\\mapsto " + latex(x0) + "} " + latex(f(x)) + " = \\left\\{\\begin{array}{l} \\displaystyle\\lim_{x\\mapsto " + latex(x0) + "^{+}} " + latex(f(x)) + " = " + latex(ld) + " \\\\\\\\\\displaystyle\\lim_{x\\mapsto " + latex(x0) + "^{-}} " + latex(f(x)) + " = " + latex(li) + " \\\\\\end{array}\\right.\] "
-        if (abs(li) == Infinity and abs(ld) == Infinity and sign(li) == sign(ld)):
-            r+= "\n La recta x =" + latex(x0) + " es una \\textbf{asíntota vertical} de f(x)"
-            AV.append(x0)
-        elif (abs(li) == Infinity and abs(ld) == Infinity and sign(li) != sign(ld)):
-            AV.append(x0)
-            if (Verbose == 1):
-                r+= "\n Aunque el límite no exista (porque los límites laterales son diferentes), su magnitud sigue siendo infinita por ambos lados, por lo que la recta x = $" + latex(x0) + "$ es una \\textbf{asíntota vertical} de f(x)"
-            else:
-                r+= "\n $x = " + latex(x0) + "$ es \\textbf{A.V.} de f(x)"
+        r+= "\[\\lim_{x\\mapsto " + latex(x0) + "} " + latex(f(x)) + " = \\left\\{\\begin{array}{l} \\displaystyle\\lim_{x\\mapsto " + latex(x0) + "^{+}} " + latex(f(x)) + " = " + ___my_latex(ld) + " \\\\\\\\\\displaystyle\\lim_{x\\mapsto " + latex(x0) + "^{-}} " + latex(f(x)) + " = " + ___my_latex(li) + " \\\\\\end{array}\\right.\] "
+        if ld != None and li != None:
+            if (abs(li) == Infinity and abs(ld) == Infinity and sign(li) == sign(ld)):
+                r+= "\n La recta x =" + latex(x0) + " es una \\textbf{asíntota vertical} de f(x)"
+                AV.append(x0)
+            elif (abs(li) == Infinity and abs(ld) == Infinity and sign(li) != sign(ld)):
+                AV.append(x0)
+                if (Verbose == 1):
+                    r+= "\n Aunque el límite no exista (porque los límites laterales son diferentes), su magnitud sigue siendo infinita por ambos lados, por lo que la recta x = $" + latex(x0) + "$ es una \\textbf{asíntota vertical} de f(x)"
+                else:
+                    r+= "\n $x = " + latex(x0) + "$ es \\textbf{A.V.} de f(x)"
+        elif ld == None and li == None:
+            r+= "\n \\textbf{No hay asíntota vertical} en $x="+latex(x0)+"$."
+        elif ld == None:
+            if (abs(li) == Infinity):
+                r += "\n $x = " + latex(x0) + "$ es \\textbf{A.V.} de f(x) por la izquierda."
+        elif li == None :
+            if (abs(ld) == Infinity):
+                r += "\n $x = " + latex(x0) + "$ es \\textbf{A.V.} de f(x) por la derecha."
         else:
             r+= "\n \\textbf{No hay asíntota vertical} en $x="+latex(x0)+"$."
     AV=uniq(AV)
     return r
 
+###Función para escribir latex de None como \nexists, para asegurar compatibilidad con la función limit_lateral.
+def ___my_latex(value):
+    if value==None:
+        return "\\nexists"
+    else:
+        return latex(value)
 
 ## Función para calcular las asíntotas horizontales u oblicuas.
 #Input:
@@ -835,15 +909,15 @@ def getArgsLog(f):
 
 ## Devuelve en texto el dominio de la función. 
 # f: función
-# intervalos_dominio: lista vacía en la que rellenar los valores del intervalo.
+# intervalos_dominio: conjunto vacío en la que rellenar los valores del dominio.
 
 def dominion(f,intervalos_dominio):
-    intervalos_dominio = []
-    
+    intervalos_dominio = intervalos_dominio.intersection(RealSet(0,0))
+       
     
     argsLog = getArgsLog(f)
     hasLog = len(argsLog)
-
+    isLog = hasLog
     ## Rutina para conocer si la función tiene alguna raíz:
     radicandos = getRadicandos(f)
     hasRt = len(radicandos)
@@ -853,18 +927,19 @@ def dominion(f,intervalos_dominio):
 
     doms = ""
     denominator=f.denominator(normalize=False)
+    intervals=[]
     intersect = 0
     if denominator != 1:
         s0=latex(denominator)
-        __solutions = [a[x] for a in solve(f.denominator(normalize=False) == 0,x,solution_dict=True)]   
+        __solutions = [a[x] for a in solve(f.denominator(normalize=False) == 0,x,solution_dict=True,domain='real')]   
         s1=",".join([str(a) for a in __solutions ])
         doms += "\\{x\\in\\real \\tq "+s0+" \\neq 0 \\} = \\real - \{"+ s1 + "\}\n"
         
         for _s in __solutions:
-            intervalos_dominio.append(_s)
+            intervals.append(RealSet(-Infinity,_s)+RealSet(_s,Infinity))
         intersect+=1
         
-    intervals=[]
+    
     if hasLog:
         if hasLog==1:
             base=e
@@ -872,10 +947,9 @@ def dominion(f,intervalos_dominio):
             base=hasLog
         #Gnapa para arreglar
 
+        f
         for argument in argsLog: 
             s0=latex(argument)
-            print(argument)
-            #s1=",".join(str(a[x]) for a in solve(argument>0,x,solution_dict=True))
             
             if intersect > 0:
                 doms += "\\cap"
@@ -886,7 +960,8 @@ def dominion(f,intervalos_dominio):
         # Resolvemos inecuaciones
         doms+="} = {"
 
-        doms += "\\cap".join([__getIntervalsFromIneq(argument>0,intervals) for argument in argsLog])
+        _to_domain = [__getIntervalsFromIneq(argument>0,intervals) for argument in argsLog]
+        doms += "\\cap".join(_to_domain)
 
 
         
@@ -905,14 +980,22 @@ def dominion(f,intervalos_dominio):
             doms+=""  
         # Resolvemos inecuaciones
         doms+="} = {"
+        _to_domain = [__getIntervalsFromIneq(argument>=0,intervals) for argument in radicandos]
 
-        doms += "\\cap".join([__getIntervalsFromIneq(argument>=0,intervals) for argument in radicandos])
+        doms += "\\cap".join(_to_domain)
         
               
     if doms == "":
         doms = "\\real"
         
-    
+    #print("EEEI:" + str(intervalos_dominio))
+    print("EEEI: asignacion")
+    global DOM_INTERVALS
+    DOM_INTERVALS = DOM_INTERVALS.union(reduce(RealSet.intersection,intervals))
+    intervalos_dominio = intervalos_dominio.union(reduce(RealSet.intersection,intervals))
+    #print("EEEI: "+str(DOM_INTERVALS))
+    print("EEEI:" + str(intervalos_dominio))
+
     return "D(f) = {"+doms + "} = {" + str(reduce(RealSet.intersection,intervals)).replace("oo","\\infty") + "}"
 
 ### Función para pintar las gráficas.
