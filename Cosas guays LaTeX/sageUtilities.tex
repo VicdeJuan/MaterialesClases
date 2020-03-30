@@ -42,12 +42,9 @@
 
 \newcommand{\mydominio}{
 \paragraph{Dominio}
-%
-%\[ D(f) = \{x\in\real \tq \sage{f.denominator()(x)} \neq 0\} = \sagestr{dominion(f=f,hasDen=True,hasLog=false,hasRt=false)}\]
-%
 
 \begin{dmath*}
-    \sagestr{dominion(f=f,intervalos_dominio = DOM_INTERVALS)}
+    \sagestr{dominion(f=f,maketext=true)}
 \end{dmath*}
 }
 
@@ -100,10 +97,10 @@ Los posibles puntos en los que la función puede tener una asíntota vertical so
 %
 Por ello calculamos:
 %
-\[\sagestr{latex(f.denominator(normalize=False))} = 0 \]
+\[\sagestr{latex(f.denominator())} = 0 \]
 \fi
 
-\sagestr{asintotesV(f = f,den = f.denominator(normalize=False),AV = AV)}
+\sagestr{asintotesV(f = f,den = f.denominator(),AV = AV)}
 
 
 
@@ -149,7 +146,7 @@ $f''(x) = \sagestr{latex(diff(diff(f(x),x,1),x,1).full_simplify())}$
 
 Calculamos los puntos críticos, aquellos en los que $f''(x) = 0$
 
-\sagestr{solveDerivadaNula(f=diff(f(x),x,1),sols=ptsCrit,onlyReal=True)}
+\sagestr{solveDerivadaNula(f=diff(f,x,1),sols=ptsCrit,onlyReal=True)}
 
 
 Añadimos a estos puntos aquellos en los que la función primitiva o la primera derivada no existan, si hay alguno. En este caso, 
@@ -198,7 +195,7 @@ ptsCrit=[]
 recta=[]
 min=[]
 max=[]
-DOM_INTERVALS = RealSet(0,0)
+
 epsilon = 0.0000001
 
 
@@ -231,10 +228,14 @@ def random_between(j,k):
 
 #Resuelve los puntos de discontinuidad de la función.
 def ptsDiscontinuidad(f):
-    hasLog=f(x).operator() == (log(x).operator())
-    _den0=solve(f.denominator(normalize=False) == 0,x,solution_dict=True)
-    den0 = [a[x] for a in _den0 if imag(a[x])==0]
-    return den0
+    intervalos_dominio = dominion(f,false)
+    print("log : funcion ptsDiscontinuidad: dominio: "+str(intervalos_dominio))
+    retval = []
+    for ip in list(intervalos_dominio.complement()):
+        if ip.is_point():
+            retval.append(ip.lower())
+    print("log : funcion ptsDiscontinuidad: valor de retorno: " + str(retval))
+    return retval
 
 def _emptylist(aux):
     [aux.pop() for a in xrange(len(aux))]
@@ -270,9 +271,10 @@ def limit_lateral(funcion,v,lado):
 # boolean log: tieneLog 
 # AV: array vacío para rellenar
 def asintotesV(f,den,AV):
+    print("log: funcion asintotesV: asíntotas recibidas: "+str(AV))
     _emptylist(AV)
-    _den0=solve(f.denominator(normalize=False) == 0,x,solution_dict=True)
-    den0 = [a[x] for a in _den0 if imag(a[x])==0]
+    print("log: funcion asintotesV: asíntotas vaciadas: "+str(AV))
+    den0 = ptsDiscontinuidad(f=f)
 
     r=""
     k=0
@@ -314,10 +316,11 @@ def asintotesV(f,den,AV):
             r+= "\\[ "+latex(arg)+"= 0 \\]"
 
         r+= "Soluciones: "
-        print("EEEI: " + str(DOM_INTERVALS))
+        intervalos_dominio = dominion(f,false)
+        print("log: funcion asintotesV: dominio: " + str(intervalos_dominio))
         NoCandidates=[]
         for i in log0:
-            if (i+epsilon in DOM_INTERVALS) or (i-epsilon in DOM_INTERVALS):
+            if (i+epsilon in intervalos_dominio) or (i-epsilon in intervalos_dominio):
                 r+="$x_"+str(k)+"="+latex(i)+" $;\\quad"
                 k+=1
             
@@ -392,12 +395,14 @@ def asintotesHO(f,AH,AO):
     ###Gnapa, que deberíamos arreglar:
 
     infsToCalcAsintotes = []
-    if 9999999999 in DOM_INTERVALS:
+    intervalos_dominio = dominion(f,false)
+
+    if 9999999999 in intervalos_dominio:
         infsToCalcAsintotes.append(Infinity)
     else:
         r+= "\\paragraph{No existe el límite de la función en $\\infty$:}"
 
-    if -9999999999 in DOM_INTERVALS:
+    if -9999999999 in intervalos_dominio:
         infsToCalcAsintotes.append(-Infinity)
     else:
         r+= "\\paragraph{No existe el límite de la función en $-\\infty$:}"
@@ -480,7 +485,8 @@ def puntosEjeX(func):
     return r
 
 def puntosEjeY(func):
-    if 0 in DOM_INTERVALS:
+    intervalos_dominio = dominion(f,false)
+    if 0 in intervalos_dominio:
         return "$f(0) = " + latex(func(0)) + "$, con lo que la gráfica corta en $\\left(0,"+latex(func(0)) + "\\right)$ al eje Y."   
     else:
         return  "No existe f(0)."    
@@ -497,6 +503,8 @@ def puntosEjeY(func):
 #   boolean onlyReal: para calcular solo soluciones reales.
 
 def solveDerivadaNula(f,sols,onlyReal):
+    print("log: solveDerivadaNula" +  str(f))
+    intervalos_dominio = dominion(f,false)
     _sols = solve(diff(f(x))==0,x,solution_dict=True,explicit_solutions=True)
     if onlyReal:
         sols = [a[x] for a in _sols if imag(a[x])==0]
@@ -511,7 +519,7 @@ def solveDerivadaNula(f,sols,onlyReal):
     NoCandidates = []
     for r in sols:
         retval += "$x_"+str(i)+" = "+latex(r.full_simplify())+"$;\\quad"
-        if not i in DOM_INTERVALS:
+        if not i in intervalos_dominio:
             NoCandidates.append([i,r])
         i+=1
     
@@ -531,6 +539,7 @@ def solveDerivadaNula(f,sols,onlyReal):
 
 
 def ptsFrontera(f,ptscrit,recta,derivada_too):
+    print("log: funcion ptsFrontera")
     puntosFrontera = flatten([ptsDiscontinuidad(f=f),ptscrit])
     if derivada_too:
         ___pts = ptsDiscontinuidad(f=diff(f(x),x,1))
@@ -566,7 +575,9 @@ def intervalos(recta):
 
 # Estudia el signo de la función dada la función y los puntos frontera.
 def estudiarSigno(f):
-    recta= [DOM_INTERVALS[0].lower(),DOM_INTERVALS[0].upper()]
+    print("log: estudiarSigno")
+    intervalos_dominio = dominion(f,false)
+    recta= [intervalos_dominio[0].lower(),intervalos_dominio[0].upper()]
     for a in _getRealroots(f):
         recta.append(a)
     for a in ptsDiscontinuidad(f=f):
@@ -707,9 +718,11 @@ def _f_sign_monot_tabla(recta,f,min,max,curvatura):
  _emptylist(max)
  df=diff(f,x,1)
  ddf = diff(df,x,1)
- global DOM_INTERVALS
- recta= [DOM_INTERVALS[0].lower(),DOM_INTERVALS[0].upper()]
+
+ intervalos_dominio = dominion(f,false)
+ recta= [intervalos_dominio[0].lower(),intervalos_dominio[0].upper()]
  
+ print("log: _f_sign_monot_tabla: \t f:"+str(f) + "\n\t curvatura"+str(curvatura))
  
  if curvatura:
     # Los puntos que marcan extremos de intervalos son:
@@ -717,21 +730,23 @@ def _f_sign_monot_tabla(recta,f,min,max,curvatura):
     #       los puntos de discontinuidad de la derivada 
     #       los puntos de discontinuidad de la función.
     for a in _getRealroots(ddf):
-        if a in DOM_INTERVALS:
+        if a in intervalos_dominio:
             recta.append(a)
     for a in ptsDiscontinuidad(f=df):
         recta.append(a)
     for a in ptsDiscontinuidad(f=f):
         recta.append(a)
-    recta=sorted(recta) 
  else:
     for a in _getRealroots(df):
-        if a in DOM_INTERVALS:
+        if a in intervalos_dominio:
             recta.append(a)
     for a in ptsDiscontinuidad(f=f):
         recta.append(a)
-    recta=sorted(recta) 
-    
+
+ recta=sorted(uniq(recta))
+
+
+ print("log: _f_sign_monot_tabla: recta: "+str(recta))
  lista_intervalos = intervalos(recta)
 
  if curvatura:
@@ -856,6 +871,7 @@ def ismin(f,x0):
 # Función auxiliar:
 
 def __simpleInecToInterval(s):
+    print("log: __simpleInecToInterval de s: " + str(s))
     ineqOperators = {
         (x<3).operator():"<",
         (x>3).operator():">",
@@ -866,10 +882,12 @@ def __simpleInecToInterval(s):
     right = s.rhs()
     operator = ineqOperators[s.operator()]
 
-
-    if left.is_numeric():
+    print("log: \t left,right,operator"+str(left)+","+str(right)+","+str(operator))
+    if left.is_numeric() or left.is_infinity():
+        print("log: \t left: "+str(left))
         num = left
-    elif right.is_numeric():
+    elif right.is_numeric() or right.is_infinity():
+        print("log: \t right: "+str(right))
         num = right
     else:
         num = "Error grave"
@@ -889,10 +907,25 @@ def __simpleInecToInterval(s):
 # tosolve: inecuación a pasarle a solve direcamente. 
 #   Ejemplo: x^2-9 >= 0
 def __getIntervalsFromIneq(tosolve,intervals):
-    
+    print("log: __getIntervalsFromIneq")
+    print("\t tosolve: "+str(tosolve))
+    print("\t intervals: "+str(intervals))
     solutions = tosolve.solve(x)
-    intervals.append(reduce(RealSet.union,[RealSet(i[0]) for i in solutions]))
+    print("\t solucions: "+str(solutions))
 
+    __aux = []
+    for i in solutions:
+        if type(i) == type(x+1):
+            print("log: \t is expression")
+            __aux.append(RealSet(i))
+        else:
+            print("log: \t is not expression")
+            __aux.append(RealSet(i[0]))
+
+    print("log: \t __aux - intervals: "+str(__aux))
+    
+    intervals.append(reduce(RealSet.union,__aux))
+    print("\t intervals: "+str(intervals))
     if len(solutions) > 1:
         openpar = "\\left"
         closepar = "\\right"
@@ -900,7 +933,19 @@ def __getIntervalsFromIneq(tosolve,intervals):
         openpar = ""
         closepar = ""
 
-    __intervals__ = " \\cup ".join([__simpleInecToInterval(s[0]) for s in solutions])
+    __aux = []
+    for i in solutions:
+        if type(i) == type(x+1):
+            print("log: \t is expression")
+            __aux.append(__simpleInecToInterval(i))
+            print("log: terminado __simpleInecToInterval")
+        else:
+            print("log: \t is not expression")
+            __aux.append(__simpleInecToInterval(i[0]))
+            print("log: terminado __simpleInecToInterval")
+
+    print("log: \t __aux - sols: "+str(__aux))    
+    __intervals__ = " \\cup ".join(__aux)
     return openpar + "("+ __intervals__ + closepar + ")"
 
 
@@ -942,13 +987,15 @@ def getArgsLog(f):
     return flatten(__hasLog_aux(f,0))
 
 
+
 ## Devuelve en texto el dominio de la función. 
 # f: función
 # intervalos_dominio: conjunto vacío en la que rellenar los valores del dominio.
+def dominion(f,maketext):
+    intervalos_dominio = RealSet(0,0)
+    print("log (funcion dominion): funcion - "+str(f))
 
-def dominion(f,intervalos_dominio):
-    intervalos_dominio = intervalos_dominio.intersection(RealSet(0,0))
-       
+
     
     argsLog = getArgsLog(f)
     hasLog = len(argsLog)
@@ -958,22 +1005,26 @@ def dominion(f,intervalos_dominio):
     hasRt = len(radicandos)
 
     
-    hasDen = f.denominator(normalize=False) == 1
+    hasDen = f.denominator() == 1
 
     doms = ""
-    denominator=f.denominator(normalize=False)
+    denominator=f.denominator()
     intervals=[]
     intersect = 0
-    if denominator != 1:
+    if not denominator.is_constant():
         s0=latex(denominator)
-        __solutions = [a[x] for a in solve(f.denominator(normalize=False) == 0,x,solution_dict=True,domain='real')]   
+        __solutions = [a[x] for a in solve(f.denominator() == 0,x,solution_dict=True,domain='real')]   
         s1=",".join([str(a) for a in __solutions ])
         doms += "\\{x\\in\\real \\tq "+s0+" \\neq 0 \\} = \\real - \{"+ s1 + "\}\n"
         
         for _s in __solutions:
+            print("AAA:" + str(_s))
             intervals.append(RealSet(-Infinity,_s)+RealSet(_s,Infinity))
         intersect+=1
         
+    else:
+        print("log (funcion dominion): denominador de " + str(f) + " es constante")    
+
     
     if hasLog:
         if hasLog==1:
@@ -1023,15 +1074,24 @@ def dominion(f,intervalos_dominio):
     if doms == "":
         doms = "\\real"
         
-    #print("EEEI:" + str(intervalos_dominio))
-    print("EEEI: asignacion")
-    global DOM_INTERVALS
-    DOM_INTERVALS = DOM_INTERVALS.union(reduce(RealSet.intersection,intervals))
-    intervalos_dominio = intervalos_dominio.union(reduce(RealSet.intersection,intervals))
-    #print("EEEI: "+str(DOM_INTERVALS))
-    print("EEEI:" + str(intervalos_dominio))
+    print("log (funcion dominion): FN: dominion\n\t Asignacion intervals=intervalos_dominio")
+    print("log (funcion dominion): intervals" + str(intervals))
+    print("log (funcion dominion): intervalos_dominio " + str(intervalos_dominio))
+    if len(intervals) == 0:
+        __dominio = RealSet(-oo,oo)
+    else:
+        __dominio = reduce(RealSet.intersection,intervals) 
 
-    return "D(f) = {"+doms + "} = {" + str(reduce(RealSet.intersection,intervals)).replace("oo","\\infty") + "}"
+    intervalos_dominio = intervalos_dominio.union(__dominio)
+    print("log (funcion dominion): dominio preseignacion" + str(__dominio ))
+    print("log (funcion dominion): dominio posteignacion" + str(intervalos_dominio))
+    
+    print("log (funcion dominion) variable global"+str(intervalos_dominio))
+    
+    if maketext:
+        return "D(f) = {"+doms + "} = {" + str(__dominio).replace("oo","\\infty") + "}"
+    else:
+        return intervalos_dominio
 
 ### Función para pintar las gráficas.
 # f: función
@@ -1039,7 +1099,7 @@ def dominion(f,intervalos_dominio):
 # int list AH: lista de puntos en los que hay una asintota horizontal.
 # EXPR AO: ecuación de la asíntota oblícua y=mx+n
 def _myplot(f,AV,AH,AO):
- 
+ print("EEEA: "+str(AV))
  discont=list(set(ptsDiscontinuidad(f=f)).difference(AV))
  xmin=-8
  xmax=8
@@ -1050,7 +1110,7 @@ def _myplot(f,AV,AH,AO):
  
  #Si no tiene denominador, gripa con el argumento de excluir denominadores
  pts_toexclude=[]
- if f.denominator(normalize=False) != 1:
+ if f.denominator() != 1:
     pts_toexclude = f.denominator()==0
  
  P=plot(f(x),xmin=xmin,xmax=xmax,ymin=ymin,ymax=ymax,figsize=6,plot_points=2500,legend_label="f(x)", axes_labels=['$x$','$y$'],exclude=pts_toexclude,color='green')
