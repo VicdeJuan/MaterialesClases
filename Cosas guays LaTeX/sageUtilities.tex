@@ -617,8 +617,22 @@ def printlist(m):
 
 
 def _getRealroots(f):
+ print("log: _getRealroots de " + str(f))
  __roots = solve(f==0,x,solution_dict=True)
- _roots = [a[x].full_simplify() for a in __roots if imag(a[x])==0]
+ print("log: \t soluciones: "+str(__roots))
+ _roots = []
+ for a in __roots:
+    print("log:\t estudiando "+str(a[x]))
+    if type(a[x]) == type(x+1):
+        print("log: \t es expresión, calculamos solución numérica..."+str(a) + " [x]-> "+str(a[x]))        
+        sol = find_root(f,-Infinity,Infinity)
+        print("log: \t encontrada solucion: "+str(sol))
+        _roots.append(sol)
+    else:
+        print("log: \t no es expresión ")
+        if imag(a[x]) == 0:
+            _roots.append(a[x].full_simplify())
+ print("log: \t soluciones to return: " + str(_roots))
  return _roots
 
 
@@ -635,6 +649,7 @@ def _f_sign_monot(recta,f,min,max,curvatura):
  _emptylist(max)
  df=diff(f,x,1)
  ddf = diff(df,x,1)
+
  recta=[-Infinity,Infinity]
  
  if curvatura:
@@ -722,7 +737,7 @@ def _f_sign_monot_tabla(recta,f,min,max,curvatura):
  intervalos_dominio = dominion(f,false)
  recta= [intervalos_dominio[0].lower(),intervalos_dominio[0].upper()]
  
- print("log: _f_sign_monot_tabla: \t f:"+str(f) + "\n\t curvatura"+str(curvatura))
+ print("log: _f_sign_monot_tabla: \t f:"+str(f) + "\n\t curvatura: "+str(curvatura))
  
  if curvatura:
     # Los puntos que marcan extremos de intervalos son:
@@ -737,7 +752,10 @@ def _f_sign_monot_tabla(recta,f,min,max,curvatura):
     for a in ptsDiscontinuidad(f=f):
         recta.append(a)
  else:
-    for a in _getRealroots(df):
+    print("log: \t solo monotonia" )
+    __roots = _getRealroots(df) 
+    print("log: raíces df: \t "+str(__roots))
+    for a in __roots:
         if a in intervalos_dominio:
             recta.append(a)
     for a in ptsDiscontinuidad(f=f):
@@ -766,6 +784,7 @@ def _f_sign_monot_tabla(recta,f,min,max,curvatura):
  prev=0
  actual=0
  
+ print("log: _f_sign_monot_tabla: comenzamos a construir la tabla")
  # Construimos la tabla, con tantas columnas como intervalos+1, para poner la función
  retval +="\\newline\\begin{table}[h!]\\centering\\begin{tabular}{"+"c|"*(len(recta))+"}"
  # Construimos la primera fila de la tabla
@@ -944,7 +963,7 @@ def __getIntervalsFromIneq(tosolve,intervals):
             __aux.append(__simpleInecToInterval(i[0]))
             print("log: terminado __simpleInecToInterval")
 
-    print("log: \t __aux - sols: "+str(__aux))    
+    print("log: \t __aux - sols: "+str(__aux)) 
     __intervals__ = " \\cup ".join(__aux)
     return openpar + "("+ __intervals__ + closepar + ")"
 
