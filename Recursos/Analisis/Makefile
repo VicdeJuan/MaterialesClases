@@ -32,3 +32,4 @@ resage:
 clean:
 	rm -r *sage*
 	$(LTXMK) -C
+	rm -rf logs/*
