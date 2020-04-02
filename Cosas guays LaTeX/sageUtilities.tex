@@ -272,6 +272,26 @@ def limit_lateral(funcion,v,lado):
     else:
         return limit(funcion(x),x=v,dir=_dir)
 
+
+def getMinFromDomain(interval):
+    if len(list(interval)) > 0:
+        return interval[0].lower()
+    else: 
+        logging.info("Error:  funcion getMinFromDomain intentando conseguir el mínimo de "+str(interval))
+        return None
+
+def getMaxFromDomain(interval):
+    if len(list(interval)) > 0:
+        return list(interval)[-1].upper()
+    else: 
+        logging.info("Error:  funcion getMinFromDomain intentando conseguir el mínimo de "+str(interval))
+        return None
+
+def getExtremosDomain(interval):
+    return flatten([[e.lower(),e.upper()] for e in list(interval)])
+
+
+
 ## Función para calcular las asíntotas verticales de la función.
 #Input:
 # f: función
@@ -312,9 +332,9 @@ def asintotesV(f,den,AV):
         log0 = [a[x] for a in _log0 if imag(a[x])==0]  
 
         if (Verbose == 1):
-            r+= "\\paragraph{Atención: } Como la función es un logaritmo, podríamos tener una asíntota vertical (ya que $\\displaystyle\\lim_{x\\mapsto 0^+} \\log(x) = -\infty$). Vamos a comprobarlo.\\\\"
+            r+= "\\paragraph{Atención: } Como la función es un logaritmo, podríamos tener una asíntota vertical (ya que $\\displaystyle\\lim_{x\\mapsto 0^+} \\log(x) = -\\infty$ y $\\displaystyle\\lim_{x\\mapsto a^+} \\log\\left(\\frac{1}{a}\\right) = \\infty$ porque $\\displaystyle\\lim_{x\\mapsto\\infty}\\log(x) = \\infty$). Vamos a comprobarlo.\\\\"
 
-            r+= "Para ello, calculamos los puntos en los que se haga 0 o $\pm\\infty$ el interior del logaritmo .\\\\"
+            r+= "Para ello, calculamos los puntos en los que se haga 0 o $+\\infty$ el interior del logaritmo .\\\\"
 
         
             r+= "En este caso:"
@@ -565,7 +585,7 @@ def ptsFrontera(f,ptscrit,recta,derivada_too):
     # En lugar de -infinity, hay que poner el extremo mínimo del dominio.
     #recta=[-Infinity]
     intervalos_dominio = dominion(f,false)
-    recta = [intervalos_dominio[0].lower()]
+    recta = [getMinFromDomain(intervalos_dominio)]
 
     i=0
     r=""
@@ -578,16 +598,19 @@ def ptsFrontera(f,ptscrit,recta,derivada_too):
 
     for p in puntosFrontera:
         recta.append(p)
-    recta.append(+Infinity)
+    recta.append(getMaxFromDomain(intervalos_dominio))
     recta=sorted(uniq(recta))
     return r
 
 # Construye una cadena de texto los intervalos formados por una lista de puntos frontera.
-def intervalos(recta):
+def intervalos(recta,domain = None):
     logging.info("funcion intervalos: intervalos de recta: "+str(recta))
     r = ""
     for i in xrange(len(recta)-1):
-        r += "$\\left("+latex(recta[i])+","+latex(recta[i+1])+"\\right)$;\\quad"  
+        if random_between(recta[i],recta[i+1]) in domain:
+            r += "$\\left("+latex(recta[i])+","+latex(recta[i+1])+"\\right)$;\\quad"  
+        else:
+            logging.info("funcion intervalos: el intervalo (" + str(recta[i]) + "," + str(recta[i+1]) + ") no está en el dominio.")
     return r
 
 
@@ -595,7 +618,9 @@ def intervalos(recta):
 def estudiarSigno(f):
     logging.info("estudiarSigno")
     intervalos_dominio = dominion(f,false)
-    recta= [intervalos_dominio[0].lower(),intervalos_dominio[0].upper()]
+    _min = getMinFromDomain(intervalos_dominio)
+    _max = getMaxFromDomain(intervalos_dominio)
+    recta = getExtremosDomain(intervalos_dominio)
     for a in _getRealroots(f):
         recta.append(a)
     for a in ptsDiscontinuidad(f=f):
@@ -604,7 +629,7 @@ def estudiarSigno(f):
 
     retval = "\\begin{itemize}"
     for i in xrange(len(recta)-1):
-        rval=random_between(recta[i],recta[i+1])
+        rval = random_between(recta[i],recta[i+1])
         retval += "\\item $\\left("+latex(recta[i])+","+latex(recta[i+1])+"\\right)$:"
         if (Verbose == 1):
             retval += " Tomamos, por ejemplo, $f("+latex(rval)+") = "+latex(round(f(rval),3))+"...$  y miramos su signo:" 
@@ -670,11 +695,13 @@ def _f_sign_monot(recta,f,min,max,curvatura):
 
  recta=[-Infinity,Infinity]
  
+
  if curvatura:
     # Los puntos que marcan extremos de intervalos son:
     #       los valores que anulan la segunda derivada, 
     #       los puntos de discontinuidad de la derivada 
     #       los puntos de discontinuidad de la función.
+    # MEJORAR: toda esta operación puede ser una operación de conjuntos. Intersección dominio f con dominio df - puntos de f''(x) == 0.
     for a in _getRealroots(ddf):
         recta.append(a)
     for a in ptsDiscontinuidad(f=df):
@@ -702,6 +729,10 @@ def _f_sign_monot(recta,f,min,max,curvatura):
  retval += "\\begin{itemize}"
  for i in xrange(len(recta)-1):
   rval=random_between(recta[i],recta[i+1])
+
+  if not rval in intervalos_dominio:
+    continue
+  
   retval += "\\item $\\left("+latex(recta[i])+","+latex(recta[i+1])+"\\right)$:"
   if (Verbose == 1):
    retval += " Tomamos, por ejemplo, "+fun+"($"+latex(rval)+") = "+latex(round(g(rval),3))+"...$  y miramos su signo:" 
@@ -738,6 +769,8 @@ def _f_sign_monot(recta,f,min,max,curvatura):
  return retval+"\\end{itemize}"
  
 
+
+
 ### Estudia el signo de la función derivada, tanto para la curvatura, como para la monotonía.
 # Devuelve codigo LaTeX en modo tabla
 # Recibe:
@@ -748,6 +781,7 @@ def _f_sign_monot(recta,f,min,max,curvatura):
 def _f_sign_monot_tabla(recta,f,min,max,curvatura):
 
 ## IDEAS PARA MEJORAR. Poner los "&" al final, para poder poner \\hline entre las filas de las tablas.
+## VER f_sign_monot sin tabla.
  _emptylist(min)
  _emptylist(max)
  df=diff(f,x,1)
@@ -755,9 +789,9 @@ def _f_sign_monot_tabla(recta,f,min,max,curvatura):
 
  intervalos_dominio = dominion(f,false)
 
- _min = intervalos_dominio[0].lower()
- _max = list(intervalos_dominio)[-1].upper()
- recta= [_min,_max]
+ recta = getExtremosDomain(intervalos_dominio)
+  
+ 
  
  logging.info("_f_sign_monot_tabla: \n log:\t f:"+str(f) + "\n log:\t curvatura: "+str(curvatura) + "\n log: \t recta: "+str(recta)+"\n log: \t"+str(intervalos_dominio))
  
@@ -787,7 +821,7 @@ def _f_sign_monot_tabla(recta,f,min,max,curvatura):
 
 
  logging.info("_f_sign_monot_tabla: recta: "+str(recta))
- lista_intervalos = intervalos(recta)
+ lista_intervalos = intervalos(recta,intervalos_dominio)
 
  if curvatura:
     fun = "f''"
@@ -808,11 +842,20 @@ def _f_sign_monot_tabla(recta,f,min,max,curvatura):
  
  logging.info("_f_sign_monot_tabla: comenzamos a construir la tabla")
  # Construimos la tabla, con tantas columnas como intervalos+1, para poner la función
- retval +="\\newline\\begin{table}[h!]\\centering\\begin{tabular}{"+"c|"*(len(recta))+"}"
+
+ 
+ intervalos_a_excluir = 0
+ for i in xrange(len(recta)-1):
+    if not random_between(recta[i],recta[i+1]) in intervalos_dominio:
+        intervalos_a_excluir+=1
+
+ retval +="\\newline\\begin{table}[h!]\\centering\\begin{tabular}{"+"c|"*(len(recta)-intervalos_a_excluir)+"}"
  # Construimos la primera fila de la tabla
  
  
  for i in xrange(len(recta)-1):
+  if not random_between(recta[i],recta[i+1]) in intervalos_dominio:
+        continue   
   retval += "& $\\left("+latex(recta[i])+","+latex(recta[i+1])+"\\right)$"
 
  retval += "\\\\ "
@@ -822,6 +865,8 @@ def _f_sign_monot_tabla(recta,f,min,max,curvatura):
  for i in xrange(len(recta)-1):
   logging.info("\t\t _f_sign_monot_tabla: estudiando intervalo: " + str([recta[i],recta[i+1]])) 
   rval=random_between(recta[i],recta[i+1])
+  if not rval in intervalos_dominio:
+    continue
   retval += "&"+fun + "($"+latex(rval)+") = "+latex(round(g(rval),3)) +"$"
   if sign(g(rval)) == 1:
     if curvatura:
@@ -969,8 +1014,11 @@ def __getIntervalsFromIneq(tosolve,intervals):
         if type(i) == type(x+1):
             logging.info("\t is expression")
             __aux.append(RealSet(i))
+        elif type(i) == type([]):
+            logging.info("\t"+str(i)+" is list")
+            __aux.append(reduce(RealSet.intersection,[RealSet(a) for a in i]))
         else:
-            logging.info("\t is not expression")
+            logging.info("\t"+str(i)+" is not expression")
             __aux.append(RealSet(i[0]))
 
     logging.info("\t __aux - intervals: "+str(__aux))
@@ -984,19 +1032,10 @@ def __getIntervalsFromIneq(tosolve,intervals):
         openpar = ""
         closepar = ""
 
-    __aux = []
-    for i in solutions:
-        if type(i) == type(x+1):
-            logging.info("\t is expression")
-            __aux.append(__simpleInecToInterval(i))
-            logging.info("terminado __simpleInecToInterval")
-        else:
-            logging.info("\t is not expression")
-            __aux.append(__simpleInecToInterval(i[0]))
-            logging.info("terminado __simpleInecToInterval")
+
 
     logging.info("\t __aux - sols: "+str(__aux)) 
-    __intervals__ = " \\cup ".join(__aux)
+    __intervals__ = " \\cup ".join(map(str,__aux))
     return openpar + "("+ __intervals__ + closepar + ")"
 
 
@@ -1139,7 +1178,7 @@ def dominion(f,maketext):
     logging.info("log (funcion dominion) variable global"+str(intervalos_dominio))
     
     if maketext:
-        return "D(f) = {"+doms + "} = {" + str(__dominio).replace("oo","\\infty").replace("+","\\cup").replace("\\cup\\infty","+\\infty") + "}"
+        return ("D(f) = {"+doms + "} = {" + str(__dominio).replace("+","\\cup").replace("\\cup\\infty","+\\infty") + "}").replace("oo","\\infty")
     else:
         return intervalos_dominio
 
