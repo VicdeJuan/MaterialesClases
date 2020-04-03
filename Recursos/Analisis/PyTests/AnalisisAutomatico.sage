@@ -1,194 +1,4 @@
-
-\newcommand{\fullAnalisisESO}[1]{
-\input{#1}
-\mydominio
-\myptscorte
-\mysimetria
-\mysigno
-\myasintotas
-\mygrafo
-\newpage
-}
-
-\newcommand{\fullAnalisisBach}[1]{
-\input{#1}
-\mycontinuidadyderivabilidad
-\mydominio
-\myasintotas
-\myptscorte
-\mysimetria
-\mymonotonia
-\mycurvatura
-\mygrafo
-\newpage
-}
-
-
-\newcommand{\fullAsintotas}[1]{
-\input{#1}
-\mydominio
-%\mysimetria
-%\myptscorte
-\myasintotas
-%\mymonotonia
-%\mygrafo
-\newpage
-}
-
-
-\newcommand{\mycontinuidadyderivabilidad}{
-    Es una función \sagestr{Tipo} y, por tanto, continua y derivable en todo su dominio.
-}
-
-\newcommand{\mydominio}{
-\paragraph{Dominio}
-
-\begin{dmath*}
-    \sagestr{dominion(f=f,maketext=true,realSetDomainArg=realSetDomainVar)}
-\end{dmath*}
-
-
-}
-
-\newcommand{\mysimetria}{
-\subparagraph{Simetría}
-
-\ifverbose
-    Para estudiar la simetría de una función calculamos $f(-x)$ y comparamos con $f(x)$. 
-    %
-    En este caso:
-\fi
-
-\[f(-x) = \sage{latex(f(-x))}\]
-
-¿Es igual a f(x) o a -f(x)? \sagestr{simetria(f)}
-
-}
-
-\newcommand{\myptscorte}{
-    
-\subparagraph{Puntos de corte con los ejes}
-
-\textit{\textbf{Eje X}
-}\ifverbose
-Para calcular los puntos de corte de la función con el eje x resolvemos la ecuación $f(x) = 0$ cuya solución es: 
-\\
-
-\else 
-$f(x) = 0\rightarrow $
-\fi
-\sagestr{puntosEjeX(func = f,intervalos_dominio = realSetDomainVar)} 
-
-\textit{\textbf{Eje Y}}
-\ifverbose
-Para calcular los puntos de corte de la función con el eje y calculamos $f(0)$. 
-%
-En este caso:
-\fi
-\sagestr{puntosEjeY(func = f,intervalos_dominio = realSetDomainVar)}
-
-}
-
-\newcommand{\myasintotas}{
-\paragraph{Asíntotas}
-\subparagraph{Asíntotas verticales}
-
-
-\ifverbose
-Los posibles puntos en los que la función puede tener una asíntota vertical son aquellos en los que se anula el denominador. 
-%
-Por ello calculamos:
-%
-\[\sagestr{latex(f.denominator())} = 0 \]
-\fi
-
-\sagestr{asintotesV(f = f,den = f.denominator(),AV = AV,intervalos_dominio = realSetDomainVar)}
-
-
-
-\subparagraph{Asíntotas horizontales u oblícuas}
-
-\ifverbose
-Las asíntotas horizontales y oblicuas nos dan la información acerca de la tendencia de la función en $-\infty$ y en $+\infty$.
-
-Para calcular las asíntotas, necesitamos calcular el límite de la función tanto en $+\infty$ como en $-\infty$:
-\fi
-
-\[\lim_{x\mapsto \pm\infty} \sagestr{latex(f(x))} \]
-
-\sagestr{asintotesHO(f = f,AH=AH,AO = AO,intervalos_dominio = realSetDomainVar)}
-
-
-}
-
-
-\newcommand{\mymonotonia}{
-\paragraph{Monotonía}
-	
-$f'(x) = \sagestr{latex(diff(f(x),x,1).full_simplify())}$
-
-Calculamos los puntos críticos, aquellos en los que $f'(x) = 0$
-
-\sagestr{solveDerivadaNula(f=f,sols=ptsCrit,onlyReal=True,intervalos_dominio = realSetDomainVar)}
-
-
-Añadimos a estos puntos aquellos en los que la función primitiva no exista y aquellos puntos en los que la función derivada no exista, si hay alguno. En este caso, 
-%
-\sagestr{ptsFrontera(f=f,ptscrit=ptsCrit,recta=recta,derivada_too=true,intervalos_dominio = realSetDomainVar)}
-
-\sagestr{estudiarSignoDiff(f,intervalos_dominio = realSetDomainVar)}
-}
-
-\newcommand{\mycurvatura}{
-\paragraph{Curvatura}
-    
-
-
-$f''(x) = \sagestr{latex(diff(diff(f(x),x,1),x,1).full_simplify())}$
-
-Calculamos los puntos críticos, aquellos en los que $f''(x) = 0$
-
-\sagestr{solveDerivadaNula(f=diff(f,x,1),sols=ptsCrit,onlyReal=True,intervalos_dominio = realSetDomainVar)}
-
-
-Añadimos a estos puntos aquellos en los que la función primitiva o la primera derivada no existan, si hay alguno. En este caso, 
-%
-\sagestr{ptsFrontera(f=f,ptscrit=ptsCrit,recta=recta,derivada_too=true,intervalos_dominio = realSetDomainVar)}
-
-\sagestr{estudiarSignoSegundaDerivada(f=f,intervalos_dominio = realSetDomainVar)}
-}
-
-
-\newcommand{\mysigno}{
-\paragraph{Signo de la función}
-
-\ifverbose
-Dividimos la recta real con los puntos de corte con el eje $X$ y aquellos puntos de discontinuidad, en este caso, los que anulen el denominador.
-\fi
-
-\sagestr{estudiarSigno(f,intervalos_dominio = realSetDomainVar)}
-
-
-}
-
-\newcommand{\mygrafo}{
-\paragraph{Gráfica de la función}
-\ifverbose
-En azul se marcan las asíntotas verticales, en rojo las horizontales y en morado las oblícuas.
-\fi
-\begin{figure}
-    \begin{center}
-        \sageplot{_myplot(f,AH=uniq(AH),AV=uniq(AV),AO=AO,intervalos_dominio = realSetDomainVar)}
-    \end{center}
-\caption{Gráfica de la función.}
-\end{figure}
-}
-
-
-
-
-\begin{sagesilent}
-#coding: utf-8
+# coding: utf-8
 from datetime import datetime
 import logging
 
@@ -211,9 +21,9 @@ epsilon = 0.0000001
 
 
 
-# Definición de las funciones
+# Definicion de las funciones
 
-## Función para devolver un número sencillo entre 2 valores, que pueden ser infinitos.
+## Funcion para devolver un numero sencillo entre 2 valores, que pueden ser infinitos.
 # Input: j,k los 2 valores.
 def random_between(j,k):
  if ((j==-Infinity) and (k == Infinity)):
@@ -237,7 +47,7 @@ def random_between(j,k):
  else:
   return round((k+j)/2.0,2)
 
-#Resuelve los puntos de discontinuidad de la función.
+#Resuelve los puntos de discontinuidad de la funcion.
 def ptsDiscontinuidad(f,intervalos_dominio):
     logging.info("log : funcion ptsDiscontinuidad: dominio: "+str(intervalos_dominio))
     retval = []
@@ -250,7 +60,7 @@ def ptsDiscontinuidad(f,intervalos_dominio):
 def _emptylist(aux):
     [aux.pop() for a in xrange(len(aux))]
     
-#### Sage dice que limit(log(x),x=0,dir="minus") = Infinity. Esta función corrige esto:
+#### Sage dice que limit(log(x),x=0,dir="minus") = Infinity. Esta funcion corrige esto:
 # funcion: la funcion
 # v: valor
 # lado: "+" o "-"
@@ -279,14 +89,14 @@ def getMinFromDomain(interval):
     if len(list(interval)) > 0:
         return interval[0].lower()
     else: 
-        logging.info("Error:  funcion getMinFromDomain intentando conseguir el mínimo de "+str(interval))
+        logging.info("Error:  funcion getMinFromDomain intentando conseguir el minimo de "+str(interval))
         return None
 
 def getMaxFromDomain(interval):
     if len(list(interval)) > 0:
         return list(interval)[-1].upper()
     else: 
-        logging.info("Error:  funcion getMinFromDomain intentando conseguir el mínimo de "+str(interval))
+        logging.info("Error:  funcion getMinFromDomain intentando conseguir el minimo de "+str(interval))
         return None
 
 def getExtremosDomain(interval):
@@ -294,16 +104,16 @@ def getExtremosDomain(interval):
 
 
 
-## Función para calcular las asíntotas verticales de la función.
+## Funcion para calcular las asintotas verticales de la funcion.
 #Input:
-# f: función
-# den: denominador de la función en caso de haberlo.
+# f: funcion
+# den: denominador de la funcion en caso de haberlo.
 # boolean log: tieneLog 
-# AV: array vacío para rellenar
+# AV: array vacio para rellenar
 def asintotesV(f,den,AV,intervalos_dominio):
-    logging.info("funcion asintotesV: asíntotas recibidas: "+str(AV))
+    logging.info("funcion asintotesV: asintotas recibidas: "+str(AV))
     _emptylist(AV)
-    logging.info("funcion asintotesV: asíntotas vaciadas: "+str(AV))
+    logging.info("funcion asintotesV: asintotas vaciadas: "+str(AV))
     den0 = ptsDiscontinuidad(f=f,intervalos_dominio=intervalos_dominio)
 
     r=""
@@ -334,7 +144,7 @@ def asintotesV(f,den,AV,intervalos_dominio):
         log0 = [a[x] for a in _log0 if imag(a[x])==0]  
 
         if (Verbose == 1):
-            r+= "\\paragraph{Atención: } Como la función es un logaritmo, podríamos tener una asíntota vertical (ya que $\\displaystyle\\lim_{x\\mapsto 0^+} \\log(x) = -\\infty$ y $\\displaystyle\\lim_{x\\mapsto a^+} \\log\\left(\\frac{1}{a}\\right) = \\infty$ porque $\\displaystyle\\lim_{x\\mapsto\\infty}\\log(x) = \\infty$). Vamos a comprobarlo.\\\\"
+            r+= "\\paragraph{Atencion: } Como la funcion es un logaritmo, podriamos tener una asintota vertical (ya que $\\displaystyle\\lim_{x\\mapsto 0^+} \\log(x) = -\\infty$ y $\\displaystyle\\lim_{x\\mapsto a^+} \\log\\left(\\frac{1}{a}\\right) = \\infty$ porque $\\displaystyle\\lim_{x\\mapsto\\infty}\\log(x) = \\infty$). Vamos a comprobarlo.\\\\"
 
             r+= "Para ello, calculamos los puntos en los que se haga 0 o $+\\infty$ el interior del logaritmo .\\\\"
 
@@ -364,12 +174,12 @@ def asintotesV(f,den,AV,intervalos_dominio):
             r+= "\\\\De estas soluciones, "
             for a in NoCandidates:
                 r+="$x_"+str(a[0])+"="+latex(i)+" $;\\quad"                
-            r+= "no son candidatos a asíntota, puesto que ninguno de los 2 límites laterales existe."
+            r+= "no son candidatos a asintota, puesto que ninguno de los 2 limites laterales existe."
             
 
 
     if (den0 == []):
-        r+= "\\paragraph{La función no tiene A.V.}"
+        r+= "\\paragraph{La funcion no tiene A.V.}"
 
     for x0 in den0:
         r+= "\\paragraph{Asintota en $x ="
@@ -384,16 +194,16 @@ def asintotesV(f,den,AV,intervalos_dominio):
         r+= "\[\\lim_{x\\mapsto " + latex(x0) + "} " + latex(f(x)) + " = \\left\\{\\begin{array}{l} \\displaystyle\\lim_{x\\mapsto " + latex(x0) + "^{+}} " + latex(f(x)) + " = " + ___my_latex(ld) + " \\\\\\\\\\displaystyle\\lim_{x\\mapsto " + latex(x0) + "^{-}} " + latex(f(x)) + " = " + ___my_latex(li) + " \\\\\\end{array}\\right.\] "
         if ld != None and li != None:
             if (abs(li) == Infinity and abs(ld) == Infinity and sign(li) == sign(ld)):
-                r+= "\n La recta x =" + latex(x0) + " es una \\textbf{asíntota vertical} de f(x)"
+                r+= "\n La recta x =" + latex(x0) + " es una \\textbf{asintota vertical} de f(x)"
                 AV.append(x0)
             elif (abs(li) == Infinity and abs(ld) == Infinity and sign(li) != sign(ld)):
                 AV.append(x0)
                 if (Verbose == 1):
-                    r+= "\n Aunque el límite no exista (porque los límites laterales son diferentes), su magnitud sigue siendo infinita por ambos lados, por lo que la recta x = $" + latex(x0) + "$ es una \\textbf{asíntota vertical} de f(x)"
+                    r+= "\n Aunque el limite no exista (porque los limites laterales son diferentes), su magnitud sigue siendo infinita por ambos lados, por lo que la recta x = $" + latex(x0) + "$ es una \\textbf{asintota vertical} de f(x)"
                 else:
                     r+= "\n $x = " + latex(x0) + "$ es \\textbf{A.V.} de f(x)"
         elif ld == None and li == None:
-            r+= "\n \\textbf{No hay asíntota vertical} en $x="+latex(x0)+"$."
+            r+= "\n \\textbf{No hay asintota vertical} en $x="+latex(x0)+"$."
         elif ld == None:
             if (abs(li) == Infinity):
                 r += "\n $x = " + latex(x0) + "$ es \\textbf{A.V.} de f(x) por la izquierda."
@@ -403,47 +213,47 @@ def asintotesV(f,den,AV,intervalos_dominio):
                 r += "\n $x = " + latex(x0) + "$ es \\textbf{A.V.} de f(x) por la derecha."
                 AV.append(x0)
         else:
-            r+= "\n \\textbf{No hay asíntota vertical} en $x="+latex(x0)+"$."
+            r+= "\n \\textbf{No hay asintota vertical} en $x="+latex(x0)+"$."
     AV=uniq(AV)
     logging.info("asintotesV: AV to ret: "+str(AV))
     return r
 
-###Función para escribir latex de None como \nexists, para asegurar compatibilidad con la función limit_lateral.
+###Funcion para escribir latex de None como \nexists, para asegurar compatibilidad con la funcion limit_lateral.
 def ___my_latex(value):
     if value==None:
         return "\\nexists"
     else:
         return latex(value)
 
-## Función para calcular las asíntotas horizontales u oblicuas.
+## Funcion para calcular las asintotas horizontales u oblicuas.
 #Input:
-# f: función
+# f: funcion
 
 def asintotesHO(f,AH,AO,intervalos_dominio):
     _emptylist(AH)
     _emptylist(AO)
     r=""
-    ###Gnapa, que deberíamos arreglar:
+    ###Gnapa, que deberiamos arreglar:
 
     infsToCalcAsintotes = []
 
     if 9999999999 in intervalos_dominio:
         infsToCalcAsintotes.append(Infinity)
     else:
-        r+= "\\paragraph{No existe el límite de la función en $\\infty$:}"
+        r+= "\\paragraph{No existe el limite de la funcion en $\\infty$:}"
 
     if -9999999999 in intervalos_dominio:
         infsToCalcAsintotes.append(-Infinity)
     else:
-        r+= "\\paragraph{No existe el límite de la función en $-\\infty$:}"
+        r+= "\\paragraph{No existe el limite de la funcion en $-\\infty$:}"
 
         
     if len(infsToCalcAsintotes) == 0:
-        r+= "La función no puede tener asíntotas horizontal por no estar definida en $\\pm\\infty$"
+        r+= "La funcion no puede tener asintotas horizontal por no estar definida en $\\pm\\infty$"
     
     for infty in infsToCalcAsintotes:
         if (Verbose == 1):
-            r+= "\\paragraph{Límite de la función en $"+latex(infty)+"$:}"
+            r+= "\\paragraph{Limite de la funcion en $"+latex(infty)+"$:}"
         else:
             r+= "\\paragraph{$"+latex(infty)+"$:}"
         ld=limit(f, x=infty)  
@@ -454,52 +264,52 @@ def asintotesHO(f,AH,AO,intervalos_dominio):
             AH.append(ld)
             if (Verbose == 1):
                 r+= "En $"+latex(infty)
-                r+= "$ f(x) tiene una \\textbf{asíntota horizontal} en $y = "+latex(ld)+"$."
+                r+= "$ f(x) tiene una \\textbf{asintota horizontal} en $y = "+latex(ld)+"$."
             else:
                 r+= "$y = "+latex(ld) +" $ es una \\textbf{A.H.} de f(x)"
 
         else: # OBLICUA
             if (Verbose == 1):
-                r+= "Como el límite obtenido es de magnitud infinita la función no tiene asíntota horizontal, pero puede tener una asíntota oblícua. Para saber si tiene una asíntota oblícua calculamos: "
+                r+= "Como el limite obtenido es de magnitud infinita la funcion no tiene asintota horizontal, pero puede tener una asintota oblicua. Para saber si tiene una asintota oblicua calculamos: "
             else:
-                r+= "No tiene horizontal. ¿Oblícua?"
+                r+= "No tiene horizontal. Oblicua?"
 
             m=limit(f/x,x=infty)
             r+= "\[m=\\lim_{x\\mapsto "+latex(infty)+"} \\frac{f(x)}{x} = \\lim_{x\\mapsto "+latex(infty)+"} \\frac{"+latex(f(x))+"}{x}=\\lim_{x\\mapsto "+latex(infty)+"} "+latex(f(x)/x)+" = ... = "+latex(m)+"\]"
             if (abs(m) != Infinity and m != 0):
                 if (Verbose == 1):
-                    r+= "        En este caso tenemos m=$"+latex(m)+"$ por lo que sí hay asíntota oblícua. Calculamos n:"
+                    r+= "        En este caso tenemos m=$"+latex(m)+"$ por lo que si hay asintota oblicua. Calculamos n:"
                 r+= "    \[n= \\lim_{x\\mapsto "+latex(infty)+"} f(x) - m·x = \\lim_{x\\mapsto "+latex(infty)+"}\\left("+latex(f(x))+"-"+latex(m)+"x \\right) = \\lim_{x\\mapsto "+latex(infty)+"}"+latex(f(x)-m*x)+" = "+ limit(f-m*x,x=infty)+"\]"
                 _n = limit(f-m*x,x=infty)
                 n=_n
                 y=m*x+n
-                r+= "En $"+latex(infty)+"$, f(x) tiene una \\textbf{asíntota oblícua} en $y="+latex(y)+"$."
+                r+= "En $"+latex(infty)+"$, f(x) tiene una \\textbf{asintota oblicua} en $y="+latex(y)+"$."
                 AO.append(m*x+n)
             else:
                 if (Verbose == 1):
-                    r+= "En este caso, tenemos $m="+latex(m)+"$ por lo que \\textbf{no hay asíntota} oblícua (ni horizontal)."
+                    r+= "En este caso, tenemos $m="+latex(m)+"$ por lo que \\textbf{no hay asintota} oblicua (ni horizontal)."
                 else:
                     r+= "\\textbf{No hay A.O. ni A.H.}"
     AH=uniq(AH)
     return r
 
-# Estudio de la simetría de la función.
+# Estudio de la simetria de la funcion.
 def simetria(f):
     if (f(x) == f(-x)):
         if (Verbose == 1):
-            return "Sí, a f(x), entonces la función es par."
+            return "Si, a f(x), entonces la funcion es par."
         else:
-            return "Sí, $\\Rightarrow$ par"
+            return "Si, $\\Rightarrow$ par"
     elif (f(x) == - f(-x)):
         if (Verbose == 1):
-            return "Sí, a -f(x) entonces la función es impar."
+            return "Si, a -f(x) entonces la funcion es impar."
         else:
-            return "Sí, $\\Rightarrow$ impar"
+            return "Si, $\\Rightarrow$ impar"
     else:
         if (Verbose == 1):
-            return "No, entonces la función no tiene simetría respecto del eje Y."
+            return "No, entonces la funcion no tiene simetria respecto del eje Y."
         else:
-            return "No, $\\Rightarrow$ ninguna simetría"
+            return "No, $\\Rightarrow$ ninguna simetria"
 
 ###### Estudio de los puntos de corte
 def puntosEjeX(func,intervalos_dominio):
@@ -509,20 +319,20 @@ def puntosEjeX(func,intervalos_dominio):
     for i in xrange(len(_roots)):
         r+="$x_"+str(i)+" = "+latex(_roots[i])+"\\to \\left("+latex(_roots[i])+",0\\right)$;\\quad"
     if (_roots == []):
-        r += "No tiene solución."
+        r += "No tiene solucion."
     if Verbose:
-        r+= "\\\\\\textit{Obs: Sólo puede haber puntos de corte en puntos del dominio.}"
+        r+= "\\\\\\textit{Obs: Solo puede haber puntos de corte en puntos del dominio.}"
     return r
 
 def puntosEjeY(func,intervalos_dominio):
     if 0 in intervalos_dominio:
-        return "$f(0) = " + latex(func(0)) + "$, con lo que la gráfica corta en $\\left(0,"+latex(func(0)) + "\\right)$ al eje Y."   
+        return "$f(0) = " + latex(func(0)) + "$, con lo que la grafica corta en $\\left(0,"+latex(func(0)) + "\\right)$ al eje Y."   
     else:
         return  "No existe f(0)."    
     
 
 
-############### Monotonía
+############### Monotonia
 
 # Funcion para calcular los puntos que anulan la derivada.
 # Devuelve: cadena de texto con el codigo LaTeX.
@@ -560,7 +370,7 @@ def solveDerivadaNula(f,sols,onlyReal,intervalos_dominio):
         for a in NoCandidates:
             retval +="$x_"+str(a[0])+"="+latex(a[1].full_simplify())+" $;\\quad"
         
-        retval += "no son válidas porque no pertenecen al dominio."
+        retval += "no son validas porque no pertenecen al dominio."
     
 
     if (sols == []):
@@ -574,13 +384,13 @@ def ptsFrontera(f,ptscrit,recta,derivada_too,intervalos_dominio):
     logging.info("funcion ptsFrontera")
     puntosFrontera = flatten([flatten(ptsDiscontinuidad(f=f,intervalos_dominio=intervalos_dominio)),flatten(ptscrit)])
     if derivada_too:
-        ___pts = ptsDiscontinuidad(f=diff(f(x),x,1),intervalos_dominio=intervalos_dominio)
+        ___pts = ptsDiscontinuidad(f=diff(f(x),x,1))
         if ___pts != []:
             puntosFrontera.append(___pts)
 
     puntosFrontera = uniq(flatten(puntosFrontera))
     
-    # En lugar de -infinity, hay que poner el extremo mínimo del dominio.
+    # En lugar de -infinity, hay que poner el extremo minimo del dominio.
     #recta=[-Infinity]
     
     recta = [getMinFromDomain(intervalos_dominio)]
@@ -608,11 +418,11 @@ def intervalos(recta,domain = None):
         if random_between(recta[i],recta[i+1]) in domain:
             r += "$\\left("+latex(recta[i])+","+latex(recta[i+1])+"\\right)$;\\quad"  
         else:
-            logging.info("funcion intervalos: el intervalo (" + str(recta[i]) + "," + str(recta[i+1]) + ") no está en el dominio.")
+            logging.info("funcion intervalos: el intervalo (" + str(recta[i]) + "," + str(recta[i+1]) + ") no esta en el dominio.")
     return r
 
 
-# Estudia el signo de la función dada la función y los puntos frontera.
+# Estudia el signo de la funcion dada la funcion y los puntos frontera.
 def estudiarSigno(f,intervalos_dominio):
     logging.info("estudiarSigno")
     _min = getMinFromDomain(intervalos_dominio)
@@ -664,12 +474,12 @@ def _getRealroots(f):
  for a in __roots:
     #logging.info("t estudiando "+str(a[x]))
     if (a[x]).has(x):
-        logging.info("\t es expresión, calculamos solución numérica..."+str(a) + " [x]-> "+str(a[x]))        
+        logging.info("\t es expresion, calculamos solucion numerica..."+str(a) + " [x]-> "+str(a[x]))        
         sol = find_root(f,-Infinity,Infinity)
         logging.info("\t encontrada solucion: "+str(sol))
         _roots.append(sol)
     else:
-        logging.info("\t no es expresión ")
+        logging.info("\t no es expresion ")
         if imag(a[x]) == 0:
             _roots.append(a[x].full_simplify())
  logging.info("\t soluciones to return: " + str(_roots))
@@ -677,13 +487,13 @@ def _getRealroots(f):
 
 
 
-### Estudia el signo de la función derivada, tanto para la curvatura, como para la monotonía.
+### Estudia el signo de la funcion derivada, tanto para la curvatura, como para la monotonia.
 # Devuelve codigo LaTeX
 # Recibe:
-# f: función
+# f: funcion
 # min: lista
 # max: lista
-# boolean curvatura: false si buscamos estudiar la monotnía. True para estudiar curvatura.
+# boolean curvatura: false si buscamos estudiar la monotnia. True para estudiar curvatura.
 def _f_sign_monot(recta,f,min,max,curvatura,intervalos_dominio):
  _emptylist(min)
  _emptylist(max)
@@ -697,11 +507,11 @@ def _f_sign_monot(recta,f,min,max,curvatura,intervalos_dominio):
     # Los puntos que marcan extremos de intervalos son:
     #       los valores que anulan la segunda derivada, 
     #       los puntos de discontinuidad de la derivada 
-    #       los puntos de discontinuidad de la función.
-    # MEJORAR: toda esta operación puede ser una operación de conjuntos. Intersección dominio f con dominio df - puntos de f''(x) == 0.
+    #       los puntos de discontinuidad de la funcion.
+    # MEJORAR: toda esta operacion puede ser una operacion de conjuntos. Interseccion dominio f con dominio df - puntos de f''(x) == 0.
     for a in _getRealroots(ddf):
         recta.append(a)
-    for a in ptsDiscontinuidad(f=df,intervalos_dominio=intervalos_dominio):
+    for a in ptsDiscontinuidad(f=df):
         recta.append(a)
     for a in ptsDiscontinuidad(f=f,intervalos_dominio=intervalos_dominio):
         recta.append(a)
@@ -719,10 +529,10 @@ def _f_sign_monot(recta,f,min,max,curvatura,intervalos_dominio):
  actual=0
  if curvatura:
     fun = "f''"
-    g = ddf # La función a utilizar es la segunda derivada.
+    g = ddf # La funcion a utilizar es la segunda derivada.
  else:
     fun = "f"
-    g = df # La función a estudiar es la derivada.
+    g = df # La funcion a estudiar es la derivada.
  retval += "\\begin{itemize}"
  for i in xrange(len(recta)-1):
   rval=random_between(recta[i],recta[i+1])
@@ -740,9 +550,9 @@ def _f_sign_monot(recta,f,min,max,curvatura,intervalos_dominio):
   if actual==1: 
    if (Verbose == 1):
     if curvatura:
-        retval += "Positivo, por lo que la función es \\textbf{convexa} en este intervalo."
+        retval += "Positivo, por lo que la funcion es \\textbf{convexa} en este intervalo."
     else:
-        retval += "Positivo, por lo que la función \\textbf{crece} en este intervalo."  
+        retval += "Positivo, por lo que la funcion \\textbf{crece} en este intervalo."  
    else:
     if curvatura:
         retval += "Positivo, $\\Rightarrow$ \\textbf{convexa}."
@@ -751,13 +561,13 @@ def _f_sign_monot(recta,f,min,max,curvatura,intervalos_dominio):
   else:
    if (Verbose == 1):
     if curvatura:
-        retval += "Negativo, por lo que la función es \\textbf{cóncava} en este intervalo."
+        retval += "Negativo, por lo que la funcion es \\textbf{concava} en este intervalo."
     else:
-        retval += "Negativo, por lo que la función \\textbf{decrece} en este intervalo."
+        retval += "Negativo, por lo que la funcion \\textbf{decrece} en este intervalo."
    else:
 
     if curvatura:
-        retval += "Negativo, \\textbf{cóncava}."
+        retval += "Negativo, \\textbf{concava}."
     else:
         retval += "Negativo $\\Rightarrow$ decrece."
 
@@ -768,13 +578,13 @@ def _f_sign_monot(recta,f,min,max,curvatura,intervalos_dominio):
 
 
 
-### Estudia el signo de la función derivada, tanto para la curvatura, como para la monotonía.
+### Estudia el signo de la funcion derivada, tanto para la curvatura, como para la monotonia.
 # Devuelve codigo LaTeX en modo tabla
 # Recibe:
-# f: función
+# f: funcion
 # min: lista
 # max: lista
-# boolean curvatura: false si buscamos estudiar la monotnía. True para estudiar curvatura.
+# boolean curvatura: false si buscamos estudiar la monotnia. True para estudiar curvatura.
 def _f_sign_monot_tabla(recta,f,min,max,curvatura,intervalos_dominio):
 
 ## IDEAS PARA MEJORAR. Poner los "&" al final, para poder poner \\hline entre las filas de las tablas.
@@ -795,18 +605,18 @@ def _f_sign_monot_tabla(recta,f,min,max,curvatura,intervalos_dominio):
     # Los puntos que marcan extremos de intervalos son:
     #       los valores que anulan la segunda derivada, 
     #       los puntos de discontinuidad de la derivada 
-    #       los puntos de discontinuidad de la función.
+    #       los puntos de discontinuidad de la funcion.
     for a in _getRealroots(ddf):
         if a in intervalos_dominio:
             recta.append(a)
-    for a in ptsDiscontinuidad(f=df,intervalos_dominio=intervalos_dominio):
+    for a in ptsDiscontinuidad(f=df):
         recta.append(a)
     for a in ptsDiscontinuidad(f=f,intervalos_dominio=intervalos_dominio):
         recta.append(a)
  else:
     logging.info("\t solo monotonia" )
     __roots = _getRealroots(df) 
-    logging.info("raíces df: \t "+str(__roots))
+    logging.info("raices df: \t "+str(__roots))
     for a in __roots:
         if a in intervalos_dominio:
             recta.append(a)
@@ -821,10 +631,10 @@ def _f_sign_monot_tabla(recta,f,min,max,curvatura,intervalos_dominio):
 
  if curvatura:
     fun = "f''"
-    g = ddf # La función a utilizar es la segunda derivada.
+    g = ddf # La funcion a utilizar es la segunda derivada.
  else:
     fun = "f'"
-    g = df # La función a estudiar es la derivada.
+    g = df # La funcion a estudiar es la derivada.
 
  retval = "Los intervalos a estudiar son: "+latex(lista_intervalos)
  
@@ -837,7 +647,7 @@ def _f_sign_monot_tabla(recta,f,min,max,curvatura,intervalos_dominio):
  actual=1
  
  logging.info("_f_sign_monot_tabla: comenzamos a construir la tabla")
- # Construimos la tabla, con tantas columnas como intervalos+1, para poner la función
+ # Construimos la tabla, con tantas columnas como intervalos+1, para poner la funcion
 
  
  intervalos_a_excluir = 0
@@ -872,13 +682,13 @@ def _f_sign_monot_tabla(recta,f,min,max,curvatura,intervalos_dominio):
     retval += "$>0$"
   else:
     if curvatura:
-        conclusiones.append("Cóncava")
+        conclusiones.append("Concava")
     else:
         conclusiones.append("Decreciente")
     retval += "$<0$"
   
 
-  # Guardar en la lista los mínimos.
+  # Guardar en la lista los minimos.
   toadd = recta[i]
   prev = actual
   actual = sign(g(rval))
@@ -893,7 +703,7 @@ def _f_sign_monot_tabla(recta,f,min,max,curvatura,intervalos_dominio):
 
  retval += "\\\\"
 
- # Incluimos última fila de la tabla:
+ # Incluimos ultima fila de la tabla:
  for c in conclusiones:
     retval += "&" + c
 
@@ -904,25 +714,25 @@ def _f_sign_monot_tabla(recta,f,min,max,curvatura,intervalos_dominio):
  retval += "\\end{tabular}\\caption{Estudio del signo de $" + fun + "(x)=" + latex(g.full_simplify()) + "$}\\label{"+__label+"}\\end{table}"
  
  if not curvatura:
-    retval += "\\paragraph{Lista de máximos y mínimos:} obtenidos estudiando la monotonía a ambos lados de cada puntos, siempre que el punto esté en el dominio."
+    retval += "\\paragraph{Lista de maximos y minimos:} obtenidos estudiando la monotonia a ambos lados de cada puntos, siempre que el punto este en el dominio."
     if Verbose == 1:
-        retval+="\\subparagraph{Criterio:} \\begin{itemize}\\item \\textit{Si por un lado crece, y por el otro decrece, entonces será un mínimo.}\\item \\textit{Si por un lado decrece, y por el otro crece, será un máximo.}\\item \\textit{Si a ambos lados tiene el mismo comportamiento, no será un máximo ni un mínimo}\\end{itemize}"
+        retval+="\\subparagraph{Criterio:} \\begin{itemize}\\item \\textit{Si por un lado crece, y por el otro decrece, entonces sera un minimo.}\\item \\textit{Si por un lado decrece, y por el otro crece, sera un maximo.}\\item \\textit{Si a ambos lados tiene el mismo comportamiento, no sera un maximo ni un minimo}\\end{itemize}"
 
     retval +="\\begin{itemize}"
     retval += "\\item"
     if max == []:
-        retval += "La función no tiene ningún máximo."
+        retval += "La funcion no tiene ningun maximo."
     elif len(max) == 1:
-        retval += "El punto $x=" + latex(max[0]) + "$ es un máximo de la función.\\\\" 
+        retval += "El punto $x=" + latex(max[0]) + "$ es un maximo de la funcion.\\\\" 
     else:
-        retval += "Los puntos $" + printlist(max) + "$ son máximos de la función.\\\\" 
+        retval += "Los puntos $" + printlist(max) + "$ son maximos de la funcion.\\\\" 
     retval += "\\item"
     if min == []:
-        retval += "La función no tiene ningún mínimo."
+        retval += "La funcion no tiene ningun minimo."
     elif len(min) == 1:
-        retval += "El punto $x=" + latex(min[0]) + "$ es un mínimo de la función.\\\\"
+        retval += "El punto $x=" + latex(min[0]) + "$ es un minimo de la funcion.\\\\"
     else:
-        retval += "Los puntos $" + printlist(min) + "$ son mínimos de la función.\\\\"
+        retval += "Los puntos $" + printlist(min) + "$ son minimos de la funcion.\\\\"
     retval += "\\end{itemize}"  
  return retval 
 
@@ -951,16 +761,16 @@ def ismin(f,x0):
  val = f(x0)
  retval = "f("+str(x0)+") = "+str(f(x0))
  if val<0:
-  retval += "<0 por lo que hay un máximo relativo en "+str(x0)
+  retval += "<0 por lo que hay un maximo relativo en "+str(x0)
  elif val>0:
-  retval += ">0 por lo que hay un mínimo relativo en "+str(x0)
+  retval += ">0 por lo que hay un minimo relativo en "+str(x0)
  else:
-  retval += "No podemos determinar si se trata de un máximo o un mínimo de esta manera" 
+  retval += "No podemos determinar si se trata de un maximo o un minimo de esta manera" 
  return retval
  
 
-###### Devuelve los intervalos solución de una inecuación.
-# Función auxiliar:
+###### Devuelve los intervalos solucion de una inecuacion.
+# Funcion auxiliar:
 
 def __simpleInecToInterval(s):
     logging.info("__simpleInecToInterval de s: " + str(s))
@@ -996,7 +806,7 @@ def __simpleInecToInterval(s):
     else:
         return "Error grave"        
 
-# tosolve: inecuación a pasarle a solve direcamente. 
+# tosolve: inecuacion a pasarle a solve direcamente. 
 #   Ejemplo: x^2-9 >= 0
 def __getIntervalsFromIneq(tosolve,intervals):
     logging.info("__getIntervalsFromIneq")
@@ -1036,8 +846,8 @@ def __getIntervalsFromIneq(tosolve,intervals):
 
 
 
-## Función auxiliar recursiva para obtener todos los radicandos que tiene una función:
-# f: función
+## Funcion auxiliar recursiva para obtener todos los radicandos que tiene una funcion:
+# f: funcion
 # num: contador
 def __hasRt_aux(f,num):
     retval = []
@@ -1055,8 +865,8 @@ def getRadicandos(f):
     return flatten(__hasRt_aux(f,0))
 
 
-## Función auxiliar recursiva para obtener todos los argumentos de los logaritmos que tenga la función
-# f: función
+## Funcion auxiliar recursiva para obtener todos los argumentos de los logaritmos que tenga la funcion
+# f: funcion
 # num: contador
 def __hasLog_aux(f,num):
     retval = []
@@ -1074,13 +884,10 @@ def getArgsLog(f):
 
 
 
-## Devuelve en texto el dominio de la función. 
-# f: función
-# realSetDomainArg: conjunto vacío en la que rellenar los valores del dominio.
+## Devuelve en texto el dominio de la funcion. 
+# f: funcion
+# realSetDomainArg: conjunto vacio en la que rellenar los valores del dominio.
 def dominion(f,maketext,realSetDomainArg):
-    # Limpiamos la variable para poder encadenar funciones.
-    
-    realSetDomainArg = realSetDomainArg.intersection(RealSet(0,0))
     intervalos_dominio = RealSet(0,0)
     logging.info("log (funcion dominion): funcion - "+str(f))
 
@@ -1089,7 +896,7 @@ def dominion(f,maketext,realSetDomainArg):
     argsLog = getArgsLog(f)
     hasLog = len(argsLog)
     isLog = hasLog
-    ## Rutina para conocer si la función tiene alguna raíz:
+    ## Rutina para conocer si la funcion tiene alguna raiz:
     radicandos = getRadicandos(f)
     hasRt = len(radicandos)
 
@@ -1172,21 +979,22 @@ def dominion(f,maketext,realSetDomainArg):
 
     intervalos_dominio = intervalos_dominio.union(__dominio)
     logging.info("log (funcion dominion): dominio preseignacion" + str(__dominio ))
-    realSetDomainArg = realSetDomainArg.union(intervalos_dominio)
-    global realSetDomainVar
-    realSetDomainVar = realSetDomainArg
-    logging.info("log (funcion dominion) variable global"+str(realSetDomainArg))
+    logging.info("log (funcion dominion): dominio posteignacion" + str(intervalos_dominio))
+    
+    logging.info("log (funcion dominion) variable global"+str(intervalos_dominio))
+    
+    realSetDomainVar = realSetDomainArg.union(realSetDomainArg)
 
     if maketext:
         return ("D(f) = {"+doms + "} = {" + str(__dominio).replace("+","\\cup").replace("\\cup\\infty","+\\infty") + "}").replace("oo","\\infty")
     else:
         return intervalos_dominio
 
-### Función para pintar las gráficas.
-# f: función
-# int list AV: lista de puntos en los que hay una asíntota vertical.
+### Funcion para pintar las graficas.
+# f: funcion
+# int list AV: lista de puntos en los que hay una asintota vertical.
 # int list AH: lista de puntos en los que hay una asintota horizontal.
-# EXPR AO: ecuación de la asíntota oblícua y=mx+n
+# EXPR AO: ecuacion de la asintota oblicua y=mx+n
 def _myplot(f,AV,AH,AO,intervalos_dominio):
  logging.info("_myplot: f: " + str(f))
  logging.info("_myplot: AV: " + str(AV))
@@ -1219,7 +1027,28 @@ def _myplot(f,AV,AH,AO,intervalos_dominio):
  if AO != []:
   P+=plot(AO,color='purple',xmin=xmin,xmax=xmax,ymin=ymin,ymax=ymax)
  return P
-\end{sagesilent}
 
 
-%%%%%%% Plot
+
+
+
+
+print(dominion(f=f,maketext=true,realSetDomainArg=realSetDomainVar))
+print(simetria(f))
+print(puntosEjeX(func = f,intervalos_dominio = realSetDomainVar))
+print(puntosEjeY(func = f,intervalos_dominio = realSetDomainVar))
+print(latex(f.denominator()))
+print(asintotesV(f = f,den = f.denominator(),AV = AV,intervalos_dominio = realSetDomainVar))
+print(latex(f(x)))
+print(asintotesHO(f = f,AH=AH,AO = AO,intervalos_dominio = realSetDomainVar))
+print(latex(diff(f(x),x,1).full_simplify()))
+print(solveDerivadaNula(f=f,sols=ptsCrit,onlyReal=True,intervalos_dominio = realSetDomainVar))
+print(ptsFrontera(f=f,ptscrit=ptsCrit,recta=recta,derivada_too=true,intervalos_dominio = realSetDomainVar)
+
+"""print(estudiarSignoDiff(f=f,intervalos_dominio = realSetDomainVar))
+print(latex(diff(diff(f(x),x,1),x,1).full_simplify()))
+print(solveDerivadaNula(f=diff(f,x,1),sols=ptsCrit,onlyReal=True))
+print(ptsFrontera(f=f,ptscrit=ptsCrit,recta=recta,derivada_too=true,intervalos_dominio = realSetDomainVar)
+print(estudiarSignoSegundaDerivada(f=f,intervalos_dominio = realSetDomainVar))
+print(estudiarSigno(f,intervalos_dominio = realSetDomainVar))
+"""

@@ -14,7 +14,7 @@ all: fast
 	$(LATEX) $(TARGET)
 
 updatePy:
-	cat $(SAGEUTILSDIR)sageUtilities.tex | grep begin{sagesilent} -A 100000000 | grep end{sagesilent} -B 1000000000 | sed -n '1!p' | head -n -1 | sed -e 's/á/a/g'| sed -e 's/é/e/g'| sed -e 's/í/i/g'| sed -e 's/ó/o/g'| sed -e 's/ú/u/g'| sed -e 's/ñ/gn/g'| sed -e 's/¿//g'> PyTests/AnalisisAutomatico.py 
+	cat $(SAGEUTILSDIR)sageUtilities.tex | grep begin{sagesilent} -A 100000000 | grep end{sagesilent} -B 1000000000 | sed -n '1!p' | head -n -1 | sed -e 's/á/a/g'| sed -e 's/é/e/g'| sed -e 's/í/i/g'| sed -e 's/ó/o/g'| sed -e 's/ú/u/g'| sed -e 's/ñ/gn/g'| sed -e 's/¿//g'> PyTests/AnalisisAutomatico.sage
 
 copy:
 	cp $(SAGEUTILSDIR)sageUtilities.tex sageUtilities.notvalid
@@ -29,7 +29,10 @@ resage:
 	$(LATEX) $(TARGET)
 	sage $(TARGET).sagetex.sage
 
-clean:
+clogs:
+	rm -rf logs/*
+
+clean: clogs
 	rm -r *sage*
 	$(LTXMK) -C
-	rm -rf logs/*
+	
