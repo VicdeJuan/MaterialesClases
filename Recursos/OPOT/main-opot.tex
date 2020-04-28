@@ -1,0 +1,39 @@
+\documentclass[nochap,palatino,nobuilddate]{estudioFuncion}
+
+\title{Generador de pruebas indiv}
+\author{Departamento de Matemáticas Safa}
+\date{\today}
+
+\usepackage[author={Víctor de Juan, 2019}]{pdfcomment}
+\subtitle{Algunos ejemplos resueltos para 1º Bachillerato}
+
+\usepackage{amsmath}
+\usepackage{breqn}
+
+\usepackage{sagetex}
+\usepackage{float}
+
+
+\newif\ifverbose
+\verbosetrue
+
+
+
+
+\begin{document}
+
+\input{sageUtilities.notvalid}
+
+\ifverbose
+	\begin{sagesilent}
+		Verbose=1
+	\end{sagesilent}
+\else
+	\begin{sagesilent}
+		Verbose=0
+	\end{sagesilent}
+\fi
+
+\input{toinput}
+
+\end{document}

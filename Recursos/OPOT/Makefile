@@ -1,5 +1,4 @@
 TARGET=main
-#TARGET=correccionAsintotas
 NAME=EstudioFunciones
 LATEX=/mnt/c/texlive/2018/bin/win32/pdflatex.exe
 LTXMK=/mnt/c/texlive/2018/bin/win32/latexmk.exe
