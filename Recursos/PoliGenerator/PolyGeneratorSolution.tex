@@ -1,0 +1,77 @@
+\documentclass[palatino,nochap]{Docencia}
+
+
+\usepackage{sagetex}
+\usepackage{breqn}
+%\geometry{reset,margin=0.2in,rmargin=0.5in}
+
+
+\title{Polinomios para factorizar.}
+%\newcommand{\subtitle}[1]{\def\thesubtitle{#1}\@subsettrue}
+%\subtitle{4º ESO Matemáticas Académicas}
+\author{Departamento de Matemáticas}
+\date{18/19}
+
+
+
+\begin{abstract}
+
+Ejercicios de polinomios generados automáticamente.
+
+$x_2 = 3 [2]$, significa que la segunda raíz obtenida es $3$ y tiene multiplicidad $2$, es decir, el polinomio tiene 2 factores $(x-2)$.
+%
+Si entre corchetes no aparece ningún número, significa que su multiplicidad es 1.
+
+
+\textit{Nota: Este documento se ha generado automáticamente utilizando \href{www.sagemath.org/es/}{Sage}, \LaTeX\xspace y \href{https://github.com/sagemath/sagetex}{sagetex} para la integración de las 2 herramientas mencionadas.}
+
+\end{abstract}
+
+% Paquetes adicionales
+
+\usepackage[author={Víctor de Juan, 2018}]{pdfcomment}
+
+\makeatletter
+\newcommand{\annotate}[2][]{%
+	\pdfstringdef\x@title{#1}%
+	\edef\r{\string\r}%
+	\pdfstringdef\x@contents{#2}%
+	\pdfannot
+	width 2\baselineskip
+	height 2\baselineskip
+	depth 0pt
+	{
+		/Subtype /Text
+		/T (\x@title)
+		/Contents (\x@contents)
+	}%
+}
+\makeatother
+
+
+
+% --------------------
+\newcommand{\cimplies}{\text{\hl{$\implies$}}}
+\renewcommand{\vx}{\overset{\rightarrow}{x}}
+\renewcommand{\vy}{\overset{\rightarrow}{y}}
+\renewcommand{\vz}{\overset{\rightarrow}{z}}
+\newcommand{\vi}{\overset{\rightarrow}{i}}
+\newcommand{\vj}{\overset{\rightarrow}{j}}
+\renewcommand{\vec}[1]{\overset{\rightarrow}{#1}}
+
+
+
+
+\begin{document}
+\pagestyle{plain}
+%\maketitle
+%\tableofcontents
+%\newpage
+
+\section{Evaluación 1ºD - Funciones}
+
+%\begin{multicols}{3}
+\input{polysSol}
+%\end{multicols}
+
+\end{document}
