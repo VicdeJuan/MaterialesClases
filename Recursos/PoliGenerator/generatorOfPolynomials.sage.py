@@ -235,7 +235,7 @@ P2=genP(grado=_sage_const_2 ,
 
 Enunciado="\\paragraph{[3 puntos] 1) Estudia las asíntotas de la siguiente función (sin olvidarte de decir algo sobre las asíntotas oblicuas)} \[f(x) = \\frac{"+latex(P1[_sage_const_0 ])+"}{"+latex(P2[_sage_const_0 ])+"}\]"
 
-_AV = copy(P1[_sage_const_1 ])
+_AV = copy(P2[_sage_const_1 ])
 _AV.remove(shared_root)
 coef_num = getCoefPoly(P1[_sage_const_0 ])
 coef_den = getCoefPoly(P2[_sage_const_0 ])
@@ -306,7 +306,7 @@ Enunciado += ejer2
 Solucion+=ejer2 + "Solución: de cabeza"
 
 
-ejer3 = "\\paragraph{[2 puntos] 3) Halla, si es posible, el valor de k para que las siguientes funciones sean continuas}\\begin{itemize}"
+ejer3 = "\\paragraph{[2 puntos] 3) Halla, si es posible, el valor de k para que la siguiente función sean continuas}\\begin{itemize}"
 
 frontera = random_not_null(-_sage_const_10 ,_sage_const_10 ,true)
 P1=genP(grado=_sage_const_1 ,
@@ -349,12 +349,12 @@ P4=genP(grado=_sage_const_2 ,
     degree2 = _sage_const_0 )
 
 ejer4 = "\\paragraph{[2 puntos] 4) Halla el dominio de las siguientes funciones:}\\begin{itemize}"
-ejer4 += "\\item \[f(x) = \\log{"+latex(P3[_sage_const_0 ])+"}\]"
-ejer4 += "\\item \[f(x) = \\sqrt[3]{"+latex(P4[_sage_const_0 ])+"}\]"
+ejer4 += "\\item \[f_1(x) = \\log{"+latex(P3[_sage_const_0 ])+"}\]"
+ejer4 += "\\item \[f_2(x) = \\sqrt[3]{"+latex(P4[_sage_const_0 ])+"}\]"
 ejer4 += "\\end{itemize}"
 
 Enunciado+=ejer4
-Solucion +=ejer4 + __getIntervalsFromIneq(P3[_sage_const_0 ]>_sage_const_0 )
+Solucion +=ejer4 + "\[\\text{D}(f_1) = \\mathbb{R}\]\[\\text{D}(f_2) = "+__getIntervalsFromIneq(P3[_sage_const_0 ]>_sage_const_0 )+"\]"
 
 f=open("polys.tex","w")
 f.write(Enunciado)

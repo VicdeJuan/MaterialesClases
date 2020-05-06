@@ -231,7 +231,7 @@ P2=genP(grado=2,
 
 Enunciado="\\paragraph{[3 puntos] 1) Estudia las asíntotas de la siguiente función (sin olvidarte de decir algo sobre las asíntotas oblicuas)} \[f(x) = \\frac{"+latex(P1[0])+"}{"+latex(P2[0])+"}\]"
 
-_AV = copy(P1[1])
+_AV = copy(P2[1])
 _AV.remove(shared_root)
 coef_num = getCoefPoly(P1[0])
 coef_den = getCoefPoly(P2[0])
@@ -345,12 +345,12 @@ P4=genP(grado=2,
     degree2 = 0)
 
 ejer4 = "\\paragraph{[2 puntos] 4) Halla el dominio de las siguientes funciones:}\\begin{itemize}"
-ejer4 += "\\item \[f(x) = \\log{"+latex(P3[0])+"}\]"
-ejer4 += "\\item \[f(x) = \\sqrt[3]{"+latex(P4[0])+"}\]"
+ejer4 += "\\item \[f_1(x) = \\log{"+latex(P3[0])+"}\]"
+ejer4 += "\\item \[f_2(x) = \\sqrt[3]{"+latex(P4[0])+"}\]"
 ejer4 += "\\end{itemize}"
 
 Enunciado+=ejer4
-Solucion +=ejer4 + __getIntervalsFromIneq(P3[0]>0)
+Solucion +=ejer4 + "\[\\text{D}(f_1) = \\mathbb{R}\]\[\\text{D}(f_2) = "+__getIntervalsFromIneq(P3[0]>0)+"\]"
 
 f=open("polys.tex","w")
 f.write(Enunciado)
