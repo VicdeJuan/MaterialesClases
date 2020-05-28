@@ -2,7 +2,18 @@
 
 import re
 var('x')
+var('y')
+var('z')
+var('a')
+var('b')
+var('c')
+var('d')
+var('e')
+var('s')
+var('t')
+var('g')
 
+__letras = [x,y,z,a,b,c,d,e,s,t,g]
 #set_random_seed(0)
 
 def _latex(ss):
@@ -63,20 +74,37 @@ def _str_poly_no_sol(ss,counter):
 
 def mystr(s,funstr):
     return funstr(s)
-
+    
 def coprime(n):
-    return [i for i in range(n) if gcd(i, n) == 1]
-
+    return [i for i in range(n) if gcd(i, n) == 1 and i != 1]
+    
+    
 def random_between(mn,mx,integer):
     retval = random()*(mx-mn)+mn
     if integer:
         return int(retval)
     return retval
 
+def _random_not_null(mn,mx,integer,reclim):
+    retval = random_between(mn,mx,integer)
+    if retval == 0:
+        if mn == 0 and (mx == 1 or mx == 0):
+            return 1
+        elif reclim > 0:
+            return _random_not_null(mn,mx,integer,reclim-1)
+        else:
+            return 1
+    else:
+        return retval
+
+
 def random_not_null(mn,mx,integer):
     retval = random_between(mn,mx,integer)
     if retval == 0:
-        return random_not_null(mn,mx,integer)
+        if mn == 0 and (mx == 1 or mx == 0):
+            return 1
+        else:
+            return _random_not_null(mn,mx,integer,5)
     else:
         return retval
 
@@ -106,8 +134,7 @@ def _genP(grado,fixedroots,rfrac,rootsRank,coefRank,degree2):
                 if _r == 1 or _r == -1:
                     den = random_between(2,4,true)
                 else:
-                    cps = coprime(_r*_r)
-                    den = cps[random_between(0,len(cps),true)]
+                    den = getDenominator(_r)
                 rfrac-=1
             raices.append(Rational(1.0*_r/den))
             denAcum *= den
@@ -134,7 +161,23 @@ def genP(grado,fixedroots,rfrac,printsol,strfun,counter,rootsRank,coefRank,degre
     else:
         return strfun(_r[0].expand(),counter,printsol)
 
- 
+
+def identity(x):
+    return x
+
+
+def getDenominator(num):
+    cps = coprime(num*num)
+    den = cps[random_between(0,len(cps),true)]
+    if den == 0:
+        getDenominator(num)
+    else:
+        return den
+
+
+
+
+
 # Escribimos el titulo. Recibe la informacion necesaria para describir el tipo de polinomios que viene a continuacion.
 # int rfrac: Numero de raices fraccionarias
 # int deg:   Grado de los polinomios.
@@ -196,6 +239,37 @@ def __getIntervalsFromIneq(tosolve):
 
 
 
+def genIdentidadNotable(tipo,fraccion,numletras,strfun):
+
+    exp1 = random_not_null(2,7,true)
+    if fraccion >= 2:
+        den = getDenominator(exp1)
+        exp1 = Rational(exp1*1.0/den)
+    letras_utilizadas=[]
+    n=random_between(2,numletras,true)
+    for b in range(n):
+        letras_utilizadas.append(__letras[b])
+        exp1 = exp1*__letras[b]
+       
+
+
+    exp2 = random_not_null(1,9,true)
+    if fraccion >= 1:
+        den = getDenominator(exp2)
+        exp2 = Rational(exp2*1.0/den)
+    letras_para_usar = [item for item in __letras if item not in letras_utilizadas]
+    for b in range(random_between(0,numletras - len(letras_utilizadas) ,true)):
+        exp2 = exp2*letras_para_usar[b]
+
+
+    if tipo == "suma":
+        return "\\left(" + strfun(exp1) + "+" + strfun(exp2) + "\\right)^2"
+    elif tipo == "resta":
+        return "\\left(" + strfun(exp1) + "-" + strfun(exp2) + "\\right)^2"
+    elif tipo == "sumaresta":
+      return "\\left(" + strfun(exp1) + "+" + strfun(exp2) + "\\right)" + "\\left(" + strfun(exp1) + "-" + strfun(exp2) + "\\right)"
+          
+
 
 
 allPols=[]
@@ -206,80 +280,12 @@ coefRank=[-4,4]             # Rango de valores que pueden tomar los coeficientes
 numToGen= 6                 # Numero de polinomios a generar de cada tipo.
 degree_max = 5              # Grado maximo de los polinomios.
 degree_min = 3              # Grado minimo de los polinomios.
-    
+Enunciado=""
+Solucion=""
 
-shared_root = random_between(1,3,true)
-P1=genP(grado=2,
-        fixedroots=[shared_root],
-        rfrac=1,
-        printsol = True, 
-        strfun=str_just_pol, 
-        counter = 0,
-        rootsRank = rootsRank,
-        coefRank = coefRank,
-        degree2 = 0)
-
-P2=genP(grado=2,
-        fixedroots=[shared_root],
-        rfrac=1,
-        printsol = True, 
-        strfun=str_just_pol, 
-        counter = 0,
-        rootsRank = rootsRank,
-        coefRank = coefRank,
-        degree2 = 0)
-
-Enunciado="\\paragraph{[3 puntos] 1) Estudia las asíntotas de la siguiente función (sin olvidarte de decir algo sobre las asíntotas oblicuas)} \[f(x) = \\frac{"+latex(P1[0])+"}{"+latex(P2[0])+"}\]"
-
-_AV = copy(P2[1])
-_AV.remove(shared_root)
-coef_num = getCoefPoly(P1[0])
-coef_den = getCoefPoly(P2[0])
-str_AV = "AV: $" + ";".join(["x="+latex(av) for av in _AV])+"$. No hay asíntota en x="+str(shared_root)
-str_AH = "AH: " + "$y="+latex(coef_num/coef_den)+"$."
-Solucion = Enunciado + "Solución:\\\\"+str_AV+"\\\\"+str_AH
-
-
-
-shared_root = random_not_null(1,3,true)
-P1=genP(grado=2,
-        fixedroots=[shared_root],
-        rfrac=1,
-        printsol = True, 
-        strfun=str_just_pol, 
-        counter = 0,
-        rootsRank = rootsRank,
-        coefRank = coefRank,
-        degree2 = 0)
-
-P2=genP(grado=2,
-        fixedroots=[shared_root],
-        rfrac=1,
-        printsol = True, 
-        strfun=str_just_pol, 
-        counter = 0,
-        rootsRank = rootsRank,
-        coefRank = coefRank,
-        degree2 = 0)
-
-
-ejer2 = "\\paragraph{[3 puntos] 2) Resuelve los siguientes límites:}"
-ejer2 += "\\begin{itemize}"
-
-all_lims=[]
-for count in range(3):
-    P1=genP(grado=count+1,
-        fixedroots=[shared_root],
-        rfrac=0,
-        printsol = True, 
-        strfun=str_just_pol, 
-        counter = 0,
-        rootsRank = rootsRank,
-        coefRank = coefRank,
-        degree2 = 0)
-    P2=genP(grado=2,
+P1=genP(grado=3,
         fixedroots=[],
-        rfrac=0,
+        rfrac=1,
         printsol = True, 
         strfun=str_just_pol, 
         counter = 0,
@@ -287,70 +293,35 @@ for count in range(3):
         coefRank = coefRank,
         degree2 = 0)
 
-    if random() > 0.3:
-        signo="+"
-    else:
-        signo="-"
+P2=genP(grado=2,
+        fixedroots=[],
+        rfrac=1,
+        printsol = True, 
+        strfun=str_just_pol, 
+        counter = 0,
+        rootsRank = rootsRank,
+        coefRank = coefRank,
+        degree2 = 0)
 
-    all_lims.append("\\item $\\displaystyle\\lim_{x\\to"+ signo + "\\infty} \\frac{"+latex(P1[0])+"}{"+latex(P2[0])+"}$")
-
-shuffle(all_lims)
-ejer2 += " ".join(all_lims)
-ejer2 += "\\end{itemize}"
-
-Enunciado += ejer2
-Solucion+=ejer2 + "Solución: de cabeza"
+Enunciado="\\paragraph{[4 puntos] 1) Dados $P(x) = "+latex(P1[0])+"$ y $Q(x) = "+latex(P2[0])+"$, realiza las siguientes operaciones:}"
+Enunciado+= "\\begin{itemize}\\item\\textit{1 pto}\;\; $P(x) - Q(x)$\\item \\textit{1pto}\;\; $\\left(-2x^2\\right) \\cdot P(x)$\\item\\textit{2ptos}\;\;$P(x)\\cdot Q(x)$  \\end{itemize}"
 
 
-ejer3 = "\\paragraph{[2 puntos] 3) Halla, si es posible, el valor de k para que la siguiente función sean continuas}\\begin{itemize}"
+Enunciado += "\\paragraph{[6 puntos] 2) Resuelve las siguientes operaciones:}"
+Enunciado += "\\begin{itemize}"
 
-frontera = random_not_null(-10,10,true)
-P1=genP(grado=1,
-    fixedroots=[2],
-    rfrac=1,
-    printsol = True, 
-    strfun=str_just_pol, 
-    counter = 0,
-    rootsRank = rootsRank,
-    coefRank = coefRank,
-    degree2 = 0)
+all_items = []
+all_items.append("\\item $" + genIdentidadNotable("suma",0,3,latex)+"$")
+all_items.append("\\item $" + genIdentidadNotable("suma",1,3,latex)+"$")
+all_items.append("\\item $" + genIdentidadNotable("resta",0,3,latex)+"$")
+all_items.append("\\item $" + genIdentidadNotable("resta",1,5,latex)+"$")
+all_items.append("\\item $" + genIdentidadNotable("sumaresta",0,1,latex)+"$")
+all_items.append("\\item $" + genIdentidadNotable("sumaresta",2,2,latex)+"$")
 
-P2 = "-kx + 1"
+shuffle(all_items)
 
-ejer3 += "\\item\[" + construir_a_trozos("f(x)",[P1[0],P2],[frontera])+"\]"
-
-ejer3   +="\\end{itemize}"
-
-Enunciado  +=ejer3  
-Solucion += ejer3 +"\\text{Solucion:} k="+str(-(P1[0](frontera)-1)/frontera)
-
-P3=genP(grado=3,
-    fixedroots=[shared_root],
-    rfrac=1,
-    printsol = True, 
-    strfun=str_just_pol, 
-    counter = 0,
-    rootsRank = rootsRank,
-    coefRank = [-5,-1],
-    degree2 = 1)
-
-P4=genP(grado=2,
-    fixedroots=[shared_root],
-    rfrac=1,
-    printsol = True, 
-    strfun=str_just_pol, 
-    counter = 0,
-    rootsRank = rootsRank,
-    coefRank = coefRank,
-    degree2 = 0)
-
-ejer4 = "\\paragraph{[2 puntos] 4) Halla el dominio de las siguientes funciones:}\\begin{itemize}"
-ejer4 += "\\item \[f_1(x) = \\log{"+latex(P3[0])+"}\]"
-ejer4 += "\\item \[f_2(x) = \\sqrt[3]{"+latex(P4[0])+"}\]"
-ejer4 += "\\end{itemize}"
-
-Enunciado+=ejer4
-Solucion +=ejer4 + "\[\\text{D}(f_1) = \\mathbb{R}\]\[\\text{D}(f_2) = "+__getIntervalsFromIneq(P3[0]>0)+"\]"
+Enunciado += " ".join(all_items)
+Enunciado += "\\end{itemize}"
 
 f=open("polys.tex","w")
 f.write(Enunciado)
@@ -405,4 +376,3 @@ def GenerarListaCompletaSoluciones():
         p=allPols[i]
         print "\\subitem \\begin{dmath*}P_{"+str(i+1)+"}(x) = " + latex(p.factor())+"\\end{dmath*}\\vspace{-" + str(topMargin_solutions) + "cm}"
     print ""
-    	
