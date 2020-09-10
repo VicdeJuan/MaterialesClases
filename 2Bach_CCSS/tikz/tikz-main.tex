@@ -1,0 +1,40 @@
+\documentclass[nobuilddate]{Docencia}
+
+\title{Matemáticas II - Apuntes de clase}
+\author{Departamento de Matemáticas}
+\date{2019-2020}
+
+
+\usepackage{tikz}
+\usepackage{tikz-3dplot}
+
+\renewcommand{\ve}[1]{\ensuremath{\mathbf{#1}}}
+\newcommand{\ud}[0]{\mathrm{d}}
+
+\tikzset{
+    vector/.style = {
+        thick,
+        > = stealth',
+    },
+    axis/.style = {
+        very thin,
+        > = stealth',
+    },
+}
+
+\usetikzlibrary{calc,patterns,angles,quotes}
+
+
+\begin{document}
+
+\begin{figure}[hbtp]
+\centering
+\tdplotsetmaincoords{60}{110}
+\input{test.tex}
+\label{sim::recta-plano}
+\caption{Simetría de recta sobre plano}
+\end{figure}
+
+
+\end{document}
+

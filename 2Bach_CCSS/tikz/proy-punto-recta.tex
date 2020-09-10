@@ -1,0 +1,10 @@
+\begin{tikzpicture}[tdplot_main_coords,scale=0.8]
+    % draw axes
+    \fill[blue!20!white] (-4,0,-2) to (4,0,-2) to (4,0,4) node[anchor=south,color=black]{$\pi$} to (-4,0,4)to cycle;
+    \draw (0,0,0) -- (0,4,0) node[anchor=east]{$r$};
+    \draw[dashed] (0,-1.6,0) -- (0,0,0);
+    \draw (0,-1.6,0)--(0,-3,0);
+    \draw[fill,color=red] (0,0,0)circle(2pt) node[anchor=north]{$P'$};
+    \draw[fill] (0,0,3)circle(2pt) node[anchor=west]{$P$};
+    \draw[dashed] (0,0,0) -- (0,0,3);
+\end{tikzpicture}

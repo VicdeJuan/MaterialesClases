@@ -1,0 +1,708 @@
+\documentclass[palatino,nosec,nochap,nobuilddate]{Docencia}
+\usetikzlibrary[patterns]
+
+
+\title{Corrección P2 2ª Ev. 2ºBach}
+\author{Departamento de Matemáticas}
+\date{19/20}
+
+
+% Paquetes adicionales
+
+\usepackage[author={Víctor de Juan, 2019}]{pdfcomment}
+
+\makeatletter
+\newcommand{\annotate}[2][]{%
+\pdfstringdef\x@title{#1}%
+\edef\r{\string\r}%
+\pdfstringdef\x@contents{#2}%
+\pdfannot
+width 2\baselineskip
+height 2\baselineskip
+depth 0pt
+{
+/Subtype /Text
+/T (\x@title)
+/Contents (\x@contents)
+}%
+}
+\makeatother
+
+
+
+\usepackage{eso-pic}
+\newcommand\BackgroundPic{%
+\put(0,0){%
+\parbox[b][\paperheight]{\paperwidth}{%
+\vfill
+\centering
+\includegraphics[width=\paperwidth,height=\paperheight,%
+keepaspectratio]{../../../../BWLogo.jpeg}%
+\vfill
+}}}
+
+
+
+
+
+\begin{abstract}
+Corrección del segundo examen de la segunda evaluación del curso 2019-2020.
+
+\nota{No está exento de erratas. En caso de descubrir alguna, por favor, comunicarlas al autor.}
+\end{abstract}
+
+% --------------------
+\newcommand{\cimplies}{\text{\hl{$\implies$}}}
+\renewcommand{\vec}[1]{\overrightarrow{#1}}
+
+\begin{document}
+\pagestyle{plain}
+\maketitle
+
+%\AddToShipoutPicture{\BackgroundPic}
+
+\newpage
+\section{Opción A}
+\begin{problem}(2 puntos)
+
+Sea $A$ una matriz cuadrada que verifica $A^2+2A = I$, donde $I$ denota la matriz identidad.
+
+\ppart Demostrar que $A$ es no singular y expresar $A^{-1}$ en función de $A$ y de $I$.
+
+\ppart Si $A = \begin{pmatrix}0&1\\1&k\end{pmatrix}$ cumple la condición del enunciado, calcular el valor de $k$.
+
+\solution
+
+\spart 
+\[A^2+2A = I \dimplies A(A+2I) = I \dimplies A+2I = A^{-1} \implies \exists A^{-1}\implies |A| \neq 0\]
+
+
+\spart 
+
+\[A(A+2I) = 
+\begin{pmatrix}0&1\\1&k\end{pmatrix}·
+\begin{pmatrix}2&1\\1&2+k\end{pmatrix} = 
+\begin{pmatrix}1&k+2\\k+2&1+k·(k-2)\end{pmatrix}\implies
+\left\{
+	\begin{array}{c}
+		1=1\\
+		k+2=0\\
+		k+2=0\\
+		1+(k-2)k = 1
+	\end{array}
+\right\}\implies k=-2\]
+
+
+\end{problem}
+
+\begin{problem}
+
+Se considera la recta $r: \frac{x}{2} = \frac{y-4}{3} = \frac{z-5}{2}$ y la familia de rectas dependientes del parámetro $m$:
+
+\[
+	s: \begin{cases} 3x-y=8-12m\\y-3z = 7-3m \end{cases}
+\]
+
+\ppart Hallar un vector director de la recta $s$
+
+\ppart Determinar un valor de $m$ para el que las dos rectas $r$ y $s$ se cortan.
+
+\solution
+
+\spart \ul{Método 1:} Resolvemos el sistema de $s$ parametrizando:
+
+\[
+	s: \begin{cases} 3x-y=8-12m\\y-3z = 7-3m \end{cases} \overset{y=\lambda}{\to} \begin{cases}
+	x = \frac{8-12m}{3} + \rfrac{\lambda}{3}\\
+	y = \lambda \\
+	z = \frac{3m-7}{3} + \rfrac{\lambda}{3}
+	\end{cases}
+\]
+
+$\vec{v_s} = \left(\rfrac{1}{3},1,\rfrac{1}{3}\right)$
+
+\ul{Método 2:} Considerando $s:\begin{cases}
+\pi_1:3x-y=8-12m
+ \\
+\pi_2:y-3z = 7-3m
+\end{cases}$, tendremos $\vec{v_s} ||\; \vec{n_{\pi_1}}\times \vec{n_{\pi_2}}$
+
+\[
+\left|\begin{matrix}
+\vec{i} & \vec{j} & \vec{k}\\
+3&-1&0\\
+0&1&-3
+\end{matrix}\right| = 3\vec{i} + 9\vec{j} + 3\vec{k}
+\]
+
+Tomamos $\vec{v_s} = (1,3,1) || (3,9,3)$
+
+\obs \textbf{Caso curioso} por si surge la duda. Es posible obtener 2 puntos de la recta y de ahí, tomar el vector director. 
+
+Tomando $x=0$, se obtiene el punto $P_1\left(0,-8+12m,-5+5m\right)$.
+
+Tomando $z=0$, se obtiene el punto $P_2\left(5-5m,7-3m,0\right)$
+
+Así, $\vec{v_s} = \vec{P_1P_2} = ... = \left(5-5m,15-15m,5-5m\right)$
+
+Aunque parece que este vector depende de $m$, en realidad:
+\begin{itemize}
+	\item $m=0 \to \vec{v_s} = (5,15,5) || (1,3,1)$
+	\item $m=1 \to \vec{v_s} = (0,0,0)$ \textit{Hummm, problemas}
+	\item $m=2 \to \vec{v_s} = (-5,-15,-5) || (1,3,1)$
+	\item $m=-1 \to \vec{v_s} = (10,30,10) || (1,3,1)$
+\end{itemize}
+
+Salvo para $m=1$, $\vec{v_s} || (1,3,1)$, por lo que podríamos tomar como vector director $\vec{v_s}$.
+
+En $m=1$, lo que ocurre es que $P_1(0,4,0)$ y $P_2(0,4,0)$, por lo que $\vec{P_1P_2} = (0,0,0)$. Si hubiéramos tomado otros puntos diferentes, en $m=1$ no existiría este problema.
+\textbf{Conclusión del caso curioso:} $\vec{v_s} = (1,3,1)$
+
+\spart \ul{Método 1:} Buscamos que $\vec{P_rP_s}$ sea linealmente dependiente de $\vec{v_s}$ y $\vec{v_r}$.
+
+\begin{itemize}
+	\item Calculamos $P_r(0,4,5)$. Comprobamos que $P_r\not\in s$\footnote{Ya que, si perteneciera, $\vec{P_rP_s} || \vec{v_r}$ por lo que no podríamos utilizarlo para formar el plano por ser linealmente dependiente}.
+	\item Calculamos $P_s$. Para ello, utilizamos las paramétricas del apartado anterior.
+	\subitem Tomando $\lambda=0$, $P_s\left(\frac{8-12m}{3},0,\frac{3m-7}{3}\right)$
+	\item $\vec{P_rP_s} = \left(\frac{8-12m}{3},-4,\frac{3m-7}{3}-5\right) = \left(\frac{8-12m}{3},-4,\frac{3m-22}{3}\right)$
+	\item Hallamos $m$ para que $|\vec{P_rP_s},\vec{v_s},\vec{v_r}| = 0$
+\[
+\left|
+\begin{matrix}
+\vec{P_rP_s}\\
+\vec{v_s}\\
+\vec{v_r}
+\end{matrix}
+\right| =
+\left|
+\begin{matrix}
+\frac{8-12m}{3}&-4&\frac{3m-22}{3}\\
+1&3&1\\
+2&3&2\\
+\end{matrix}
+\right| = 45m-90 = 0\dimplies m=2
+\]
+
+Para $m=2$, los vectores considerados serán linealmente dependientes, por lo que formarán un plano. Dado que $r\not{||}s$ ($\vec{v_s}\not{||}\vec{v_r}$), las rectas $r$ y $s$ se cortan.
+
+\end{itemize}
+
+\ul{Método 2:} Hallamos las ecuaciones implícitas de la recta $r$ y consideramos el sistema formado por los 4 planos.
+
+\[
+r: \begin{cases} \frac{x}{2} = \frac{y-4}{3}\\\frac{x}{2} = \frac{z-5}{2}\end{cases}r:\begin{cases}3x = 2y-8 \\ 2x = 2z-10\end{cases} \dimplies r:\begin{cases}3x-2y+8=0\\2x-2x+10=0\end{cases}
+\]
+
+Consideramos el sistema: 
+
+\[
+\left\{\begin{array}{c}
+3x-2y=-8\\
+2x-2z=-10\\
+3x-y=8-12m\\
+y-3z = 7-3m
+\end{array}
+\right\} \implies A^* = \begin{pmatrix}
+3&-2&0&-8\\
+2&0&-2&-10\\
+3&-1&0&8-12m\\
+0&1&-3&7-3m
+\end{pmatrix}
+\]
+
+Buscamos $Rg(A^*) = 3$ para que el sistema sea compatible determinado (por el teorema de Rouché Frobenius). Para ello, $|A^*| = 0$
+
+\[
+\left|\begin{matrix}
+	3&-2&0&-8\\
+	2&0&-2&-10\\
+	3&-1&0&8-12m\\
+	0&1&-3&7-3m
+\end{matrix}\right| = ... = -90m+180 = 0 \dimplies m=2
+\]
+
+\textbf{Conclusión:} la misma de antes.
+
+\ul{Método 3:} Calculamos las ecuaciones paramétricas de $r$ y de $s$ e igualamos para calcular el punto de corte en función de $m$.
+
+\[
+	s: \begin{cases}
+	x = \frac{8-12m}{3} + \rfrac{\lambda}{3}\\
+	y = \lambda \\
+	z = \frac{3m-7}{3} + \rfrac{\lambda}{3}
+	\end{cases}, \lambda\in\real
+\]
+
+\[
+r:\begin{cases} 
+x = 2\mu\\
+y = 4+3\mu\\
+z = 5+2\mu
+\end{cases}\mu\in\real
+\]
+
+Consideramos el sistema:
+\[\left\{
+\begin{array}{c}
+	2\mu = \frac{8-12m}{3} + \rfrac{\lambda}{3}\\
+	4+3\mu = \lambda \\
+	5+2\mu = \frac{3m-7}{3} + \rfrac{\lambda}{3}
+\end{array}\right\} \dimplies \left\{
+\begin{array}{c}
+	2\mu-\rfrac{\lambda}{3} = \frac{8-12m}{3}\\
+	3\mu-\lambda = -4\\
+	2\mu-\rfrac{\lambda}{3} = \frac{3m-7}{3}-5
+\end{array}\right\}
+\]
+
+Buscamos discutir el sistema según los valores del parámetro $m$, tomando como incógnitas del mismo $\mu$ y $\lambda$.
+
+Para que el sistema sea compatible determinado, se debe cumplir que 
+
+\[
+\frac{8-12m}{3} = \frac{3m-7}{3}-5 \dimplies 8-12m = 3m-7-15 \dimplies -15m=-30 \dimplies m=2
+\]
+
+\textbf{Conclusión:} la misma de antes.
+
+\ul{Método 4: } (Carlos Blanco)
+Sustituimos las ecuaciones paramétricas de $r$ en $s$ y resolvemos el sistema:
+\[
+s\cap r: 
+\left\{
+	x = 0+2\lambda\\
+	y = 4+3\lambda\\
+	z = 5+2\lambda\\
+	2x-y=8-12m\\
+	x-3z = 7-3m	
+\right\}\implies
+\left\{
+	2(0+2\lambda)-(4+3\lambda)=8-12m\\
+	(0+2\lambda)-3(5+2\lambda) = 7-3m	
+\right\} \dimplies 
+\left\{
+	\begin{array}{c}
+		3\lambda + 12m = 12\\
+		-3\lambda + 3m = 18
+	\end{array}	
+\right\}\
+\]
+
+El sistema es compatible determinado, con $m=2$.
+
+\end{problem}
+
+
+\begin{problem}
+
+Dado el plano $\pi: x+y+az +1 = 0$ y las rectas $r:\begin{cases}x=1\\y=t\\z=t\end{cases}$, 
+$r':\begin{cases}x=2\\y=2t\\z=t\end{cases}$
+$r'':\begin{cases}z=3\\y=3t\\z=t\end{cases}$.
+
+\ppart Hallar $a$ para que los puntos de corte del plano $\pi$ con las rectas $r,r',r''$ estén alineados.
+
+\ppart Hallar la ecuación de la recta que pasa por el origen y es perpendicular a $r$ y a $r'$.
+
+\solution
+
+
+\spart 
+
+\[r\cap \pi \dimplies 1 + t + at + 1 = 0 \overset{a\neq -1}{\dimplies} t = \frac{-2}{a+1}\implies P=r\cap\pi = 
+\left(1,\frac{-2}{a+1},\frac{-2}{a+1}\right)\]
+Con $a=-1$, $r\in\pi$
+\[r'\cap \pi \dimplies 2 + 2t + at + 1 = 0 \overset{a\neq -2}{\dimplies} t = \frac{-3}{a+2}\implies P'=r'\cap\pi = 
+\left(2,\frac{-6}{a+2},\frac{-3}{a+2}\right)\]
+Con $a=-2$, $r'\in\pi$
+\[r''\cap \pi \dimplies 3 + 3t + at + 1 = 0 \overset{a\neq -3}{\dimplies} t = \frac{-4}{a+3}\implies P''=r''\cap\pi =
+\left(3,\frac{-12}{a+3},\frac{-4}{a+3}\right)\]
+Con $a=-3$, $r''\in\pi$
+
+Si $a\in\{-1,-2,-3\}$ el problema no tiene solución ya que no existirá alguno de los puntos de corte que deben estar alineados.
+
+Para el caso $a\neq -1 \wedge a\neq -2 \wedge a\neq -3$: Buscamos que los 3 puntos estén alineados. Para ello, $\vec{PP'}||\vec{PP''}$
+
+\[
+	\vec{PP'} =
+	\left(1,	 \frac{-6}{a+2}- \frac{-2}{a+1},	\frac{-3}{a+2}-\frac{-2}{a+1}\right) =
+	\left(1,\frac{-2(2a+1)}{(a+2)(a+1)},\frac{-(a-1)}{(a+2)(a+1)}\right)
+\]
+\[
+	\vec{PP''} =
+	 \left(2, \frac{-12}{a+3}-\frac{-2}{a+1},\frac{-4}{a+3}-\frac{-2}{a+1}\right) = 
+	 \left(2,\frac{-2(5a+3)}{(a+3)(a+1)},\frac{-2(a-1)}{(a+3)(a+1)} \right)
+\]
+
+Para que estos vectores sean proporcionales, debe cumplirse $2·\vec{PP'} = \vec{PP''}$ por la primera coordenada. Así,
+
+\[
+\left\{
+	\begin{array}{cl}
+		2 =& 2\\\\
+		\displaystyle2·\frac{-2(2a+1)}{(a+2)(a+1)} =& \displaystyle\frac{-10a+6}{(a+3)(a+1)}\\\\
+		\displaystyle2·\frac{-(a-1)}{(a+2)(a+1)} =& \displaystyle\frac{-2(a-1)}{(a+3)(a+1)} \implies\begin{cases}a\neq 1 &\frac{1}{a+2} = \frac{1}{a+3} \dimplies a+2=a+3 \implies \nexists a\\a=1&\text{ es solución de esta ecuación}\end{cases}
+	\end{array}
+\right\} 
+\]
+
+Comprobamos $a=1$ en la segunda ecuación:
+
+\[
+2·\frac{-2(2+1)}{(1+2)(1+1)} = \frac{-10-6}{(1+3)(1+1)} \dimplies -2 = -2 \implies a=1 \text{ verifica la segunda ecuación} 
+\]
+
+\textbf{Conclusión: } Con $a=1$ los puntos de corte de las rectas con el plano estarán alineados.
+
+
+\spart Buscamos $t$.
+
+\[
+\left.\begin{array}{c}
+	t\perp r'\\
+	t\perp r
+\end{array}\right\} \implies \vec{v_t} || \left(\vec{v_r}\times\vec{v_{r'}}\right)
+\]
+
+\[
+\vec{v_r}\times\vec{v_{r'}} = 
+\left|\begin{matrix}
+\vec{i} & \vec{j} & \vec{k}\\
+0&1&1\\
+0&2&1
+\end{matrix}\right| = -\vec{i} \implies \vec{v_t} = (-1,0,0)\implies
+t:\begin{cases}x=-\lambda\\y=0\\z=0\end{cases}\]
+\end{problem}
+
+\begin{problem}
+El grupo de WhatsApp, formado por los alumnos de una escuela de idiomas, está compuesto por un 60\% de mujeres y el resto varones. Se sabe que el 30\% del grupo estudia alemán y que la cuarta parte de las mujeres estudia alemán. Se recibe un mensaje en el grupo. Se pide:
+\ppart Calcular la probabilidad de que lo haya enviado una mujer, si se sabe que el o la remitente estudia alemán.
+\ppart	Si en el mensaje no hay ninguna información sobre el sexo y estudios del remitente, calcular la probabilidad de que sea varón y estudie alemán.
+
+\solution
+
+\textbf{Datos:}
+\begin{itemize}
+	\item $A = \text{"Hablar alemán"} \to P(A) = 0.3$
+	\item $M = \text{"Mensaje enviado por una mujer"}$
+	\item $P(A/M) = 0.25$
+	\item $P(\overline{A}/M) = 0.75$
+\end{itemize}
+
+\spart $P(M/A) \overset{(1)}{=} \frac{P(A/M)·P(M)}{P(A)} = \frac{0.25·0.6}{0.3} = 0.5 $
+
+(1) Teorema de Bayes
+
+\spart $P(\overline{M}\cap A)$.
+
+Utilizamos el teorema de la probabilidad total: 
+
+$P(A) = P(A\cap M) + P(A\cap\overline{M}) \dimplies P(A\cap\overline{M}) = P(A) - P(A\cap M) = 0.3 - 0.25·0.6 = 0.15$
+
+\ul{Método 2:}
+
+$P(\overline{M}\cap A) = P(A)·P(\overline{M}/A) = P(A)·(1-P(M/A)) = 0.3·0.5 = 0.15$
+
+\end{problem}
+
+
+\begin{problem}
+Ecuaciones paramétricas de la recta que pasa por el punto $P(3,-1,0)$ y corta perpendicularmente a la recta $r$.
+
+\[
+r:\begin{cases} x=3+2\mu\\y=4+\mu\\z=5+3\mu\end{cases}
+\]
+
+\solution
+
+\begin{enumerate}
+	\item Buscamos $\pi\perp r$ con $P\in\pi$.
+	\item $A=\pi\cap r$
+	\item La recta buscada será la determinada por los puntos $A\in r$ y $P$
+	\item Comprobamos $\vec{v_t}·\vec{v_r} = 0$
+\end{enumerate}
+
+\paragraph{1):} Buscamos $\pi\perp r$ con $P\in\pi$.
+
+$\vec{v_r} = (2,1,3)$. Tomamos $n_{\pi} = (2,1,3)$.
+
+$\pi: 2x+y+3z+D = 0$.
+
+$P\in\pi\implies 6-1+D=0 \dimplies D=-5$ 
+
+$\pi:2x+y+3z-5=0$
+
+\paragraph{2):} Calculamos $A=\pi\cap r$
+
+\[
+	2·(3+2\mu) + (4+\mu) + 3·(5+3\mu) -5 = 6+4\mu+4+\mu+15+9\mu-5 = 14\mu + 20 = 0 \dimplies \mu = \frac{-10}{7}
+\]
+
+Sustituyendo $\mu=\rfrac{-10}{7}$ en la ecuación de $r$, obtenemos: 
+$A\left( \frac{1}{7},\frac{18}{7}, \frac{5}{7}\right)$
+
+\textit{Se puede comprobar que el punto pertenece al plano}
+
+\paragraph{3):} Calculamos la recta que pasa por $A$ y por $P$.
+
+$\vec{AP} = \left( 3 - \frac{1}{7},-1-\frac{18}{7}, -\frac{5}{7}\right) = \left(\displaystyle\frac{20}{7},\frac{-25}{7},-\frac{5}{7}\right)$
+
+La recta buscada es:
+
+\[
+t : \begin{cases} x = 3 + \frac{20}{7}\\y = -1 - \frac{25}{7}\\ z =-\frac{5}{7}  \end{cases}
+\]
+
+\textit{Se puede comprobar que $\vec{AP}·\vec{v_r} = 0$}
+\end{problem}
+
+
+\begin{problem}
+
+Volumen del tetraedro cuyos vértices son el origen de coordenadas y los puntos de corte del plano $\pi: x-2y+z=4$ con los ejes de coordenadas.
+
+\solution
+
+Los puntos de corte serán $A(4,0,0),B(0,-2,0),C(0,0,4)$.
+
+Los vectores $\vec{OA} = (4,0,0),\vec{OB} = (0,-2,0),\vec{OC} = (0,0,4)$
+
+\[V = \frac{1}{6}·\left|\left|
+\begin{matrix}
+4&0&0\\
+0&-2&0\\
+0&0&4
+\end{matrix}
+\right|\right| = \frac{1}{6}·32 = \frac{16}{3}u^3\]
+\end{problem}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Opción B}
+
+\begin{problem}[1]
+Para cada valor real del parámtero $k$, se considera el sistema lineal de ecuaciones 
+
+\[
+\left\{\begin{array}{ccc}
+x-y&=&3\\
+2x-3y&=& 2k\\
+3x-5y&=&k^2
+\end{array}\right\}
+\]
+
+\ppart Discutir según los valores de $k$.
+\ppart Resolver el sistema en los casos en que sea compatible.
+\solution
+
+\spart 
+Estudiamos el rango de las matrices asociadas al sistema:
+
+\[
+A=\begin{pmatrix}1&-1\\2&-3\\3&-5\end{pmatrix}\;\;\; A^* = \begin{pmatrix}1&-1&3\\2&-3&2k\\3&-5&k^2\end{pmatrix}\]
+
+$Rg(A) = 2$ por contener un menor de orden 2 no nulo. $\left|\begin{matrix}1&-1\\2&-3\end{matrix}\right| = -1$
+
+Resolvemos $|A^*| = ... = -k^2+4k-3 = -(k-1)(k-3)$
+
+\textbf{Discuión:}
+\begin{itemize}
+	\item $k\neq1$ y $k\neq 3 \implies |A^*| \neq 0 \implies Rg(A^*) = 3 > Rg(A) = 2$
+	\item $k=1$ o $k=3$, $Rg(A) = Rg(A^*) = 2$, por contener ambas el menor no nulo estudiado anteriormente.
+	\subitem Por el teorema de Rouché-Frobenius el sistema será compatible determinado (ya que el número de incógnitas es igual al rango de ambas matrices). 
+\end{itemize}
+
+\spart 
+
+\paragraph{k=1}
+
+\[
+\left\{\begin{array}{ccc}
+x-y&=&3\\
+2x-3y&=& 2\\
+3x-5y&=&1
+\end{array}\right\} \dimplies
+\left\{\begin{array}{ccc}
+x&=&3+y\\
+2(3+y)-3y&=& 2 \dimplies 6-y=2\dimplies y=4\\
+3(3+y)-5y&=&1 \dimplies 9-2y=1 \dimplies y=4
+\end{array}\right\} \implies x=7
+\]
+
+Solución: $(x,y) = (7,3)$
+
+
+\paragraph{k=3}
+\[
+\left\{\begin{array}{ccc}
+x-y&=&3\\
+2x-3y&=& 6\\
+3x-5y&=&9
+\end{array}\right\} \dimplies 
+\left\{\begin{array}{ccc}
+x&=&3+y\\
+2(3+y)-3y&=& 6 \dimplies 6-y=6 \dimplies y=0\\
+3(3+y)-5y&=&9 \dimplies 9-2y=9 \dimplies y=0
+\end{array}\right\} \implies x=3
+\]
+
+Solución: $(x,y) = (3,0)$
+
+\end{problem}
+
+\begin{problem}[2]
+Igual que en la opción A.
+\solution
+\end{problem}
+
+\begin{problem}[3]
+Se consideran los puntos $A(1,1,1)$, $B(0,-2,2)$, $C(-1,0,2)$ y $D(2,-1,-2)$.
+
+\ppart Calcular el tetraedro de vértices $A,B,C,D$.
+\ppart Hallar las ecuaciones de la recta que pasa por $D$ y es perpendicular al plano determinado por los puntos $A,B,C$.
+\ppart Hallar el punto de corte del plano y la recta halladas en el ejercicio anterior.
+\ppart Hallar el área del triángulo de vértices $A,B,C$
+
+\solution
+
+\spart 
+
+Hallamos 
+$\vec{AB} = (-1,-3,1)$
+$\vec{AC} = (-2,-1,1)$
+$\vec{AD} = (1,-2,-3)$
+
+\[V = [\vec{AB},\vec{AC},\vec{AD}] = \frac{1}{6} ·\left|\left|\begin{matrix}-1&-3&1\\-2&-1&1\\1&-2&-3\end{matrix}\right|\right| = \frac{15}{6} = \frac{5}{2}u^3\]
+%Matrix([[-1,-3,1],[-2,-1,1],[1,-2,-3]]).det()
+
+\spart Llamamos $t$ a la recta buscada.
+
+$\vec{v_t} || (\vec{AB}\times\vec{AC})$
+
+Calculamos: \[
+(\vec{AB}\times\vec{AC}) = 
+\left|\begin{matrix}
+\vec{i} & \vec{j} & \vec{k}\\
+-1&-3&1\\
+-2&-1&2
+\end{matrix}\right| = -2\vec{i}-\vec{j}-5\vec{k} 
+\]
+
+Tomamos $\vec{v_t} = (2,1,5)$
+
+\[
+t:\begin{cases}
+x = 2 + 2\mu\\
+y = -1 + \mu\\
+z = -2+5\mu
+\end{cases}
+\]
+
+\spart Para calcular el punto de corte, necesitamos hallar la ecuación del plano.
+
+\[\pi: \left|\begin{matrix}-1&-2&x-1\\-3&-1&y-1\\1&1&z-1\end{matrix}\right| = 0 \dimplies -2x-y-5z+8=0\]
+
+Para calcular el punto de corte, sustituimos las ecuaciones paramétricas de la recta en el plano.
+
+\[-2(2+\mu) -(-1+\mu) - 5·(-2+5\mu) = 0 \dimplies ... \dimplies \mu = \rfrac{1}{2}\]
+
+\[t\cap \pi = P\left(2+2\rfrac{1}{2},-1+\rfrac{1}{2},-2+5\rfrac{1}{2}\right) = P\left(3,\rfrac{-1}{2},\rfrac{1}{2}\right)\]
+
+\spart $A = \rfrac{1}{2}·|\vec{AB}\times\vec{AC}| = \sqrt{4+1+25} = \frac{\sqrt{30}u^2}{2}$
+
+\end{problem}
+
+\begin{problem}[4]
+Igual que en la opción A.
+\solution
+\end{problem}
+
+\begin{problem}[5]
+Dadas las rectas $r:\begin{cases}x=2+\mu\\y=3+\mu\\z=1-\mu\end{cases}$ y $s:\begin{cases}x-y=2\\y+z=1\end{cases}$ se pide:
+
+\ppart Sabiendo que son coplanarias, obtener un plano que contenga a las 2 rectas.
+
+\ppart Dado el punto $A(3,1,0)$ de la recta $s$, obtener un punto $B$ de la recta $r$ de modo que el vector $\vec{AB}$ sea perpendicular a la recta $r$
+
+\solution
+
+\spart
+Pueden ser coplanarias por ser paralelas o secantes. Estudiamos el paralelismo:
+
+$\vec{v_r} = (1,1,-1)$
+
+\[
+s:\begin{cases}x-y=2\\y+z=1\end{cases} \overset{y=\lambda}{\to} \begin{cases}x=2+\lambda\\y=\lambda\\z=1-\lambda\end{cases} \implies \vec{v_s} = (1,1,-1)
+\]
+
+Las rectas son paralelas.
+
+Podemos tomar para construir el plano cualquier punto de la recta $r$ o de la recta $s$, ya que sabemos que son coplanarias. 
+
+Como segundo vector del plano podemos tomar $\vec{P_rP_s}$ con cualesquiera $P_r\in r$ y $P_s\in s$. Tomamos $P_r(2,3,1)$ y $P_s(2,0,1)$, por lo que $\vec{P_rP_s} = (0,-3,0)$
+
+$\pi:\{P_r,\vec{P_rP_s},\vec{v_s}\}$
+
+\[
+\pi:\begin{cases}x=2+\mu\\y=3-3\lambda+\mu\\z=1-\mu\end{cases}
+\]
+
+\spart
+
+Buscamos $B$ tal que $\vec{AB}·\vec{v_r} = 0$.
+
+Dado que $B\in r$, tomamos $B\left(2+\mu,3+\mu,1-\mu\right)$
+
+Calculamos $\vec{AB} = \left(2+\mu-3,3+\mu-1,1-\mu\right) = \left(\mu-1,2+\mu,1-\mu\right)$
+
+\[\vec{AB}·\vec{v_r} = 0 \dimplies  \left(\mu-1,2+\mu,1-\mu\right)·(1,1,-1)=0\]
+\[ \mu-1+2+\mu-1+\mu = 0 \dimplies 3\mu = 0 \dimplies \mu=0\]
+
+Tomando $B(2,3,1)$, por lo que $\vec{AB} = (-1,2,1)$
+
+\ul{Método 2:}
+
+\[
+\begin{cases}
+\vec{AB}\perp n_{\pi}\\
+\vec{AB}\perp \vec{v_r}
+\end{cases}\implies \vec{AB} || n_{\pi}\times\vec{v_r}
+\]
+
+Podemos resolver la ecuación:
+
+\[
+n_{\pi}\times\vec{v_r} = (a-3,b-1,c)
+\]
+
+Dado que el punto $B(a,b,c)\in r$, $B(2+\mu,3+\mu,1-\mu)$
+
+Por lo tanto:
+
+
+\[
+n_{\pi}\times\vec{v_r} = (2+\mu-3,3+\mu-1,1-\mu) = (-1+\mu,2+\mu,1-\mu)
+\]
+
+\textit{Se debe llegar al mismo resultado}
+
+\end{problem}
+
+\end{document}	

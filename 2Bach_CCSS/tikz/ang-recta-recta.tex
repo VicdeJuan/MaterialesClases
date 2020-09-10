@@ -1,0 +1,12 @@
+\begin{tikzpicture}[scale=0.8]
+    % draw axes
+\coordinate (a) at (0,0);
+\coordinate (b) at (3,2);
+\coordinate (c) at (0,3);
+
+\draw pic[draw,fill=green!30,angle radius=1cm,"$\beta$" shift={(15mm,1mm)}] {angle=c--a--b};
+\draw pic[draw,fill=blue!30,angle radius=0.5cm,"$\alpha$" shift={(3mm,4mm)}] {angle=b--a--c};
+
+\draw  (-3,-2) -- (a) -- node[above] {$r$} (b);
+\draw  (0,-3) -- (a) -- node[above right] {$s$} (c);
+\end{tikzpicture}

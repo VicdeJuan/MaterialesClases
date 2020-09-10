@@ -1,0 +1,84 @@
+\documentclass[nobuilddate]{Docencia}
+
+\title{Matemáticas aplicadas a las Ciencias Sociales II - Apuntes de clase}
+\author{Departamento de Matemáticas}
+\date{2020-2021}
+
+
+\usepackage{tikz}
+\usepackage{tikz-3dplot}
+\usepackage{fancysprefs}
+\usepackage{svg}
+
+
+\usetikzlibrary{calc,patterns,angles,quotes}
+
+\renewcommand{\ve}[1]{\ensuremath{\mathbf{#1}}}
+\newcommand{\ud}[0]{\mathrm{d}}
+\newcommand{\lgdlp}{Lugar geométrico de los puntos del espacio que equidistan de}
+
+
+\tikzset{
+    vector/.style = {
+        thick,
+        > = stealth',
+    },
+    axis/.style = {
+        very thin,
+        > = stealth',
+    },
+}
+
+
+\begin{document}
+
+\pagestyle{plain}
+\maketitle
+\tableofcontents
+\newpage
+
+\newcommand{\hide}[1]{#1}
+
+\renewcommand{\vec}[1]{\overrightarrow{#1}}
+
+\paragraph{Introducción}
+
+\begin{itemize}
+    \item 2º de Bachillerato no es un curso para preparar la EVAU. Es un curso orientado a la universidad y es para eso para lo que te vamos a preparar. 
+    %
+    Ya tendremos tiempo a final de curso para preparar la EVAU.
+    
+    \item 2º de Bachillerato no es solo estudiar. Sed responsables y organizados para poder disfrutar del curso. ¡Tratad bien a vuestras familias! Que los exámenes no os hagan ser unos amargados.
+    
+    \item A vuestra disposición por correo y por el classroom para lo que necesitéis. Colgaremos en el classroom los enunciados de los exámenes, las soluciones, etc.
+    
+    \item Criterios de evaluación. 
+
+    \item 
+
+    5 problemas de 2 puntos cada uno.
+1-  Números, álgebra (Matrices y Sistemas) y programación lineal.
+2-  Álgebra / análisis
+3-  Análisis
+4-  Probabiblidad (igual que la de 1º)
+5-  Estadística, inferencia estadística [Distribución de la diferencia de media no entran]
+
+Empezamos por probabilidad y estadística porque son 4 puntos. Así, lo repasan durante todo el año.
+Problemas de propiedades de los determinantes.
+Determinantes debería entrar en la 1ª evaluación (mediados de noviembre)
+Para la 2ª debería llegar hasta límites y continuidad.
+
+\end{itemize}
+
+\input{tex/Probabilidad.tex}
+\input{tex/Alg-Matrices.tex}
+%\input{tex/Alg-Afin.tex}
+%\input{tex/Alg-Euclidea.tex}
+\input{tex/Analisis.tex}
+
+\newpage
+\printindex
+\listoffigures
+\listoftables
+
+\end{document}

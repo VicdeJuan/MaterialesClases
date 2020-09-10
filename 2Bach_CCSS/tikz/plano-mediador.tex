@@ -1,0 +1,14 @@
+\begin{tikzpicture}[tdplot_main_coords,scale=0.8]
+    % draw axes
+    \fill[blue!20!white] (-2,-2,0) to (5,-2,0) to (5,5,0) to (-2,5,0) node[anchor=south,color=black]{$\pi_{AB}$} to cycle;
+    \draw(2,2,1) -- (2,2,3);
+    \draw(2,2,0) -- (2,2,1);
+    \draw[dashed](2,2,-2) -- (2,2,0);
+    \draw(2,2,-3) -- (2,2,-2);
+    \draw[fill] (2,2,3)circle(1pt) node[anchor=east]{$A$};
+    \draw[fill] (2,2,0) circle(1pt) node[anchor=north east]{$M_{AB}$};
+    \draw[fill] (2,2,-3) circle(1pt) node[anchor=east]{$B$};
+    \draw (3,4.5,0) circle(1pt) node[anchor=west]{$P(x,y,z)$};
+    \draw[dashed,color=gray] (2,2,3) to (3,4.5,0);
+    \draw[dashed,color=gray] (2,2,-3) to (3,4.5,0);
+\end{tikzpicture}

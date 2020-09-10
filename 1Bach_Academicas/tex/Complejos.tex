@@ -1,10 +1,80 @@
 
-\chapter{Números complejos}
+\chapter{Números y complejos}
+
+\subsubsection{Conjuntos numéricos}
+
+¿Qué conjuntos de números conocéis? $ℕ,ℤ,ℚ,I,ℝ,ℂ$ \hl{Diagrama de contenidos} e historia de cómo van surgiendo.
+
+\textit{Si sobrara tiempo: belleza intrínseca de las matemáticas: ¿Qué hay más, enteros o pares?}
+
+%10 minutos
+
+Cómo distinguir que un número dado pertenece a un conjunto o no.
+%
+Por ejemplo, $\sqrt{2}$. ¿A qué conjunto pertenece y porqué?
+%
+\hl{¿Por qué $\sqrt{2}$ es irracional?} $\rfrac{4}{3} = 1.\hat{3}$ también tiene infinitos decimales.
+%
+En este curso ya no vale creerse lo que los profesores os contamos sin más. Es fundamental entender las demostraciones y ser capaz de razonar el porqué de los asuntos.
+
+
+\begin{proof}[\textbf{Reducción al absurdo}]
+Suponemos $\sqrt{2}\in ℚ$.
+
+Entonces 
+\[
+	\exists a,b\inℤ \tq \left(\sqrt{2} = \rfrac{a}{b}\right) \wedge \left( \mcd{a,b} = 1 \right)
+\]
+
+
+\[
+	\sqrt{2} = \frac{a}{b} \implies 2·b^2 = a^2 \implies a^2 \text{ es par} \overset{1}{\implies} a \text{ es par}
+\]
+
+Si $a^2$ es par, necesariamente $a$ es par también. Por reducción al absurdo, si $a$ no fuera par, $a·a$, producto de impares no sería par. 
+%
+Como $a$ es par, podemos escribirlo como $a=2·k$, para algún $k\in ℤ$. 
+
+\[
+	2b^2 = (2k)^2 \implies b^2 = 2k^2 \overset{1}{\implies} b \text{ par}.
+\]
+
+Conclusión: $\mcd{a,b} = 2 ≠ 1$. Hemos llegado a una contradicción partiendo de un supuesto ($\sqrt{2}\in ℚ$) "inventado", por lo que ese supuesto debe ser falso. 
+
+\paragraph{Un argumento alternativo} no tan convincente aunque más fácil de entender sería: 
+
+$2·b^2 = a^2$. Así, en la descomposición factorial de $a^2$ aparecería el factor $b^2$, por lo que $\mcd{a^2,b^2}=b^2$.
+
+\[
+\left.
+\begin{array}{c}
+	\mcd{a,b} = 1 \implies \mcd{a^2,b^2} = 1\\
+	\mcd{a^2,b^2}=b^2
+\end{array}\right\} \implies b=\pm 1 \implies \sqrt{2}\in ℤ
+\]
+
+\end{proof}
+
+%Hasta los 40 minutos
+
+\paragraph{\hl{No os creáis cualquier demostración:}}
+Partiendo de $x=y$
+
+\[
+x^2 = xy \dimplies x^2-y^2 = xy-y^2 \dimplies (x+y)(x-y) = y(x-y) \dimplies x+y = y \dimplies 2y = y \implies \text{\hl{2=1}}
+\]
+
+
+
 
 \section{Introducción} 
 Vamos a interntar resolver $x^2 + 9 = 0 \dimplies x^2 = -9 \dimplies x=\sqrt{-9}$. Siempre hemos dicho que no tiene solución. Pero yo podría escribir $(\sqrt{-9})^2 + 9 = 0$. Es decir, $\sqrt{-9}$ es solución de la ecuación. ¡Y también lo es $x_2=-\sqrt{-9}$!
 
 La manera de trabajar con raíces negativas es sacar todos los factores hasta dejar simplemente $\sqrt{-1}$, es decir: $\sqrt{-9} = \sqrt{9}\sqrt{-1} = \pm3\sqrt{-1}$ y escribimos $\sqrt{-1} = i$. \textbf{Conclusión:} las soluciones de la ecuación son $x_1 = 3i$ y $x_2 = -3i$.
+
+Podemos resolver ecuaciones que antes eran imposibles y, además, podemos calcular raíces que antes no "existirían".
+
+%(Hasta aquí la introducción)
 
 Pongamos otro ejemplo:
 
@@ -19,7 +89,7 @@ Hemos obtenido 2 raíces: $α_1 = 1+i$ y $α_2 = 1-i$. ¿Cómo quedaría el poli
 
 Primera utilidad de los números complejos: resolver ecuaciones que antes eran "imposibles" y factorizar polinomios que considerábamos irreducibles.
 
-Hay otra utilidad más: $\sqrt[6]{64}$ tiene 4 soluciones: $\sqrt[6]{64} = \{ 2,-2,1+\sqrt{3},1-\sqrt{3},-1+\sqrt{3},-1-\sqrt{3}\}$
+Hay otra utilidad más: $\sqrt[6]{64}$ tiene 6 soluciones: $\sqrt[6]{64} = \{ 2,-2,1+\sqrt{3},1-\sqrt{3},-1+\sqrt{3},-1-\sqrt{3}\}$
 
 \section{Operaciones en $ℂ$}
 
@@ -31,6 +101,8 @@ Un número complejo es de la forma $z=a+bi$, donde $i=\sqrt{-1}$, y llamamos $a=
 	\item $z_2 = 2-i$ $\to$ $Re(z_2) = \;\;\quad\quad\;\;\;$; $Im(z_2) = \;\;\;\;\;\;\;$
 	\item $z_3 = \sqrt{2}+6i$ $\to$ $Re(z_3) = \;\;\quad\quad\;\;\;$; $Im(z_3) = \;\;\;\;\;\;\;$
 \end{itemize}
+
+
 
 \paragraph{Representación gráfica:} como los vectores en física, sólo que aquí no hay $\vec{i}$ ni $\vec{j}$. El eje $y$ es el eje \textit{imaginario} y el eje $x$ es el eje \textit{real}.
 
