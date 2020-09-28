@@ -20,6 +20,69 @@ Aplicando el teorema de Bayes:
 \[P(E|+) = \frac{P(+|E)·P(E)}{P(+)} = \frac{P(+|E)·P(E)}{P(+|E)·P(E) + P(+|\overline{E})·P(\overline{E})}= 0.01 \]
 \end{example}
 
+
+\section{Estadística}
+
+A la hora de hacer un estudio estadístico buscamos obtener información sobre toda la población. A veces, esa cantidad de información es inmanejable e inconseguible. 
+%
+Por ejemplo, test de COVID a toda la población para ver cuántos lo han pasado, no es viable. 
+%
+Por ello, se selecciona una parte de la población y se le hacen los test a una parte para después extrapolar esos resultados.
+
+Así, definimos:
+
+\begin{defn}[Población]
+\end{defn}
+
+\begin{defn}[Muestra]
+\end{defn}
+
+\begin{defn}[Individuo]
+\end{defn}
+
+\textit{Nota: estos términos también se utilizan al tratar de tornillos en una fábrica.}
+
+Este año vamos a trabajar y a distinguir los \concept[Parámetros\IS poblacionales]{parámetros poblacionales} de los \concept[Parámetros\IS muestrales]{muestrales}.
+%
+Llamaremos $\mu$ y $\sigma·$ a la media y desviación típica \emph{poblacionales} y $\bar{x}$ y $S$ a la media y desviación típica \emph{muestral}.
+
+El \textbf{objetivo} de este tema es conseguir información sobre los parámetros poblacionales a partir de los parámetros muestrales. 
+
+Para ello, antes de empezar es necesario que intentemos contestar la pregunta: ¿Cómo se asegura uno de que su muestra es buena? Porque si queremos saber lo que opinan los alumnos del colegio sobre la semipresencialidad y tomamos de muestra a los alumnos de 2º de Bachillerato, la información que saquemos no será fiable.
+
+Necesitaremos que las muestras sean \concept[Representatividad de una muestra]{representativas} de toda la población, esto es, que refleje fielmente las características de la población.
+%
+Llamamos \concept{muestreo} al proceso por el que se construye una muestra de una población. 
+%
+Como seguro que te imaginas, hay distintos tipos de \textit{muestrear} una población. Vamos a verlos:
+
+\subsection{Tipos de muestreo}
+
+Los muestreos pueden ser aleatorios (si todos sus miembros tienen la misma posibilidad de ser elegidos) o no aleatorios (si no es así).
+%
+Dado que los muestreos aleatorios otorgan una mayor representatividad, nos centraremos en ellos:
+
+Consideremos que eres el encargado de calidad de una fábrica de tornillos, que fabrica tornillos de distintos tipos.
+
+\begin{itemize}
+    \item Aleatorio simple.
+        \subitem ¿Cuántas muestras se pueden formar?
+        \subitem Estimación de los parámetros poblacionales desde los muestrales.
+        \subitem Con reposición (días de la semana que se tienen que elegir), sin reposición (personas).
+    \item Sistemático.
+    \subitem Ordenados, de h en h (\concept{Constante de elevación}).
+    \item Estratificado:
+    \subitem Agrupación por característica. Estratos diferentes entre ellos. Elementos iguales en cada estrato.
+    \subitem Afijación igual o proporcional.
+    \subitem Dentro de cada estrato... ¿Aleatorio simple? ¿Sistemático?
+    \item Conglomerados:
+    \subitem División de cada característica. Conglomerados iguales entre ellos. Elementos diferentes en cada estrato.
+    \subitem Dentro de cada estrato... ¿Aleatorio simple? ¿Sistemático?
+\end{itemize}
+
+
+\textbf{Importancia de los grupos control}
+
 \section{Distribuciones de probabilidad}
 
 Introducimos el tema con 4 preguntas que iremos contestando a lo largo del tema. Acabaremos el tema cuando sepamos contestar a las 4 preguntas.
@@ -40,7 +103,6 @@ Dada la fómrula, desde el libro, vamos viendo las definiciones de probabilidad.
 
 ¿Probabilidad de sacar menos de 120 caras en 2000 lanzamientos? Normal.
 
-\section{Distribuciones de probabilidad}
 
 \begin{defn}[Variables aleatorias]
 Una v.a. asociada a un experimento aleatorio es una variable que a cada suceso elemental del espacio muestral le asigna un número
@@ -70,7 +132,7 @@ La esperanza matemática es el número de éxitos que podemos esperar que ocurra
 
 La varianza mide la dispersión de los datos. $V[x] = np(1-p)$
 
-Ejercicios y ejemplos. Página 369 el 9 y el 10.
+%Ejercicios y ejemplos. Página 369 el 9 y el 10.
 
 \begin{defn}[Distribución\IS normal]
 Una v.a. X sigue una distribución normal de parámetros $\mu$ [media\footnote{Tal vez fuera más técnico llamarla esperanza}] y $\sigma$ [desviación típica] cuando la probabilidad de que tome valores entre "a" y "b" es igual al área comprendida por la gráfica de la campana de Gauss (en función de $\mu$ y $\sigma$) entre el eje $OX$ y las rectas $x=a$ y $x=b$.
