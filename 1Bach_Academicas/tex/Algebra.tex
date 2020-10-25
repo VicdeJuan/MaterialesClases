@@ -4,64 +4,6 @@
 
 \subsection{Introducción}
 
-\subsubsection{Conjuntos numéricos}
-
-¿Qué conjuntos de números conocéis? $ℕ,ℤ,ℚ,I,ℝ,ℂ$ \hl{Diagrama de contenidos}.
-
-Cómo distinguir que un número dado pertenece a un conjunto o no.
-%
-Por ejemplo, $\sqrt{2}$. ¿A qué conjunto pertenece y porqué?
-%
-\hl{¿Por qué $\sqrt{2}$ es irracional?} $\rfrac{4}{3} = 1.\hat{3}$ también tiene infinitos decimales.
-%
-En este curso ya no vale creerse lo que los profesores os contamos sin más. Es fundamental entender las demostraciones y ser capaz de razonar el porqué de los asuntos.
-
-
-\begin{proof}[\textbf{Reducción al absurdo}]
-Suponemos $\sqrt{2}\in ℚ$.
-
-Entonces 
-\[
-	\exists a,b\inℤ \tq \left(\sqrt{2} = \rfrac{a}{b}\right) \wedge \left( \mcd{a,b} = 1 \right)
-\]
-
-
-\[
-	\sqrt{2} = \frac{a}{b} \implies 2·b^2 = a^2 \implies a^2 \text{ es par} \overset{1}{\implies} a \text{ es par}
-\]
-
-Si $a^2$ es par, necesariamente $a$ es par también. Por reducción al absurdo, si $a$ no fuera par, $a·a$, producto de impares no sería par. 
-%
-Como $a$ es par, podemos escribirlo como $a=2·k$, para algún $k\in ℤ$. 
-
-\[
-	2b^2 = (2k)^2 \implies b^2 = 2k^2 \overset{1}{\implies} b \text{ par}.
-\]
-
-Conclusión: $\mcd{a,b} = 2 ≠ 1$. Hemos llegado a una contradicción partiendo de un supuesto ($\sqrt{2}\in ℚ$) "inventado", por lo que ese supuesto debe ser falso. 
-
-\paragraph{Un argumento alternativo} no tan convincente aunque más fácil de entender sería: 
-
-$2·b^2 = a^2$. Así, en la descomposición factorial de $a^2$ aparecería el factor $b^2$, por lo que $\mcd{a^2,b^2}=b^2$.
-
-\[
-\left.
-\begin{array}{c}
-	\mcd{a,b} = 1 \implies \mcd{a^2,b^2} = 1\\
-	\mcd{a^2,b^2}=b^2
-\end{array}\right\} \implies b=\pm 1 \implies \sqrt{2}\in ℤ
-\]
-
-\end{proof}
-
-\paragraph{\hl{No os creáis cualquier demostración:}}
-Partiendo de $x=y$
-
-\[
-x^2 = xy \dimplies x^2-y^2 = xy-y^2 \dimplies (x+y)(x-y) = y(x-y) \dimplies x+y = y \dimplies 2y = y \implies \text{\hl{2=1}}
-\]
-
-\textit{Si sobrara tiempo: belleza intrínseca de las matemáticas: ¿Qué hay más, enteros o pares?}
 
 
 % \subsubsection{Grupo y Cuerpo}
@@ -170,6 +112,8 @@ Llamamos entorno reducido de centro $a$ y radio $r$, y se denota por $E_r(a)$ a:
 \hl{Seguimos pasando páginas del libro y comentando}
 
 \subsection{Logaritmos}
+
+\textit{En el curso COVID (20-21) se hizo el repaso en sus casas con vídeos}
 
 \paragraph{Introducción}
 
@@ -651,6 +595,8 @@ Ecuaciones racionales.
 \paragraph{Ejemplos}
 \subparagraph{a)}
 
+Este ejemplo no está bien:
+
 \[
 	\frac{2x-5}{x-2} = \frac{1}{2x-x^2}+1 \dimplies \frac{2x-5}{x-2} = \frac{-x^2+2x+1}{-x(x-2)} \text{\hl{$\implies$}} -2x^2+5x = -x^2+2x+1\dimplies \]
 	\[ \dimplies -x^2+3x-1 = 0 \dimplies x^2-3x+1 = 0 \dimplies x_1=1\wedge x_2=2
@@ -687,7 +633,7 @@ Para trabajar: Pág 46, ejer 36.
 	\frac{1+\displaystyle\frac{x+1}{x-1}}{2-\displaystyle\frac{x-1}{x+1}}=2 \dimplies \frac{\displaystyle\frac{x-1+x+1}{x-1}}{\displaystyle\frac{2x+2-x+1}{x+1}} = 2 \dimplies
 \]
 \[	
-	\frac{\displaystyle\frac{2x}{x-1}}{\displaystyle\frac{x+3}{x+1}}=2 \dimplies 2x^2+2x=x^2+4x-6 \dimplies 2x=6 \dimplies x=3
+	\frac{\displaystyle\frac{2x}{x-1}}{\displaystyle\frac{x+3}{x+1}}=2 \dimplies 2x^2+2x=2x^2+4x-6 \dimplies 2x=6 \dimplies x=3
 \]
 
 

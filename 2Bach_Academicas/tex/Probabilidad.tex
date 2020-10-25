@@ -24,21 +24,34 @@ Aplicando el teorema de Bayes:
 
 Introducimos el tema con 4 preguntas que iremos contestando a lo largo del tema. Acabaremos el tema cuando sepamos contestar a las 4 preguntas.
 
-¿Probabilidad de sacar 2 caras en 4 lanzamientos? Lo resolvemos como un árbol.
+\begin{itemize}
+    \item ¿Probabilidad de sacar 2 caras en 4 lanzamientos? Lo resolvemos como un árbol.
+    \item ¿Probabilidad de sacar 2 caras en 10 lanzamientos? Binomial. Contestamos esta pregunta y deducimos la fórmula de la binomial. Algunos ejemplos más para interiorizar la intuición de la binomial.
+    \item ¿Probabilidad de sacar exactamente 120 caras en 2000 lanzamientos? Casi 0.
+    \item ¿Probabilidad de sacar menos de 120 caras en 2000 lanzamientos? Normal.
+\end{itemize}
 
-¿Probabilidad de sacar 2 caras en 10 lanzamientos? Binomial. Contestamos esta pregunta y deducimos la fórmula de la binomial. Algunos ejemplos más para interiorizar la intuición de la binomial.
 
+\begin{example}
 
+Tiramos un dado de 6 caras 10 veces.
+\begin{itemize}
+    \item Calcula la probabilidad de sacar 1 uno.
+    \item Calcula la probabilidad de sacar 2 unos.
+\end{itemize}
+
+Se resuelve utilizando la lógica y la combinatoria. 
+
+\end{example}
+
+Desde el ejemplo, generalizamos para obtener la fórmula general.
+
+2 ejercicios de cálculo de binomial para entender la fórmula. 
 
 Dada la fómrula, desde el libro, vamos viendo las definiciones de probabilidad. Esperanza(media) y varianza: ¿cuántas caras podemos esperar en 10 lanzamientos? Si el experimento de tirar 10 monedas lo hago 10000 veces, podría hacer la media. 
 
 ¡Unión de la probabilidad y de la estadística! Hago cosas de estadística (varianza, esperanza-media) con probabilidades.
 
-2 ejercicios de cálculo de binomial para entender la fórmula. Después hablaremos más a fondo de la teoría de distribuciones de probabilidad.
-
-¿Probabilidad de sacar exactamente 120 caras en 2000 lanzamientos? Casi 0.
-
-¿Probabilidad de sacar menos de 120 caras en 2000 lanzamientos? Normal.
 
 \section{Distribuciones de probabilidad}
 
@@ -64,7 +77,6 @@ Una variable aleatoria "X" sigue una distribución binomial con parámetros n y 
 
 \paragraph{Esperanza y varianza}
 \textit{Aquí confluyen la estadística y la probabilidad ya que podemos hablar de "medias" (esperanza) y varianza de variables aleatorias. Es la intersección de estadística y probabilidad.}
-
 
 La esperanza matemática es el número de éxitos que podemos esperar que ocurran si repitiéramos el experimento origen de la v.a. X un nº infinito de veces. Sería la media de los resultados: $E[X] = np$
 
