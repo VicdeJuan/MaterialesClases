@@ -1,5 +1,5 @@
 
-\section{Geometría afín}
+\section{Geometría afín (salto al tema 11)}
 
 Dejamos el mundo abstracto de las estructuras algebraicas para empezar con la geometría. 
 
@@ -34,17 +34,16 @@ Si se va a trabajar y a hacer operaciones siempre con el mismo sistema de refere
 Al final, uno puede prácticamente ignorar el origen, trabajar como si fuera otro y despues sumar o restar para corregir el punto de origen.
 
 \end{example}
-
-\obs En el ejemplo anterior, se ha realizado la operación: $\vec{a} =  (1,2,3) + 2·u_1 + 7·u_2 + 3·u_3$. ¿Cómo se suman puntos y vectores? 
+\obs En el ejemplo anterior, se ha realizado la operación: $\vec{a} =  (1,2,3) + 2·u_1 + 7·u_2 + 3·u_3$. \ul{¿Cómo se suman puntos y vectores?} 
 %
 No es posible sumar puntos con vectores (como no es posible sumar peras con manzanas). La manera de hacer esta operaciónes considerar $(1,2,3)$ como un vector al que llamaremos vector de posición.
 
 
-Un sistema de referencia permite definir \concept[Vector\IS de posición]{vectores de posición} para situar los puntos.
+Un sistema de referencia permite definir \concept[Vector\IS de posición]{vectores de posición} para situar los puntos unívocamente en el espacio.
 %
 El vector de posición $\vec{OP}$ es el vector que une el punto $P$ con el punto $O$, origen de coordenadas. 
 %
-La \textbf{ventaja de los vectores de posición} es que permiten hacer operaciones, ya que \ul{los puntos no se pueden sumar}.
+La \textbf{ventaja de los vectores de posición} es que permiten hacer operaciones, ya que \ul{\textbf{los puntos no se pueden sumar}}.
 
 
 
@@ -54,10 +53,10 @@ Dado el sistema de referencia $S_1=\{O = (0,0,0); \mathcal{B} = \{\vec{i},\vec{j
 
 \ppart Si $\vec{a} = (13,1,-5)$ está expresado en función de $S_1$, halla sus coordenadas en $S_2=\{O = (0,1,-5); \mathcal{B} = \{\vec{i},\vec{j},\vec{k}\}\}$
 
-\ppart Haz el mismo ejercicio, tomando $S_1=\{O = (0,0,0); \mathcal{B} = \{\vec{i},\vec{j},\vec{k}\}\}$
+\ppart Haz el mismo ejercicio, tomando $S_1=\{O = (1,2,3); \mathcal{B} = \{\vec{i},\vec{j},\vec{k}\}\}$
 
 \solution
-
+\hide{
 \spart 
 \[
   \vec{a} = (13,1,-5) = (0,1,-5) + \lambda_1\vec{i} + \lambda_2\vec{j} + \lambda_3\vec{k} \dimplies \left\{
@@ -82,13 +81,13 @@ En realidad, $\vec{a}$ sería el vector de posición del punto $(14,3,-2)$, teni
   \right\} \]
 \[\dimplies (\lambda_1,\lambda_2,\lambda_3) = (14,2,3)
 \]
-
+}
 
 
 \end{problem}
 
 
-\obs Ya tenemos 1 punto y un sistema de referencia para movernos entre puntos. 
+\obs Ya tenemos un sistema de referencia para movernos entre puntos. 
 %
 Habitualmente trabajaremos con $S= \{O(0,0,0), \mathcal{B} = \{(1,0,0), (0,1,0), (0,0,1)\}\}$ como sistema de referencia de $\mathcal{V}^3$.
 
@@ -106,18 +105,18 @@ Sin embargo, al fijar un sistema de referencia, podemos considerar los vectores 
 %
 ¿Sabéis de dónde viene la palabra \textit{vector}? 
 %
-Etimológicamente significa, el que mueve algo de un sitio a otro. 
+Etimológicamente significa \emph{el que mueve algo de un sitio a otro}. 
 %
 Así al menos son las interpretaciones físicas. 
 %
-Los vectores así interpretados tienen un origen y un destino.
+Los vectores así interpretados tienen un origen (o punto de aplicación) y un destino.
 
 \begin{figure}[hptb]
     \centering
     \includegraphics[width=0.9\textwidth]{img/Fijos-libres.png}
     \caption{Los diferentes vectores fijos de $V^2$ que tienen las mismas coordenadas forman parte del vector libre. 
     \newline
-    De la misma manera que, la idea $\rfrac{1}{2}=\rfrac{2}{4}=\rfrac{3}{6}$ se escribiría, formalmente: $\left[\rfrac{1}{2}\right] = \left\{\rfrac{1}{2},\rfrac{2}{4},\rfrac{3}{6} ... \right\}$}
+    De la misma manera que la idea $\rfrac{1}{2}=\rfrac{2}{4}=\rfrac{3}{6}$ se escribiría formalmente: $\left[\rfrac{1}{2}\right] = \left\{\rfrac{1}{2},\rfrac{2}{4},\rfrac{3}{6} ... \right\}$}
     \label{fig:plano}
 \end{figure}
 
@@ -152,6 +151,8 @@ Tenemos que $\vec{a} + \vec{AB} = \vec{b} \dimplies \vec{AB} = \vec{b}-\vec{a}$.
     Halla un vector definido por $A(1,0,3)$ y $B(2,1,2)$.
     
     \hide{\[\vec{AB} = (2-1, 1-0, 2-3) = (1,1,-1)\]}
+
+    \obs Fíjate bien, por favor, que la operación realizada \textbf{no} es una resta de puntos.
 \end{example}
 
 \begin{problem}
@@ -276,7 +277,7 @@ Como para poder hacer operaciones de vectores en coordenadas necesitamos la mism
 
 \subsection{La recta}
 
-\obs Dado que la única manera que tenemos de determinar los puntos es a través de vectores de posición, utilizaremos $\vec{p} = (x,y,z)$ de forma equivalente a $[\vec{OP}]$ para referirnos a un punto cualquiera del plano, al que accedemos a través de su vector de posición.
+\obs Dado que la única manera que tenemos de determinar los puntos es a través de vectores de posición, utilizaremos $\vec{p} = (x,y,z)$ de forma equivalente a $[\vec{OP}]$ para referirnos a un punto cualquiera del espacio, al que accedemos a través de su vector de posición.
 
 Formas de determinar una recta:
 \begin{enumerate}
@@ -293,12 +294,21 @@ Como todo con lo que vamos a trabajar son operaciones con vectores con coordenad
 
 La 
 %
-\concept[Ecuación de la recta\IS vectorial]{ecuación vectorial de la recta} $r$ determinada por el punto $A$, cuyo vector de posición es $\vec{a}$, con vector director $\vec{u_r} $  es $r : \vec{p} = \vec{a} + \lambda \vec{u_r}$, con $\lambda\in\real, \forall P\in\real$.
+\concept[Ecuación de la recta\IS vectorial]{ecuación vectorial de la recta} $r$ determinada por el punto $A$, cuyo vector de posición es $\vec{a}$, con vector director $\vec{u_r} $  es $r : \vec{p} = \vec{a} + \lambda \vec{u_r}$, con $\lambda\in\real, \forall P\in\real$ (ver \fref{fig::recta_ecuacion_vectorial})
 %
 De esta manera quedan determinados los vectores de posición de todos los puntos de la recta $r$.
 
+
+\begin{figure}[hptb]
+    \centering
+    \includegraphics[width=0.4\textwidth]{img/EcVectorialRecta.png}
+    \caption{Representación gráfica de la ecuación vectorial de la recta.}
+    \label{fig::recta_ecuacion_vectorial}
+\end{figure}
+
+
 ¿Es posible construir la recta sin ese parámetro $\lambda$? En realidad,
-$$r : \vec{p} = \vec{a} + \lambda \vec{u_r}\dimplies \underbrace{r:\displaystyle \left\{
+$$\underbrace{r : \vec{p} = \vec{a} + \lambda \vec{u_r}}_{(0)}\dimplies \underbrace{r:\displaystyle \left\{
 \begin{array}{c} 
   x = a_1 + \lambda u_1\\
   y = a_2 + \lambda u_2 \\ 
@@ -323,20 +333,13 @@ $$r : \vec{p} = \vec{a} + \lambda \vec{u_r}\dimplies \underbrace{r:\displaystyle
 \]
 
 
-\begin{figure}[hptb]
-    \centering
-    \includegraphics[width=0.4\textwidth]{img/EcVectorialRecta.png}
-    \caption{Representación gráfica de la ecuación vectorial de la recta.}
-    \label{fig:plano}
-\end{figure}
-
 
 Donde:
 \begin{itemize}
     \item (1) \hide{Se han elegido estas 2 parejas, pero podrían haberse elegido otras, dando lugar a otras ecuaciones implícitas de la misma recta.}
     \item (2) \hide{\concept[Ecuación de la recta\IS implícita]{ecuación implícita de la recta}}
     \subitem \obs \hide{Si interpretáramos las ecuaciones implícitas de la recta como un sistema de ecuaciones, tendríamos un sistema compatible indeterminado con grado de libertad 1.}
-    \subitem \obs La dimensión de la recta es 1.
+    \subitem \obs La dimensión de la recta es 1. \emph{¿Como el grado de indeterminación? Guau...}
 \end{itemize}
 
 \begin{problem}
@@ -366,7 +369,7 @@ La
 %
 \concept[Ecuación del plano\IS vectorial]{ecuación vectorial del plano} 
 %
-$\pi$ determinada por el punto $A$ y los vectores linealmente independientes $\vec{V_{\pi}}$ y $\vec{W_{\pi}}$  es $r : \vec{p} = \vec{A} + \lambda \vec{V_{\pi}} + \mu\vec{W_{\pi}}$, con $\lambda\in\real$. De esta manera quedan determinados los vectores de posición de todos los puntos del plano.
+$\pi$ determinada por el punto $A$ y los vectores linealmente independientes $\vec{V_{\pi}}$ y $\vec{W_{\pi}}$  es $r : \vec{p} = \vec{A} + \lambda \vec{V_{\pi}} + \mu\vec{W_{\pi}}$, con $\lambda\in\real$ (ver ). De esta manera quedan determinados los vectores de posición de todos los puntos del plano.
 
 Como en el caso de la recta, podemos escribir esta ecuación en forma de sistema con parámetros:
 
@@ -382,7 +385,7 @@ y - a_2 = \lambda v_2 + \mu w_2 \\
 z - a_3 = \lambda v_3 + \mu w_3 
 \end{array}\right\}
 \]
-Como los vectores $\vec{v},\vec{w}$ son linealmente independientes y el vector $AX$ es una combinación lineal de los otros 2 (ver \ref{fig:plano}, tenemos:
+Como los vectores $\vec{v},\vec{w}$ son linealmente independientes y el vector $AX$ es una combinación lineal de los otros 2 (ver \ref{fig:plano}), tenemos:
 
 \[
 \left|
@@ -546,7 +549,7 @@ Las posibilidades son: (ver figura \ref{fig:PosicionesRelativasPlanos})
 
 \begin{center}
 \begin{tabular}{ccc}
-$P_r \in \pi $ & $\vec{v_r}$ LD de $v_{\pi}, \vec{w}_{\pi}$ & Conclusión\\
+$P_r \in \pi $ & $\vec{v_r}$ LD de $v_{\pi}, \vec{w}_{\pi}$ & \textbf{Conclusión}\\\hline
 No & No & Secantes en un punto\\
 No & Sí & Recta paralela\\
 Sí & No & Secantes en un punto\\

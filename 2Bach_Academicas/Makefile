@@ -7,7 +7,7 @@ SAGEUTILSDIR="../Cosas guays LaTeX/"
 
 
 
-all: copy sage
+all: copy 
 	$(LATEX) $(TARGET)
 
 copy:
