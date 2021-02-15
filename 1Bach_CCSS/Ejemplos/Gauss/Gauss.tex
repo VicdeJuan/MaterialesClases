@@ -877,7 +877,7 @@ mx&+my&+z&=&1\\
 &+(m-1)y&+(1-m)z&=&0
 \end{array}
 \right\}
-\overset{(2)}{\cimplies}
+\overset{(2) - m\neq 0}{\dimplies}
 \]
 \[
 \left\{
@@ -908,7 +908,7 @@ Donde
 	\end{array}
 \]
 
-\paragraph{(2):} $E_2 = m·E_1 - E_2$ (al multiplicar una ecuación por $m$ perdemos la equivalencia)
+\paragraph{(2):} $E_2 = m·E_1 - E_2$ (al multiplicar una ecuación por $m$ necesitamos poner el filtro: $m\neq 0$)
 
 \[
 	\begin{array}{ccccc}
@@ -919,7 +919,7 @@ Donde
 	\end{array}
 \]
 
-\paragraph{Discusión:} $(m^2-1) = 0 \dimplies m=\pm 1$
+\paragraph{Discusión:} $(m^2-1) = 0 \dimplies m=\pm 1$. Debemos añadir el caso $m\neq 0$
 
 \begin{itemize}
 	\item $m=1:$ Sustituimos antes de la equivalencia:
@@ -957,6 +957,22 @@ Donde
 		\right\}
 	\]
 	El sistema es compatible indeterminado porque es un sistema escalonado en función de un parámetro con más incógnitas que ecuaciones.
+	
+	\item $m=0:$ Sustituimos antes de la equivalencia:
+	\[
+		\left\{
+		\begin{array}{ccccc}
+		
+		\end{array}
+		\right\} \dimplies 
+		\left\{
+		\begin{array}{ccccc}
+		
+		\end{array}
+		\right\}
+	\]
+	El sistema es compatible indeterminado porque es un sistema escalonado en función de un parámetro con más incógnitas que ecuaciones.
+
 
 	\item $m≠1 \wedge m≠-1:$ El sistema es compatible determinado porque es un sistema escalonado con el mismo número de ecuaciones que de incógnitas. 
 \end{itemize}
