@@ -1,300 +1,40 @@
 
-\section{Geometría afín (salto al tema 11)}
+\section{Geometría afín}
 
-Dejamos el mundo abstracto de las estructuras algebraicas para empezar con la geometría. 
+\subsection{Vectores y sistemas de referencia}
 
-El planeta tierra existe antes de que se inventen las coordenadas GPS. 
 
 
-Lo que vamos a hacer es determinar las "coordenadas GPS" de todos los puntos del espacio tridimensional.
-%
-Para ello, necesitaremos tener un sistema de referencia consensuado.
-%
-Así, fijando un sistema de referencia, podemos empezar a trabajar con elementos que se encuentren en algún lugar de algún espacio. 
 
 
-
-\begin{defn}[Sistema de referencia] (Página 277)
-Sea $V$ un espacio vectorial con base $\mathcal{B}$ y sea $O$ un punto, que llamaremos \textbf{origen de coordenadas}
-
-Llamamos Sistema de referencia afín al conjunto $S = \{\mathcal{B},O\}$
-\end{defn}
-
-\begin{example}
-En el sistema de referencia $S=\{O = (1,2,3); \mathcal{B} = \{\vec{u_1} = (1,1,1), \vec{u_2} = (2,1,0), \vec{u_3} = (0,0,1)\}\}$
-
-En este sistema de referencia, $\vec{a} = (2,7,3)$ significa:
-
-$\vec{a} =  (1,2,3) + 2\cdot u_1 + 7\cdot u_2 + 3\cdot u_3$ si quisiéramos escribirlo en función del sistema de referencia habitual.
-
-\label{example::origen_ref}
-
-Si se va a trabajar y a hacer operaciones siempre con el mismo sistema de referencia, con origen $(1,2,3)$, trabajaremos con $\vec{a} = 2\cdot u_1 + 7\cdot u_2 + 3\cdot u_3$.
-%
-Al final, uno puede prácticamente ignorar el origen, trabajar como si fuera otro y despues sumar o restar para corregir el punto de origen.
-
-\end{example}
-\obs En el ejemplo anterior, se ha realizado la operación: $\vec{a} =  (1,2,3) + 2·u_1 + 7·u_2 + 3·u_3$. \ul{¿Cómo se suman puntos y vectores?} 
-%
-No es posible sumar puntos con vectores (como no es posible sumar peras con manzanas). La manera de hacer esta operaciónes considerar $(1,2,3)$ como un vector al que llamaremos vector de posición.
-
-
-Un sistema de referencia permite definir \concept[Vector\IS de posición]{vectores de posición} para situar los puntos unívocamente en el espacio.
-%
-El vector de posición $\vec{OP}$ es el vector que une el punto $P$ con el punto $O$, origen de coordenadas. 
-%
-La \textbf{ventaja de los vectores de posición} es que permiten hacer operaciones, ya que \ul{\textbf{los puntos no se pueden sumar}}.
-
-
-
-\begin{problem}
-
-Dado el sistema de referencia $S_1=\{O = (0,0,0); \mathcal{B} = \{\vec{i},\vec{j},\vec{k}\}\}$
-
-\ppart Si $\vec{a} = (13,1,-5)$ está expresado en función de $S_1$, halla sus coordenadas en $S_2=\{O = (0,1,-5); \mathcal{B} = \{\vec{i},\vec{j},\vec{k}\}\}$
-
-\ppart Haz el mismo ejercicio, tomando $S_1=\{O = (1,2,3); \mathcal{B} = \{\vec{i},\vec{j},\vec{k}\}\}$
-
-\solution
-\hide{
-\spart 
-\[
-  \vec{a} = (13,1,-5) = (0,1,-5) + \lambda_1\vec{i} + \lambda_2\vec{j} + \lambda_3\vec{k} \dimplies \left\{
-    \begin{array}{c}
-      13 = \lambda_1\\
-      1 = 1 + \lambda_2\\
-      -5 = -5 + \lambda_3
-    \end{array}
-  \right\} \]
-\[\dimplies (\lambda_1,\lambda_2,\lambda_3) = (13,0,0)
-\]
-
-\spart 
-En realidad, $\vec{a}$ sería el vector de posición del punto $(14,3,-2)$, teniendo en cuenta que $O(1,2,3)$, por lo que:
-\[
-  \vec{a} = (14,3,-2) = (0,1,-5) + \lambda_1\vec{i} + \lambda_2\vec{j} + \lambda_3\vec{k} \dimplies \left\{
-    \begin{array}{c}
-      14 = \lambda_1\\
-      3 = 1 + \lambda_2\\
-      -2 = -5 + \lambda_3
-    \end{array}
-  \right\} \]
-\[\dimplies (\lambda_1,\lambda_2,\lambda_3) = (14,2,3)
-\]
-}
-
-
-\end{problem}
-
-
-\obs Ya tenemos un sistema de referencia para movernos entre puntos. 
-%
-Habitualmente trabajaremos con $S= \{O(0,0,0), \mathcal{B} = \{(1,0,0), (0,1,0), (0,0,1)\}\}$ como sistema de referencia de $\mathcal{V}^3$.
-
-
-
-\paragraph{Vectores libres vs vectores fijos}
-
-%$E_3$$ = (puntos, espacio vectorial, relación de equipolencia en la que los elementos del espacio vectorial son las clases de equivalencia de la relación de equipolencia de vectores fijos y libres)
-
-Hasta ahora, hemos llamado vector a un elemento del espacio vectorial $V^3$. 
-%
-Estos elementos son \concept[Vector\IS libre]{vectores libres}.
-
-Sin embargo, al fijar un sistema de referencia, podemos considerar los vectores con un origen y un final. 
-%
-¿Sabéis de dónde viene la palabra \textit{vector}? 
-%
-Etimológicamente significa \emph{el que mueve algo de un sitio a otro}. 
-%
-Así al menos son las interpretaciones físicas. 
-%
-Los vectores así interpretados tienen un origen (o punto de aplicación) y un destino.
-
-\begin{figure}[hptb]
-    \centering
-    \includegraphics[width=0.9\textwidth]{img/Fijos-libres.png}
-    \caption{Los diferentes vectores fijos de $V^2$ que tienen las mismas coordenadas forman parte del vector libre. 
-    \newline
-    De la misma manera que la idea $\rfrac{1}{2}=\rfrac{2}{4}=\rfrac{3}{6}$ se escribiría formalmente: $\left[\rfrac{1}{2}\right] = \left\{\rfrac{1}{2},\rfrac{2}{4},\rfrac{3}{6} ... \right\}$}
-    \label{fig:plano}
-\end{figure}
-
-
-Denotaremos por $[\vec{AB}]$ al vector libre cuyas coordenadas son las del vector que va de $A$ a $B$.
-
-Denotaremos por $\vec{AB}$ al vector fijo que va de $A$ a $B$.
-
-
-
-
-
-\begin{defn}[Vector\IS definido por dos puntos]
-(Página 278)
-
-Dados dos puntos $A=(a_1,a_2,a_3)$ y $B = (b_1,b_2,b_3)$, tenemos 
-    \begin{itemize}
-        \item $\vec{AB} = \hide{(b_1-a_1, b_2-a_2, b_3-a_3)}$
-        \item $\vec{BA} = \hide{(a_1-b_1, a_2-b_2, a_3-b_3)}$ 
-    \end{itemize}
-\end{defn}
-
-\begin{proof}
-Lo único que tenemos para trabajar son vectores de posición. 
-%
-En este caso son $\vec{a} = \vec{OA}$ y $\vec{b} = \vec{OB}$. 
-
-Tenemos que $\vec{a} + \vec{AB} = \vec{b} \dimplies \vec{AB} = \vec{b}-\vec{a}$.
-\end{proof}
-
-\begin{example}
-    Halla un vector definido por $A(1,0,3)$ y $B(2,1,2)$.
-    
-    \hide{\[\vec{AB} = (2-1, 1-0, 2-3) = (1,1,-1)\]}
-
-    \obs Fíjate bien, por favor, que la operación realizada \textbf{no} es una resta de puntos.
-\end{example}
-
-\begin{problem}
-
-Utilizando vectores de posición, demuestra que el punto medio entre los puntos $A$ y $B$, que llamamos $M_{AB}$, tiene por coordenadas:
-
-\[M_{AB} = \left(\frac{a_1+b_1}{2},\frac{a_2+b_2}{2},\frac{a_3+b_3}{2}\right)\]
-
-\ppart \textbf{Ampliación:} Dados los puntos $A(a_1,a_2,a_3)$ y $B(b_1,b_2,b_3)$, calcula las coordenadas del punto que divide el segmento $AB$ dejando $\rfrac{1}{3}$ de distancia con $A$ y $\rfrac{2}{3}$ de distancia con $B$. \textit{Pista: planteamiento parecido al punto medio.}
-
-\solution
-
-\[
-\left\{
-\begin{array}{c}
-    \vec{AM} + \vec{MB} = \vec{AB}\\
-    \vec{AM} = \vec{MB}\\
-    \vec{OM} = ?
-\end{array}\right\}
- \implies 
-  2\vec{AM} = \vec{AB} \dimplies
-  \]\[ 
-  2\left(\vec{OM} - \vec{OA}\right) = \vec{AB} \dimplies
-  2\vec{OM} = \vec{AB} + 2\vec{OA} = 
-  \]\[
-  2\vec{OM} = \left(
-  b_1-a_1,
-  b_2-a_2,
-  b_3-a_3
-  \right) + 
-  \left(
-  2a_1 - 0,
-  2a_2 - 0,
-  2a_3 - 0
-  \right) = 
-  \left(
-  b_1+a_1,
-  b_2+a_2,
-  b_3+a_3
-  \right)\]\[
-  \vec{OM} = \left(
-  \frac{b_1+a_1}{2},
-  \frac{b_2+a_2}{2},
-  \frac{b_3+a_3}{2}
-  \right)
-\]
-
-\end{problem}
-
-% \begin{problem}
-
-% Dado el punto definido por el vector de posición $\vec{OP} = (1,1,1)$ en el sistema de referencia $\{(1,0,0), \mathcal{B} = \{u_1 = (1,0,1), u_2 = (0,2,1), u_3 = (0,0,4)\}\}$, expresa sus coordenadas en el sistema de referencia: 
-% %
-% $\{(1,1,0), \mathcal{B} = \{\vec{i},\vec{j},\vec{k}\}\}$
-
-% \solution
-
-% ¿Qué significa $\vec{OP} = (1,-2,3)$? Las coordenadas son los coeficientes de los vectores de la base, por lo tanto:
-
-% \[
-% P = (1,0,0) + 1·u_1 - 2·u_2+ 3·u_3  \dimplies (1,0,0) + 1·(1,0,1) - 2·(0,2,1)  + 3·(0,0,4) = (2,-4,11)
-% \]
-
-% Expresamos el vector $(2,-4,11)$ en el sistema de referencia pedido:
-
-% $(2,-4,11) = (1,1,0) + \lambda_1\vec{i}+ \lambda_2\vec{j}+ \lambda_3\vec{k} \implies (\lambda_1,\lambda_2,\lambda_3) = (1,4,11)$
-
-% \end{problem}
-
-\begin{problem}
-
-Dado el punto definido por el vector de posición $\vec{OP} = (1,1,1)$ en el sistema de referencia $S_1 = \{O_1(1,0,0), \mathcal{B} = \{u_1 = (1,0,1), u_2 = (0,2,1), u_3 = (0,0,4)\}\}$, expresa sus coordenadas en el sistema de referencia: 
-%
-$S_2=\{O_2(1,1,0), \mathcal{B} = \{\vec{i},\vec{j},\vec{k}\}\}$
-
-\solution
-
-En realidad $\vec{OP} = \vec{O_1P}$, por estar expresado en ese sistema de referencia. 
-
-Entendemos que $O_1(1,0,0)$ no está expresado en función de la base de $S_1$.
-
-¿Qué significa $\vec{O_1P} = (1,1,1)$? Las coordenadas son los coeficientes de los vectores de la base, por lo tanto, tomando $O(0,0,0)$ tenemos:
-
-\[
-\vec{OP} = \vec{OO_1} + \vec{O_1P} = (1,0,0) + 1·u_1 + 1·u_2+ 1·u_3  \dimplies\]
-\[ (1,0,0) + 1·(1,0,1) +1 ·(0,2,1)  + 1·(0,0,4) = (2,2,6)
-\]
-
-Expresamos el vector $\vec{OP}=(2,2,6)$ en el sistema de referencia pedido:
-\[\vec{OP} = (2,2,6) = (1,1,0) + \lambda_1\vec{i}+ \lambda_2\vec{j}+ \lambda_3\vec{k} \implies (\lambda_1,\lambda_2,\lambda_3) = (1,1,6) = \vec{O_2P}\]
-
-\vspace{-0.3cm}
-\paragraph{Plan b:} 
-\[\vec{OP} = \vec{OO_2} + \vec{O_2P} \dimplies \vec{O_2P} = \vec{OP} - \vec{OO_2} = \underbrace{(2,2,6)}_{\ast} - \underbrace{(1,1,0)}_{\Delta} = (1,1,6)\]
-\obs Para este planteamiento es \textbf{necesario} que los vectores que operamos (en este caso $\ast$ y $\Delta$) en coordenadas estén expresados en la \textbf{misma base}. 
-%
-En este caso, dicha base es la base canónica.
-
-\vspace{-0.3cm}
-\paragraph{Plan c: } No es necesario pasar por el origen $O(0,0,0)$, aunque pueda resultar más fácil de interpretar así. 
-
-Podríamos haber empezado desde el principio haciendo un razonamiento parecido al plan b. Buscamos $\vec{O_2P}$ y sabemos $\vec{O_1P}$, por lo que podemos plantear:
-
-\[
-  \vec{O_1O_2} + \vec{O_2P} = \vec{O_1P} \dimplies \vec{O_2P} = \vec{O_1P} - \vec{O_1O_2}
-\]
-
-Como para poder hacer operaciones de vectores en coordenadas necesitamos la misma base, tenemos:
-
-\[
-  \vec{O_2P} = \vec{O_1P} - \vec{O_1O_2} = (\textcolor{red}{1},\textcolor{blue}{1},\textcolor{green}{1})_{S_1} - (0,1,0)_{SH} = (\textcolor{red}{1}\vec{u_1} + \textcolor{blue}{1}\vec{u_2} + \textcolor{green}{1}\vec{u_3}) - (0,1,0)
-\]\[
-  = 1·(1,0,1) +1 ·(0,2,1)  + 1·(0,0,4) - (0,1,0) = (1,1,6)
-\]
-
-\begin{itemize}
-   \item $(0,1,0)_{SH}$ quiere decir "el vector $(0,1,0)$ expresado en el sistema de referencia habitual".
-   \item $(1,1,1)_{S_1}$ quiere decir "el vector $(1,1,1)$ expresado en el sistema de referencia $S_1$".
- \end{itemize} 
-\end{problem}
-
-
-\subsection{La recta}
+\subsection{Ecuaciones de la recta y del plano}
 
 \obs Dado que la única manera que tenemos de determinar los puntos es a través de vectores de posición, utilizaremos $\vec{p} = (x,y,z)$ de forma equivalente a $[\vec{OP}]$ para referirnos a un punto cualquiera del espacio, al que accedemos a través de su vector de posición.
 
 Formas de determinar una recta:
 \begin{enumerate}
-  \item Un punto\footnote{O su vector de posición} y un vector director.
-  \subitem 2 puntos (se reduce al caso anterior)
+  \item Un punto (o su vector de posición) y un vector director.
+  \subitem Dos puntos (se reduce al caso anterior)
   \subitem Un punto y una condición de paralelismo (se reduce al primer caso)
-  \item 2 planos secantes.
+  \item Dos planos secantes.
   \item Un punto y un plano perpendicular (se verá en geometría euclídea).
 \end{enumerate}
 
-Como todo con lo que vamos a trabajar son operaciones con vectores con coordenadas en un sistema de referencia, en realidad el punto de origen del sistema de referencia no es relevante. (Ver ejemplo \ref{example::origen_ref}).
+\obs Como todo con lo que vamos a trabajar son operaciones con vectores con coordenadas en un sistema de referencia, en realidad el punto de origen del sistema de referencia no es relevante. 
+%
+%(Ver ejemplo \ref{example::origen_ref}).
 
 \subsubsection{Ecuaciones de la recta}
 
 La 
 %
-\concept[Ecuación de la recta\IS vectorial]{ecuación vectorial de la recta} $r$ determinada por el punto $A$, cuyo vector de posición es $\vec{a}$, con vector director $\vec{u_r} $  es $r : \vec{p} = \vec{a} + \lambda \vec{u_r}$, con $\lambda\in\real, \forall P\in\real$ (ver \fref{fig::recta_ecuacion_vectorial})
+\concept[Ecuación de la recta\IS vectorial]{ecuación vectorial de la recta} 
+%
+$r$ determinada por el punto $A\in\mathcal{E}_3$, cuyo vector de posición es $\vec{a}\in\mathcal{V}^3$, con vector director $\vec{u_r}\in\mathcal{V}^3 $  es 
+
+\[ r: \vec{p} = \vec{a} + \lambda \vec{u_r}\]
+
+donde $\lambda\in\real, \forall P\in\mathcal{E}_3$ (ver \fref{fig::recta_ecuacion_vectorial})
 %
 De esta manera quedan determinados los vectores de posición de todos los puntos de la recta $r$.
 
@@ -353,13 +93,11 @@ Donde:
 
 \end{problem}
 
-\textbf{Deberes:} 
+\textbf{Ejercicios:} 
 \begin{itemize}
   \item Página 279.13,14.
   \item Página 281.18-21.
 \end{itemize}
-
-\subsection{El plano}
 
 \subsubsection{Ecuaciones del plano}
 
@@ -369,9 +107,17 @@ La
 %
 \concept[Ecuación del plano\IS vectorial]{ecuación vectorial del plano} 
 %
-$\pi$ determinada por el punto $A$ y los vectores linealmente independientes $\vec{V_{\pi}}$ y $\vec{W_{\pi}}$  es $r : \vec{p} = \vec{A} + \lambda \vec{V_{\pi}} + \mu\vec{W_{\pi}}$, con $\lambda\in\real$ (ver ). De esta manera quedan determinados los vectores de posición de todos los puntos del plano.
+$\pi$ determinada por el punto $A\in\mathcal{E}_3$ y los vectores linealmente independientes $\vec{V_{\pi}}\in\mathcal{V}^3$ y $\vec{W_{\pi}}\in\mathcal{V}^3$  es $r : \vec{p} = \vec{A} + \lambda \vec{V_{\pi}} + \mu\vec{W_{\pi}}$, con $\lambda\in\real$ (ver ). De esta manera quedan determinados los vectores de posición de todos los puntos del plano.
 
-Como en el caso de la recta, podemos escribir esta ecuación en forma de sistema con parámetros:
+\begin{figure}[hptb]
+    \centering
+    \includegraphics[width=0.65\textwidth]{img/ecplanos.png}
+    \caption{Plano generado por un punto y dos vectores}
+    \label{fig:plano}
+\end{figure}
+
+
+\paragraph{¿Sería posible evitar el parámetro $\lambda$?} Como en el caso de la recta, podemos escribir esta ecuación en forma de sistema:
 
 $$\pi : \vec{p} = \vec{A} + \lambda \vec{V_{\pi}} + \mu\vec{W_{\pi}}\dimplies \underbrace{\pi:\displaystyle \left\{\begin{array}{c} x = a_1 + \lambda v_1 + \mu w_1\\y = a_2 + \lambda v_2 + \mu w_2 \\ z = a_3 + \lambda v_3 + \mu w_3 \end{array}\right\}}_{(1)} $$
 
@@ -385,7 +131,16 @@ y - a_2 = \lambda v_2 + \mu w_2 \\
 z - a_3 = \lambda v_3 + \mu w_3 
 \end{array}\right\}
 \]
-Como los vectores $\vec{v},\vec{w}$ son linealmente independientes y el vector $AX$ es una combinación lineal de los otros 2 (ver \ref{fig:plano}), tenemos:
+Como los vectores $\vec{v},\vec{w}$ son linealmente independientes y el vector $AX$ es una combinación lineal de los otros 2 (ver \ref{fig::ecuacion_implicita_plano}), tenemos:
+
+
+\begin{figure}[hptb]
+    \centering
+    \includegraphics[width=0.3\textwidth]{img/Implicita1.PNG}
+    \includegraphics[width=0.4\textwidth]{img/Implicita2.PNG}
+    \caption{En la figura de la izquierda puede comprobarse que el vector rosa pertenece al plano, formado por el punto en común y los otros 2 vectores (naranjas). La versión tridimensional se encuentra en \href{https://www.geogebra.org/m/pyh6nnsp}{https://www.geogebra.org/m/pyh6nnsp}.}
+    \label{fig::ecuacion_implicita_plano}
+\end{figure}
 
 \[
 \left|
@@ -399,12 +154,6 @@ z - a_3 & v_3 & w_3
 Desarrollando esta ecuación, tendríamos una ecuación del tipo $Ax+By+Cz + D = 0$, que llamamos \concept[Ecuación del plano\IS implícita]{Ecuación implícita del plano}.
 
 
-\begin{figure}[hptb]
-    \centering
-    \includegraphics[width=0.65\textwidth]{img/ecplanos.png}
-    \caption{Plano generado por un punto y dos vectores}
-    \label{fig:plano}
-\end{figure}
 
 \begin{problem}
     \textbf{Calcula las ecuaciones del plano que pasa por los puntos $A(1,1,1), B(2,2,2), C(1,2,3)$}
@@ -416,7 +165,7 @@ Desarrollando esta ecuación, tendríamos una ecuación del tipo $Ax+By+Cz + D =
 
     $\vec{AB} = (1,1,1) \quad\quad \vec{AC} = (0,1,2)$, que son linealmente independientes al no ser proporcionales.
 
-    Ecuación vectorial: $\pi: \vec{p} = (1,1,1) + \mu\vec{AB} + \lambda\vec{AC}, \lambda,\mu\in\real$
+    Ecuación vectorial: $\pi: \vec{p} = (1,1,1) + \mu\cdot\vec{AB} + \lambda\cdot\vec{AC}$ con $\lambda,\mu\in\real$
 
     Ecuación paramétrica: $
     \displaystyle\left\{ \begin{array}{c}
@@ -456,19 +205,19 @@ Desarrollando esta ecuación, tendríamos una ecuación del tipo $Ax+By+Cz + D =
 \subsubsection{Entre 2 planos}  
 
 \begin{framed}
-\textbf{Ecuaciones vectoriales o paramétricas:}
+\textbf{Ecuaciones vectoriales o paramétricas:} A continuación, se ofrecen algunos criterios para realizar el estudio de la posición relativa de dos planos.
   \begin{itemize}
     \item Si 2 planos comparten 3 puntos, entonces son el mismo plano.
-    \item Si los 4 vectores directores de los 2 planos son linealmente independientes, entonces los planos son secantes en un punto.
-    \item Si la matriz formada por los 4 vectores directores de los 2 planos tiene rango 3, los planos son secantes en una recta.
     \item Si la matriz formada por los 4 vectores directores de los 2 planos tiene rango 2, los planos son paralelos.
     \item Si 2 planos paralelos comparten un punto, entonces son coincidentes.
+    \item Si la matriz formada por los 4 vectores directores de los 2 planos tiene rango 3, los planos son secantes en una recta.
+    \item \textit{Criterio de perpendicularidad}
   \end{itemize}
 \end{framed}
 
 
 
-\subparagraph{Ecuaciones implícitas}
+\subparagraph{Ecuaciones implícitas:} En el caso concreto de que los 2 planos estén expresados en ecuaciones implícitas, podremos estudiar su posición relativa discutiendo el sistema formado por ambas ecuaciones:
 
 \[
 \left\{\begin{array}{c}
@@ -485,16 +234,33 @@ Obtenemos las matrices: $M = \displaystyle\begin{pmatrix}A&B&C\\A'&B'&C'\end{pma
     \item $Rg(M) < Rg(M^*) = 2 $\hide{ paralelos.}
     \item $Rg(M) = Rg(M^*) = 2 $\hide{ secantes.}
   \end{itemize}
-\obs En realidad, sería como las ecuaciones implícitas de la recta.
+\obs Las ecuaciones implícitas de la recta, en realidad, es la expresión de 2 planos secantes (que, como no puede ser de otra manera, forman una recta)
 \end{framed}
+
+\begin{problem}
+Estudia la posición relativa de los siguientes planos:
+
+\[
+\pi: \left\{\begin{matrix}x=\lambda+\mu\\y=1-\lambda\\z=2-2\lambda+\mu\end{matrix}\right\}
+\]
+\[
+\pi': x-2y+z=1
+\]
+
+\solution
+
+%\vspace{10cm}
+
+\end{problem}
 
 \subsubsection{Entre 3 planos}
 
 \subparagraph{Ecuaciones vectorial o paramétricas}
 
-Se pasa a implícitas.
+El estudio de posición relativa en este caso se hace demasiado complejo. Es preferible pasar los planos a ecuaciones implícitas para el estudio.
 
-\subparagraph{Ecuaciones implícitas}
+\subparagraph{Ecuaciones implícitas} Como antes, discutiremos el sistema formado por las ecuaciones implícitas del plano.
+
 \[
 \left\{\begin{array}{c}
 \pi_1: Ax+By+Cz = D\\
@@ -528,6 +294,7 @@ Las posibilidades son: (ver figura \ref{fig:PosicionesRelativasPlanos})
   \end{itemize}  
 \end{framed}
 
+\newpage
 \begin{figure}[hptb]
     \centering
     \includegraphics[width=0.65\textwidth]{img/Captura1.png}
@@ -539,11 +306,39 @@ Las posibilidades son: (ver figura \ref{fig:PosicionesRelativasPlanos})
 \end{figure}
 
 
+\begin{problem}
+Estudia la posición relativa de los planos: 
+\begin{align*}
+\pi_1: 2x-3y+2z=7\\
+\pi_2: -3+y-z=-5\\
+\pi_3:2x-2x+3z=7
+\end{align*}
+\solution
+
+\begin{align*}
+\left\{
+\begin{array}{c}
+    \pi_1: 2x-3y+2z=7\\
+    \pi_2: -3+y-z=-5\\
+    \pi_3:2x-2x+3z=7
+\end{array}
+\right\} \to
+\left\|
+\begin{array}{c}
+M = \begin{pmatrix}             2&-3&2\\-3&1&-1\\2&-2&3
+\end{pmatrix} \\\\
+M' = \begin{pmatrix}             2&-3&2&-7\\-3&1&-1&5\\2&-2&3&-7
+\end{pmatrix} \end{array}\right.
+\end{align*}
+
+%\vspace{10cm}
+
+\end{problem}
 
 
-\subsection{Posiciones relativas entre recta y plano}
+\subsubsection{Posiciones relativas entre recta y plano}
 
-\paragraph{Ecuaciones implícitas: } si tanto la recta como el plano están dados en ecuaciones implícitas, estaríamos en la posición relativa de 3 planos, sabiendo que 2 de ellos son secantes en una recta.
+\paragraph{Ecuaciones implícitas: } Si la recta y como el plano están dados en ecuaciones implícitas, estaríamos en la posición relativa de 3 planos, sabiendo que 2 de ellos son secantes en una recta.
 
 \paragraph{Ecuaciones paramétrica: } $\pi: \{P_{\pi},\vec{v_{\pi}}, \vec{w_{\pi}}\}$ 
 
@@ -557,25 +352,96 @@ Sí & Sí & Recta contenida en el plano\\
 \end{tabular}
 \end{center}
 
+\begin{problem}
+Dada la recta $r: \left\{\begin{array}{c}
+    x=\lambda\\
+    y=1-2\lambda\\
+    z=2
+\end{array}\right\}$ y el plano $\pi: (0,1,1) + \mu\cdot (-1,0,0) + \lambda\cdot(2,0,1)$ 
+\solution
+%\vspace{10cm}
+
+\end{problem}
+
 \paragraph{Plano implícito, recta paramétrica: } comprobamos si existe algún valor de $\lambda_{r}$ para el que se cumpla la ecuación implícita del plano. 
 \begin{itemize}
   \item $\exists!\lambda \implies $ secante.
   \item $\lambda \in \real \implies$ contenida.
   \item $\not\exists \lambda \implies $ paralela.
 \end{itemize}
+\begin{problem}
+Estudia la posición relativa del plano $\pi: 2x-2y+z=0$ y de ña recta $r:\left\{\begin{array}{c}
+     x=1-2\lambda\\
+     y=1+2\lambda\\
+     z=3+5\lambda 
+\end{array}\right\}$
+\solution
 
-Deberes: Hoja resumen de teoría,105ab,107ab
+%\vspace{10cm}
 
-\subsubsection{Posiciones relativas entre 2 rectas:}
+\end{problem}
 
-Dadas las rectas 
+\begin{problem}
+Estudia la posición relativa del plano $\pi: 2x-2y+z=0$ y de ña recta $r:\left\{\begin{array}{c}
+     x=1+\lambda\\
+     y=-2+2\lambda\\
+     z=3-\lambda 
+\end{array}\right\}$
+\solution
+
+Sustituimos los valores de $x,y,z$ de las ecuaciones de $r$ en el plano $\pi$:
+
+\[3(1+\lambda) - (-2+2\lambda) + 3 - \lambda = 0 \dimplies 3+3\lambda+2-2\lambda-2\lambda+3-\lambda \dimplies 8=0\]
+
+\textbf{Conclusión} La recta y el plano no tienen nada en común, por lo que tienen que ser paralelos.
+
+\end{problem}
+
+
+Ejercicios recomendados: 105ab,107ab
+
+\subsubsection{Posiciones relativas entre dos rectas}
+
+Las distintas posibilidades de posición relativa son:
+
+  \begin{tabular}{c|c|c}
+\textbf{Posición relativa} & \textbf{Vectores} &\textbf{ Puntos}\\\hline
+Paralelas coincidentes & Paralelos & Todos en común (*)\\
+Paralelas no coincidentes. & Paralelos & Ninguno en común\\
+Secantes en un punto & No paralelos & Solamente uno en común.\\
+Se cruzan en el espacio & No paralelos & Ninguno en común\\
+\end{tabular}
+
+\begin{figure}[hptb]
+    \centering
+    \includegraphics[width=0.4\textwidth]{img/rectasquesecruzan.png}
+    \caption{Representación gráfica de dos rectas que se cruzan en el espacio.}
+    \label{fig::rectas_que_se_cruzan_en_el_espacio}
+\end{figure}
+
+
+\begin{framed}
+  Dadas las rectas 
 $r:\vec{p} = \vec{a} + \lambda\vec{u},\quad \lambda\in\real$
 y
 $s:\vec{p} = \vec{b} + \lambda\vec{w},\quad \lambda\in\real$. 
 
+
+\begin{itemize}
+    \item $\vec{u}|| \vec{w} \to $ Paralelas o coincidentes.
+    \subitem $A_r\in s$ ó $B_s\in r \implies$ coincidentes.
+    \subitem En caso contrario, paralelas no coincidentes.
+    \item $\vec{u}\not || \vec{w} \to $ secantes o se cruzan.
+    \subitem Ver \textit{procedimiento general}.
+\end{itemize}
+\end{framed}
+
+\paragraph{Procedimiento general:}
+\label{txt::procedimiento_general}
+
 Si los vectores directores son paralelos (proporcionales), las rectas pueden ser paralelas o coincidentes. 
 %
-Para poder distinguir , podríamos ver si un vector formado por un punto de cada recta es también proporcional (entonces serían coincidentes) o si no (entonces serían secantes).
+Para poder distinguir, podríamos ver si un vector formado por un punto de cada recta es también proporcional (entonces serían coincidentes) o si no (entonces serían secantes).
 
 De la misma manera, si los vectores son linealmente independientes las rectas pueden cruzarse o cortarse. 
 %
@@ -600,36 +466,127 @@ $
 
 \begin{framed}
   \begin{itemize}
-    \item $Rg(M) = Rg(M^*) = 1 $\hide{ SCI, secantes en una recta [grado de indeterminación 1, por lo que hay dos parámetros. \textbf{Coincidentes}.]}
+    \item $Rg(M) = Rg(M^*) = 1 $\hide{ SCI, secantes en una recta [grado de indeterminación 1, por lo que hay dos parámetros.] \textbf{Coincidentes}.]}
     \item $Rg(M) = 1 < Rg(M^*) = 2 $\hide{ paralelas.} 
     \item $Rg(M) = Rg(M^*) = 2 $\hide{ SCI, secantes en un plano [dimensión 2]. $\vec{AB}$ se puede escribir como combinación lineal de $\vec{u}$ y $\vec{w}$}
     \item $Rg(M) = 2 < Rg(M^*) = 3 $\hide{ se cruzan en el espacio.} 
   \end{itemize}  
 \end{framed}
-\obs También se podría trabajar con las matrices traspuestas si uno está más familiarizado con estudiar el rango como combinaciones lineales de filas en lugar de columnas.
+
+\begin{problem}
+Estudia la posición relativa de las siguientes rectas:
+
+\[
+r:\left\{
+\begin{array}{c}
+x=\lambda \\
+y=-1+2\lambda\\
+z=1-\lambda
+\end{array}
+\right\}
+\;\;\;\;
+s:\left\{
+\begin{array}{c}
+x=2\lambda \\
+y=2+\lambda\\
+z=2-3\lambda
+\end{array}
+\right\}
+\]
+\solution
+
+Se toma un punto y un vector de cada recta:
+\[
+r: A(0,-1,1), \vec{u_r} =(1,2,-1)\quad\quad s: B(0,2,2), \vec{w_s} = (2,1,-3)
+\]
+
+Se consideran las matrices: $M=\left(\vec{u_r}, \vec{w_s}\right) \quad M^\ast = \left(\vec{u_r},\vec{w_s}, [\vec{AB}]\right)$ y se estudia el rango.
+
+%\vspace{5cm}
+
+Para hallar las coordenadas el punto de corte: 
+
+%\vspace{5cm}
+
+\end{problem}
 
 \begin{problem}
 Página 289, ejercicios 52, calculando puntos de cortes
 \solution
-
 \end{problem}
 
 
-\subsubsection{Haz (no se pide en selectividad, así que se salta)}
-\paragraph{Haz de rectas paralelas: } cambia el punto, manteniendo fijo el vector. 
-\paragraph{Haz de rectas secantes: } cambia el vector (sin ser nunca nulo), mantiene fijo el punto.
-\paragraph{Haz de planos paralelelos: } cambia el punto, mantiene los vectores
-\paragraph{Haz de planos secantes en una recta: } mantiene un vector y un punto, cambia el otro vector.
+\paragraph{Ambas rectas en general:} 
+%
+Formamos la matriz de 4x4 y estudiamos la posición relativa de 4 planos.
+%
+Consultando \fref{fig:PosicionesRelativasPlanos} tenemos todos los casos cubiertos en los que uno de los planos es combinación lineal de los demás. 
+%
+En el caso en el que no haya ningún plano que sea combinación lineal de los demás, tendremos que la matriz ampliada tendrá rango 4 por lo que el sistema será incompatible. 
+%
+Geométricamente, tendremos rectas que se cruzan.
 
 \begin{problem}
-Tema 11: 56,57,59,60.
+Estudia la posición relativa de las siguientes rectas:
+\[
+r: 
+\left\{
+\begin{array}{l}
+x+y+z=1\\
+-3x+y+z=1
+\end{array}
+\right\}\;\;\;\;
+s: 
+\left\{
+\begin{array}{l}
+2x-y+z=1\\
+-x+z=0
+\end{array}
+\right\}
+\]
 \solution
+
+\[
+\left\{
+\begin{array}{l}
+x+y+z=1\\
+-3x+y+z=1\\
+2x-y+z=1\\
+-x+z=0
+\end{array}
+\right\} \to M^\ast=\begin{pmatrix}
+0&1&1&1\\-3&1&1&1\\2&-1&1&1\\-1&0&1&0
+\end{pmatrix}
+\]
+
+Calculamos $|M^\ast|$
+\[
+|M^\ast|=\begin{pmatrix}
+0&1&1&1\\-3&1&1&1\\2&-1&1&1\\-1&0&1&0
+\end{pmatrix} = ... = -6
+\]
+
+$Rg(M) \leq 3 < 4 = Rg(M^\ast)$, por lo que el sistema es incompatible.
+%
+Por ello, las rectas se cruzan en el espacio.
+
 \end{problem}
 
-Deberes: 118,136,143
+\paragraph{Haz de rectas}
+%\paragraph{Haz de rectas paralelas: } cambia el punto, manteniendo fijo el vector. 
+%\paragraph{Haz de rectas secantes: } cambia el vector (sin ser nunca nulo), mantiene fijo el punto.
+%\paragraph{Haz de planos paralelelos: } cambia el punto, mantiene los vectores
+%\paragraph{Haz de planos secantes en una recta: } mantiene un vector y un punto, cambia el otro vector.
 
-\subsubsection{Practicamos en general}
+%\begin{problem}
+%Tema 11: 56,57,59,60.
+%\solution
+%\end{problem}
 
+%Deberes: 118,136,143
+
+
+\paragraph{Practicamos en general}
 Tema 11: 
 122,127,130,134,135,136,139,140,143,145,149,150
 
