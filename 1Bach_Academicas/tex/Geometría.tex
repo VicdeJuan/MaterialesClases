@@ -108,8 +108,6 @@ Igual que hemos definido $\real^2$, podríamos haber definido $\real^3$, estruct
 %
 Como curiosidad matemática, hasta podríamos definir $\real\times...\times\real$ infinitas veces y estudiar qué pasa con ello. 
 
-Vamos a aterrizar un poco.
-
 
 \begin{defn}[Combinación lineal]
 Combinación lineal de $\vec{x},\vec{y},\vec{z}\in V^2$ es cualquier expresión algebraica de la forma $α\vec{x}+β\vec{y}+λ\vec{z}$ con $α,β,λ\in\real$
@@ -125,13 +123,24 @@ Combinación lineal de $\vec{x},\vec{y},\vec{z}\in V^2$ es cualquier expresión 
 
 \obs Es la misma idea de fondo que la de combinaciones lineales de ecuaciones en el método de Gauss.
 
-\begin{defn}[Dependencia lineal]
+\begin{defn}[Dependencia lineal\IS de dos vectores]
+Sean $\vec{x},\vec{y}\in V^2$. 
+
+\[\vy \text{ depende linealmente de } \vx \dimplies \existsλ\in\real \tq \vy = \lambda\vx\]
+\end{defn}
+
+\begin{defn}[Dependencia lineal\IS de tres vectores]
 Sean $\vec{x},\vec{y},\vec{z}\in V^2$. 
 
 \[\vz \text{ depende linealmente de } \vx,\vy \dimplies \existsα,λ\in\real \tq \vz = α\vx+λ\vy\]
 \end{defn}
 
-También podríamos definirlo para 2 vectores. $\vx = λ\vy$ con $\lambda\in\real$
+\begin{defn}[Dependencia lineal\IS de $n$ vectores]
+Sean $\vec{x_1},\vec{x_2},...,\vec{x_n},\vec{y}\in V^2$. 
+
+\[\vy \text{ depende linealmente de } \vec{x_1},\vec{x_2},...,\vec{x_n} \dimplies \existsα_1,α_2,...,α_n\in\real \tq \vy = α_1\vx+\alpha_2·\vec{x_2}+...+\alpha_n·\vec{x_n}\]
+\end{defn}
+
 
 \begin{defn}[Independencia lineal]
 Sean $\vec{x},\vec{y}\in V^2$. 
@@ -145,7 +154,7 @@ Sean $\vec{x},\vec{y}\in V^2$.
 Buscamos $α$ tales que $α\vec{a} = \vec{b}$. 
 
 \[
-	α(2,2) = β(3,5) \dimplies
+	α(2,2) = (3,5) \dimplies
 \left\{
 	\begin{array}{c}
 		2α=3\\
@@ -191,36 +200,19 @@ Utilizamos: "2 vectores son linealmente dependientes si y sólo si son proporcio
 Buscamos $m$ tal que $\rfrac{1}{2} = \rfrac{3}{m}$, lo cual es cierto si $m=6$.
 \end{problem}
 
-\begin{defn}[Rango de un conjunto de vectores]
-El rango de un conjunto de vectores es el número de vectores linealmente independientes que contiene.
-\end{defn}
 
-\begin{example}
-	\begin{itemize}
-		\item $\text{Rg}\{(0,1),(1,0),(0,3)\} = 2$
-	\end{itemize}
-\end{example}
+\subsection{Base de un espacio vectorial}
 
-\begin{problem}
-Halla los valores de $m$ para los que el conjunto de vectores $C=\{(1,3),(3,m)\}$ tenga rango 2. ¿Hay algún valor para que el rango sea 0?
-
-\solution
-
-\end{problem}
-
-
-\subsubsection{Base de un espacio vectorial}
-
-\begin{defn}[Sistema de generadores]
-$B = \{\vx_1,\vx_2,...,\vx_n\}$ con $i=1,...,n\;\;\vx_i,\in V^2$ es un sistema de generadores si y sólo si \[\forall \vz\in V^2,\;\; \existsα_1,α_2,...,α_n\in\real \tq \vz=α_1\vx_1+α_2\vx_2 + ... + α_n\vx_n \left( = \sum_{i=1}^n α_i\vx_i\right)\]
-\end{defn}
+%\begin{defn}[Sistema de generadores]
+%$B = \{\vx_1,\vx_2,...,\vx_n\}$ con $i=1,...,n\;\;\vx_i,\in V^2$ es un sistema de generadores si y sólo si \[\forall \vz\in V^2,\;\; \existsα_1,α_2,...,α_n\in\real \tq \vz=α_1\vx_1+α_2\vx_2 + ... + α_n\vx_n \left( = \sum_{i=1}^n α_i\vx_i\right)\]
+%\end{defn}
 
 \begin{defn}[Base]
 Un conjunto $B=\{\vx,\vy\}$ con $\vx,\vy\in V^2$ es una base de $ V^2$ si y sólo si cumple:
 
 	\begin{itemize}
 		\item $\vx,\vy$ linealmente independientes.
-		\item $\{\vx,\vy\}$ es un sistema de generadores.
+%		\item $\{\vx,\vy\}$ es un sistema de generadores.
 	\end{itemize}
 \end{defn}
 
@@ -247,7 +239,7 @@ Un conjunto $B=\{\vx,\vy\}$ con $\vx,\vy\in V^2$ es una base de $ V^2$ si y sól
 	Sea $B_2=\{(1,1),(0,1)\}$ una base de $ V^2$. Por ejemplo, el vector anterior $\vec{z}=(3,6)$ se puede construir como combinación lineal de los vectores de la base: $(3,6) = \alpha·(1,1) + \beta·(0,1)$
 
 
-	Haciendo las cuentas obtendríamos $\alpha=3, \beta=3$, por lo que $\vec{z}=(3,3)$.
+	Haciendo las cuentas obtendríamos $\alpha=3, \beta=3$, por lo que $\vec{z}=(3,3)$ en la base $B_2$.
 \end{example}
 
 \begin{problem}
@@ -255,7 +247,7 @@ Un conjunto $B=\{\vx,\vy\}$ con $\vx,\vy\in V^2$ es una base de $ V^2$ si y sól
 			\ppart ¿Cuáles son las coordenadas del vector $(7,5)$ en esta base?
 
 			\solution
-			\spart Buscamos demostrar que los vectores son linealmente independientes y que las coordenadas de un vector cualquiera $\vz=(z_1,z_2)$ son únicas. 
+			\spart Buscamos demostrar que los vectores son linealmente independientes y que, por tanto, las coordenadas de un vector cualquiera $\vz=(z_1,z_2)$ son únicas. 
 
 			\paragraph{Independencia lineal:} 
 
@@ -269,7 +261,9 @@ Un conjunto $B=\{\vx,\vy\}$ con $\vx,\vy\in V^2$ es una base de $ V^2$ si y sól
 				\right\}\implies \text{Sistema incompatible} \dimplies \text{Linealmente independientes}
 			\]
 
-			\paragraph{Generación:} Las coordenadas de un vector cualquiera $\vz=(z_1,z_2)$ deberían ser únicas.
+			Podemos concluir que $B_2$ es una base de $V^2$.
+
+			\paragraph{Comprobamos coordenadas únicas:} Solo como ejercicio interesante, podemos comprobar que las coordenadas de un vector cualquiera $\vz=(z_1,z_2)$ son únicas.
 
 			\[
 				(z_1,z_2) = α(1,1) + β(1,-1) \dimplies (z_1,z_2) = (α+β,α-β) \dimplies 
@@ -290,9 +284,9 @@ Un conjunto $B=\{\vx,\vy\}$ con $\vx,\vy\in V^2$ es una base de $ V^2$ si y sól
 			\]
 
 			
-			Entonces, el conjunto genera $ V^2$ por lo que es base de $V^2$
-
+		
 			\spart 
+			Para encontrar las coordenadas resolvemos:
 			\[
 				(7,5) = α(1,1) + β(1,-1) \dimplies (7,5) = (α+β,α-β) \dimplies 
 			\]
@@ -319,17 +313,16 @@ Un conjunto $B=\{\vx,\vy\}$ con $\vx,\vy\in V^2$ es una base de $ V^2$ si y sól
 Sea $B=\{(3,0),(1,-1)\}$. 
 \ppart ¿Es una base de $ V^2$?
 \ppart En caso de que sea una base, calcula las coordenadas del vector $(6,6)$ en la base $B$.
-\ppart ¿Es una base ortogonal?
 \solution
 \spart
 \textbf{Linealmente independientes:}
 \[
 α(3,0) + β(1,-1) = (0,0) \dimplies \left\{\begin{array}{c}3α+β=0\\-β=0 \end{array}\right\} \dimplies  (α,β) = (0,0)
 \]
-\textbf{Generadores:} 
-\[
-α(3,0) + β(1,-1) = (x,y) \dimplies\underbrace{\left\{\begin{array}{c}3α+β=x\\-β=y \end{array}\right\}}_{SCD} \dimplies  (α,β) = (\rfrac{x+y}{3},-y) \implies \exists! (a,b)\in V^2
-\]
+%\textbf{Generadores:} 
+%\[
+%α(3,0) + β(1,-1) = (x,y) \dimplies\underbrace{\left\{\begin{array}{c}3α+β=x\\-β=y \end{array}\right\}}_{SCD} \dimplies  (α,β) = (\rfrac{x+y}{3},-y) \implies \exists! (a,b)\in V^2
+%\]
 
 \spart 
 \[
@@ -375,9 +368,8 @@ Sea $B=\{(3,0),(1,-1)\}$.
 \draw[color=black] (-1.75,0.73) node {$c$};
 \end{scriptsize}
 \end{tikzpicture}
-\caption{Cambio de base de unos vectores gráficamente.}
+\caption{Cambio de base de unos vectores gráficamente. Puedes encontrar en \href{https://www.geogebra.org/classic/FhJF4aBr}{https://www.geogebra.org/classic/FhJF4aBr} un ejemplo gráfico editable}
 \end{figure}
-
 
 
 \section{Plano afín}
@@ -438,9 +430,10 @@ $[\vec{AB}] = (1-3,2-5)$
 Sean 3 puntos $A=(1,-1), B=(0,2), C=(-1,m)$.
 
 \ppart Halla, si es posible, el valor de $m$ para que $[\vec{AB}] = [\vec{BC}]$
-
 \ppart Halla, si es posible, el valor de $m$ para que $[\vec{AB}] = [\vec{AC}]$
 
+\ppart Halla, si es posible, el valor de $m$ para que $\vec{AB} = \vec{BC}]$
+\ppart Halla, si es posible, el valor de $m$ para que $\vec{AB} = \vec{AC}$
 \solution
 
 \spart 
@@ -458,6 +451,10 @@ Sean 3 puntos $A=(1,-1), B=(0,2), C=(-1,m)$.
 	\left[\vec{AC}\right] = (-2,m+1)
 \end{array}\right\} \implies \text{ Imposible } [\vec{AB}] = [\vec{AC}]
 \]
+
+\spart $\nexists m\in\real$ ya que los dos vectores fijos no pueden ser iguales puesto que el origen de cada vector es diferente.
+
+\spart $\nexists m\in\real \tq B=C$
 
 \end{problem}
 
@@ -486,15 +483,24 @@ Sean 3 puntos $A=(1,-1), B=(0,2), C=(-1,m)$.
 \dimplies (m_1,m_2) = \left(\frac{b_1+a_1}{2},\frac{b_2+a_2}{2}\right)
 \]
 
+\begin{problem}
+Dados $A(2,2), B(6,12)$ halla
+\ppart El punto medio del segmento $AB$
+\ppart El punto que, dividiendo el segmento $AB$ en tres partes iguales, está al doble de distancia de $A$  que de $B$.
+\solution
+\newpage
+\end{problem}
 
 \begin{prop}[Cálculo del módulo de un vector en la base canónica] 
 Sea $\vec{x} = (x_1,x_2)$.
 
 $|\vec{x}| = \sqrt{x_1^2+x_2^2}$
 
-\obs ¿Y si fuera otra base? ¿Se mantendría? No
-
+\obs Esto es posible en la base canónica.
 \end{prop}
+\begin{proof}
+En la base canónica el vector forma un triángulo rectángulo en el que los catetos miden $x_1$ y $x_2$ respectivamente. Aplicando el teorema de Pitágoras, la longitud del vector será la hipotenusa del triángulo rectángulo.
+\end{proof}
 
 
 \begin{defn}[Vector\IS unitario] $\vec{v}\in V^2$ es unitario si $|\vec{v}|=1$
@@ -532,19 +538,39 @@ Dados $\vec{v}=(1,1),\vec{w}=(-1,5) \in V^2$:
 
 \[\vv·\vec{w} = |\vv|·|\vec{w}|·\cos(\widehat{\vec{v},\vec{w}})\]
 
-¿Cómo podemos calcular el ángulo que forman los vectores?
+¿Cómo podemos calcular el ángulo que forman los vectores? Este es un ejercicio de trigonometría muy recomendable que se deja como ejercicio para el lector.
 \end{example}
 
-Existe otra manera de calcular el producto escalar de dos vectores.
+Existe otra manera de calcular el producto escalar de dos vectores. Pero antes de verlo necesitamos definir:
 
 
-\begin{prop}[Expresión analítica del producto escalar]
+\begin{defn}[Ortogonalidad]
+$\vx,\vy\in V^2$ son ortogonales $\dimplies \vx·\vy=0$.
+\end{defn}
+
+\begin{defn}[Perpendicular]
+$\vx,\vy\in V^2$ son perpendiculares $\dimplies$ forman un ángulo recto.
+\end{defn}
+
+¿Es lo mismo perpendicular que ortogonal? Perpendicular $\implies$ ortogonal, pero no al revés. El vector $\vec{0} = (0,0)$ es ortogonal a todos los demás vectores pero perpendicular a ninguno.
+
+
+\begin{defn}[Base\IS ortogonal]
+$\mathcal{B} = \{\vec{a}=(a_1,a_2),\vec{b}=(b_1,b_2)\}$ es ortogonal si $\vec{a},\vec{b}$ son ortogonales, es decir, $\vec{a}\cdot\vec{b} = 0$ 
+\end{defn}
+
+\begin{defn}[Base\IS ortonormal]
+$\mathcal{B} = \vec{a}=(a_1,a_2),\vec{b}=(b_1,b_2)$ es ortonormal si $\vec{a},\vec{b}$ son vectores unitarios ortogonales.
+\end{defn}
+
+
+
+\begin{prop}[Expresión analítica del producto escalar en una base ortonormal]
 
 Dados $\vec{v}=(v_1,v_2),\vec{w}=(w_1,w_2)\in V^2$ respecto de una base ortonormal $\mathcal{B} = \vec{a}=(a_1,a_2),\vec{b}=(b_1,b_2)$, entonces $\vec{v}·\vec{w} = v_1·w_1 + v_2·w_2$
 \end{prop}
 
 \begin{proof}
-
 \[
 \vec{v}·\vec{w} = (v_1·\vec{a} + v_2\vec{b})(w_1·\vec{a} + w_2\vec{b}) =\]
 \[  
@@ -589,27 +615,6 @@ Calculamos:
 \end{example}
 
 
-\begin{defn}[Ortogonalidad]
-$\vx,\vy\in V^2$ son ortogonales $\dimplies \vx·\vy=0$.
-\end{defn}
-
-\begin{defn}[Perpendicular]
-$\vx,\vy\in V^2$ son perpendiculares $\dimplies$ forman un ángulo recto.
-\end{defn}
-
-¿Es lo mismo perpendicular que ortogonal? Perpendicular $\implies$ ortogonal, pero no al revés. El vector $\vec{0} = (0,0)$ es ortogonal a todos los demás vectores pero perpendicular a ninguno.
-
-
-\begin{defn}[Base\IS ortogonal]
-$\mathcal{B} = \{\vec{a}=(a_1,a_2),\vec{b}=(b_1,b_2)\}$ es ortogonal si $\vec{a},\vec{b}$ son ortogonales, es decir, $\vec{a}\cdot\vec{b} = 0$ 
-\end{defn}
-
-\begin{defn}[Base\IS ortonormal]
-$\mathcal{B} = \vec{a}=(a_1,a_2),\vec{b}=(b_1,b_2)$ es ortonormal si $\vec{a},\vec{b}$ son vectores unitarios ortogonales.
-\end{defn}
-
-
-
 \subsection{Ejercicios recomendados}
 
 Todos los del libro.
@@ -627,12 +632,11 @@ Sea $B=\{(-2,2),(1,-1)\}$.
 \]
 Los vectores no son linealmente independientes. Tomando $α=1,β=2$ por ejemplo.
 
-\textbf{Generadores:} 
-Ni me lo planteo.
+%\textbf{Generadores:} Ni me lo planteo.
 
 
 \spart 
-Menos todavía.
+No se pueden calcular las coordenadas de un vector respecto de unos vectores que no son linealmente independientes. La única posibilidad sería que el vector $(6,6)$ fuera proporcional a los 2 vectores de la base.
 
 \end{problem}
 
@@ -642,7 +646,7 @@ Sean $A=(0,0),B=(-1,3),C=(2,5)$. ¿Están alineados?
 
 Que estén alineados es lo mismo que decir que 2 de ellos sean linealmente dependientes, o proporcionales y que tengan algún punto en común.
 
-$[\vec{AB}] = (-1,3)$, $[\vec{AC}] = (2,5)$. Como vectores fijos tienen en común el punto $A$. ¿Son L.D.? 
+$[\vec{AB}] = (-1,3)$, $[\vec{AC}] = (2,5)$. Como vectores fijos tienen en común el punto $A$. ¿Son linealmente dependientes (LD)? 
 
 \[
 	\frac{-1}{2} ≠ \frac{3}{5} \implies \text{ No L.D.} \dimplies \text{ No alineados.}

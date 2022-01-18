@@ -14,11 +14,11 @@
 \input{#1}
 \mycontinuidadyderivabilidad
 \mydominio
-\myasintotas
 \myptscorte
 \mysimetria
+\myasintotas
 \mymonotonia
-%\mycurvatura
+\mycurvatura
 \mygrafo
 \newpage
 }
@@ -139,8 +139,6 @@ Añadimos a estos puntos aquellos en los que la función primitiva no exista y a
 
 \newcommand{\mycurvatura}{
 \paragraph{Curvatura}
-    
-
 
 $f''(x) = \sagestr{latex(diff(diff(f(x),x,1),x,1).full_simplify())}$
 

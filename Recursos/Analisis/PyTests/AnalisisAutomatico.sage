@@ -1,4 +1,4 @@
-# coding: utf-8
+#coding: utf-8
 from datetime import datetime
 import logging
 
@@ -103,6 +103,12 @@ def getExtremosDomain(interval):
     return flatten([[e.lower(),e.upper()] for e in list(interval)])
 
 
+def solveDen0(f):
+    if f.denominator(normalize=False) == 1:
+        return "\\text{No tiene denominador, por lo que no hay puntos canditatos aqui.}"
+    else:
+        return "\\text{Por ello calculamos:  }" + latex(f.denominator(normalize=False)) +"= 0"
+
 
 ## Funcion para calcular las asintotas verticales de la funcion.
 #Input:
@@ -144,7 +150,7 @@ def asintotesV(f,den,AV,intervalos_dominio):
         log0 = [a[x] for a in _log0 if imag(a[x])==0]  
 
         if (Verbose == 1):
-            r+= "\\paragraph{Atencion: } Como la funcion es un logaritmo, podriamos tener una asintota vertical (ya que $\\displaystyle\\lim_{x\\mapsto 0^+} \\log(x) = -\\infty$ y $\\displaystyle\\lim_{x\\mapsto a^+} \\log\\left(\\frac{1}{a}\\right) = \\infty$ porque $\\displaystyle\\lim_{x\\mapsto\\infty}\\log(x) = \\infty$). Vamos a comprobarlo.\\\\"
+            r+= "\\paragraph{Atencion: } Como la funcion es un logaritmo, podriamos tener una asintota vertical (ya que $\\displaystyle\\lim_{x\\mapsto 0^+} \\log(x) = -\\infty$ y $\\displaystyle\\lim_{x\\mapsto\\infty}\\log(x) = \\infty$). Vamos a comprobarlo.\\\\"
 
             r+= "Para ello, calculamos los puntos en los que se haga 0 o $+\\infty$ el interior del logaritmo .\\\\"
 
@@ -291,6 +297,7 @@ def asintotesHO(f,AH,AO,intervalos_dominio):
                 else:
                     r+= "\\textbf{No hay A.O. ni A.H.}"
     AH=uniq(AH)
+    AO=uniq(AO)
     return r
 
 # Estudio de la simetria de la funcion.
@@ -384,7 +391,7 @@ def ptsFrontera(f,ptscrit,recta,derivada_too,intervalos_dominio):
     logging.info("funcion ptsFrontera")
     puntosFrontera = flatten([flatten(ptsDiscontinuidad(f=f,intervalos_dominio=intervalos_dominio)),flatten(ptscrit)])
     if derivada_too:
-        ___pts = ptsDiscontinuidad(f=diff(f(x),x,1))
+        ___pts = ptsDiscontinuidad(f=diff(f(x),x,1),intervalos_dominio=intervalos_dominio)
         if ___pts != []:
             puntosFrontera.append(___pts)
 
@@ -511,7 +518,7 @@ def _f_sign_monot(recta,f,min,max,curvatura,intervalos_dominio):
     # MEJORAR: toda esta operacion puede ser una operacion de conjuntos. Interseccion dominio f con dominio df - puntos de f''(x) == 0.
     for a in _getRealroots(ddf):
         recta.append(a)
-    for a in ptsDiscontinuidad(f=df):
+    for a in ptsDiscontinuidad(f=df,intervalos_dominio=intervalos_dominio):
         recta.append(a)
     for a in ptsDiscontinuidad(f=f,intervalos_dominio=intervalos_dominio):
         recta.append(a)
@@ -609,7 +616,7 @@ def _f_sign_monot_tabla(recta,f,min,max,curvatura,intervalos_dominio):
     for a in _getRealroots(ddf):
         if a in intervalos_dominio:
             recta.append(a)
-    for a in ptsDiscontinuidad(f=df):
+    for a in ptsDiscontinuidad(f=df,intervalos_dominio=intervalos_dominio):
         recta.append(a)
     for a in ptsDiscontinuidad(f=f,intervalos_dominio=intervalos_dominio):
         recta.append(a)
@@ -888,6 +895,9 @@ def getArgsLog(f):
 # f: funcion
 # realSetDomainArg: conjunto vacio en la que rellenar los valores del dominio.
 def dominion(f,maketext,realSetDomainArg):
+    # Limpiamos la variable para poder encadenar funciones.
+     
+    realSetDomainArg = realSetDomainArg.intersection(RealSet(0,0))
     intervalos_dominio = RealSet(0,0)
     logging.info("log (funcion dominion): funcion - "+str(f))
 
@@ -901,15 +911,15 @@ def dominion(f,maketext,realSetDomainArg):
     hasRt = len(radicandos)
 
     
-    hasDen = f.denominator() == 1
+    hasDen = f.denominator(normalize=False) == 1
 
     doms = ""
-    denominator=f.denominator()
+    denominator=f.denominator(normalize=False)
     intervals=[]
     intersect = 0
     if not denominator.is_constant():
         s0=latex(denominator)
-        __solutions = [a[x] for a in solve(f.denominator() == 0,x,solution_dict=True,domain='real') if imag(a[x])==0]   
+        __solutions = [a[x] for a in solve(f.denominator(normalize=False) == 0,x,solution_dict=True,domain='real') if imag(a[x])==0]   
         s1=",".join([str(a) for a in __solutions ])
         doms += "\\{x\\in\\real \\tq "+s0+" \\neq 0 \\} = \\real - \{"+ s1 + "\}\n"
         
@@ -979,14 +989,13 @@ def dominion(f,maketext,realSetDomainArg):
 
     intervalos_dominio = intervalos_dominio.union(__dominio)
     logging.info("log (funcion dominion): dominio preseignacion" + str(__dominio ))
-    logging.info("log (funcion dominion): dominio posteignacion" + str(intervalos_dominio))
-    
-    logging.info("log (funcion dominion) variable global"+str(intervalos_dominio))
-    
-    realSetDomainVar = realSetDomainArg.union(realSetDomainArg)
+    realSetDomainArg = realSetDomainArg.union(intervalos_dominio)
+    global realSetDomainVar
+    realSetDomainVar = realSetDomainArg
+    logging.info("log (funcion dominion) variable global"+str(realSetDomainArg))
 
     if maketext:
-        return ("D(f) = {"+doms + "} = {" + str(__dominio).replace("+","\\cup").replace("\\cup\\infty","+\\infty") + "}").replace("oo","\\infty")
+        return ("D(f) = {"+doms + "} = {" + str(__dominio).replace("+","\\cup").replace("oo","\\infty").replace("\\cup\\infty","+\\infty") + "}")
     else:
         return intervalos_dominio
 
@@ -1000,10 +1009,12 @@ def _myplot(f,AV,AH,AO,intervalos_dominio):
  logging.info("_myplot: AV: " + str(AV))
  logging.info("_myplot: AH: " + str(AH))
  discont=list(set(ptsDiscontinuidad(f=f,intervalos_dominio=intervalos_dominio)).difference(AV))
- xmin=-8
- xmax=8
- ymin=-10
- ymax=10
+ 
+ xmin=-16
+ xmax=16
+ ymin=-20
+ ymax=20
+ 
  c1=['blue','red','green','black','purple',colors]
 
  
@@ -1013,42 +1024,20 @@ def _myplot(f,AV,AH,AO,intervalos_dominio):
  for i in xrange(len(AV)):
   lab="x="+str(AV[i])
   v=AV[i]
-  P+=line([(v,ymin),(v,ymax)],legend_label=lab,color='blue',linestyle='-')
+  P+=line([(v,ymin),(v,ymax)],legend_label=lab,color='blue',linestyle='-',thickness=2)
   j=i
  for i in xrange(len(AH)):
   lab="y="+str(AH[i])
   h=AH[i]
-  P+=line([(xmin,h),(xmax,h)],legend_label=lab,color='red',linestyle='-')
+  P+=line([(xmin,h),(xmax,h)],legend_label=lab,color='red',linestyle='-',thickness=2)
  for i in xrange(len(discont)):
   x0=discont[i]
   ld=limit(f(x),x=x0,dir="plus")
   
   P+=circle((x0,ld),0.2,facecolor='white',fill=True)
+ AO=uniq(AO)
  if AO != []:
-  P+=plot(AO,color='purple',xmin=xmin,xmax=xmax,ymin=ymin,ymax=ymax)
+  for i in xrange(len(AO)):
+   lab=str(AO[i])
+   P+=plot(AO[i],color='purple',legend_label="y="+lab,xmin=xmin,xmax=xmax,ymin=ymin,ymax=ymax,thickness=2)
  return P
-
-
-
-
-
-
-print(dominion(f=f,maketext=true,realSetDomainArg=realSetDomainVar))
-print(simetria(f))
-print(puntosEjeX(func = f,intervalos_dominio = realSetDomainVar))
-print(puntosEjeY(func = f,intervalos_dominio = realSetDomainVar))
-print(latex(f.denominator()))
-print(asintotesV(f = f,den = f.denominator(),AV = AV,intervalos_dominio = realSetDomainVar))
-print(latex(f(x)))
-print(asintotesHO(f = f,AH=AH,AO = AO,intervalos_dominio = realSetDomainVar))
-print(latex(diff(f(x),x,1).full_simplify()))
-print(solveDerivadaNula(f=f,sols=ptsCrit,onlyReal=True,intervalos_dominio = realSetDomainVar))
-print(ptsFrontera(f=f,ptscrit=ptsCrit,recta=recta,derivada_too=true,intervalos_dominio = realSetDomainVar)
-
-"""print(estudiarSignoDiff(f=f,intervalos_dominio = realSetDomainVar))
-print(latex(diff(diff(f(x),x,1),x,1).full_simplify()))
-print(solveDerivadaNula(f=diff(f,x,1),sols=ptsCrit,onlyReal=True))
-print(ptsFrontera(f=f,ptscrit=ptsCrit,recta=recta,derivada_too=true,intervalos_dominio = realSetDomainVar)
-print(estudiarSignoSegundaDerivada(f=f,intervalos_dominio = realSetDomainVar))
-print(estudiarSigno(f,intervalos_dominio = realSetDomainVar))
-"""

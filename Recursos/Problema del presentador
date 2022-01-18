@@ -1,0 +1,58 @@
+sin_cambio = []
+acumulado_sin_cambio = []
+con_cambio = []
+acumulado_con_cambio = []
+
+
+impr=False
+for i in range(1000):
+    if (not i%10):
+        print("Vuelta " + str(i))
+    doors = {'A':0,'B':0,'C':0}
+    puerta_premiada = list(doors.keys())[int(abs(random()-0.1)*3)]
+    # Ponemos el precio en una de ellas, aleatoriamente
+    doors[puerta_premiada] = 1
+    if impr:
+        print("Puertas " + str(doors))
+
+    #Elegimos una de las puertas
+    eleccion = list(doors.keys())[int(abs(random()-0.1)*3)]
+    if impr:
+        print("Elección: " + eleccion)
+
+    #Obtenemos las puertas para descartar
+    puertas_para_descartar = list(set(list(doors.keys())).difference(eleccion).difference(puerta_premiada))
+    if impr:
+        print("Para descartar entre: " + str(puertas_para_descartar))
+
+    #Elegimos puerta para descartar.
+    puerta_descartada = int(abs(random()-0.1)*len(puertas_para_descartar))
+    # Ya se ha elegido puerta para descartar
+    if impr:
+        print("Descartamos: " + str(puertas_para_descartar[puerta_descartada]))
+
+    # Descartamos una puerta
+    nuevas_puertas_elegir = set(doors).difference(set(puertas_para_descartar[puerta_descartada]))
+    if impr:
+        print("Nueva elección entre: "+str(nuevas_puertas_elegir))
+        print(doors[eleccion])
+    #Ya tenemos nueva puerta para elegir
+    sin_cambio.append(doors[eleccion] == 1)
+    posibilidades_cambio_eleccion = set(nuevas_puertas_elegir).difference(eleccion)
+
+    #Elegimos, en el caso de 3, la única posibilidad de cambio de elección
+    cambio_eleccion = list(posibilidades_cambio_eleccion)[0]
+    if impr:
+        print(cambio_eleccion)
+    con_cambio.append(doors[cambio_eleccion] == 1)
+    if impr:
+        print("Sin cambiar: " + str(sin_cambio))
+        print("Con cambio: " + str(con_cambio))
+    acumulado_con_cambio.append(sum(con_cambio)/len(con_cambio))
+    acumulado_sin_cambio.append(sum(sin_cambio)/len(sin_cambio))
+        
+print(sum(con_cambio)/len(con_cambio))
+print(sum(sin_cambio)/len(sin_cambio))
+
+print(acumulado_con_cambio)
+print(acumulado_sin_cambio)
