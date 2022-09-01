@@ -95,7 +95,7 @@ En este caso:
 
 
 \ifverbose
-Los posibles puntos en los que la función puede tener una asíntota vertical son aquellos en los que se anula el denominador. 
+Los posibles puntos en los que la función puede tener una asíntota vertical son aquellos en los que se anula el denominador o los que hacen 0 el argumento del logaritmo. 
 %
 \[\sagestr{solveDen0(f)} \]
 \fi
@@ -174,7 +174,7 @@ En azul se marcan las asíntotas verticales, en rojo las horizontales y en morad
 \fi
 \begin{figure}
     \begin{center}
-        \sageplot{_myplot(f,AH=uniq(AH),AV=uniq(AV),AO=AO,intervalos_dominio = realSetDomainVar)}
+        \sageplot{_myplot(f,AH=uniq(AH),AV=uniq(AV),AO=AO,intervalos_dominio = realSetDomainVar,listmin=listmin,listmax=listmax,inflexionlist=[])}
     \end{center}
 \caption{Gráfica de la función.}
 \end{figure}
@@ -200,8 +200,8 @@ AO=[]
 realSetDomainVar = RealSet(0,0)
 ptsCrit=[]
 recta=[]
-min=[]
-max=[]
+listmin=[]
+listmax=[]
 
 epsilon = 0.0000001
 
@@ -653,7 +653,7 @@ def estudiarSigno(f,intervalos_dominio):
 # Enumera una lista de valores entre llaves.
 def printlist(m):
     retval = "\\{"
-    for i in range(m):
+    for i in range(len(m)):
     	retval += "x_" + str(i) +  " = " + latex(m[i]) + ";\\quad"
     return retval+"\\}"
 
@@ -687,9 +687,10 @@ def _getRealroots(f):
 # min: lista
 # max: lista
 # boolean curvatura: false si buscamos estudiar la monotnía. True para estudiar curvatura.
-def _f_sign_monot(recta,f,min,max,curvatura,intervalos_dominio):
- _emptylist(min)
- _emptylist(max)
+def _f_sign_monot(recta,f,listmin,listmax,curvatura,intervalos_dominio):
+ if not curvatura:
+  _emptylist(listmin)
+  _emptylist(listmax)
  df=diff(f,x,1)
  ddf = diff(df,x,1)
 
@@ -775,15 +776,16 @@ def _f_sign_monot(recta,f,min,max,curvatura,intervalos_dominio):
 # Devuelve codigo LaTeX en modo tabla
 # Recibe:
 # f: función
-# min: lista
-# max: lista
+# listmin: lista
+# listmax: lista
 # boolean curvatura: false si buscamos estudiar la monotnía. True para estudiar curvatura.
-def _f_sign_monot_tabla(recta,f,min,max,curvatura,intervalos_dominio):
+def _f_sign_monot_tabla(recta,f,listmin,listmax,curvatura,intervalos_dominio):
 
 ## IDEAS PARA MEJORAR. Poner los "&" al final, para poder poner \\hline entre las filas de las tablas.
 ## VER f_sign_monot sin tabla.
- _emptylist(min)
- _emptylist(max)
+ if not curvatura:
+  _emptylist(listmin)
+  _emptylist(listmax)
  df=diff(f,x,1)
  ddf = diff(df,x,1)
 
@@ -889,10 +891,12 @@ def _f_sign_monot_tabla(recta,f,min,max,curvatura,intervalos_dominio):
   logging.info("\t\t _f_sign_monot_tabla - signo actual: "+str(actual))
   logging.info("\t\t _f_sign_monot_tabla - signo prev: "+str(prev))
   if not i == 0:
+        # BUG: Cuando se estudia aquí la curvatura, se meten los puntos como máximos y mínimos como si lo fueran, pero en realidad no lo son. 
+        # Está hecho así para que se puedan dibujar en el plot.
       if prev!=actual and actual == -1 and toadd in intervalos_dominio:
-        max.append(toadd)
+        listmax.append(toadd)
       if prev!=actual and actual == 1 and toadd in intervalos_dominio:
-        min.append(toadd)
+        listmin.append(toadd)
 
  retval += "\\\\"
 
@@ -901,8 +905,8 @@ def _f_sign_monot_tabla(recta,f,min,max,curvatura,intervalos_dominio):
     retval += "&" + c
 
  #Fin del bucle
- logging.info("\t\t _f_sign_monot_tabla: minlist: "+str(min))
- logging.info("\t\t _f_sign_monot_tabla: maxlist: "+str(max))
+ logging.info("\t\t _f_sign_monot_tabla: minlist: "+str(listmin))
+ logging.info("\t\t _f_sign_monot_tabla: maxlist: "+str(listmax))
 
  retval += "\\end{tabular}\\caption{Estudio del signo de $" + fun + "(x)=" + latex(g.full_simplify()) + "$}\\label{"+__label+"}\\end{table}"
  
@@ -913,35 +917,35 @@ def _f_sign_monot_tabla(recta,f,min,max,curvatura,intervalos_dominio):
 
     retval +="\\begin{itemize}"
     retval += "\\item"
-    if max == []:
+    if listmax == []:
         retval += "La función no tiene ningún máximo."
-    elif len(max) == 1:
-        retval += "El punto $x=" + latex(max[0]) + "$ es un máximo de la función.\\\\" 
+    elif len(listmax) == 1:
+        retval += "El punto $x=" + latex(listmax[0]) + "$ es un máximo de la función.\\\\" 
     else:
-        retval += "Los puntos $" + printlist(max) + "$ son máximos de la función.\\\\" 
+        retval += "Los puntos $" + printlist(listmax) + "$ son máximos de la función.\\\\" 
     retval += "\\item"
-    if min == []:
+    if listmin == []:
         retval += "La función no tiene ningún mínimo."
-    elif len(min) == 1:
-        retval += "El punto $x=" + latex(min[0]) + "$ es un mínimo de la función.\\\\"
+    elif len(listmin) == 1:
+        retval += "El punto $x=" + latex(listmin[0]) + "$ es un mínimo de la función.\\\\"
     else:
-        retval += "Los puntos $" + printlist(min) + "$ son mínimos de la función.\\\\"
+        retval += "Los puntos $" + printlist(listmin) + "$ son mínimos de la función.\\\\"
     retval += "\\end{itemize}"  
  return retval 
 
 def estudiarSignoDiff(f,intervalos_dominio):
  if Verbose == 1: #BUG
-    _retval = _f_sign_monot_tabla(recta,f,min,max,false,intervalos_dominio)
+    _retval = _f_sign_monot_tabla(recta,f,listmin,listmax,false,intervalos_dominio)
  else:   
-    _retval = _f_sign_monot_tabla(recta,f,min,max,false,intervalos_dominio)
+    _retval = _f_sign_monot_tabla(recta,f,listmin,listmax,false,intervalos_dominio)
  
  return _retval
 
 def estudiarSignoSegundaDerivada(f,intervalos_dominio):
  if Verbose == 1:#BUG
-    _retval = _f_sign_monot_tabla(recta,f,min,max,true,intervalos_dominio)
+    _retval = _f_sign_monot_tabla(recta,f,listmin,listmax,true,intervalos_dominio)
  else:   
-    _retval = _f_sign_monot_tabla(recta,f,min,max,true,intervalos_dominio)
+    _retval = _f_sign_monot_tabla(recta,f,listmin,listmax,true,intervalos_dominio)
  
  return _retval
 
@@ -1190,7 +1194,7 @@ def dominion(f,maketext,realSetDomainArg):
 # int list AV: lista de puntos en los que hay una asíntota vertical.
 # int list AH: lista de puntos en los que hay una asintota horizontal.
 # EXPR AO: ecuación de la asíntota oblícua y=mx+n
-def _myplot(f,AV,AH,AO,intervalos_dominio):
+def _myplot(f,AV,AH,AO,intervalos_dominio,listmin,listmax,inflexionlist):
  logging.info("_myplot: f: " + str(f))
  logging.info("_myplot: AV: " + str(AV))
  logging.info("_myplot: AH: " + str(AH))
@@ -1210,12 +1214,12 @@ def _myplot(f,AV,AH,AO,intervalos_dominio):
  for i in xrange(len(AV)):
   lab="x="+str(AV[i])
   v=AV[i]
-  P+=line([(v,ymin),(v,ymax)],legend_label=lab,color='blue',linestyle='-',thickness=2)
+  P+=line([(v,ymin),(v,ymax)],legend_label=lab,color='blue',linestyle='-',thickness=1)
   j=i
  for i in xrange(len(AH)):
   lab="y="+str(AH[i])
   h=AH[i]
-  P+=line([(xmin,h),(xmax,h)],legend_label=lab,color='red',linestyle='-',thickness=2)
+  P+=line([(xmin,h),(xmax,h)],legend_label=lab,color='red',linestyle='--',thickness=2)
  for i in xrange(len(discont)):
   x0=discont[i]
   ld=limit(f(x),x=x0,dir="plus")
@@ -1225,7 +1229,11 @@ def _myplot(f,AV,AH,AO,intervalos_dominio):
  if AO != []:
   for i in xrange(len(AO)):
    lab=str(AO[i])
-   P+=plot(AO[i],color='purple',legend_label="y="+lab,xmin=xmin,xmax=xmax,ymin=ymin,ymax=ymax,thickness=2)
+   P+=plot(AO[i],color='purple',legend_label="y="+lab,xmin=xmin,xmax=xmax,ymin=ymin,ymax=ymax,thickness=2,linestyle='--')
+ p=[a for a in listmin]
+ [p.append(b) for b in listmax]
+ for i in p:
+   P+=circle((i,f(i)),0.1,facecolor='black',fill=True)
  return P
 \end{sagesilent}
 

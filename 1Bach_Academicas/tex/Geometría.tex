@@ -138,7 +138,7 @@ Sean $\vec{x},\vec{y},\vec{z}\in V^2$.
 \begin{defn}[Dependencia lineal\IS de $n$ vectores]
 Sean $\vec{x_1},\vec{x_2},...,\vec{x_n},\vec{y}\in V^2$. 
 
-\[\vy \text{ depende linealmente de } \vec{x_1},\vec{x_2},...,\vec{x_n} \dimplies \existsα_1,α_2,...,α_n\in\real \tq \vy = α_1\vx+\alpha_2·\vec{x_2}+...+\alpha_n·\vec{x_n}\]
+\[\vy \text{ depende linealmente de } \vec{x_1},\vec{x_2},...,\vec{x_n} \dimplies \]\[\existsα_1,α_2,...,α_n\in\real \tq \vy = α_1\vx+\alpha_2·\vec{x_2}+...+\alpha_n·\vec{x_n}\]
 \end{defn}
 
 
@@ -160,7 +160,7 @@ Buscamos $α$ tales que $α\vec{a} = \vec{b}$.
 		2α=3\\
 		2α=5
 	\end{array}
-\right\}\implies \text{Sistema incompatible} \implies \nexists\alpha\tlq \alpha\vec{a}=\vec{b}
+\right\}\implies \text{Sistema incompatible}\]\[\implies \nexists\alpha\tlq \alpha\vec{a}=\vec{b}
 \]
 \end{problem}
 
@@ -258,7 +258,7 @@ Un conjunto $B=\{\vx,\vy\}$ con $\vx,\vy\in V^2$ es una base de $ V^2$ si y sól
 						α=β\\
 						α=-β
 					\end{array}
-				\right\}\implies \text{Sistema incompatible} \dimplies \text{Linealmente independientes}
+				\right\}\implies \text{Sistema incompatible} \]\[\dimplies \text{Linealmente independientes}
 			\]
 
 			Podemos concluir que $B_2$ es una base de $V^2$.
@@ -280,7 +280,7 @@ Un conjunto $B=\{\vx,\vy\}$ con $\vx,\vy\in V^2$ es una base de $ V^2$ si y sól
 						α+β=z_1\\
 						2α=z_2
 					\end{array}
-				\right\}\implies \textit{Sistema compatible determinado} \implies \textit{Solución única}
+				\right\}\implies \]\[\textit{SCD} \implies \textit{Solución única}
 			\]
 
 			
@@ -316,9 +316,10 @@ Sea $B=\{(3,0),(1,-1)\}$.
 \solution
 \spart
 \textbf{Linealmente independientes:}
-\[
-α(3,0) + β(1,-1) = (0,0) \dimplies \left\{\begin{array}{c}3α+β=0\\-β=0 \end{array}\right\} \dimplies  (α,β) = (0,0)
-\]
+%\[
+%α(3,0)= (1,-1) = (0,0) \dimplies \left\{\begin{array}{c}3α=1\\0=-1 \end{array}\right\} \dimplies  (α,β) = (0,0)
+%\]
+\\.\\.
 %\textbf{Generadores:} 
 %\[
 %α(3,0) + β(1,-1) = (x,y) \dimplies\underbrace{\left\{\begin{array}{c}3α+β=x\\-β=y \end{array}\right\}}_{SCD} \dimplies  (α,β) = (\rfrac{x+y}{3},-y) \implies \exists! (a,b)\in V^2
@@ -326,7 +327,7 @@ Sea $B=\{(3,0),(1,-1)\}$.
 
 \spart 
 \[
-	(6,6) = α(3,0) + β(1,-1) \dimplies (6,6) = (3α+β,-β) \dimplies (α,β) = (4,-6)
+	(6,6) = α(3,0) + β(1,-1)\dimplies (6,6) = (3α+β,-β)\]\[ \dimplies (α,β) = (4,-6)
 \]
 \end{problem}
 
@@ -464,7 +465,7 @@ Sean 3 puntos $A=(1,-1), B=(0,2), C=(-1,m)$.
 
 \[
 [\vec{AB}] = [\vec{AM}] + [\vec{MB}]\dimplies
-[\vec{AB}] = 2[\vec{AM}] \dimplies 
+[\vec{AB}] = 2[\vec{AM}] \dimplies \]\[
 2(m_1-a_1,m_2-a_2) = (b_1-a_1,b_2-a_1) \dimplies
 \]
 \[
@@ -479,7 +480,7 @@ Sean 3 puntos $A=(1,-1), B=(0,2), C=(-1,m)$.
 	m_1 = \displaystyle\frac{b_1+a_1}{2}\\
 	m_2 = \displaystyle\frac{b_2+a_2}{2}
 	\end{array}
-\right\}
+\right\}\]\[
 \dimplies (m_1,m_2) = \left(\frac{b_1+a_1}{2},\frac{b_2+a_2}{2}\right)
 \]
 
@@ -628,9 +629,9 @@ Sea $B=\{(-2,2),(1,-1)\}$.
 \spart
 \textbf{Linealmente independientes:}
 \[
-α(-2,2) + β(1,-1) = (0,0) \dimplies \left\{\begin{array}{c}-2α+β=0\\2α-β=0 \end{array}\right\} \dimplies \underbrace{\left\{\begin{array}{c}-2α+β=0\end{array}\right\} }_{SCI}
+α(-2,2)=(1,-1) = (0,0) \dimplies \left\{\begin{array}{c}-2α=1\\2α=-1 \end{array}\right\} \dimplies \alpha=\rfrac{1}{2}
 \]
-Los vectores no son linealmente independientes. Tomando $α=1,β=2$ por ejemplo.
+Los vectores no son linealmente independientes.
 
 %\textbf{Generadores:} Ni me lo planteo.
 

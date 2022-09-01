@@ -54,41 +54,6 @@ Ejemplos:
 \end{itemize}
 
 
-\paragraph{Clasificacion de funciones} \textit{Damos la definición formal y la intuitiva.}
-
-\begin{itemize}
-	\item Inyectiva: $x\neq y \implies f(x) \neq f(y)  $
-	\item Sobreyectiva: $\forall y\in Y \exists x\in X / f(x) = y$
-	\item Biyectiva: sobreyectiva e inyectiva a la vez.
-\end{itemize}
-
-\concept{Gráfica de una función:} $G(f) = {\left(a,f(a)\right)}$
-
-\subsection{Operaciones con funciones}
-\begin{itemize}
-	\item Suma, resta $(f\pm g)(x) = f(x) \pm g(x)$
-	\subitem $D(f\pm g) = D(f)\cap D(g)$.
-	\item Producto
-	\subitem $D(f·g) = D(f)\cap D(g)$.
-	\item Cociente 
-	\subitem $D\left(\rfrac{f(x)}{g(x)}\right) = D(f)\cap D(g) \setminus \{x/g(x) = 0\}$
-	\item Composición $(g\circ f)(x) = g\left(f(x)\right)$ y se lee ``f compuesta con g''.
-	\subitem El dominio se recalcula.
-\end{itemize}
-
-\concept{Función inversa} $f^{-1}(x):Y\to X$ y cumple $(f\circ f^{-1})(x) = x$
-
-\paragraph{Ejemplo:} Comprueba si son inversas
-\begin{itemize}
-	\item $f(x) = x^3-1$; $f^{-1}(x) = \sqrt[3]{x+1}$ (sí)
-	\item $f(x) = x^2+1$; $f^{-1}(x) = \sqrt{x}$ (no)
-\end{itemize}
-
-\paragraph{Ejemplo:} Calcula la función inversa de $f(x) = \frac{2x+1}{3}$ y de $g(x) = \frac{-1}{3x}$ 
-
-\hl{13/03} Corregir pregunta: ¿son funciones inversas?
-
-Construir funciones inversas.
 
 \subsubsection{Clasificacion de funciones}
 
@@ -117,12 +82,36 @@ $f(x) : D(f) \to \real$ inyectiva $\dimplies\forall a,b\in D(f) a\neq b \implies
 	\item $f(x) = \log(x)$ (inyectiva)
 \end{itemize}
 
+\concept{Gráfica de una función:} $G(f) = {\left(a,f(a)\right)}$
+
+\subsection{Operaciones con funciones}
+\begin{itemize}
+	\item Suma, resta $(f\pm g)(x) = f(x) \pm g(x)$
+	\subitem $D(f\pm g) = D(f)\cap D(g)$.
+	\item Producto
+	\subitem $D(f·g) = D(f)\cap D(g)$.
+	\item Cociente 
+	\subitem $D\left(\rfrac{f(x)}{g(x)}\right) = D(f)\cap D(g) \setminus \{x/g(x) = 0\}$
+	\item Composición $(g\circ f)(x) = g\left(f(x)\right)$ y se lee ``f compuesta con g''.
+	\subitem El dominio se recalcula.
+\end{itemize}
+
+\concept{Función inversa} $f^{-1}(x):Y\to X$ y cumple $(f\circ f^{-1})(x) = x$
+
+\paragraph{Ejemplo:} Comprueba si son inversas
+\begin{itemize}
+	\item $f(x) = x^3-1$; $f^{-1}(x) = \sqrt[3]{x+1}$ (sí)
+	\item $f(x) = x^2+1$; $f^{-1}(x) = \sqrt{x}$ (no)
+\end{itemize}
+
+\paragraph{Ejemplo:} Calcula la función inversa de $f(x) = \frac{2x+1}{3}$ y de $g(x) = \frac{-1}{3x}$ 
+
+\paragraph{Construir funciones inversas.}
+
 \obs Una función no inyectiva no puede tener inversa.
 
 \section{Continuidad}
 \subsection{Límites}
-
-\subsubsection{Repaso de límites de 4º}
 
 \paragraph{Introducción}
 
@@ -154,9 +143,8 @@ Ejemplos:
 
 
 \paragraph{Infinito, ¿concepto o valor?}
-\subparagraph{Aritmética del infinito}
 
-\hl{Empezar aquí}
+\subparagraph{Aritmética del infinito}
 
 \begin{defn}[Límite en el infinito]
 Sea $f(x):\real\to\real$.
@@ -178,7 +166,7 @@ El límite de una función $f(x):\real\to\real$ en el infinito ($\pm\infty$) es 
 \end{defn}
 
 
-\paragraph{Propiedades de los límites} (me lo he saltado).
+\paragraph{Propiedades de los límites} 
 
 Sea $a\in\real\cup\{\infty,-\infty\}$, $f,g:\real\to\real$ y que dado $a$, $\exists\lim_{x\to a}f(x) \;;\; \exists\lim_{x\to a}g(x)$
 \begin{itemize}
