@@ -2,7 +2,7 @@
 
 tred=$(tput setaf 1)
 treset=$(tput sgr0)
-latex_dir=$(dirname $(/mnt/c/texlive/2018/bin/win32/kpsewhich.exe article.cls))
+latex_dir=$(dirname $(kpsewhich article.cls))
 
 function trycopy() {
 	file=$1
@@ -14,7 +14,7 @@ function trycopy() {
 }
 
 echo "Creating completion file..."
-python cwlcreator.py exmath.sty exmath.cwl
+python3 cwlcreator.py exmath.sty exmath.cwl
 
 trycopy exmath.cwl ~/.config/texstudio/
 trycopy exmath.cwl ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/cwl/
