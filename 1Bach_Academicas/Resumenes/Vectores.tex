@@ -1,0 +1,58 @@
+\documentclass[palatino,nosec,nochap]{Docencia}
+
+
+
+\title{Cuaderno de clase}
+\author{Departamento de Matemáticas SaFa}
+\date{22/23}
+
+\begin{abstract}
+%Cuaderno de clase de Matemáticas I, con el desarrollo continuado (sin estar separado por sesiones).
+Desarrollo del inicio de la geometría analícita bidimensional, temario de Matemáticas I.
+\end{abstract}
+
+
+
+% Paquetes adicionales
+
+\usepackage[author={Departamento Matemáticas, 2023}]{pdfcomment}
+\newcommand{\kinz}{,\;k\in\mathbb{Z}}
+
+\makeatletter
+\newcommand{\annotate}[2][]{%
+\pdfstringdef\x@title{#1}%
+\edef\r{\string\r}%
+\pdfstringdef\x@contents{#2}%
+\pdfannot
+width 2\p
+height 2\baselineskip
+depth 0pt
+{
+/Subtype /Text
+/T (\x@title)
+/Contents (\x@contents)
+}%
+}
+\makeatother
+
+% --------------------
+\newcommand{\cimplies}{\text{\hl{$\implies$}}}
+\renewcommand{\vx}{\overset{\rightarrow}{x}}
+\renewcommand{\vy}{\overset{\rightarrow}{y}}
+\renewcommand{\vz}{\overset{\rightarrow}{z}}
+\newcommand{\vi}{\overset{\rightarrow}{i}}
+\newcommand{\vj}{\overset{\rightarrow}{j}}
+\renewcommand{\vec}[1]{\overset{\rightarrow}{#1}}
+
+\usepackage{pgf,tikz}
+\usetikzlibrary{arrows}
+
+\begin{document}
+
+\pagestyle{plain}
+\LARGE
+\input{../tex/Geometria}
+
+%\printindex
+\end{document}
+\grid

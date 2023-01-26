@@ -1,9 +1,10 @@
-\documentclass[palatino,nosec]{Docencia}
+\documentclass[palatino,nosec,nochap]{Docencia}
+
 
 
 \title{Cuaderno de clase}
 \author{Departamento de Matemáticas SaFa}
-\date{21/22}
+\date{22/23}
 
 \begin{abstract}
 %Cuaderno de clase de Matemáticas I, con el desarrollo continuado (sin estar separado por sesiones).
@@ -14,7 +15,7 @@ Desarrollo del inicio de la geometría analícita bidimensional, temario de Mate
 
 % Paquetes adicionales
 
-\usepackage[author={Departamento Matemáticas, 2019}]{pdfcomment}
+\usepackage[author={Departamento Matemáticas, 2023}]{pdfcomment}
 \newcommand{\kinz}{,\;k\in\mathbb{Z}}
 
 \makeatletter
@@ -47,10 +48,10 @@ depth 0pt
 \usetikzlibrary{arrows}
 
 \begin{document}
-\LARGE
+
 \pagestyle{plain}
-%\maketitle
-%\tableofcontents
+\maketitle
+\tableofcontents
 
 
 %% Contenido.
@@ -63,27 +64,27 @@ depth 0pt
 
 % \subsubsection{Temario de la asignatura}
 
-% El \hl{orden} que vamos a seguir difiere un poco del del libro, porque así nos parece a MariNieves y a mi. 
+% El \hl{orden} que vamos a seguir difiere un poco del del libro, porque así nos parece a MariNieves y a mi.
 
-% Teoría de números: 
+% Teoría de números:
 
-% Vamos a dar uno de los temas más bonitos de todo el bachillerato. ¡\hl{Los números complejos}! ¿A alguien le dice algo? ¿A alguien le suena? 
+% Vamos a dar uno de los temas más bonitos de todo el bachillerato. ¡\hl{Los números complejos}! ¿A alguien le dice algo? ¿A alguien le suena?
 % %
-% Ya veréis que, en realidad, no son difíciles. Simplemente arrastramos $\sqrt{-1}$ en las operaciones, como una expresión algebraica, llamando $i=\sqrt{-1}$. 
+% Ya veréis que, en realidad, no son difíciles. Simplemente arrastramos $\sqrt{-1}$ en las operaciones, como una expresión algebraica, llamando $i=\sqrt{-1}$.
 % %
-% Precioso. 
+% Precioso.
 
-% Vamos a dar un paso más en la resolución de \hl{ecuaciones y sistemas}. 
+% Vamos a dar un paso más en la resolución de \hl{ecuaciones y sistemas}.
 % %
-% El año pasado resolvíais ecuaciones del tipo: $81^{2x} = \frac{1}{3};\quad x-\sqrt{x-3} = \sqrt{x-2}$, sistemas de ecuaciones 2x2... Este año vamos a ir más allá, vamos a resolver sistemas de 3x3. 
+% El año pasado resolvíais ecuaciones del tipo: $81^{2x} = \frac{1}{3};\quad x-\sqrt{x-3} = \sqrt{x-2}$, sistemas de ecuaciones 2x2... Este año vamos a ir más allá, vamos a resolver sistemas de 3x3.
 
 % El año pasado tuvisteis una introducción a la geometría. Este año vamos a trabajar con \hl{problemas serios el plano}: distancia punto a recta, distancia entre rectas, cónicas... Por cierto, \ul{¿sabéis porqué se llaman cónicas?}
 
-% Y ahora que ya sabéis algo de trigonometría, vamos a ir más allá. Vamos a \hl{exprimir la trigonometría} hasta dominarla. Es algo fundamental en matemáticas. 
+% Y ahora que ya sabéis algo de trigonometría, vamos a ir más allá. Vamos a \hl{exprimir la trigonometría} hasta dominarla. Es algo fundamental en matemáticas.
 
 
 
-% Y uno de los contenidos centrales del curso, del que hablaréis cuando terminéis el colegio y habréis oído hablar... Las míticas \hl{derivadas}. Os suena, ¿no? 
+% Y uno de los contenidos centrales del curso, del que hablaréis cuando terminéis el colegio y habréis oído hablar... Las míticas \hl{derivadas}. Os suena, ¿no?
 % %
 % Pues este año nos meteremos en ese berenjenal, a aprender qué es una derivada y para que sirve.
 % %
@@ -91,33 +92,33 @@ depth 0pt
 % %
 % Terminaremos el curso con probabilidad y estadística.
 
-% Todo esto es una visión general del temario del curso. 
+% Todo esto es una visión general del temario del curso.
 % %
-% Pero hay otro aspecto fundamental de la asignatura. 
+% Pero hay otro aspecto fundamental de la asignatura.
 % %
-% En otros años lo fundamental puede ser coger habilidad y soltura en los cálculos, saber resolver los problemas... 
+% En otros años lo fundamental puede ser coger habilidad y soltura en los cálculos, saber resolver los problemas...
 % %
-% Este curso va de \hl{razonar y justificar}. Me importa relativamente poco si el resultado está bien o no, en comparación con lo que me importa si el procedimiento está razonado y justificado. 
+% Este curso va de \hl{razonar y justificar}. Me importa relativamente poco si el resultado está bien o no, en comparación con lo que me importa si el procedimiento está razonado y justificado.
 % %
-% Las matemáticas no son magia, todo tiene una razón de ser. Todo tiene una explicación. 
+% Las matemáticas no son magia, todo tiene una razón de ser. Todo tiene una explicación.
 % %
 % Por ejemplo, ya no nos vamos a centrar tanto en "resuelve esto o lo otro", sino en "demuestra, comprueba, discute esto o lo otro".
 % %
 % ¿Se entiende?
 
-% Por ejemplo, ¿porqué el \hl{teorema de Pitágoras} funciona? 
+% Por ejemplo, ¿porqué el \hl{teorema de Pitágoras} funciona?
 % %
-% Claro, porque probando con unos números funciona. 
+% Claro, porque probando con unos números funciona.
 % %
-% ¿Quién te asegura que para absolutamente cualquier triángulo rectángulo va a funcionar? Eso hace 4 años te lo creíste. 
+% ¿Quién te asegura que para absolutamente cualquier triángulo rectángulo va a funcionar? Eso hace 4 años te lo creíste.
 % %
 % Este año vamos a demostrar el teorema.
 
-% En general, va a haber pocos actos de fe. 
+% En general, va a haber pocos actos de fe.
 % %
-% En el curso habrá demostraciones y los contenidos no vendrán dados por arte de magia. 
+% En el curso habrá demostraciones y los contenidos no vendrán dados por arte de magia.
 % %
-% Ojo, el teorema fundamental del álgebra no lo podremos demostrar porque hacen falta matemáticas más complejas. 
+% Ojo, el teorema fundamental del álgebra no lo podremos demostrar porque hacen falta matemáticas más complejas.
 % %
 % Todo lo demás, lo podremos demostrar.
 
@@ -139,13 +140,13 @@ depth 0pt
 
 
 \input{tex/Complejos}
-\input{tex/Algebra.tex}
-\input{tex/Trigonometría}
+\input{tex/Algebra}
+\input{tex/Trigonometria}
 %Fin 1ª evaluación
-\input{tex/Geometría}
+\input{tex/Geometria}
 %Fin 2ª evaluación
-\input{tex/Análisis}
-%\input{tex/Probabilidad}
+\input{tex/Analisis}
+%\LARGE\input{tex/Probabilidad}
 %\input{tex/Estadistica}
 %Fin 3ª evaluación
 
