@@ -1,13 +1,15 @@
 TARGET=main
 NAME=CuadernoMatesII
-LATEX=/mnt/c/texlive/2018/bin/win32/pdflatex.exe
-LTXMK=/mnt/c/texlive/2018/bin/win32/latexmk.exe
+#LATEX=/mnt/c/texlive/2018/bin/win32/pdflatex.exe
+LATEX=pdflatex
+#LTXMK=/mnt/c/texlive/2018/bin/win32/latexmk.exe
+LTXMK=latexmk
 SAGEUTILSDIR="../Cosas guays LaTeX/"
 
 
 
 
-all: copy 
+all: copy
 	$(LATEX) $(TARGET)
 
 copy:
