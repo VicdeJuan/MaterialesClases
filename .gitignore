@@ -42,8 +42,6 @@ _minted*
 .fuse*
 *.kate-swp
 *.backup
-*.pdf
-!_*.pdf
 *.bak
 Icon*
 tikzaux*
