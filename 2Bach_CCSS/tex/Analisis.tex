@@ -13,68 +13,166 @@ $\appl{f}{D\subset\real}{\real}$
 \end{itemize}
 \end{defn}
 
-\paragraph{Ejemplos de dominios de funciones:} hojita impresa de repaso.
 
 \begin{problem}
 Halla el dominio de las siguientes funciones:
 \ppart $f(x) = \sqrt{\displaystyle\frac{x^2+5x+4}{x+4}}$ \obs Ojo con simplificar.
-
 \ppart $f(x) = \sqrt{\left(x^2-9\right)}$
 \ppart  $f(x) = \log\left(-2x^2+10x-12\right)$
 \ppart  $f(x) = \log\left(x^2+1\right)$
 
 \solution
 
+
+.\vspace{15cm}.
+
+
 \end{problem}
 
-Ejercicios 49,50 y 51 de la página 202.
+\paragraph{Funciones de valor absoluto:} (visto en pizarra)
+
 
 \section{Límites y continuidad}
 
 \subsection{Introducción al concepto de límite}
 
-\begin{itemize}
-	\item Con la hoja excel de MNieves.
-	\item Con el geogebra.
-	\item Ejercicios gráficos de límites (PDF aparte: "Límites gráficamente")
-\end{itemize}
+Visto con Eduardo.
+
+%\begin{itemize}
+%	\item Con la hoja excel de MNieves.
+%	\item Con el geogebra.
+%	\item Ejercicios gráficos de límites (PDF aparte: %"Límites gráficamente")
+%\end{itemize}
 
 \subsection{Estudio analítico de límites}
 
 \subsubsection{Propiedades de los límites}
-Página 116-117
 
-\begin{problem}
-Ejercicios 7 y 8 de la página 116.
-\solution
-\end{problem}
+\begin{enumerate}
+	\item $\displaystyle\lim_{x\to a} [f(x) \pm g(x)] = \lim_{x\to a} f(x) \pm \lim_{x\to a} g(x)$
+	\item $\displaystyle\lim_{x\to a} [f(x) · g(x)] = \lim_{x\to a} f(x) · \lim_{x\to a} g(x)$
+	\item $\displaystyle\lim_{x\to a} \frac{f(x)}{g(x)} = \frac{\lim_{x\to a} f(x)}{\lim_{x\to a} g(x)}\quad\text{ si }\displaystyle\lim_{x\to a} g(x) \neq 0$
+	\item $\displaystyle\lim_{x\to a} \left(f(x)\right)^p = \left(\lim_{x\to a}f(x)\right)^p \quad \forall p\in\real$
+	\item $\displaystyle\lim_{x\to a} \left(f(x)\right)^{g(x)} = \left(\lim_{x\to a}f(x)\right)^{\displaystyle\lim_{x\to a}g(x)} \quad\text{ si }\displaystyle \lim_{x\to a}f(x) \neq 0 \wedge \lim_{x\to a}g(x)\neq 0$
+	\item $\displaystyle\lim_{x\to a}\log f(x) = \log\left(\displaystyle\lim_{x\to a}f(x)\right)\quad\text{ si } \lim_{x\to a}f(x) >0 $
+\end{enumerate}
 
 \begin{theorem}[Teorema\IS de existencia del límite]
-\[\exists \lim_{x\to a}f(x) \dimplies \lim_{x\to a^+} f(x) = \lim_{x\to a^-}f(x)\]
+\[\forall a\in \real, \exists \lim_{x\to a}f(x) \dimplies \lim_{x\to a^+} f(x) = \lim_{x\to a^-}f(x)\]
 \end{theorem}
 
 \begin{problem}
-Cálcula los siguientes límites:
-\ppart Página 118, ejercicios 9 y 10.
-\ppart Página 135, ejercicio 88.
+\begin{itemize}
+	\item Página 123, ejercicio 20.
+	\item $\displaystyle\lim_{x\to 3} \frac{\log(x-2)}{x-1}$
+	\item \label{Analisis::EjemploContinuidad}Sea $f(x) = 
+		\begin{cases}
+		x+3 & \text{ si } x>0\\
+		\frac{2x+3}{x+1}& \text{ si } x\leq 0 
+		\end{cases}$ Calcula:
+		\subitem $\displaystyle\lim_{x\to 1} f(x)$
+		\subitem $\displaystyle\lim_{x\to 0} f(x)$
+\end{itemize}
 \solution
+
+.\vspace{10cm}.
+
 \end{problem}
 
-\subsection{Indeterminaciones}
-
+\subsubsection{Indeterminaciones}
 
 \begin{itemize}
-	\item Racionales: $\rfrac{0}{0},\rfrac{\infty}{\infty},\infty-\infty,0·\infty, \rfrac{k}{0}$ (Ver por el libro, se dan por supuestas)
+	\item Racionales: $\rfrac{0}{0},\rfrac{\infty}{\infty},\infty-\infty,0·\infty, \rfrac{k}{0}$ 
 	\item Exponenciales $1^{\infty}; 0^0; \infty^0$
 \end{itemize}
 
 De estas indeterminaciones, no veremos $0^0; \infty^0$ y de $0·\infty$ nos saldrá alguna en el sigueinte tema.
 
-\begin{problem}
+\subsection{Asíntotas}
 
+\subsubsection{Verticales}
+
+\begin{defn}[Asíntota\IS vertical]
+
+La recta $x=a$ es \textbf{asíntota vertical} de $f(x)\dimplies \displaystyle\begin{cases}\displaystyle\lim_{x\to a^+}f(x) = \pm\infty\\ \text{ó}\\ \displaystyle\lim_{x\to a^+}f(x) = \pm\infty\end{cases}$
+\end{defn}
+
+\begin{problem}
+Estudia las asíntotas verticales de $f(x) = \frac{x+1}{x^2+x}$ y de $g(x) = \log(x)$
 \solution
 \end{problem}
 
+
+\subsubsection{Horizontales}
+
+\begin{defn}[Asíntota\IS horizontal]
+
+La recta $y=b$ es \textbf{asíntota horizontal} de $f(x)$ en $+\infty$ si y solo si $ \displaystyle\lim_{x\to +\infty}f(x) = b$
+
+La recta $y=b$ es \textbf{asíntota horizontal} de $f(x)$ en $-\infty$ si y solo si $ \displaystyle\lim_{x\to -\infty}f(x) = b$
+
+\end{defn}
+
+\subsubsection{Oblicuas}
+
+\begin{defn}[Asíntota\IS oblicua]
+
+La recta $y=mx+n$ es \textbf{asíntota oblicua}
+
+en $+\infty$ de $f(x)\dimplies \displaystyle
+\begin{cases}
+	\displaystyle\lim_{x\to +\infty}f(x) = \pm\infty\\
+ 	\displaystyle\lim_{x\to +\infty}\frac{f(x)}{x} = m\in\real\\
+ 	\displaystyle\lim_{x\to +\infty}(f(x) - m·x) = n
+ \end{cases}$
+
+La recta $y=mx+n$ es \textbf{asíntota oblicua} 
+
+en $-\infty$ de $f(x)\dimplies \displaystyle
+\begin{cases}
+	\displaystyle\lim_{x\to -\infty}f(x) = \pm\infty\\
+ 	\displaystyle\lim_{x\to -\infty}\frac{f(x)}{x} = m\in\real\\
+ 	\displaystyle\lim_{x\to -\infty}(f(x) - m·x) = n
+ \end{cases}$
+\end{defn}
+
+\paragraph{Observación:} Las asíntotas oblicuas y horizontales son mutuamente excluyentes, es decir, no puede haber una asíntota horizontal y una oblicua simultáneamente en un extremo del dominio. Sí podría haber una asíntota horizontal en $+\infty$ y una oblicua en $-\infty$.
+
+\begin{problem}
+Estudia el comportamiento asintótico en $\pm\infty$ de las siguientes funciones:
+\begin{itemize}
+	\item $f(x) = e^x$
+	\item $f(x) = \frac{x^2}{3x+1}$
+	\item $f(x) = \frac{x^2}{3x^2+1}$
+	\item $f(x) = \frac{x^2}{3x^3+1}$
+\end{itemize}
+
+\solution
+
+.\vspace{10cm}.
+
+\end{problem}
+
+\paragraph{Observación:} Las funciones racionales tienen el mismo comportamiento asintótico en $+\infty$ que en $-\infty$
+
+\begin{problem}
+\textit{Funciones obtenidas de exámenes EvAU}
+
+Estudia el comportamiento asintótico de las siguientes funciones 
+
+$$f_1(x) = \sqrt{\frac{x^2-4}{x^2-1}}$$
+
+$$f_2(x) = \begin{cases}
+\frac{x^2+3x+1}{x}&\text{ si }  x\geq -1\\
+\frac{2x}{x-1}&\text{ si }  x< -1
+\end{cases}
+$$
+
+\solution
+
+.\vspace{15cm}.
+
+\end{problem}
 
 \begin{prop}[Indeterminación\IS $1^{\infty}$]
 \index{Indeterminación\IS $1^{\infty}$}
@@ -98,20 +196,28 @@ De estas indeterminaciones, no veremos $0^0; \infty^0$ y de $0·\infty$ nos sald
 \end{align*}
 \end{proof}
 
-\subsubsection{Infinitésimos equivalentes}
-
-Libro página 19. Ver tabla y hacer ejercicio 30.
-
-\begin{defn}[Infinitésimos equivalentes]
-Dadas $f(x)$, $g(x)$, $a\in\real$ decimos que $f(x)$ y $g(x)$ son infinitésimos equivalentes \textbf{en $x=a$} si y sólo si $\displaystyle\lim_{x\to a}\frac{f(x)}{g(x)} = 1$
-\end{defn}
+%\subsubsection{Infinitésimos equivalentes}
+%
+%\begin{defn}[Infinitésimos equivalentes]
+%Dadas $f(x)$, $g(x)$, $a\in\real$ decimos que $f(x)$ y $g(x)$ son infinitésimos equivalentes \textbf{en $x=a$} si y sólo si $\displaystyle\lim_{x\to a}\frac{f(x)}{g(x)} = 1$
+%\end{defn}
 
 \begin{problem}
-Ejercicio 30
+Estudia el comportamiento asintótico de $f(x) = \left(\frac{5x^2+1}{x+5x^2}\right)^{x} $ en $+\infty$
 \solution
+.\vspace{8cm}.
 \end{problem}
 
-\subsection{Continuidad (¡Tiene resumen para entregar!)}
+\begin{problem}
+Estudia el comportamiento asintótico de $f(x) = \left(\frac{5x^2+1}{x+5x^2}\right)^{x^n} $ en $+\infty$ en función del parámetro $n$.
+
+\textit{El clásico parámetro de 2º Bach.}
+\solution
+.\vspace{8cm}.
+\end{problem}
+
+
+\subsection{Continuidad}
 
 \begin{defn}[Continuidad\IS en un punto]
 Sea $\appl{f}{D\subset\real}{\real}$.
@@ -170,7 +276,7 @@ Aplicamos: "$f(x)$ continua en $x=0$ si existen y son iguales $\displaystyle\lim
 \end{cases}
 \]
 
-\textbf{Descripción: } Libro página 22. 
+\textbf{Descripción: }
 \begin{itemize}
 	\item Evitables: $\exists \displaystyle\lim_{x\to a}f(x)$ pero $\begin{cases}\displaystyle\lim_{x\to a}f(x) \neq f(a)\\\text{o}\\\nexists f(a)\end{cases}$
 	\subitem Para evitarlas, se define una nueva función: $f(x) = \begin{cases}f(x) & x\neq a\\ b & x=a \end{cases}$
@@ -184,6 +290,18 @@ Aplicamos: "$f(x)$ continua en $x=0$ si existen y son iguales $\displaystyle\lim
 \obs Ver \fref{fig::fun-tipos-discontinuidad}.
 \end{itemize}
 
+\begin{problem} Estudia la continuidad de la función del ejercicio \ref{Analisis::EjemploContinuidad} en el punto $x=0$:
+
+$$f(x) = 
+		\begin{cases}
+		x+3 & \text{ si } x>0\\
+		\frac{2x+3}{x+1}& \text{ si } x\leq 0 
+		\end{cases}
+	$$
+\solution
+
+.\vspace{5cm}.
+\end{problem}
 
 \begin{figure}
 \centering
@@ -201,6 +319,7 @@ Aplicamos: "$f(x)$ continua en $x=0$ si existen y son iguales $\displaystyle\lim
 
 
 \begin{defn}[Continuidad\IS en un intervalo abierto]
+
 	$f(x)$ es continua en $(a,b) \dimplies \forall x\in(a,b), f(x)$ es continua.
 \end{defn}
 
@@ -213,6 +332,7 @@ Aplicamos: "$f(x)$ continua en $x=0$ si existen y son iguales $\displaystyle\lim
 \end{defn}
 
 \begin{defn}[Continuidad\IS en un intervalo cerrado]
+
 $f(x)$ es continua en $[a,b] \dimplies \forall x\in[a,b],\begin{cases} f(x) \text{ es continua en } (a,b)\\
 \text{Continua por la derecha de } a\\
 \text{Continua por la izquierda de } b\\\end{cases}$
@@ -238,20 +358,16 @@ n\text{ impar: continua en } \real\\\hline
 n\text{ par: continua en } \{x\in\real\tq P(x) \geq 0\}\end{cases}$\\\hline
 $f(x) = a^x$ con $a>0$ & Continua en $\real$\\\hline
 $f(x) = \log_ax$ (con $a>0, a\neq 1$) & Continua en $\real$\\\hline
-$f(x) = \cos(x)$ y $f(x) = \sen(x)$  & Continua en $\real$\\\hline
-$f(x) = \tg(x)$   & Continua en $\real-\left\{x=\rfrac{\pi}{2}k, k\in\mathbb{Z}\right\}$\\\hline
-$f(x) = \arcsen(x)$ & Continua en su dominio.\\
-$f(x) = \arccos(x)$ & Continua en su dominio.\\
-$f(x) = \arctg(x)$ & Continua en su dominio.\\\hline
+%$f(x) = \cos(x)$ y $f(x) = \sen(x)$  & Continua en $\real$\\\hline
+%$f(x) = \tg(x)$   & Continua en $\real-\left\{x=\rfrac{\pi}{2}k, k\in\mathbb{Z}\right\}$\\\hline
+%$f(x) = \arcsen(x)$ & Continua en su dominio.\\
+%$f(x) = \arccos(x)$ & Continua en su dominio.\\
+%$f(x) = \arctg(x)$ & Continua en su dominio.\\\hline
 \end{tabular}
 \label{tbl::ContinuidadFunElementales}
 \caption{Continuidad de las funciones elementales}
 \end{table}
 
-\begin{problem}
-Ejercicios 23.41 y 23.42.
-\solution
-\end{problem}
 
 \begin{problem}Estudia la continuidad de las siguientes funciones y clasifica sus discontinuidades
 
@@ -296,7 +412,7 @@ Sea $f(x) = x^3-7x^2-1$. Se trata de demostrar que $\exists c\in[0,10]\tq f(c) =
 Sea $\appl{f}{D}{\real}$.
 \[
 \left.\begin{array}{c}f(x) \text{ continua en } [a,b]\\
-\exists k\in\real \begin{cases}f(a)\leq k\leq f(b)\\f(b)\leq k \leq f(a)\end{cases}\end{array}\right\}\implies \exists c\in(a,b) \tq f(c) = k
+\exists k\in\real \begin{cases}f(a)\leq k\leq f(b)\\ \text{           ó} \\f(b)\leq k \leq f(a)\end{cases}\end{array}\right\}\implies \exists c\in(a,b) \tq f(c) = k
 \]
 \end{theorem}
 
@@ -304,35 +420,17 @@ Sea $\appl{f}{D}{\real}$.
 
 
 \begin{problem}
-Demuestra que las funciones $f(x) = \cos(x)$ y $g(x) = x$ se cortan en algún punto.
+Demuestra que las funciones $f(x) = \log(x+10)$ y $g(x) = x$ se cortan en algún punto.
 \solution
 
-Basta considerar la función $h(x) = f(x) - g(x) = \cos(x)-x$. Así, demostrar que las funciones se cortan será equivalente a demostrar que $\exists c\in\real\tq h(x)=0$. 
+Basta considerar la función $h(x) = f(x) - g(x) = \log_5(x+10)-x$. Así, demostrar que las funciones se cortan será equivalente a demostrar que $\exists c\in\real\tq h(x)=0$. 
 
 Esta función es continua en $\real$, por ser resta de funciones continuas en $\real$.
 
-Buscamos $c\in\real\tq h(c)=0$. Consideramos $h(0) = 1$ y $h\left(\rfrac{\pi}{2}\right) = \rfrac{-\pi}{2}<0$.
+Buscamos $c\in\real\tq h(c)=0$. Consideramos $h(-9) = -8<0$ y $h(0)= 1 >0$.
 
-Por el teorema de Bolzano, $\exists c\in\left(0,\rfrac{\pi}{2}\right)\tq h(c) = 0$, por lo que podemos concluir que las funciones se cortan.
+Por el teorema de Bolzano, $\exists c\in (-9,0)\tq h(c) = 0$, por lo que podemos concluir que las funciones se cortan.
 \end{problem}
-
-\begin{problem}
-\begin{itemize}
-	\item 35.108 (continuidad)
-	\item 36.113 (continuidad)
-	\item 36.117 (problema - continuidad)
-	\item 36.119,120 (límites)
-	\item Página 37.autoevaluación.
-\end{itemize}
-\solution
-\end{problem}
-
-\begin{theorem}[Teorema\IS de Weierstrass]
-Si $f(x)$ es continua en $[a,b]$, entonces tiene un máximo y un mínimo absolutos en $[a,b]$.
-\end{theorem}
-
-\obs Este teorema se utilizará en el siguiente tema.
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -398,16 +496,13 @@ Calculamos:
 Los límites laterales no coinciden, por lo tanto, $\nexists \displaystyle\lim_{x\to 0}\frac{f(x)-f(a)}{x-a} \dimplies \nexists f'(a)$
 \end{example}
 
-
-
-
 \subsubsection{Interpretación geométrica de la derivada}
 
 Ver \fref{fig::funinterpretacionderivadapunto}.
 
-\begin{figure}[hbp]
+\begin{figure}[hbpt!]
 \centering
-\includegraphics[scale=0.5]{img/DerivadaInterGeometrica}
+\includegraphics[scale=0.5]{img/DerivadaInterGeometrica.PNG}
 \label{fig::funinterpretacionderivadapunto}
 \caption{Interpretación geométrica de la derivada} Cuando $h\to0$, el punto $B$ se acercará cada vez más al punto $A$, dando lugar a la recta tangente. 
 %
@@ -416,7 +511,7 @@ Para una mejor comprensión consultar la versión de Geogebra: https://www.geoge
 \end{figure} 
 
 
-\subsubsection{Derivabilidad}
+\subsection{Derivabilidad}
 \begin{defn}[Derivabilidad\IS en un punto]
 \[f(x) \text{ derivable en } x=a\dimplies \exists f'(a)\]
 \end{defn}
@@ -460,7 +555,7 @@ La derivada lateral de $f$ en $x=a$ por la izquierda, escrita $f'(a^-)$, si exis
 \[f(x) = \begin{cases} x^2+3x & \text{ si } x\leq 0\\ 3·\left(\frac{x^2+x}{x+1}\right)&\text{ si } x>0\end{cases}\]
 \solution
 
-$f(x)$ será derivable en $x=0$ si $\exists f'(0)$. Dado que $f(x)$ está definida a trozos, calculamos la derivadas laterales.
+$f(x)$ será derivable en $x=0$ si $\exists f'(0)$. Dado que $f(x)$ está definida a trozos, calculamos las derivadas laterales.
 
 \[f'(0^-) = \lim_{h\to 0^+} \frac{f(0-h)-f(0)}{-h} = \lim_{h\to 0^-} \frac{(0-h)^2+3·(0-h)-(0^2+3·0)}{-h} = \lim_{h\to 0^-} \frac{h(h-3)}{-h} = +3\]
 \[f'(0^+) = \lim_{h\to 0^+} \frac{f(0+h)-f(0)}{h} = \lim_{h\to 0^+} \frac{3·\frac{(0+h)^2+(0+h)}{0+h+1} - (0^2-3·0)}{h} = \lim_{h\to 0^+} \frac{3·\frac{h^2+h}{h+1}}{h} = \]
@@ -482,7 +577,38 @@ Claramente la derivada en $x=0$ no puede existir, dado que la función no es con
 
 \end{problem}
 
-\begin{problem}[Página 43, 14.]
+
+\begin{problem} Estudia la derivabilidad en $x=0$ de la función 
+\label{prb::derivab1}
+\[f(x) = \begin{cases} x^2+3x & \text{ si } x\leq 0\\ 3·\left(\frac{x^2-1}{x+1}\right)&\text{ si } x>0\end{cases}\]
+\solution
+
+$f(x)$ será derivable en $x=0$ si $\exists f'(0)$. Dado que $f(x)$ está definida a trozos, calculamos las derivadas laterales.
+
+.\vspace{4cm}.
+%\[f'(0^-) = \lim_{h\to 0^+} \frac{f(0-h)-f(0)}{-h} = \lim_{h\to 0^-} \frac{(0-h)^2+3·(0-h)-(0^2+3·0)}{-h} = \lim_{h\to 0^-} \frac{h(h-3)}{-h} = +3\]
+%\[f'(0^+) = \lim_{h\to 0^+} \frac{f(0+h)-f(0)}{h} = \lim_{h\to 0^+} \frac{3·\frac{(0+h)^2+(0+h)}{0+h+1} - (0^2-3·0)}{h} = \lim_{h\to 0^+} \frac{3·\frac{h^2+h}{h+1}}{h} = \]
+%\[=\lim_{h\to 0^+} \frac{3·h·(h+1)}{h(h+1)} = 3 \]
+
+\textbf{Conclusión:} %Dado que  $f'(0^-) \neq f'(0^+)$,  la función no es derivable en $x=0$.
+
+\begin{figure}[pb!]
+\centering
+\includegraphics[scale=0.5]{img/DerivabilidadEjer1}
+\label{fig::DerivabEjer1}
+\caption{Representación gráfica del problema \ref{prb::derivab1}.}
+Claramente la derivada en $x=0$ no puede existir, dado que la función no es continua.
+\end{figure}
+
+\obs También podríamos haber calculado la derivada lateral por la izquierda de la siguiente manera:
+
+\[f'(0^-) = \lim_{h\to 0^-} \frac{f(0+h)-f(0)}{h} = \lim_{h\to 0^-} \frac{h^2+3·h-(0^2+3·0)}{h} = \lim_{h\to 0^-} \frac{h(h+3)}{h} = +3\]
+
+\end{problem}
+
+\hline
+
+\begin{problem}
 ¿Es la siguiente función derivable en $x=-2,x=0,x=2$?
 
 \[f(x) = \begin{cases}
@@ -492,21 +618,7 @@ x^2 & \text{ si } x<-2\\
 12x+1 & \text{ si } x>2
 \end{cases}\]
 \solution
-\end{problem}
-
-\begin{problem}[Página 56, ejercicio 78.]
-Dada la función $f(x)$, calcula $a,b,c\in\real$ para que la función sea derivable en $x=1$, sabiendo que $f(0) = f(4)$.
-\solution
-
-Solución: $a=-\rfrac{7}{4}; b=1; c=\rfrac{1}{4}$
-
-\begin{figure}[h!]
-\centering
-\includegraphics[scale=1.1]{img/DerivabilidadEjer5678}
-\label{ejercicioDerivabilidad}
-\caption{Ejercicio sacado del libro de SM}
-\end{figure}
-
+.\vspace{10cm}.
 \end{problem}
 
 
@@ -529,16 +641,56 @@ La función derivada denotada por $\appl{f'(x)}{Dv(f)\subset\real}{\real}$ hace 
 % \label{tbl::Derivadas}
 % \end{table}
 
-\begin{problem}
+\obs Nos saltamos todas las reglas de derivación porque ya las conoces.
 
+\obs Para estudiar la derivabilidad de una función a trozos en un punto $x=a$ puedes calcular la función derivada de cada rama y comprobar dos condiciones:
 \begin{itemize}
-	\item 51.58 (2 trigonométricas inversas)
-	\item 59.113 (8 variadas. Solo la h tiene una trigonométrica inversa.)
-	\item 57.79-81 (Ejercicios resueltos)
+	\item Los límites laterales en $x=a$ de esa función derivada coinciden.
+	\item $f(x)$ es continua en $x=a$
 \end{itemize}
 
+\paragraph{Observación de la observación:} si estudias las derivadas laterales, no es necesario estudiar la continuidad puesto que, si la función no es continua, no será derivable. 
+
+\textit{¿Distingues "derivadas laterales" de "límites laterales de la derivada"? Son conceptos bastante diferentes}
+
+\begin{problem}
+¿Es la siguiente función derivable en $x=-2,x=0,x=2$?
+
+\[f(x) = \begin{cases}
+x^2 & \text{ si } x<-2\\
+-4(x+1) & \text{ si } -2<x\leq0\\
+3x^2-4 & \text{ si } 0<x\leq2\\
+12x+1 & \text{ si } x>2
+\end{cases}\]
 \solution
+
+.\vspace{10cm}.
+
 \end{problem}
+
+\begin{problem}
+Dada la función $f(x)$, calcula $a,b,c\in\real$ para que la función sea derivable en $x=1$, sabiendo que $f(0) = f(4)$.
+
+\[
+f(x) = 
+\begin{cases}
+	x^2+ax+b&\text{ si } x<1\\
+	cx & \text{ si } x\geq 1
+\end{cases}
+\]
+\solution
+
+Solución: $a=-\rfrac{7}{4}; b=1; c=\rfrac{1}{4}$
+
+%\begin{figure}[h!]
+%\centering
+%\includegraphics[scale=1.1]{img/DerivabilidadEjer5678.png}
+%\label{ejercicioDerivabilidad}
+%\caption{Ejercicio sacado del libro de SM}
+%\end{figure}
+
+\end{problem}
+
 
 
 \subsection{Aplicaciones de la derivada}
@@ -553,6 +705,22 @@ La función derivada denotada por $\appl{f'(x)}{Dv(f)\subset\real}{\real}$ hace 
 		\text{Recta tangente a }f(x)\text{ en }x_0 \to y-f(x_0) = f'(x_0)·(x-x_0)
 	\end{equation}
 \end{mdframed}
+
+\begin{problem}
+Calcula las rectas tangente a la gráfica de $f(x) = x^3+2x$ en $x=1$.
+\solution
+
+Aplicamos: $\text{Recta tangente a }f(x)\text{ en }x_0 \to y-f(x_0) = f'(x_0)·(x-x_0)$
+
+Para ello, calculamos:
+\begin{itemize}
+	\item $f(x_0)=$
+	\item $f'(x)$
+	\subitem $f'(x_0)$
+\end{itemize}
+Sustituyendo en la ecuación, obtenemos:
+.\vspace{2cm}.
+\end{problem}
 
 \begin{problem}
 Demuestra que la recta $y=-x$ es tangente a la curva dada por la ecuación: $y=x^3+6x^2+8x$
@@ -588,22 +756,41 @@ Aplicando este resultado a la fórmula de la recta tangente anterior, tenemos:
 	\end{equation}
 \end{mdframed}
 
+\begin{problem}
+Calcula las rectas tangente a la gráfica de $f(x) = x^3+2x$ en $x=1$.
+\solution
+
+Aplicamos: $\text{Recta normal a }f(x)\text{ en }x_0 \to y-f(x_0) = \rfrac{-1}{f'(x_0)}·(x-x_0)$
+
+Para ello, calculamos:
+\begin{itemize}
+	\item $f(x_0)=$
+	\item $f'(x)$
+	\subitem $f'(x_0)$
+\end{itemize}
+Sustituyendo en la ecuación, obtenemos:
+.\vspace{2cm}.
+\end{problem}
+
+
 
 \subsubsection{Teoremas de derivabilidad}
 
-\begin{theorem}[Teorema\IS de Rolle]
-\[
-\left.
-	\begin{array}{c}
-		f(x)\text{ continua en } [a,b]\\
-		f(x)\text{ derivable en } (a,b)\\
-		f(a)=f(b)
-	\end{array}
-\right\}\implies \exists c\in(a,b)\tq f'(c)=0
-\]
-\end{theorem}
-\obs ¿Puede haber más de un punto? ¡Claro que sí! Basta pensar en una función horizontal.
+(Ver documento aparte)
 
+%\begin{theorem}[Teorema\IS de Rolle]
+%\[
+%\left.
+%	\begin{array}{c}
+%		f(x)\text{ continua en } [a,b]\\
+%		f(x)\text{ derivable en } (a,b)\\
+%		f(a)=f(b)
+%	\end{array}
+%\right\}\implies \exists c\in(a,b)\tq f'(c)=0
+%\]
+%\end{theorem}
+%\obs ¿Puede haber más de un punto? ¡Claro que sí! Basta pensar en una función horizontal.
+%
 \begin{problem}
 % Página 66.1
 Sea $f(x) = 2x^5+x+a$.  Demuestra que $\exists!c\in\real\tq f(c)=0$
@@ -617,24 +804,20 @@ Así, se puede aplicar el teorema de Rolle, argumentando que $\exists c\in\real\
 \textbf{Conclusión: } dado que $f(x)$ cumple todas las hipótesis del teorema de Rolle, debemos concluir necesariamente que no hay otra raíz real $d$\footnote{Sino, el teorema fallaría y eso no es posible.}. 
 \end{problem}
 
-\begin{problem}
-67.8
-\solution
-\end{problem}
 
-\begin{theorem}[Teorema\IS del valor medio]
-\[
-\left.
-	\begin{array}{c}
-		f(x)\text{ continua en } [a,b]\\
-		f(x)\text{ derivable en } (a,b)\\
-	\end{array}
-\right\}\implies \exists c\in(a,b)\tq f'(c)=\frac{f(b)-f(a)}{b-a}
-\]
-
-\obs El teorema de Rolle es un caso particular de este teorema que se da cuando $f(a) = f(b)$
-\end{theorem}
-\obs ¿Puede haber más de un punto? ¡Claro que sí!
+%\begin{theorem}[Teorema\IS del valor medio]
+%\[
+%\left.
+%	\begin{array}{c}
+%		f(x)\text{ continua en } [a,b]\\
+%		f(x)\text{ derivable en } (a,b)\\
+%	\end{array}
+%\right\}\implies \exists c\in(a,b)\tq f'(c)=\frac{f(b)-f(a)}{b-a}
+%\]
+%
+%\obs El teorema de Rolle es un caso particular de este teorema que se da cuando $f(a) = f(b)$
+%\end{theorem}
+%\obs ¿Puede haber más de un punto? ¡Claro que sí!
 
 \begin{problem}
 Considera la función $f(x) = x·e^{-x^2}$.
@@ -649,8 +832,8 @@ Las hipótesis del teorema de Rolle son:
 \[
 \left.
 	\begin{array}{l}
-		g(x)\text{ continua en } [0,1] \to \text{ En este caso se cumple por ser suma de función polinómica y exponencial}\\
-		g(x)\text{ derivable en } (0,1) \to \text{ En este caso se cumple por ser suma de función polinómica y exponencial}\\
+		g(x)\text{ continua en } [0,1] \to \text{ En este caso sí por ser suma de función polinómica y exponencial}\\
+		g(x)\text{ derivable en } (0,1) \to \text{ En este caso sí por ser suma de función polinómica y exponencial}\\
 		g(a)=g(b) 
 	\end{array}
 \right\}
@@ -672,24 +855,11 @@ Necesitamos que $g(0) = g(1)$.
 \end{problem}
 
 \subsubsection{Regla de L'Hôpital}
-
+(Ver documento aparte)
 \subsubsection{Monotonía}
-
-\begin{theorem}[Teorema\IS de monotonía]
-\end{theorem}
-\begin{theorem}[Teorema\IS de extremos relativos]
-\end{theorem}
-
+\subsubsection{La segunda derivada: Curvatura}
 \subsubsection{Optimización}
-
-
-\begin{theorem}[Teorema\IS de Weierstrass]
-Si $f(x)$ es continua en $[a,b]$, entonces tiene un máximo y un mínimo absolutos en $[a,b]$.
-\end{theorem}
-
-
 \section{Análisis sistemático de una función}
-
 \section{Integrales}
-
+\subsection{Primitivas}
 \subsection{Cálculo de áreas de recintos cerrados}
