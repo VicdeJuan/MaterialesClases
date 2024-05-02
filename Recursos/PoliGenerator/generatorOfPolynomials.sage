@@ -33,17 +33,19 @@ def countDups(l):
     
     return d
 
+def __no_str_just_pol(ss,counter,sols):
+    return ss 
+
 def _str_just_pol(ss,counter):
     ### Conseguir soluciones!
     return ss
 
 def _str_just_pol_no_sol(ss,counter):
+    poly=ss[0]
     return "\\$P_{" + str(counter) + "}(x) = " + _latex(poly) + "$"
 
 
 def str_just_pol(ss,counter,sols):
-    return _str_just_pol_no_sol(ss,counter)
-    
     if sols:
         return _str_just_pol(ss,counter)
     else:
@@ -299,7 +301,54 @@ def genIdentidadNotable(tipo,fraccion,numletras,strfun):
           
 
 
+def GenerarListaCompletaSoluciones():
+    rootsRank=[-3,4]            # Rango de valores que pueden tomar las raices
+    coefRank=[-3,3]             # Rango de valores que pueden tomar los coeficientes principales.
+    numToGen= 6                 # Numero de polinomios a generar de cada tipo.
+    printsol = false            # Imprimir las raices de cada polinomio.
+    num_rfrac_max = 5           # Numero maximo de raices fraccionarias.
+    num_rfrac_min = 2           # Numero minimo de raices fraccionarias.
+    num=0                       # Contador auxiliar para llevar la numeracion de los polinomios generados.
+    numDegree2Pols = 1          # Numero maximo de polinomios irreducibles de grado 2.
+    degree_max = 5              # Grado maximo de los polinomios.
+    degree_min = 3              # Grado minimo de los polinomios.
+    topMargin_solutions = 1.2   # Margen vertical entre soluciones
 
+    for _numDegree2Pols in range(numDegree2Pols+1):
+        if _numDegree2Pols:
+            print("\\section{Con " + str(_numDegree2Pols) + " polinomio/s irreducible/s de grado 2}")
+        else:
+            print("\\section{Sin polinomios irreducibles de grado 2}")
+
+        for rfrac in range(num_rfrac_max-num_rfrac_min+1): # rfrac: numero de raices fraccionarias por polinomio.
+            num_rfrac_real = rfrac + num_rfrac_min
+            print("\\subsection{Hasta "+str(num_rfrac_real) + " raices fraccionarias}")
+            for _deg in range(degree_max-degree_min+1): 
+                deg=_deg+degree_min  # deg: grado del polinomio.
+                if num_rfrac_real>deg:
+                    num_rfrac_real=deg
+
+                print(ppart(rfrac=num_rfrac_real,deg=deg,degree2=_numDegree2Pols))
+                for i in xrange(numToGen): 
+                    num = num + 1
+                    print(genP(grado=deg,
+                            fixedroots=[],
+                            rfrac=num_rfrac_real,
+                            printsol = printsol, 
+                            strfun=str_poly, 
+                            counter = num,
+                            rootsRank = rootsRank,
+                            coefRank = coefRank,
+                            degree2 = _numDegree2Pols))
+                    print("")
+
+    print("\\newpage\\section{Soluciones}")
+    for i in xrange(len(allPols)):
+        p=allPols[i]
+        print("\\subitem \\begin{dmath*}P_{"+str(i+1)+"}(x) = " + latex(p.factor())+"\\end{dmath*}\\vspace{-" + str(topMargin_solutions) + "cm}")
+    print("")
+
+########################################## MAIN
 allPols=[]
 
 # Generar exámenes
@@ -319,96 +368,140 @@ genPolNoRoots(grado = degree_max,
             numTerms = 5,
             counter = 0)
 
-P1=genP(grado=3,
-        fixedroots=[],
-        rfrac=1,
-        printsol = True, 
-        strfun=str_just_pol, 
-        counter = 0,
-        rootsRank = rootsRank,
-        coefRank = coefRank,
-        degree2 = 0)
+#P1=genP(grado=3,fixedroots=[],rfrac=1,printsol = True, strfun=str_just_pol, counter = 0,rootsRank = rootsRank,coefRank = coefRank,degree2 = 0)
+#P2=genP(grado=2,fixedroots=[],rfrac=1,printsol = True, strfun=str_just_pol, counter = 0,rootsRank = rootsRank,coefRank = coefRank,degree2 = 0)
 
-P2=genP(grado=2,
-        fixedroots=[],
-        rfrac=1,
-        printsol = True, 
-        strfun=str_just_pol, 
-        counter = 0,
-        rootsRank = rootsRank,
-        coefRank = coefRank,
-        degree2 = 0)
-
-Enunciado="\\paragraph{[4 puntos] 1) Dados $P(x) = "+latex(P1[0])+"$ y $Q(x) = "+latex(P2[0])+"$, realiza las siguientes operaciones:}"
-Enunciado+= "\\begin{itemize}\\item\\textit{1 pto}\;\; $P(x) - Q(x)$\\item \\textit{1pto}\;\; $\\left(-2x^2\\right) \\cdot P(x)$\\item\\textit{2ptos}\;\;$P(x)\\cdot Q(x)$  \\end{itemize}"
+#Enunciado ="\\paragraph{[4 puntos] 1) Dados $P(x) = "+latex(P1[0])+"$ y $Q(x) = "+latex(P2[0])+"$, realiza las siguientes operaciones:}"
+#Enunciado += "\\begin{itemize}\\item\\textit{1 pto}\;\; $P(x) - Q(x)$\\item \\textit{1pto}\;\; $\\left(-2x^2\\right) \\cdot P(x)$\\item\\textit{2ptos}\;\;$P(x)\\cdot Q(x)$  \\end{itemize}"
+#Enunciado += "\\paragraph{[6 puntos] 2) Resuelve las siguientes operaciones:}"
+#Enunciado += "\\begin{itemize}"
+#all_items = []
+#all_items.append("\\item $" + genIdentidadNotable("suma",0,3,latex)+"$")
+#all_items.append("\\item $" + genIdentidadNotable("suma",1,3,latex)+"$")
+#all_items.append("\\item $" + genIdentidadNotable("resta",0,3,latex)+"$")
+#all_items.append("\\item $" + genIdentidadNotable("resta",1,5,latex)+"$")
+#all_items.append("\\item $" + genIdentidadNotable("sumaresta",0,1,latex)+"$")
+#all_items.append("\\item $" + genIdentidadNotable("sumaresta",2,2,latex)+"$")
+#shuffle(all_items)
+#Enunciado += " ".join(all_items)
+#Enunciado += "\\end{itemize}"
 
 
-Enunciado += "\\paragraph{[6 puntos] 2) Resuelve las siguientes operaciones:}"
-Enunciado += "\\begin{itemize}"
+genPolNoRoots(grado = degree_max,
+            letters = [x,y,z],
+            printsol = True,
+            strfun = str_just_pol,
+            coefRank = coefRank,
+            numTerms = 5,
+            counter = 0)
 
-all_items = []
-all_items.append("\\item $" + genIdentidadNotable("suma",0,3,latex)+"$")
-all_items.append("\\item $" + genIdentidadNotable("suma",1,3,latex)+"$")
-all_items.append("\\item $" + genIdentidadNotable("resta",0,3,latex)+"$")
-all_items.append("\\item $" + genIdentidadNotable("resta",1,5,latex)+"$")
-all_items.append("\\item $" + genIdentidadNotable("sumaresta",0,1,latex)+"$")
-all_items.append("\\item $" + genIdentidadNotable("sumaresta",2,2,latex)+"$")
+def genPolNoRoots_2024_05_02(letras,grado_max,nTerms,contador):
+    return genPolNoRoots(grado = grado_max,
+            letters = letras,
+            printsol = True,
+            strfun = __no_str_just_pol,
+            coefRank = [-4,4],
+            numTerms = nTerms,
+            counter = contador)
 
-shuffle(all_items)
+Enunciado_2024_05_02 = "\\paragraph{ Realiza las siguientes operaciones }"
+Solucion_2024_05_02 = ""
 
-Enunciado += " ".join(all_items)
-Enunciado += "\\end{itemize}"
+def _concat_with_plus(a,b):
+    if a[0] == "-" and b[0] != "-":
+        return b + " + " + a
+    elif b[0] == "-" and a[0] == "-":
+        return a + " + (" + b +")"
+    else:
+        return a + " + " + b
+
+## EJERCICIO 1
+## Solo suma de 3 polinomios de 3 letras
+for a in range(5):
+    grado_max = 7
+    nTerms = 3
+    letras = [x]
+    P1 = genPolNoRoots_2024_05_02(letras,grado_max,nTerms,a)
+    P2 = genPolNoRoots_2024_05_02(letras,grado_max,nTerms,a)
+    P3 = genPolNoRoots_2024_05_02(letras,grado_max,nTerms,a)
+    Enunciado_2024_05_02 += "\\subitem ["+str(a)+"]$" + reduce(_concat_with_plus,[latex(P1[0]),latex(P2[0]),latex(P3[0])]) + "$"
+    Solucion_2024_05_02 += "\\subitem ["+str(a)+"]$" + reduce(_concat_with_plus,[latex(P1[0]),latex(P2[0]),latex(P3[0])]) + " = " + latex(P1[0]+P2[0]+P3[0])+ "$"
+
+
+## EJERCICIO 2
+## Solo suma de 3 polinomios de 3 letras
+for a in range(5):
+    grado_max = 7
+    nTerms = 3
+    letras = [x,y,a]
+    P1 = genPolNoRoots_2024_05_02(letras,grado_max,nTerms,a)
+    P2 = genPolNoRoots_2024_05_02(letras,grado_max,nTerms,a)
+    P3 = genPolNoRoots_2024_05_02(letras,grado_max,nTerms,a)
+    Enunciado_2024_05_02 += "\\subitem ["+str(a)+"]$" + reduce(_concat_with_plus,[latex(P1[0]),latex(P2[0]),latex(P3[0])]) + "$"
+    Solucion_2024_05_02 += "\\subitem ["+str(a)+"]$" + reduce(_concat_with_plus,[latex(P1[0]),latex(P2[0]),latex(P3[0])]) + " = " + latex(P1[0]+P2[0]+P3[0])+ "$"
+
+## EJERCICIO 3
+## Suma y resta de 3 polinomios de 3 letras
+for a in range(5):
+    grado_max = 7
+    nTerms = 3
+    letras = [x,y,a]
+    P1 = genPolNoRoots_2024_05_02(letras,grado_max,nTerms,a)
+    P2 = genPolNoRoots_2024_05_02(letras,grado_max,nTerms,a)
+    P3 = genPolNoRoots_2024_05_02(letras,grado_max,nTerms,a)
+    Enunciado_2024_05_02 += "\\subitem ["+str(a)+"]$" + latex(P1[0])+" + "+latex(P2[0])+ "- (" + latex(P3[0])+")" + "$"
+    Solucion_2024_05_02 += "\\subitem ["+str(a)+"]$" + latex(P1[0])+" + "+latex(P2[0])+ "- (" + latex(P3[0])+")" + " = " + latex(P1[0]+P2[0]-P3[0])+ "$"
+
+## EJERCICIO 4
+## Multiplicación de monomios
+
+for a in range(5):
+    grado_max = 3*12+1
+    nTerms = 1
+    letras = [x,y,z,a,b]
+    P1 = genPolNoRoots_2024_05_02(letras,grado_max,nTerms,a)
+    P2 = genPolNoRoots_2024_05_02(letras,grado_max,nTerms,a)
+    P3 = genPolNoRoots_2024_05_02(letras,grado_max,nTerms,a)
+    Enunciado_2024_05_02 += "\\subitem ["+str(a)+"]$ (" + latex(P1[0])+") · ("+latex(P2[0])+ ")$"
+    Solucion_2024_05_02 += "\\subitem ["+str(a)+"]$ (" + latex(P1[0])+") · ("+latex(P2[0])+ ") = " + latex(P1[0]*P2[0])+ "$"
+
+
+## EJERCICIO 5
+## Multiplicación de polinomios
+
+for a in range(5):
+    grado_max = 3
+    nTerms = 3
+    letras = [x]
+    P1 = genPolNoRoots_2024_05_02(letras,grado_max,nTerms,a)
+    P2 = genPolNoRoots_2024_05_02(letras,grado_max,nTerms,a)
+    P3 = genPolNoRoots_2024_05_02(letras,grado_max,nTerms,a)
+    Enunciado_2024_05_02 += "\\subitem ["+str(a)+"]$ (" + latex(P1[0])+") · ("+latex(P2[0])+ ")$"
+    Solucion_2024_05_02 += "\\subitem ["+str(a)+"]$ (" + latex(P1[0])+") · ("+latex(P2[0])+ ") = " + latex(P1[0]*P2[0])+ "$"
+
+## EJERCICIO 5
+## Multiplicación de polinomios
+
+for a in range(5):
+    grado_max = 3
+    nTerms = 4
+    letras = [x]
+    P1 = genPolNoRoots_2024_05_02(letras,grado_max,nTerms,a)
+    P2 = genPolNoRoots_2024_05_02(letras,grado_max,nTerms,a)
+    P3 = genPolNoRoots_2024_05_02(letras,grado_max,nTerms,a)
+    Enunciado_2024_05_02 += "\\subitem ["+str(a)+"]$ (" + latex(P1[0])+") · ("+latex(P2[0])+ ")$"
+    Solucion_2024_05_02 += "\\subitem ["+str(a)+"]$ (" + latex(P1[0])+") · ("+latex(P2[0])+ ") = " + latex(P1[0]*P2[0])+ "$"
+
+
+
+
+print(Enunciado_2024_05_02)
+print(Solucion_2024_05_02)
+
 
 f=open("polys.tex","w")
-f.write(Enunciado)
+f.write(Enunciado_2024_05_02)
 f.close()
 g=open("polysSol.tex","w")
-g.write(Solucion)
+g.write(Solucion_2024_05_02)
 g.close()
-
-def GenerarListaCompletaSoluciones():
-    rootsRank=[-3,4]            # Rango de valores que pueden tomar las raices
-    coefRank=[-3,3]             # Rango de valores que pueden tomar los coeficientes principales.
-    numToGen= 6                 # Numero de polinomios a generar de cada tipo.
-    printsol = false            # Imprimir las raices de cada polinomio.
-    num_rfrac_max = 5           # Numero maximo de raices fraccionarias.
-    num_rfrac_min = 2           # Numero minimo de raices fraccionarias.
-    num=0                       # Contador auxiliar para llevar la numeracion de los polinomios generados.
-    numDegree2Pols = 1          # Numero maximo de polinomios irreducibles de grado 2.
-    degree_max = 5              # Grado maximo de los polinomios.
-    degree_min = 3              # Grado minimo de los polinomios.
-    topMargin_solutions = 1.2   # Margen vertical entre soluciones
-
-    for _numDegree2Pols in range(numDegree2Pols+1):
-        if _numDegree2Pols:
-            print "\\section{Con " + str(_numDegree2Pols) + " polinomio/s irreducible/s de grado 2}"
-        else:
-            print "\\section{Sin polinomios irreducibles de grado 2}"
-
-        for rfrac in range(num_rfrac_max-num_rfrac_min+1): # rfrac: numero de raices fraccionarias por polinomio.
-            num_rfrac_real = rfrac + num_rfrac_min
-            print "\\subsection{Hasta "+str(num_rfrac_real) + " raices fraccionarias}"
-            for _deg in range(degree_max-degree_min+1): 
-                deg=_deg+degree_min  # deg: grado del polinomio.
-                if num_rfrac_real>deg:
-                    num_rfrac_real=deg
-
-                print(ppart(rfrac=num_rfrac_real,deg=deg,degree2=_numDegree2Pols))
-                for i in xrange(numToGen): 
-                    num = num + 1
-                    print genP(grado=deg,
-                            fixedroots=[],
-                            rfrac=num_rfrac_real,
-                            printsol = printsol, 
-                            strfun=str_poly, 
-                            counter = num,
-                            rootsRank = rootsRank,
-                            coefRank = coefRank,
-                            degree2 = _numDegree2Pols)
-                    print
-
-    print "\\newpage\\section{Soluciones}"
-    for i in xrange(len(allPols)):
-        p=allPols[i]
-        print "\\subitem \\begin{dmath*}P_{"+str(i+1)+"}(x) = " + latex(p.factor())+"\\end{dmath*}\\vspace{-" + str(topMargin_solutions) + "cm}"
-    print ""
