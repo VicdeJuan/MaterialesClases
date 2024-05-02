@@ -38,9 +38,12 @@ def _str_just_pol(ss,counter):
     return ss
 
 def _str_just_pol_no_sol(ss,counter):
-    return ss
+    return "\\$P_{" + str(counter) + "}(x) = " + _latex(poly) + "$"
+
 
 def str_just_pol(ss,counter,sols):
+    return _str_just_pol_no_sol(ss,counter)
+    
     if sols:
         return _str_just_pol(ss,counter)
     else:
@@ -112,6 +115,13 @@ def _genIrreductiblePoly():
     P(x)=x*x+random_not_null(0,5,true)
     return P(x)
 
+def __sum(a,b):
+    return a+b
+def __prod(a,b):
+    return a*b
+
+
+
 
 def _genP(grado,fixedroots,rfrac,rootsRank,coefRank,degree2):
     P(x) = 1
@@ -161,6 +171,24 @@ def genP(grado,fixedroots,rfrac,printsol,strfun,counter,rootsRank,coefRank,degre
     else:
         return strfun(_r[0].expand(),counter,printsol)
 
+
+
+def _genPolNoRoots(grado,letters,printsol,strfun,coefRank,numTerms):
+    return [reduce(__sum,[
+                reduce(__prod, [
+                    random_not_null(coefRank[0],coefRank[1],True)*l**random_not_null(1,ceil(grado/len(letters)),True) 
+                for l in letters])
+            for i in range(numTerms)]),""]
+
+# Función para generar una cadena de texto a partir de un polinomio generado por la funcion auxiliar 
+# _genPolNoRoots a partir de los argumentos recibidos.
+def genPolNoRoots(grado,letters,printsol,strfun,coefRank,numTerms,counter):
+    _r=_genPolNoRoots(grado,letters,printsol,strfun,coefRank,numTerms)    
+    allPols.append(_r[0].expand())
+    if printsol:
+        return strfun([_r[0].expand(),_r[1]],counter,printsol)
+    else:
+        return strfun(_r[0].expand(),counter,printsol)
 
 def identity(x):
     return x
@@ -282,6 +310,14 @@ degree_max = 5              # Grado maximo de los polinomios.
 degree_min = 3              # Grado minimo de los polinomios.
 Enunciado=""
 Solucion=""
+
+genPolNoRoots(grado = degree_max,
+            letters = [x,y,z],
+            printsol = True,
+            strfun = str_just_pol,
+            coefRank = coefRank,
+            numTerms = 5,
+            counter = 0)
 
 P1=genP(grado=3,
         fixedroots=[],
