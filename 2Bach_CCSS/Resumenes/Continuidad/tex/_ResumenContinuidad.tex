@@ -163,3 +163,77 @@ Estudia la continuidad de las siguiente funciones.
 
 \solution
 \end{problem}
+
+
+\begin{table}[hbtp]
+\begin{tabular}{|l|l|}
+\hline
+Funciones polinómicas & Continuas en $\real$\\\hline\hline
+$f(x) = \frac{P(x)}{Q(x)}$ con $P(x),Q(x)$ polinomios& Continuas en $\real-\{x \tq Q(x)=0\}$\\\hline
+$f(x) = \sqrt[n]{P(x)}$ & $\begin{cases}
+n\text{ impar: continua en } \real\\\hline
+n\text{ par: continua en } \{x\in\real\tq P(x) \geq 0\}\end{cases}$\\\hline
+$f(x) = a^x$ con $a>0$ & Continua en $\real$\\\hline
+$f(x) = \log_ax$ (con $a>0, a\neq 1$) & Continua en $\real$\\\hline
+$f(x) = \cos(x)$ y $f(x) = \sen(x)$  & Continua en $\real$\\\hline
+$f(x) = \tg(x)$   & Continua en $\real-\left\{x=\rfrac{\pi}{2}k, k\in\mathbb{Z}\right\}$\\\hline
+$f(x) = \arcsen(x)$ & Continua en su dominio.\\
+$f(x) = \arccos(x)$ & Continua en su dominio.\\
+$f(x) = \arctg(x)$ & Continua en su dominio.\\\hline
+\end{tabular}
+\label{tbl::ContinuidadFunElementales}
+\caption{Continuidad de las funciones elementales}
+\end{table}
+
+
+
+
+\begin{problem}Estudia la continuidad de las siguientes funciones y clasifica sus discontinuidades
+
+\begin{itemize}
+	\item $f_1(x) = \displaystyle\frac{x^2+5x+6}{x^2+2x}$
+	\item $f_2(x) = \begin{cases}\log{x+1} & x\leq -1\\x & x>1\end{cases}$
+\end{itemize}
+\solution
+\end{problem}
+
+
+
+\begin{theorem}[Teorema\IS de Bolzano]
+Sea $\appl{f}{D}{\real}$.
+
+\[
+\left.\begin{array}{c}f(x) \text{ continua en } [a,b]\\\text{Signo}(f(a))\neq \text{Signo}(f(b))\end{array}\right\}\implies \exists c\in(a,b) \tq f(c) = 0
+\]
+
+\end{theorem}
+\obs Es una condición suficiente, no necesaria. Es decir, es $\implies $. Por ejemplo, $f(x) = (x-1)^2$ corta en $x=1$, pero no cumple las condiciones.
+
+\begin{problem} Demuestra que la ecuación $x^3-7x^2-1$ tiene al menos una solución real en el intervalo $[0,10]$.
+\solution
+
+Sea $f(x) = x^3-7x^2-1$. Se trata de demostrar que $\exists c\in[0,10]\tq f(c) = 0$. Comprobamos que cumple el teorema de Bolzano.
+
+\[
+\left\{
+	\begin{array}{c}
+		f(x) \text{ es continua en } [0,10] \text{ por ser polinómica}\\
+		\left.\begin{array}{c}
+		f(x) = -1 \\
+		f(10) = 299\end{array}
+		\right\}\implies Signo(f(0))\neq Signo(f(10))
+	\end{array}
+\right\}\implies \exists c\in(0,10)\tq f(c)=0 
+\]
+\end{problem}
+
+\begin{theorem}[Teorema\IS del valor intermedio]
+Sea $\appl{f}{D}{\real}$.
+\[
+\left.\begin{array}{c}f(x) \text{ continua en } [a,b]\\
+\exists k\in\real \begin{cases}f(a)\leq k\leq f(b)\\f(b)\leq k \leq f(a)\end{cases}\end{array}\right\}\implies \exists c\in(a,b) \tq f(c) = k
+\]
+\end{theorem}
+
+\obs Para $k=0$, el teorema del valor intermedio se convierte en teorema de Bolzano.
+
