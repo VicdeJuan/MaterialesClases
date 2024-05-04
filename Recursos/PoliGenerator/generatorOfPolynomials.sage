@@ -109,7 +109,7 @@ def random_not_null(mn,mx,integer):
         if mn == 0 and (mx == 1 or mx == 0):
             return 1
         else:
-            return _random_not_null(mn,mx,integer,5)
+            return _random_not_null(mn,mx,integer,25)
     else:
         return retval
 
@@ -428,8 +428,8 @@ Solucion_2024_05_02 += "\\begin{itemize}"
 num=0
 
 num += 1
-Enunciado_2024_05_02 += "\\item[Ejercicio" + str(num) +"] Realiza las siguientes sumas de polinomios: \\\\"
-Solucion_2024_05_02 += "\\item[Ejercicio" + str(num) +"] Realiza las siguientes sumas de polinomios: \\\\"
+Enunciado_2024_05_02 += "\\item[Ejercicio " + str(num) +":] Realiza las siguientes sumas de polinomios: \\\\"
+Solucion_2024_05_02 += "\\item[Ejercicio " + str(num) +":] Realiza las siguientes sumas de polinomios: \\\\"
 
 ## EJERCICIO 1
 ## Solo suma de 3 polinomios de 3 letras
@@ -440,15 +440,15 @@ for a in range(10):
     P1 = genPolNoRoots_2024_05_02(letras,grado_max,nTerms,a)
     P2 = genPolNoRoots_2024_05_02(letras,grado_max,nTerms,a)
     P3 = genPolNoRoots_2024_05_02(letras,grado_max,nTerms,a)
-    Enunciado_2024_05_02 += "\\noindent\\subitem ["+str(a)+"]$" + reduce(_concat_with_plus,[latex(P1[0].expand()),latex(P2[0].expand()),latex(P3[0].expand())]) + "$"
-    Solucion_2024_05_02 += "\\subitem ["+str(a)+"]$" + reduce(_concat_with_plus,[latex(P1[0].expand()),latex(P2[0].expand()),latex(P3[0].expand())]) + " = " + latex((P1[0]+P2[0]+P3[0]).expand())+ "$"
+    Enunciado_2024_05_02 += "\\noindent\\subitem ["+str(a+1)+"]\\quad$" + reduce(_concat_with_plus,[latex(P1[0].expand()),latex(P2[0].expand()),latex(P3[0].expand())]) + "$"
+    Solucion_2024_05_02 += "\\subitem ["+str(a+1)+"]\\quad$" + reduce(_concat_with_plus,[latex(P1[0].expand()),latex(P2[0].expand()),latex(P3[0].expand())]) + " = " + latex((P1[0]+P2[0]+P3[0]).expand())+ "$"
 
 
 ## EJERCICIO 2
 ## Solo suma de 3 polinomios de 3 letras
 num += 1
-Enunciado_2024_05_02 += "\\item[Ejercicio" + str(num) +"] Realiza las siguientes sumas de polinomios: \\\\"
-Solucion_2024_05_02 += "\\item[Ejercicio" + str(num) +"] Realiza las siguientes sumas de polinomios: \\\\"
+Enunciado_2024_05_02 += "\\item[Ejercicio " + str(num) +":] Realiza las siguientes sumas de polinomios: \\\\"
+Solucion_2024_05_02 += "\\item[Ejercicio " + str(num) +":] Realiza las siguientes sumas de polinomios: \\\\"
 for a in range(10):
     grado_max = 7
     nTerms = 3
@@ -456,8 +456,8 @@ for a in range(10):
     P1 = genPolNoRoots_2024_05_02(letras,grado_max,nTerms,a)
     P2 = genPolNoRoots_2024_05_02(letras,grado_max,nTerms,a)
     P3 = genPolNoRoots_2024_05_02(letras,grado_max,nTerms,a)
-    Enunciado_2024_05_02 += "\\subitem ["+str(a)+"]$" + reduce(_concat_with_plus,[latex(P1[0].expand()),latex(P2[0].expand()),latex(P3[0].expand())]) + "$"
-    Solucion_2024_05_02 += "\\subitem ["+str(a)+"]$" + reduce(_concat_with_plus,[latex(P1[0].expand()),latex(P2[0].expand()),latex(P3[0].expand())]) + " = " + latex((P1[0]+P2[0]+P3[0]).expand())+ "$"
+    Enunciado_2024_05_02 += "\\subitem ["+str(a+1)+"]\\quad$" + reduce(_concat_with_plus,[latex(P1[0].expand()),latex(P2[0].expand()),latex(P3[0].expand())]) + "$"
+    Solucion_2024_05_02 += "\\subitem ["+str(a+1)+"]\\quad$" + reduce(_concat_with_plus,[latex(P1[0].expand()),latex(P2[0].expand()),latex(P3[0].expand())]) + " = " + latex((P1[0]+P2[0]+P3[0]).expand())+ "$"
 
 ## EJERCICIO 3
 ## Suma y resta de 3 polinomios de 3 letras
@@ -470,14 +470,24 @@ for a in range(10):
     P1 = genPolNoRoots_2024_05_02(letras,grado_max,nTerms,a)
     P2 = genPolNoRoots_2024_05_02(letras,grado_max,nTerms,a)
     P3 = genPolNoRoots_2024_05_02(letras,grado_max,nTerms,a)
-    Enunciado_2024_05_02 += "\\subitem ["+str(a)+"]$" + latex(P1[0].expand())+" + "+latex(P2[0].expand())+ "- (" + latex(P3[0].expand())+")" + "$"
-    Solucion_2024_05_02 += "\\subitem ["+str(a)+"]$" + latex(P1[0].expand())+" + "+latex(P2[0].expand())+ "- (" + latex(P3[0].expand())+")" + " = " + latex((P1[0]+P2[0]-P3[0]).expand())+ "$"
+    if a%3:
+        Enunciado_2024_05_02 += "\\subitem ["+str(a+1)+"]\\quad$" + latex(P1[0].expand())+" + "+latex(P2[0].expand())+ "- (" + latex(P3[0].expand())+")" + "$"
+        Solucion_2024_05_02 += "\\subitem ["+str(a+1)+"]\\quad$" + latex(P1[0].expand())+" + "+latex(P2[0].expand())+ "- (" + latex(P3[0].expand())+")" + " = " + latex((P1[0]+P2[0]-P3[0]).expand())+ "$"
+    elif (a+1)%3:
+        Enunciado_2024_05_02 += "\\subitem ["+str(a+1)+"]\\quad$" + latex(P1[0].expand())+" - ("+latex(P2[0].expand())+ ") + (" + latex(P3[0].expand())+")" + "$"
+        Solucion_2024_05_02 += "\\subitem ["+str(a+1)+"]\\quad$" + latex(P1[0].expand())+" - ("+latex(P2[0].expand())+ ") + (" + latex(P3[0].expand())+")" + " = " + latex((P1[0]-P2[0]+P3[0]).expand())+ "$"
+    else:
+        Enunciado_2024_05_02 += "\\subitem ["+str(a+1)+"]\\quad$" + latex(P1[0].expand())+" - ("+latex(P2[0].expand())+ ") - (" + latex(P3[0].expand())+")" + "$"
+        Solucion_2024_05_02 += "\\subitem ["+str(a+1)+"]\\quad$" + latex(P1[0].expand())+" - ("+latex(P2[0].expand())+ ") - (" + latex(P3[0].expand())+")" + " = " + latex((P1[0]-P2[0]-P3[0]).expand())+ "$"
+    
+
+    
 
 ## EJERCICIO 4
 ## Multiplicación de monomios
 num += 1
-Enunciado_2024_05_02 += "\\item[Ejercicio" + str(num) +"] Realiza las siguientes multiplicaciones de monomios: \\\\"
-Solucion_2024_05_02 += "\\item[Ejercicio" + str(num) +"] Realiza las siguientes multiplicaciones de monomios: \\\\"
+Enunciado_2024_05_02 += "\\item[Ejercicio " + str(num) +":] Realiza las siguientes multiplicaciones de monomios: \\\\"
+Solucion_2024_05_02 += "\\item[Ejercicio " + str(num) +":] Realiza las siguientes multiplicaciones de monomios: \\\\"
 
 for a in range(10):
     grado_max = 3*5+1
@@ -486,8 +496,8 @@ for a in range(10):
     P1 = genPolNoRoots_2024_05_02(letras,grado_max,nTerms,a)
     P2 = genPolNoRoots_2024_05_02(letras,grado_max,nTerms,a)
     P3 = genPolNoRoots_2024_05_02(letras,grado_max,nTerms,a)
-    Enunciado_2024_05_02 += "\\subitem ["+str(a)+"]$ (" + latex(P1[0].expand())+") · ("+latex(P2[0].expand())+ ")$"
-    Solucion_2024_05_02 += "\\subitem ["+str(a)+"]$ (" + latex(P1[0].expand())+") · ("+latex(P2[0].expand())+ ") = " + latex((P1[0]*P2[0]).expand())+ "$"
+    Enunciado_2024_05_02 += "\\subitem ["+str(a+1)+"]\\quad$ (" + latex(P1[0].expand())+") · ("+latex(P2[0].expand())+ ")$"
+    Solucion_2024_05_02 += "\\subitem ["+str(a+1)+"]\\quad$ (" + latex(P1[0].expand())+") · ("+latex(P2[0].expand())+ ") = " + latex((P1[0]*P2[0]).expand())+ "$"
 
 
 
@@ -495,8 +505,8 @@ for a in range(10):
 ## EJERCICIO 5
 ## Multiplicación de monomio por polinomio
 num += 1
-Enunciado_2024_05_02 += "\\item[Ejercicio" + str(num) +"] Realiza las siguientes multiplicaciones de polinomios: \\\\"
-Solucion_2024_05_02 += "\\item[Ejercicio" + str(num) +"] Realiza las siguientes multiplicaciones de polinomios: \\\\"
+Enunciado_2024_05_02 += "\\item[Ejercicio " + str(num) +":] Realiza las siguientes multiplicaciones de polinomios: \\\\"
+Solucion_2024_05_02 += "\\item[Ejercicio " + str(num) +":] Realiza las siguientes multiplicaciones de polinomios: \\\\"
 
 for a in range(10):
     grado_max = 3
@@ -504,15 +514,15 @@ for a in range(10):
     letras = [x]
     P1 = genPolNoRoots_2024_05_02(letras,grado_max,1,a)
     P2 = genPolNoRoots_2024_05_02(letras,grado_max,4,a)
-    Enunciado_2024_05_02 += "\\subitem ["+str(a)+"]$ (" + latex(P1[0].expand())+") · ("+latex(P2[0].expand())+ ")$"
-    Solucion_2024_05_02 += "\\subitem ["+str(a)+"]$ (" + latex(P1[0].expand())+") · ("+latex(P2[0].expand())+ ") = " + latex((P1[0]*P2[0]).expand())+ "$"
+    Enunciado_2024_05_02 += "\\subitem ["+str(a+1)+"]\\quad$ (" + latex(P1[0].expand())+") · ("+latex(P2[0].expand())+ ")$"
+    Solucion_2024_05_02 += "\\subitem ["+str(a+1)+"]\\quad$ (" + latex(P1[0].expand())+") · ("+latex(P2[0].expand())+ ") = " + latex((P1[0]*P2[0]).expand())+ "$"
 
 
 ## EJERCICIO 5
 ## Multiplicación de polinomios fácil
 num += 1
-Enunciado_2024_05_02 += "\\item[Ejercicio" + str(num) +"] Realiza las siguientes multiplicaciones de polinomios: \\\\"
-Solucion_2024_05_02 += "\\item[Ejercicio" + str(num) +"] Realiza las siguientes multiplicaciones de polinomios: \\\\"
+Enunciado_2024_05_02 += "\\item[Ejercicio " + str(num) +":] Realiza las siguientes multiplicaciones de polinomios: \\\\"
+Solucion_2024_05_02 += "\\item[Ejercicio " + str(num) +":] Realiza las siguientes multiplicaciones de polinomios: \\\\"
 
 for a in range(10):
     grado_max = 3
@@ -520,18 +530,18 @@ for a in range(10):
     letras = [x]
     P1 = genPolNoRoots_2024_05_02(letras,grado_max,2,a)
     P2 = genPolNoRoots_2024_05_02(letras,grado_max,3,a)
-    Enunciado_2024_05_02 += "\\subitem ["+str(a)+"]$ (" + latex(P1[0].expand())+") · ("+latex(P2[0].expand())+ ")$"
-    Solucion_2024_05_02 += "\\subitem ["+str(a)+"]$ (" + latex(P1[0].expand())+") · ("+latex(P2[0].expand())+ ") = " + latex((P1[0]*P2[0]).expand())+ "$"
+    Enunciado_2024_05_02 += "\\subitem ["+str(a+1)+"]\\quad$ (" + latex(P1[0].expand())+") · ("+latex(P2[0].expand())+ ")$"
+    Solucion_2024_05_02 += "\\subitem ["+str(a+1)+"]\\quad$ (" + latex(P1[0].expand())+") · ("+latex(P2[0].expand())+ ") = " + latex((P1[0]*P2[0]).expand())+ "$"
 
 
 
 ## EJERCICIO 6
 ## Multiplicación de polinomios
 num += 1
-Enunciado_2024_05_02 += "\\item[Ejercicio" + str(num) +"] Realiza las siguientes multiplicaciones de polinomios: \\\\"
-Solucion_2024_05_02 += "\\item[Ejercicio" + str(num) +"] Realiza las siguientes multiplicaciones de polinomios: \\\\"
+Enunciado_2024_05_02 += "\\item[Ejercicio " + str(num) +":] Realiza las siguientes multiplicaciones de polinomios: \\\\"
+Solucion_2024_05_02 += "\\item[Ejercicio " + str(num) +":] Realiza las siguientes multiplicaciones de polinomios: \\\\"
 
-for a in range(10):
+for a in range(15):
     grado_max = 4
     nTerms = 3
     letras = [x]
@@ -545,28 +555,27 @@ for a in range(10):
         P1 = genPolNoRoots_2024_05_02(letras,grado_max,3,a)
         P2 = genPolNoRoots_2024_05_02(letras,grado_max,2,a)
 
-    Enunciado_2024_05_02 += "\\subitem ["+str(a)+"]$ (" + latex(P1[0].expand())+") · ("+latex(P2[0].expand())+ ")$"
-    Solucion_2024_05_02 += "\\subitem ["+str(a)+"]$ (" + latex(P1[0].expand())+") · ("+latex(P2[0].expand())+ ") = " + latex((P1[0]*P2[0]).expand())+ "$"
+    Enunciado_2024_05_02 += "\\subitem ["+str(a+1)+"]\\quad$ (" + latex(P1[0].expand())+") · ("+latex(P2[0].expand())+ ")$"
+    Solucion_2024_05_02 += "\\subitem ["+str(a+1)+"]\\quad$ (" + latex(P1[0].expand())+") · ("+latex(P2[0].expand())+ ") = " + latex((P1[0]*P2[0]).expand())+ "$"
 
 
 ## EJERCICIO 7
 ## Multiplicación de polinomios
 num += 1
-Enunciado_2024_05_02 += "\\item[Ejercicio" + str(num) +"] Realiza las siguientes multiplicaciones de polinomios: \\\\"
-Solucion_2024_05_02 += "\\item[Ejercicio" + str(num) +"] Realiza las siguientes multiplicaciones de polinomios: \\\\"
+Enunciado_2024_05_02 += "\\item[Ejercicio " + str(num) +":] Realiza las siguientes multiplicaciones de polinomios: \\\\"
+Solucion_2024_05_02 += "\\item[Ejercicio " + str(num) +":] Realiza las siguientes multiplicaciones de polinomios: \\\\"
 
-for a in range(10):
+for a in range(7):
     grado_max = 5
     nTerms = 4
     letras = [x,y]
     P1 = genPolNoRoots_2024_05_02(letras,grado_max,2,a)
     P2 = genPolNoRoots_2024_05_02(letras,grado_max,3,a)
-    Enunciado_2024_05_02 += "\\subitem ["+str(a)+"]$ (" + latex(P1[0].expand())+") · ("+latex(P2[0].expand())+ ")$"
-    Solucion_2024_05_02 += "\\subitem ["+str(a)+"]$ (" + latex(P1[0].expand())+") · ("+latex(P2[0].expand())+ ") = " + latex((P1[0]*P2[0]).expand())+ "$"
+    Enunciado_2024_05_02 += "\\subitem ["+str(a+1)+"]\\quad$ (" + latex(P1[0].expand())+") · ("+latex(P2[0].expand())+ ")$"
+    Solucion_2024_05_02 += "\\subitem ["+str(a+1)+"]\\quad$ (" + latex(P1[0].expand())+") · ("+latex(P2[0].expand())+ ") = " + latex((P1[0]*P2[0]).expand())+ "$"
 
-Enunciado_2024_05_02 += "\\end{itemize}"
-Solucion_2024_05_02 += "\\end{itemize}"
-
+Enunciado_2024_05_02 += "\\end{itemize}\n\n"
+Solucion_2024_05_02 += "\\end{itemize}\n\n"
 
 print(Enunciado_2024_05_02)
 print(Solucion_2024_05_02)
