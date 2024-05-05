@@ -524,7 +524,7 @@ num += 1
 Enunciado_2024_05_02 += "\\item[Ejercicio " + str(num) +":] Realiza las siguientes multiplicaciones de polinomios: \\\\"
 Solucion_2024_05_02 += "\\item[Ejercicio " + str(num) +":] Realiza las siguientes multiplicaciones de polinomios: \\\\"
 
-for a in range(10):
+for a in range(15):
     grado_max = 3
     nTerms = 3
     letras = [x]
@@ -541,7 +541,7 @@ num += 1
 Enunciado_2024_05_02 += "\\item[Ejercicio " + str(num) +":] Realiza las siguientes multiplicaciones de polinomios: \\\\"
 Solucion_2024_05_02 += "\\item[Ejercicio " + str(num) +":] Realiza las siguientes multiplicaciones de polinomios: \\\\"
 
-for a in range(15):
+for a in range(20):
     grado_max = 4
     nTerms = 3
     letras = [x]
